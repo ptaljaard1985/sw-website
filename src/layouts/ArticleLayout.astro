@@ -1,0 +1,146 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import CtaSection from '../components/CtaSection.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  category: string;
+  image: string;
+  imageAlt: string;
+  date: string;
+  author: string;
+  authorTitle: string;
+  authorPhoto: string;
+  authorBio: string;
+  slug: string;
+}
+
+const { title, description, category, image, imageAlt, date, author, authorTitle, authorPhoto, authorBio, slug } = Astro.props;
+
+// Parse "Month Year" date string to ISO format for schema
+const months: Record<string, string> = {
+  January: '01', February: '02', March: '03', April: '04',
+  May: '05', June: '06', July: '07', August: '08',
+  September: '09', October: '10', November: '11', December: '12'
+};
+const dateParts = date.split(' ');
+const isoDate = dateParts.length === 2 && months[dateParts[0]]
+  ? `${dateParts[1]}-${months[dateParts[0]]}-01`
+  : undefined;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "image": image,
+  ...(isoDate && { "datePublished": isoDate, "dateModified": isoDate }),
+  "author": {
+    "@type": "Person",
+    "name": author,
+    "jobTitle": authorTitle
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Simple Wealth",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://simplewealth.co.za/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://simplewealth.co.za/articles/${slug}/`
+  }
+};
+
+const shareUrl = `https://simplewealth.co.za/articles/${slug}/`;
+const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
+const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(title)}`;
+---
+
+<BaseLayout title={`${title} — Simple Wealth`} description={description} activePage="knowledge" schema={schema}>
+
+  <div class="reading-progress" id="readingProgress" slot="before-nav"></div>
+
+  <!-- Article Hero -->
+  <section class="article-hero">
+    <div class="article-hero__bg">
+      <img src={image} alt={imageAlt}>
+    </div>
+    <div class="article-hero__content">
+      <div class="article-hero__text">
+        <span class="article-hero__category">{category}</span>
+        <h1 class="article-hero__headline">{title}</h1>
+        <div class="article-hero__meta">
+          By {author} &middot; {date}<span class="read-time" id="readTime"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Article Body -->
+  <article class="article-body" id="articleBody">
+    <slot />
+  </article>
+
+  <!-- Author Bio -->
+  <div class="author-bio">
+    <div class="author-bio__divider"></div>
+    <div class="author-bio__card">
+      <img loading="lazy" src={authorPhoto} alt={author} class="author-bio__photo">
+      <div>
+        <p class="author-bio__name">{author}</p>
+        <p class="author-bio__title">{authorTitle}, Simple Wealth</p>
+        <p class="author-bio__text">{authorBio}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Share -->
+  <div class="share-row">
+    <span class="share-row__label">Found this useful? Share it:</span>
+    <div class="share-row__links">
+      <a href={linkedInUrl} target="_blank" rel="noopener">LinkedIn</a>
+      <a href={twitterUrl} target="_blank" rel="noopener">Twitter / X</a>
+      <a href="#" id="copyLink">Copy link</a>
+    </div>
+  </div>
+
+  <CtaSection heading="Want personalised advice for your situation?" text="Every financial situation is different. Let's talk about yours." />
+
+  <script slot="scripts">
+    (function() {
+      /* Reading progress bar */
+      var progressBar = document.getElementById('readingProgress');
+      var articleBody = document.getElementById('articleBody');
+
+      window.addEventListener('scroll', function() {
+        var rect = articleBody.getBoundingClientRect();
+        var articleTop = rect.top + window.scrollY;
+        var articleHeight = articleBody.offsetHeight;
+        var scrolled = window.scrollY - articleTop;
+        var progress = Math.min(Math.max(scrolled / articleHeight * 100, 0), 100);
+        progressBar.style.width = progress + '%';
+      }, { passive: true });
+
+      /* Estimated read time */
+      var text = articleBody.textContent || articleBody.innerText;
+      var wordCount = text.trim().split(/\s+/).length;
+      var minutes = Math.ceil(wordCount / 200);
+      document.getElementById('readTime').textContent = minutes + ' min read';
+
+      /* Copy link */
+      document.getElementById('copyLink').addEventListener('click', function(e) {
+        e.preventDefault();
+        var link = this;
+        navigator.clipboard.writeText(window.location.href).then(function() {
+          var original = link.textContent;
+          link.textContent = 'Copied \u2713';
+          setTimeout(function() { link.textContent = original; }, 2000);
+        });
+      });
+    })();
+  </script>
+</BaseLayout>

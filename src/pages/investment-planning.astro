@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaSection from '../components/CtaSection.astro';
+import TestimonialsCarousel from '../components/TestimonialsCarousel.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Investment Planning",
+  "description": "We build personalised investment strategies that align with your goals, time horizon and attitude to risk.",
+  "provider": {
+    "@type": "FinancialService",
+    "name": "Simple Wealth",
+    "url": "https://simplewealth.co.za"
+  },
+  "areaServed": { "@type": "Country", "name": "South Africa" },
+  "serviceType": "Investment Planning"
+};
+---
+
+<BaseLayout
+  title="Investment Planning — Simple Wealth"
+  description="We build personalised investment strategies that align with your goals, time horizon and attitude to risk."
+  activePage="investment-planning"
+  showSocialInFooter={false}
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="hero hero--short">
+    <div class="hero__inner">
+      <span class="service-hero-badge fade-up">Investment Planning</span>
+      <h1 class="fade-up">We're invested in your success</h1>
+      <p class="fade-up">We build personalised investment strategies that align with your goals, time horizon and attitude to risk. With clear guidance and ongoing support, we help you grow and preserve your wealth with confidence.</p>
+      <div class="btn-group fade-up">
+        <a href="/contact/" class="btn btn--primary">Book your free discovery call</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Issues -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header fade-up">
+        <h2>Are you facing these common investment frustrations?</h2>
+        <p>Investing can feel complicated, uncertain, and easy to get wrong &mdash; especially with markets constantly shifting. Whether it's worrying about poor returns, missing growth opportunities, or feeling your strategy isn't aligned with your goals, many clients come to us feeling unsure and overwhelmed.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="card problem-card fade-up">
+          <div class="card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          </div>
+          <h3>You're unsure if your investments are performing well</h3>
+          <p>Without clear benchmarks and reporting, it's hard to know if your money is actually working for you.</p>
+        </div>
+        <div class="card problem-card fade-up">
+          <div class="card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+          </div>
+          <h3>You're nervous about market ups and downs</h3>
+          <p>Market volatility can feel alarming without proper guidance and a long-term perspective to stay the course.</p>
+        </div>
+        <div class="card problem-card fade-up">
+          <div class="card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>You feel you have a lack of time to manage investments</h3>
+          <p>Staying on top of markets, rebalancing portfolios, and making informed decisions takes time you don't have.</p>
+        </div>
+        <div class="card problem-card fade-up">
+          <div class="card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+          </div>
+          <h3>You're confused by jargon and complex options</h3>
+          <p>The investment world is full of technical language that makes it hard to feel confident about your choices.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach -->
+  <section class="section section--grey">
+    <div class="container">
+      <div class="section__header fade-up">
+        <h2>Our approach to investment planning</h2>
+        <p>We make investing easy and help your money grow. You can relax knowing your investments are looked after with care and clear advice that fits your goals. We make sure your investments are smart and specific for you.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="card fade-up">
+          <div class="card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Personalised Investment Strategy</h3>
+          <p>A plan built around your goals and lifestyle &mdash; not a generic template applied to everyone.</p>
+        </div>
+        <div class="card fade-up">
+          <div class="card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <h3>Clear, Simple Advice</h3>
+          <p>Invest with confidence and without confusion. We explain everything in plain language so you always know what's happening with your money.</p>
+        </div>
+        <div class="card fade-up">
+          <div class="card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+          </div>
+          <h3>Ongoing Portfolio Reviews</h3>
+          <p>Keeping your investments on track over time with regular reviews and proactive adjustments as your life changes.</p>
+        </div>
+        <div class="card fade-up">
+          <div class="card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
+          </div>
+          <h3>Smart Diversification</h3>
+          <p>Spreading risk to protect your future. We ensure your portfolio is well-balanced across asset classes and geographies.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <TestimonialsCarousel grey={false} />
+
+  <!-- FAQ -->
+  <section class="section section--grey">
+    <div class="container">
+      <div class="section__header fade-up">
+        <h2>Questions you may have on our investment service</h2>
+      </div>
+      <div class="faq-list fade-up">
+        <div class="faq-item">
+          <button class="faq-question">How do you decide where to invest my money?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer__inner"><p>We start by understanding your goals, risk tolerance, and time horizon. From there, we build a diversified portfolio using evidence-based strategies designed to grow steadily over time while managing downside risk.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How often will you review my investments?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer__inner"><p>We conduct formal reviews at least annually, but we monitor your portfolio continuously. If market conditions or your circumstances change, we'll reach out proactively to discuss adjustments.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How much money do I need to get started?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer__inner"><p>We don't have a strict minimum. What matters more is your commitment to a long-term strategy. We'll have an honest conversation during the discovery call about whether our services are the right fit for your situation.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Will I know what I'm invested in?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer__inner"><p>Absolutely. Transparency is fundamental to how we work. You'll receive clear reports showing exactly where your money is invested, how it's performing, and why we've made the choices we have.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Can you help consolidate my old investments and pensions?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer__inner"><p>Yes, this is one of the most common things we help with. We'll review all your existing accounts, assess whether consolidation makes sense, and handle the process for you to simplify your financial life.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>

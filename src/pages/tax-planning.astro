@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaSection from '../components/CtaSection.astro';
+import TestimonialsCarousel from '../components/TestimonialsCarousel.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Tax Planning",
+  "description": "With expert guidance and proactive planning, we help you reduce unnecessary tax costs and grow your wealth with confidence.",
+  "provider": {
+    "@type": "FinancialService",
+    "name": "Simple Wealth",
+    "url": "https://simplewealth.co.za"
+  },
+  "areaServed": { "@type": "Country", "name": "South Africa" },
+  "serviceType": "Tax Planning"
+};
+---
+
+<BaseLayout
+  title="Tax Planning — Simple Wealth"
+  description="With expert guidance and proactive planning, we help you reduce unnecessary tax costs and grow your wealth with confidence."
+  activePage="tax-planning"
+  showSocialInFooter={false}
+  schema={schema}
+>
+  <section class="hero hero--short">
+    <div class="hero__inner">
+      <span class="service-hero-badge fade-up">Tax Planning</span>
+      <h1 class="fade-up">Minimise your tax burden, maximise your financial success</h1>
+      <p class="fade-up">With expert guidance and proactive planning, we help you reduce unnecessary tax costs and grow your wealth with confidence.</p>
+      <div class="btn-group fade-up"><a href="/contact/" class="btn btn--primary">Book your free discovery call</a></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header fade-up">
+        <h2>Do these tax issues keep you up at night?</h2>
+        <p>Tax can be overwhelming, confusing, and easy to get wrong &mdash; especially when the rules keep changing.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="card problem-card fade-up">
+          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg></div>
+          <h3>You feel like you may be paying more tax than you legally need to</h3>
+          <p>Many people overpay simply because they're not aware of the reliefs and allowances available to them.</p>
+        </div>
+        <div class="card problem-card fade-up">
+          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></div>
+          <h3>You're confused by all the tax rules</h3>
+          <p>Tax legislation is complex and constantly changing. It's difficult to keep up without professional guidance.</p>
+        </div>
+        <div class="card problem-card fade-up">
+          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <h3>You typically leave tax planning until year-end</h3>
+          <p>Last-minute scrambling means missed opportunities. Proactive planning throughout the year delivers far better results.</p>
+        </div>
+        <div class="card problem-card fade-up">
+          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+          <h3>You're unsure if you're structured in the most tax-efficient way</h3>
+          <p>The way your income and investments are structured can significantly impact how much tax you pay.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--grey">
+    <div class="container">
+      <div class="section__header fade-up">
+        <h2>Our approach to tax planning</h2>
+        <p>We simplify the complex, reduce your tax burden and let you focus on what matters most. Our proactive approach ensures you never miss an opportunity to keep more of what you earn. We make sure your tax planning is smart and proactive.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="card fade-up">
+          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Personalised Tax Strategies</h3>
+          <p>Custom tax plans that minimise your liability based on your unique income, assets, and goals.</p>
+        </div>
+        <div class="card fade-up">
+          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <h3>Proactive Tax Savings</h3>
+          <p>We identify tax reliefs and allowances before deadlines, not after. Year-round planning means more money stays in your pocket.</p>
+        </div>
+        <div class="card fade-up">
+          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <h3>Peace of Mind Through Expert Guidance</h3>
+          <p>Confident tax planning with clear, expert advice. Everything we recommend is fully compliant and above board.</p>
+        </div>
+        <div class="card fade-up">
+          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+          <h3>Simplified Tax Management</h3>
+          <p>Easy-to-understand reports and ongoing tax support that keeps everything clear and organised.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <TestimonialsCarousel grey={false} />
+
+  <section class="section section--grey">
+    <div class="container">
+      <div class="section__header fade-up">
+        <h2>Questions you may have on our tax service</h2>
+      </div>
+      <div class="faq-list fade-up">
+        <div class="faq-item">
+          <button class="faq-question">What's the best way to use my ISA and pension allowances each year?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer__inner"><p>We review your full financial picture to determine the optimal split between ISAs and pensions based on your tax bracket, access needs, and retirement timeline. Most clients benefit from using both strategically.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How do dividend and capital gains taxes affect my investments?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer__inner"><p>These taxes can significantly erode returns if not managed properly. We structure your portfolio to minimise both, using tax-efficient wrappers and strategic timing of gains and income.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Can you coordinate with my accountant?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer__inner"><p>Absolutely. We regularly work alongside accountants to ensure your overall tax plan is cohesive. Good financial planning and good accounting go hand in hand.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">What happens if my income varies year to year?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer__inner"><p>Variable income actually creates planning opportunities. We help you make the most of lower-income years for pension contributions and use higher-income years to maximise other reliefs.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Should I be making gifts to family now to reduce inheritance tax later?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer__inner"><p>Gifting can be a powerful tool, but it needs to be done thoughtfully. We help you balance current lifestyle needs with estate planning goals, using annual exemptions and potentially exempt transfers effectively.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>

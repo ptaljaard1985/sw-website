@@ -1,0 +1,347 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaSection from '../components/CtaSection.astro';
+import TestimonialsCarousel from '../components/TestimonialsCarousel.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Knowledge & Insight",
+  "description": "Practical guidance to help you make better financial decisions — written in plain English, no jargon.",
+  "publisher": { "@type": "Organization", "name": "Simple Wealth", "url": "https://simplewealth.co.za" }
+};
+
+// Parse "Month Year" to a sortable date
+const months: Record<string, number> = {
+  January: 0, February: 1, March: 2, April: 3,
+  May: 4, June: 5, July: 6, August: 7,
+  September: 8, October: 9, November: 10, December: 11
+};
+
+const allArticles = await getCollection('articles');
+const articles = allArticles.sort((a, b) => {
+  const parseDate = (d: string) => {
+    const parts = d.split(' ');
+    if (parts.length === 2 && months[parts[0]] !== undefined) {
+      return new Date(parseInt(parts[1]), months[parts[0]]);
+    }
+    return new Date(0);
+  };
+  return parseDate(b.data.date).getTime() - parseDate(a.data.date).getTime();
+});
+---
+
+<BaseLayout title="Knowledge & Insight — Simple Wealth" description="Practical guidance to help you make better financial decisions — written in plain English, no jargon." activePage="knowledge" schema={schema}>
+  <style slot="head">
+    /* --- Knowledge & Insight page --- */
+    .knowledge-hero {
+      background: var(--color-navy);
+      color: var(--color-white);
+      padding: 140px 20px 64px;
+      text-align: center;
+    }
+
+    .knowledge-hero h1 {
+      color: var(--color-white);
+      margin-bottom: 12px;
+      display: inline-block;
+      position: relative;
+      padding-bottom: 16px;
+    }
+
+    .knowledge-hero h1::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--color-gold);
+      border-radius: 2px;
+    }
+
+    .knowledge-hero p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1.1rem;
+      max-width: 560px;
+      margin: 24px auto 0;
+    }
+
+    /* Article grid */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .article-card {
+      background: var(--color-white);
+      border-radius: 8px;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .article-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    }
+
+    .article-card__photo {
+      height: 220px;
+      overflow: hidden;
+    }
+
+    .article-card__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background-color: var(--color-navy);
+      transition: transform 0.3s ease;
+    }
+
+    .article-card:hover .article-card__photo img {
+      transform: scale(1.04);
+    }
+
+    .article-card__body {
+      padding: 24px;
+    }
+
+    .article-card__category {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-gold);
+      margin-bottom: 10px;
+    }
+
+    .article-card__headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: var(--color-navy);
+      margin-bottom: 10px;
+    }
+
+    .article-card__teaser {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--color-text-light);
+      margin-bottom: 14px;
+    }
+
+    .article-card__date {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      margin-bottom: 12px;
+    }
+
+    .article-card__link {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--color-gold);
+      text-decoration: none;
+      transition: text-decoration 0.2s ease;
+    }
+
+    .article-card__link:hover {
+      text-decoration: underline;
+    }
+
+    /* Newsletter */
+    .newsletter {
+      background: var(--color-navy);
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .newsletter h2 {
+      color: var(--color-white);
+      margin-bottom: 12px;
+    }
+
+    .newsletter p {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 1.05rem;
+      max-width: 520px;
+      margin: 0 auto 32px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 12px;
+      max-width: 480px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .newsletter-form input[type="email"] {
+      flex: 1;
+      min-width: 220px;
+      padding: 14px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--color-white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .newsletter-form input[type="email"]::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .newsletter-form input[type="email"]:focus {
+      border-color: var(--color-gold);
+      box-shadow: 0 0 0 3px rgba(205, 143, 94, 0.15);
+    }
+
+    .newsletter-form button {
+      padding: 14px 32px;
+      border-radius: 50px;
+      background: var(--color-gold);
+      color: var(--color-white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .newsletter-form button:hover {
+      background: var(--color-gold-hover);
+      transform: translateY(-1px);
+    }
+
+    .newsletter-thanks {
+      display: none;
+      color: var(--color-gold);
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    .newsletter-thanks.visible {
+      display: block;
+    }
+
+    .newsletter-error {
+      display: none;
+      color: #e74c3c;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      margin-top: 8px;
+    }
+
+    .newsletter-error.visible {
+      display: block;
+    }
+
+    @media (min-width: 480px) {
+      .articles-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 768px) {
+      .knowledge-hero {
+        padding: 160px 40px 80px;
+      }
+
+      .newsletter {
+        padding: 100px 40px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .articles-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+
+  <!-- Hero -->
+  <section class="knowledge-hero">
+    <h1 class="fade-up">Knowledge &amp; Insight</h1>
+    <p class="fade-up">Practical guidance to help you make better financial decisions &mdash; written in plain English, no jargon.</p>
+  </section>
+
+  <!-- Articles -->
+  <section class="section">
+    <div class="container">
+      <div class="articles-grid">
+
+        {articles.map(article => (
+          <article class="article-card fade-up">
+            <div class="article-card__photo">
+              <img loading="lazy" src={article.data.image} alt={article.data.imageAlt}>
+            </div>
+            <div class="article-card__body">
+              <span class="article-card__category">{article.data.category}</span>
+              <h3 class="article-card__headline">{article.data.title}</h3>
+              <p class="article-card__teaser">{article.data.description}</p>
+              <p class="article-card__date">{article.data.date}</p>
+              <a href={`/articles/${article.id}/`} class="article-card__link">Read more &rarr;</a>
+            </div>
+          </article>
+        ))}
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter">
+    <div class="container">
+      <h2 class="fade-up">Get financial insights delivered to your inbox</h2>
+      <p class="fade-up">Practical guidance, tax tips, and planning ideas &mdash; sent monthly. No spam, unsubscribe anytime.</p>
+      <form class="newsletter-form fade-up" id="newsletterForm" name="newsletter" method="POST" data-netlify="true">
+        <input type="email" name="email" placeholder="Your email address" required>
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="newsletter-thanks fade-up" id="newsletterThanks">Thanks &mdash; we'll be in touch soon.</p>
+      <p class="newsletter-error fade-up" id="newsletterError">Something went wrong. Please try again.</p>
+    </div>
+  </section>
+
+  <TestimonialsCarousel />
+
+  <CtaSection />
+
+  <script slot="scripts">
+    document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var form = this;
+      var errorEl = document.getElementById('newsletterError');
+      errorEl.classList.remove('visible');
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString()
+      }).then(function() {
+        form.style.display = 'none';
+        document.getElementById('newsletterThanks').classList.add('visible');
+      }).catch(function() {
+        errorEl.classList.add('visible');
+      });
+    });
+  </script>
+</BaseLayout>

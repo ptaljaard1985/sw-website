@@ -1,0 +1,58 @@
+---
+interface Props {
+  showSocial?: boolean;
+}
+
+const { showSocial = false } = Astro.props;
+---
+
+<footer class="footer">
+  <div class="footer__grid">
+    <div class="footer__brand">
+      <div class="footer__logo"><img loading="lazy" src="/logo.png" alt="Simple Wealth"></div>
+      <p>Expert financial planning that carefully aligns your wealth with your values, lifestyle, and long-term goals.</p>
+    </div>
+    <div class="footer__nav">
+      <h4>How we help</h4>
+      <a href="/investment-planning/">Investment planning</a>
+      <a href="/risk-planning/">Risk planning</a>
+      <a href="/estate-planning/">Estate planning</a>
+      <a href="/tax-planning/">Tax planning</a>
+    </div>
+    <div class="footer__nav">
+      <h4>Company</h4>
+      <a href="/about-you/">About you</a>
+      <a href="/about-us/">About us</a>
+      <a href="/knowledge-and-insight/">Knowledge and insight</a>
+      <a href="/contact/">Contact</a>
+    </div>
+    <div class="footer__nav">
+      <h4>Get in touch</h4>
+      <div class="footer__contact-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <a href="https://maps.app.goo.gl/z5PbmNjmUYrW6vDD7" target="_blank" rel="noopener">Office 7.17, Workshop17, 7th Floor, Ballito Junction Regional Mall, Leonora Dr, Ballito, 4399</a>
+      </div>
+      <div class="footer__contact-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        <a href="mailto:info@simplewealth.co.za">info@simplewealth.co.za</a>
+      </div>
+      {showSocial && (
+        <div class="footer__social">
+          <a href="https://www.linkedin.com/in/ptaljaard/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="https://www.pierretaljaard.com/" target="_blank" rel="noopener" aria-label="Personal website"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></a>
+        </div>
+      )}
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span>&copy; {new Date().getFullYear()} Simple Wealth. All rights reserved.</span>
+    <div class="footer__legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Complaints</a>
+      <a href="#">Conflict of Interest</a>
+      <a href="#">Anti-Slavery</a>
+      <a href="#">Cookies Settings</a>
+    </div>
+  </div>
+</footer>

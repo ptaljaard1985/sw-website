@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaSection from '../components/CtaSection.astro';
+import TestimonialsCarousel from '../components/TestimonialsCarousel.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Estate Planning",
+  "description": "Estate planning that ensures loved ones are supported and wealth transfers smoothly, tax-efficiently, and according to your wishes.",
+  "provider": {
+    "@type": "FinancialService",
+    "name": "Simple Wealth",
+    "url": "https://simplewealth.co.za"
+  },
+  "areaServed": { "@type": "Country", "name": "South Africa" },
+  "serviceType": "Estate Planning"
+};
+---
+
+<BaseLayout
+  title="Estate Planning — Simple Wealth"
+  description="Estate planning that ensures loved ones are supported and wealth transfers smoothly, tax-efficiently, and according to your wishes."
+  activePage="estate-planning"
+  showSocialInFooter={false}
+  schema={schema}
+>
+  <section class="hero hero--short">
+    <div class="hero__inner">
+      <span class="service-hero-badge fade-up">Estate Planning</span>
+      <h1 class="fade-up">Plan your legacy with clarity and care</h1>
+      <p class="fade-up">Estate planning focuses on ensuring loved ones are supported and wealth transfers smoothly, tax-efficiently, and according to your wishes.</p>
+      <div class="btn-group fade-up">
+        <a href="/contact/" class="btn btn--primary">Book your free discovery call</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__header fade-up">
+        <h2>Do any of these estate planning worries sound familiar?</h2>
+        <p>Estate planning can feel emotional and complex, especially when it involves family, taxes, and significant decisions. Common concerns include unclear wishes, rising inheritance taxes, and uncertainty about next steps.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="card problem-card fade-up">
+          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></div>
+          <h3>Unsure who will inherit what and when</h3>
+          <p>Without a clear plan, there's a risk of confusion, disputes, or your wishes not being followed.</p>
+        </div>
+        <div class="card problem-card fade-up">
+          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
+          <h3>Concerned about your partner's future security</h3>
+          <p>You want to make sure the person closest to you is protected financially, whatever happens.</p>
+        </div>
+        <div class="card problem-card fade-up">
+          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <h3>Concerned about care costs reducing inheritance</h3>
+          <p>Long-term care is expensive and could significantly reduce what you leave behind without proper planning.</p>
+        </div>
+        <div class="card problem-card fade-up">
+          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+          <h3>Have several pensions without clear beneficiaries</h3>
+          <p>Pensions without nominated beneficiaries can create delays and confusion for your loved ones.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--grey">
+    <div class="container">
+      <div class="section__header fade-up">
+        <h2>Our approach to estate planning</h2>
+        <p>We bring clarity to complex estate matters while protecting the people and causes that matter most to you. Our approach gives you peace of mind through documented wishes and purposeful wealth transfer. We ensure your legacy is clear, secure and aligned with your wishes.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="card fade-up">
+          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Independent, advice-first approach</h3>
+          <p>Advice shaped by your best interests, not by product commissions or provider relationships.</p>
+        </div>
+        <div class="card fade-up">
+          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <h3>Clear communication</h3>
+          <p>We make the complicated feel simple, explaining everything in plain English so you understand exactly what's happening.</p>
+        </div>
+        <div class="card fade-up">
+          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg></div>
+          <h3>Personalised planning</h3>
+          <p>Your wishes, your way. We create estate plans that reflect your unique family situation and values.</p>
+        </div>
+        <div class="card fade-up">
+          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg></div>
+          <h3>Ongoing support</h3>
+          <p>Support that evolves with your life. We review and update your plans as circumstances change.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <TestimonialsCarousel grey={false} />
+
+  <section class="section section--grey">
+    <div class="container">
+      <div class="section__header fade-up">
+        <h2>Questions you may have on our estate service</h2>
+      </div>
+      <div class="faq-list fade-up">
+        <div class="faq-item">
+          <button class="faq-question">What makes your approach different?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer__inner"><p>We take a holistic view of your estate, considering not just the legal documents but how your entire financial picture fits together. We coordinate with solicitors and accountants to ensure everything is aligned with your wishes.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How do you ensure alignment with life changes?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer__inner"><p>Estate plans aren't set in stone. We schedule regular reviews and proactively reach out when major life events occur &mdash; marriage, divorce, births, property purchases &mdash; to ensure your plans stay current.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How involved will I be?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer__inner"><p>As much or as little as you'd like. We handle the complexity, but you're always in control of the decisions. We'll present clear options and guide you through each choice at your pace.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How do you minimise tax legally?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer__inner"><p>We use legitimate strategies including gifting allowances, trust structures, pension nominations, and tax-efficient investment wrappers to ensure as much of your wealth reaches your beneficiaries as possible.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">What happens if laws change?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer__inner"><p>We stay on top of legislative changes and proactively contact you if any changes affect your estate plan. This ongoing monitoring is part of our service, so you're never caught off guard.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>

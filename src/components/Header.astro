@@ -1,0 +1,56 @@
+---
+interface Props {
+  activePage?: string;
+}
+
+const { activePage = '' } = Astro.props;
+
+const isServicePage = ['investment-planning', 'risk-planning', 'estate-planning', 'tax-planning'].includes(activePage);
+---
+
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+    <a href="/" class="nav__logo"><img src="/logo.png" alt="Simple Wealth"></a>
+
+    <div class="nav__links">
+      <div class="nav__dropdown">
+        <span class={`nav__link nav__dropdown-trigger${isServicePage ? ' active' : ''}`} role="button" tabindex="0" aria-expanded="false" aria-haspopup="true">
+          How we help
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </span>
+        <div class="nav__dropdown-menu" role="menu">
+          <a href="/investment-planning/" role="menuitem">Invest smarter</a>
+          <a href="/risk-planning/" role="menuitem">Protect your future</a>
+          <a href="/estate-planning/" role="menuitem">Plan your legacy</a>
+          <a href="/tax-planning/" role="menuitem">Pay less tax</a>
+        </div>
+      </div>
+      <a href="/about-you/" class={`nav__link${activePage === 'about-you' ? ' active' : ''}`}>About you</a>
+      <a href="/about-us/" class={`nav__link${activePage === 'about-us' ? ' active' : ''}`}>About us</a>
+      <a href="/knowledge-and-insight/" class={`nav__link${activePage === 'knowledge' ? ' active' : ''}`}>Knowledge</a>
+    </div>
+
+    <a href="/contact/" class="btn btn--primary nav__cta">Book your free discovery call</a>
+
+    <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav__mobile" id="mobile-nav" aria-hidden="true">
+  <a href="/">Home</a>
+  <a href="#" class="mobile-sub-toggle">How we help</a>
+  <div class="mobile-sub">
+    <a href="/investment-planning/">Invest smarter</a>
+    <a href="/risk-planning/">Protect your future</a>
+    <a href="/estate-planning/">Plan your legacy</a>
+    <a href="/tax-planning/">Pay less tax</a>
+  </div>
+  <a href="/about-you/">About you</a>
+  <a href="/about-us/">About us</a>
+  <a href="/knowledge-and-insight/">Knowledge</a>
+  <a href="/contact/" class="btn btn--primary">Book your free discovery call</a>
+</div>

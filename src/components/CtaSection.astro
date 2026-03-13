@@ -1,0 +1,19 @@
+---
+interface Props {
+  heading?: string;
+  text?: string;
+}
+
+const {
+  heading = 'Schedule your free discovery call',
+  text = "We're invested in your success, so let's get started. A short phone call will give us both a chance to make sure your situation matches our expertise."
+} = Astro.props;
+---
+
+<section class="cta-section">
+  <div class="container fade-up">
+    <h2>{heading}</h2>
+    <p>{text}</p>
+    <a href="/contact/" class="btn btn--primary">Book your free discovery call</a>
+  </div>
+</section>

@@ -1,0 +1,229 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaSection from '../components/CtaSection.astro';
+import TestimonialsCarousel from '../components/TestimonialsCarousel.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About Simple Wealth",
+  "description": "Choosing someone to help with your finances is a big decision. Learn about our team, values, and why clients trust Simple Wealth.",
+  "mainEntity": {
+    "@type": "FinancialService",
+    "name": "Simple Wealth",
+    "url": "https://simplewealth.co.za",
+    "email": "info@simplewealth.co.za",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Office 7.17, Workshop17, 7th Floor, Ballito Junction Regional Mall, Leonora Dr",
+      "addressLocality": "Ballito",
+      "postalCode": "4399",
+      "addressCountry": "ZA"
+    }
+  }
+};
+---
+
+<BaseLayout
+  title="About Us — Simple Wealth"
+  description="Choosing someone to help with your finances is a big decision. Learn about our team, values, and why clients trust Simple Wealth."
+  activePage="about-us"
+  showSocialInFooter={true}
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="hero hero--short">
+    <div class="hero__inner">
+      <h1 class="fade-up">Trust starts with getting to know us</h1>
+      <p class="fade-up">Choosing someone to help with your finances is a big decision &mdash; and a personal one. That's why we believe you should feel confident not just in our advice, but in who we are. We're here to build lasting relationships, grounded in honesty, clarity and a genuine understanding of what matters most to you.</p>
+    </div>
+  </section>
+
+  <!-- Founder Quote -->
+  <section class="section">
+    <div class="container">
+      <div class="founder-quote fade-up">
+        <blockquote>&ldquo;I saw that financial advice was becoming too complex for clients, so I decided to do something different. That's how Simple Wealth was born.&rdquo;</blockquote>
+        <cite>&mdash; Pierre Taljaard, Director &amp; Financial Planner</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- Origin -->
+  <section class="section section--grey">
+    <div class="container">
+      <div class="section__header fade-up">
+        <h2>Our story</h2>
+        <p>We started Simple Wealth to challenge the way financial advice is often delivered &mdash; complicated, unclear, and focused more on products than people. We believe good financial planning should give you clarity, confidence, and the freedom to focus on what really matters. That's why we simplify the complex and put your life at the centre of every decision.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meet Pierre -->
+  <section class="section">
+    <div class="container">
+      <div class="bio-section fade-up">
+        <div class="bio-section__photo">PT</div>
+        <div class="bio-section__content">
+          <h2>Pierre Taljaard</h2>
+          <p class="bio-section__title">Director &amp; Financial Planner</p>
+          <p>Pierre's natural love for business and numbers made financial services a clear career path. Initially aspiring to become an equity analyst, he discovered his true passion when he realised the transformative power of financial planning to help people live better, more fulfilling lives.</p>
+          <p>Frustrated by an industry that often creates unnecessary complexity to confuse clients, Pierre is deeply driven to simplify finance for those who believe life is about much more than money. He is passionate about building long-term relationships with families, acting as an independent guide who prioritises their unique goals and values above all else.</p>
+          <div class="bio-section__credentials">
+            <span>CFA Charterholder</span>
+            <span>CFP Professional</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <TestimonialsCarousel />
+
+  <!-- Core Values -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header fade-up">
+        <h2>Our promise to each and every one of our clients</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card fade-up">
+          <h3>Integrity</h3>
+          <p>We always act in your best interests &mdash; even when no one's watching. Our advice is honest, transparent, and rooted in doing what's right for you.</p>
+        </div>
+        <div class="value-card fade-up">
+          <h3>Clarity</h3>
+          <p>Financial advice should simplify, not confuse. We cut through the jargon to give you clear, straightforward guidance you can understand and act on.</p>
+        </div>
+        <div class="value-card fade-up">
+          <h3>Partnership</h3>
+          <p>This is a long-term relationship, not a one-time service. We work with you, not just for you &mdash; supporting your goals every step of the way.</p>
+        </div>
+        <div class="value-card fade-up">
+          <h3>Accountability</h3>
+          <p>We take ownership of our advice and the outcomes it delivers. You can count on us to follow through, review regularly, and adjust when life changes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Metrics -->
+  <section class="section section--navy">
+    <div class="container">
+      <div class="section__header fade-up">
+        <h2>Your goals, reflected in our results</h2>
+      </div>
+      <div class="metrics fade-up">
+        <div class="metric">
+          <div class="metric__value">120M+</div>
+          <div class="metric__label">Assets Under Advice</div>
+        </div>
+        <div class="metric">
+          <div class="metric__value">98%</div>
+          <div class="metric__label">Client Retention Rate</div>
+        </div>
+        <div class="metric">
+          <div class="metric__value">5.0/5</div>
+          <div class="metric__label">Client Satisfaction Score</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header fade-up">
+        <h2>Our journey</h2>
+      </div>
+      <div class="timeline fade-up">
+        <div class="timeline__item">
+          <div class="timeline__year">2019</div>
+          <p>Pierre identified that the financial industry made advice overly complex, leaving people overwhelmed and unsure about their financial futures.</p>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__year">2020</div>
+          <p>Simple Wealth was founded to offer financial advice that is clear, honest, and personalised, focusing on clients' values and long-term aspirations.</p>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__year">2021</div>
+          <p>Prioritised building strong, long-term relationships with clients through tailored, easy-to-understand guidance.</p>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__year">2023</div>
+          <p>Launched client education initiatives including workshops and resources to demystify financial planning.</p>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__year">Ongoing</div>
+          <p>Expanded impact through partnerships with local organisations and charities, continuing to grow while keeping advice personal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section section--grey">
+    <div class="container">
+      <div class="section__header fade-up">
+        <h2>We're standing with you through every financial challenge</h2>
+      </div>
+      <div class="cards-grid cards-grid--centered">
+        <div class="card card--centered fade-up">
+          <div class="card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          </div>
+          <h3>Investment planning</h3>
+          <a href="/investment-planning/" class="card__link">Learn more <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        </div>
+        <div class="card card--centered fade-up">
+          <div class="card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
+          </div>
+          <h3>Risk planning</h3>
+          <a href="/risk-planning/" class="card__link">Learn more <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        </div>
+        <div class="card card--centered fade-up">
+          <div class="card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3>Estate planning</h3>
+          <a href="/estate-planning/" class="card__link">Learn more <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        </div>
+        <div class="card card--centered fade-up">
+          <div class="card__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+          </div>
+          <h3>Tax planning</h3>
+          <a href="/tax-planning/" class="card__link">Learn more <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Info -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header fade-up">
+        <h2>Have a question? We'd love to hear from you</h2>
+      </div>
+      <div class="contact-grid contact-grid--narrow">
+        <div class="contact-info-item fade-up">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <div>
+            <h4>Email</h4>
+            <p><a href="mailto:info@simplewealth.co.za">info@simplewealth.co.za</a></p>
+          </div>
+        </div>
+        <div class="contact-info-item fade-up">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div>
+            <h4>Office</h4>
+            <p><a href="https://maps.app.goo.gl/z5PbmNjmUYrW6vDD7" target="_blank" rel="noopener">Office 7.17, Workshop17, 7th Floor, Ballito Junction Regional Mall, Leonora Dr, Ballito, 4399</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>

@@ -1,0 +1,185 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaSection from '../components/CtaSection.astro';
+import TestimonialsCarousel from '../components/TestimonialsCarousel.astro';
+
+const schema = [{
+  "@context": "https://schema.org",
+  "@type": "FinancialService",
+  "name": "Simple Wealth",
+  "description": "Expert financial planning that carefully aligns your wealth with your values, lifestyle, and long-term goals for lasting security and peace of mind.",
+  "url": "https://simplewealth.co.za",
+  "logo": "https://simplewealth.co.za/logo.png",
+  "email": "info@simplewealth.co.za",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Office 7.17, Workshop17, 7th Floor, Ballito Junction Regional Mall, Leonora Dr",
+    "addressLocality": "Ballito",
+    "postalCode": "4399",
+    "addressCountry": "ZA"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": -29.5266659, "longitude": 31.2036188 },
+  "hasMap": "https://maps.app.goo.gl/z5PbmNjmUYrW6vDD7",
+  "areaServed": { "@type": "Country", "name": "South Africa" },
+  "serviceType": ["Investment Planning", "Risk Planning", "Estate Planning", "Tax Planning"],
+  "priceRange": "$$",
+  "sameAs": ["https://www.linkedin.com/in/ptaljaard/", "https://www.pierretaljaard.com/"]
+}, {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Simple Wealth",
+  "url": "https://simplewealth.co.za"
+}, {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Do you only work with high-net-worth individuals?", "acceptedAnswer": { "@type": "Answer", "text": "While we serve many clients with significant assets, we prioritise goal complexity over account minimums. Financial clarity should be accessible to anyone committed to a long-term strategy. If you're serious about getting your finances on track, we'd love to have a conversation." } },
+    { "@type": "Question", "name": "What does this cost and what exactly am I paying for?", "acceptedAnswer": { "@type": "Answer", "text": "We operate a transparent fee structure typically based on a percentage of managed assets, ensuring our incentives are fully aligned with yours. Fees cover comprehensive financial architecture, tax planning, retirement mapping, and behavioural coaching — not just investment management." } },
+    { "@type": "Question", "name": "How do I know you're acting in my best interest?", "acceptedAnswer": { "@type": "Answer", "text": "As a fiduciary firm, we're legally and ethically obligated to prioritise your interests above our own. Our fee-only model excludes commissions or third-party incentives, so you can be confident our advice is always in your corner." } },
+    { "@type": "Question", "name": "What kind of results should I realistically expect?", "acceptedAnswer": { "@type": "Answer", "text": "Expect a portfolio that balances growth with your risk tolerance, aiming for consistent progress toward your goals rather than short-term chasing. We maximise controllable variables: cost efficiency, tax mitigation, and disciplined rebalancing to keep you on track." } },
+    { "@type": "Question", "name": "How often will we review things, and how quickly can I reach you?", "acceptedAnswer": { "@type": "Answer", "text": "Formal strategy reviews occur annually, with availability for questions anytime in between. You can expect responses within one business day, and we proactively reach out when market conditions or life changes warrant a conversation." } }
+  ]
+}];
+---
+
+<BaseLayout
+  title="Simple Wealth — Make your wealth work harder so you don't have to"
+  description="Expert financial planning that carefully aligns your wealth with your values, lifestyle, and long-term goals for lasting security and peace of mind."
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="hero hero--bg-photo">
+    <div class="hero__bg">
+      <img src="/images/hero-adviser.jpg" alt="Multigenerational family sharing a meal together outdoors">
+    </div>
+    <div class="hero__inner">
+      <div class="trust-badges fade-up">
+        <div class="trust-badge"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Clarity</div>
+        <div class="trust-badge"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Peace of mind</div>
+        <div class="trust-badge"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Independent advice</div>
+      </div>
+      <h1 class="fade-up">Financial <span class="hero-highlight">clarity</span> for the life you've built</h1>
+      <p class="fade-up">Expert financial planning that carefully aligns your wealth with your values, lifestyle, and long-term goals to help you achieve lasting security and peace of mind.</p>
+      <div class="btn-group fade-up">
+        <a href="/contact/" class="btn btn--primary">Book your free discovery call</a>
+        <a href="#services" class="btn btn--outline-white">How we help</a>
+      </div>
+      <div class="social-proof fade-up">
+        <div class="avatar-stack">
+          <span class="avatar-initial"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="var(--color-gold)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+          <span class="avatar-initial"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="var(--color-gold)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+          <span class="avatar-initial"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="var(--color-gold)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+          <span class="avatar-initial"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="var(--color-gold)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+          <span class="avatar-initial"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="var(--color-gold)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+        </div>
+        <div class="social-proof__text"><a href="#testimonials" style="color: inherit; text-decoration: underline;"><strong>5.0 star rated</strong></a> &mdash; Trusted by professionals across South Africa</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Section -->
+  <section class="section" id="problems">
+    <div class="container">
+      <div class="section__header fade-up">
+        <h2>Managing your wealth can feel complex, time consuming and risky</h2>
+        <p>It's easy to feel overwhelmed, uncertain, and anxious about whether you're doing the right thing.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="card problem-card fade-up"><div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><h3>You're busy &mdash; finances take a back seat</h3><p>Managing finances properly demands time and focus that life often doesn't allow.</p></div>
+        <div class="card problem-card fade-up"><div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></div><h3>You don't know what you don't know</h3><p>Financial decisions feel daunting without proper guidance or experience.</p></div>
+        <div class="card problem-card fade-up"><div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><h3>Overwhelmed by complexity</h3><p>Taxes, pensions, investments, and estate planning involve numerous interconnected parts.</p></div>
+        <div class="card problem-card fade-up"><div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Uncertainty is holding you back</h3><p>Fear and doubt create hesitation in making necessary decisions.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solution Section -->
+  <section class="section section--grey" id="solution">
+    <div class="container">
+      <div class="section__header fade-up">
+        <h2>Simple Wealth helps busy professionals to live the life they want without being anxious about money.</h2>
+        <p>We do this by being closely involved in the financial lives of our clients.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="card solution-card fade-up"><div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" x2="9.01" y1="9" y2="9"/><line x1="15" x2="15.01" y1="9" y2="9"/></svg></div><h3>Have more time to enjoy your money in life</h3><p>We remove the burden of wealth management so you can focus on living.</p></div>
+        <div class="card solution-card fade-up"><div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div><h3>Feel reassured knowing someone is looking out for you</h3><p>Regular check-ins and ongoing support through every decision and milestone.</p></div>
+        <div class="card solution-card fade-up"><div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Have confidence in your financial decisions</h3><p>We translate complexity into clarity for decisive financial action.</p></div>
+        <div class="card solution-card fade-up"><div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14"/><path d="M2 20h20"/><path d="M14 12v.01"/></svg></div><h3>Peace of mind about your financial future</h3><p>A step-by-step roadmap ensuring you always know your destination.</p></div>
+      </div>
+      <div style="text-align: center; margin-top: 48px;" class="fade-up">
+        <a href="/contact/" class="btn btn--primary">Book your free discovery call</a>
+      </div>
+    </div>
+  </section>
+
+  <TestimonialsCarousel grey={false} />
+
+  <!-- Services Section -->
+  <section class="section section--grey" id="services">
+    <div class="container">
+      <div class="section__header fade-up">
+        <h2>How we help you</h2>
+        <p>We provide expert guidance across four key areas of financial planning to give you clarity and confidence.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="card card--with-photo fade-up"><div class="card__photo"><img loading="lazy" src="/images/service-investment.jpg" alt="Investment planning"></div><div class="card__body"><h3>Investment planning</h3><h4>A strategy that grows your wealth over time</h4><p>The foundation of good financial planning converts income into financial assets, moving you toward financial independence.</p><a href="/investment-planning/" class="card__link">Learn more <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div></div>
+        <div class="card card--with-photo fade-up"><div class="card__photo"><img loading="lazy" src="/images/service-tax.jpg" alt="Tax planning"></div><div class="card__body"><h3>Tax planning</h3><h4>Keep more, invest smarter</h4><p>Understanding available tax benefits lets you invest intelligently and keep more earnings for your future.</p><a href="/tax-planning/" class="card__link">Learn more <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div></div>
+        <div class="card card--with-photo fade-up"><div class="card__photo"><img loading="lazy" src="/images/service-risk.jpg" alt="Family protection"></div><div class="card__body"><h3>Risk planning</h3><h4>A plan for the unexpected</h4><p>We protect you and loved ones against death and disability risks, providing peace of mind so you can focus on living confidently.</p><a href="/risk-planning/" class="card__link">Learn more <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div></div>
+        <div class="card card--with-photo fade-up"><div class="card__photo"><img loading="lazy" src="/images/service-estate.jpg" alt="Estate planning"></div><div class="card__body"><h3>Estate planning</h3><h4>Thoughtful planning, lasting security</h4><p>Clear, straightforward estate planning prevents family complications and ensures assets reach intended beneficiaries.</p><a href="/estate-planning/" class="card__link">Learn more <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="section" id="why">
+    <div class="container">
+      <div class="section__header fade-up"><h2>Why people choose Simple Wealth</h2><p>Clients choose us because we put their goals first, speak in plain English, and provide advice they can trust.</p></div>
+      <div class="reasons-list">
+        <div class="reason fade-up"><div class="reason__number">1</div><div><h3>Independent, advice-first approach</h3><p>Not tied to products or providers; our focus is exclusively on what suits you.</p></div></div>
+        <div class="reason fade-up"><div class="reason__number">2</div><div><h3>Personalised planning, not one-size-fits-all</h3><p>Every client's goals differ; we build plans around your life, not templates.</p></div></div>
+        <div class="reason fade-up"><div class="reason__number">3</div><div><h3>Clear communication, no jargon</h3><p>You'll always understand your position and next steps without confusing language.</p></div></div>
+        <div class="reason fade-up"><div class="reason__number">4</div><div><h3>Ongoing proactive support, not set-and-forget</h3><p>We remain involved, reviewing and adjusting as life and markets change.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3-Step Process -->
+  <section class="section section--grey" id="process">
+    <div class="container">
+      <div class="section__header fade-up"><h2>Our three step process</h2><p>We believe that great financial advice starts with understanding your story.</p></div>
+      <div class="steps">
+        <div class="step fade-up"><div class="step__number">1</div><h3>Discovery call</h3><p>A brief 15&ndash;30 minute introductory call allowing both parties to confirm alignment with expertise.</p></div>
+        <div class="step fade-up"><div class="step__number">2</div><h3>Family meeting</h3><p>A 90-minute meeting (in-person or virtual) to understand family goals, needs, and concerns.</p></div>
+        <div class="step fade-up"><div class="step__number">3</div><h3>Review assessment</h3><p>A follow-up meeting reviewing findings and recommendations in plain language.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What You Get -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header fade-up"><h2>Get crystal-clear financial understanding</h2><p>We'll provide clarity on your current situation by providing you with three vital documents.</p></div>
+      <div class="docs-grid">
+        <div class="doc-card fade-up"><div class="doc-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg></div><h3>Your financial life on one page</h3><p>An essential guide distilling your finances into a comprehensive overview, explaining what you have and why you have it.</p></div>
+        <div class="doc-card fade-up"><div class="doc-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div><h3>A financial progress report</h3><p>Shows your current position and future direction, enabling proactive adjustments along the way.</p></div>
+        <div class="doc-card fade-up"><div class="doc-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m9 12 2 2 4-4"/></svg></div><h3>A one-page action plan</h3><p>Clear, actionable steps for your goals presented in plain language you can follow with confidence.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section--grey" id="faq">
+    <div class="container">
+      <div class="section__header fade-up"><h2>A few questions our clients normally ask us</h2></div>
+      <div class="faq-list fade-up">
+        <div class="faq-item"><button class="faq-question">Do you only work with high-net-worth individuals?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer__inner"><p>While we serve many clients with significant assets, we prioritise goal complexity over account minimums. Financial clarity should be accessible to anyone committed to a long-term strategy. If you're serious about getting your finances on track, we'd love to have a conversation.</p></div></div></div>
+        <div class="faq-item"><button class="faq-question">What does this cost and what exactly am I paying for?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer__inner"><p>We operate a transparent fee structure typically based on a percentage of managed assets, ensuring our incentives are fully aligned with yours. Fees cover comprehensive financial architecture, tax planning, retirement mapping, and behavioural coaching &mdash; not just investment management.</p></div></div></div>
+        <div class="faq-item"><button class="faq-question">How do I know you're acting in my best interest?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer__inner"><p>As a fiduciary firm, we're legally and ethically obligated to prioritise your interests above our own. Our fee-only model excludes commissions or third-party incentives, so you can be confident our advice is always in your corner.</p></div></div></div>
+        <div class="faq-item"><button class="faq-question">What kind of results should I realistically expect?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer__inner"><p>Expect a portfolio that balances growth with your risk tolerance, aiming for consistent progress toward your goals rather than short-term chasing. We maximise controllable variables: cost efficiency, tax mitigation, and disciplined rebalancing to keep you on track.</p></div></div></div>
+        <div class="faq-item"><button class="faq-question">How often will we review things, and how quickly can I reach you?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer__inner"><p>Formal strategy reviews occur annually, with availability for questions anytime in between. You can expect responses within one business day, and we proactively reach out when market conditions or life changes warrant a conversation.</p></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>

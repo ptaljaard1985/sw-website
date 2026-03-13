@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaSection from '../components/CtaSection.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Simple Wealth",
+  "description": "Book your free discovery call with Simple Wealth. A short phone call will give us both a chance to make sure your situation matches our expertise.",
+  "mainEntity": {
+    "@type": "FinancialService",
+    "name": "Simple Wealth",
+    "url": "https://simplewealth.co.za",
+    "email": "info@simplewealth.co.za",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Office 7.17, Workshop17, 7th Floor, Ballito Junction Regional Mall, Leonora Dr",
+      "addressLocality": "Ballito",
+      "postalCode": "4399",
+      "addressCountry": "ZA"
+    }
+  }
+};
+---
+
+<BaseLayout
+  title="Contact — Simple Wealth"
+  description="Book your free discovery call with Simple Wealth. A short phone call will give us both a chance to make sure your situation matches our expertise."
+  activePage="contact"
+  showSocialInFooter={true}
+  schema={schema}
+>
+  <section class="hero hero--short">
+    <div class="hero__inner">
+      <h1 class="fade-up">Book your free discovery call</h1>
+      <p class="fade-up">We're invested in your success, so let's get started. A short phone call will give us both a chance to make sure your situation matches our expertise.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <h2 class="fade-up" style="margin-bottom: 8px;">Get in touch</h2>
+          <p class="fade-up" style="color: var(--color-text-light); margin-bottom: 32px;">Fill in the form below and we'll be in touch within one business day to arrange your free discovery call.</p>
+
+          <form class="contact-form fade-up" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/contact-success/">
+            <p class="visually-hidden">
+              <label>Don't fill this out if you're human: <input name="bot-field"></label>
+            </p>
+            <div class="form-group">
+              <label for="name">Full name</label>
+              <input type="text" id="name" name="name" placeholder="Your full name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone number</label>
+              <input type="tel" id="phone" name="phone" placeholder="Your phone number">
+            </div>
+            <div class="form-group">
+              <label for="age">Age</label>
+              <input type="text" id="age" name="age" placeholder="Your age">
+            </div>
+            <div class="form-group">
+              <label for="location">Location</label>
+              <input type="text" id="location" name="location" placeholder="Your city or town">
+            </div>
+            <div class="form-group">
+              <label for="service">What can we help with?</label>
+              <select id="service" name="service">
+                <option value="">Select a service...</option>
+                <option value="investment">Investment planning</option>
+                <option value="risk">Risk planning</option>
+                <option value="estate">Estate planning</option>
+                <option value="tax">Tax planning</option>
+                <option value="general">General enquiry</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Your message</label>
+              <textarea id="message" name="message" placeholder="Tell us a bit about your situation and what you're looking for..."></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary" style="align-self: flex-start;">Send your message</button>
+          </form>
+        </div>
+
+        <div>
+          <div class="contact-info-card fade-up">
+            <h3>Contact details</h3>
+
+            <div class="contact-info-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <div>
+                <h4>Email</h4>
+                <p><a href="mailto:info@simplewealth.co.za">info@simplewealth.co.za</a></p>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <div>
+                <h4>Phone</h4>
+                <p><a href="tel:+27870125628">087 012 5628</a></p>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div>
+                <h4>Office</h4>
+                <p><a href="https://maps.app.goo.gl/z5PbmNjmUYrW6vDD7" target="_blank" rel="noopener">Office 7.17, Workshop17, 7th Floor, Ballito Junction Regional Mall, Leonora Dr, Ballito, 4399</a></p>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <div>
+                <h4>Response time</h4>
+                <p>We aim to respond within one business day</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-map fade-up">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000!2d31.2036188!3d-29.5266659!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ef715d63d4a00df%3A0xfafd4b1168f6fd97!2sSimple%20Wealth!5e0!3m2!1sen!2sza!4v1" width="100%" height="600" style="border:0; display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

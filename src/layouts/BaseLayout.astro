@@ -1,0 +1,45 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  activePage?: string;
+  showSocialInFooter?: boolean;
+  schema?: object | object[];
+}
+
+const { title, description, activePage = '', showSocialInFooter = false, schema } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  {schema && (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  )}
+  <slot name="head" />
+</head>
+<body>
+  <slot name="before-nav" />
+  <Header activePage={activePage} />
+
+  <main>
+    <slot />
+  </main>
+
+  <Footer showSocial={showSocialInFooter} />
+
+  <script src="/script.js" is:inline></script>
+  <slot name="scripts" />
+</body>
+</html>

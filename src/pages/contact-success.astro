@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaSection from '../components/CtaSection.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Message Sent — Simple Wealth",
+  "description": "Thank you for getting in touch with Simple Wealth. We'll be in touch within one business day.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Simple Wealth",
+    "url": "https://simplewealth.co.za"
+  }
+};
+---
+
+<BaseLayout
+  title="Message sent — Simple Wealth"
+  description="Thank you for getting in touch with Simple Wealth. We'll be in touch within one business day."
+  schema={schema}
+>
+  <section class="success-section">
+    <div class="container success-section__inner">
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <h1>Thank you for getting in touch</h1>
+      <p>We've received your message and will be in touch within one business day to arrange your free discovery call.</p>
+      <a href="/" class="btn btn--primary">Back to homepage</a>
+    </div>
+  </section>
+</BaseLayout>
