@@ -862,6 +862,18 @@ p:last-child {
   margin: 0 auto;
 }
 
+.step--arrow::after {
+  display: none;
+  content: '›';
+  position: absolute;
+  top: 16px;
+  right: -24px;
+  font-size: 2rem;
+  color: var(--color-gold);
+  font-weight: 300;
+  line-height: 1;
+}
+
 /* --- Steps: ongoing service calendar --- */
 .steps-ongoing {
   margin-top: 48px;
@@ -1915,6 +1927,10 @@ p:last-child {
 
   .steps {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .step--arrow::after {
+    display: block;
   }
 
   .steps-ongoing__quarters {
