@@ -863,8 +863,9 @@ p:last-child {
 }
 
 .steps--centered {
+  display: flex;
   justify-content: center;
-  margin-top: 0;
+  margin-top: 8px;
 }
 
 .step--arrow::after {
@@ -879,11 +880,11 @@ p:last-child {
   line-height: 1;
 }
 
-.step--arrow-down::after {
+.steps--has-arrow-down::after {
   display: none;
   content: '›';
   position: absolute;
-  bottom: -36px;
+  bottom: -32px;
   left: 50%;
   transform: translateX(-50%) rotate(90deg);
   font-size: 2rem;
@@ -1887,12 +1888,8 @@ p:last-child {
   }
 
   .step--arrow::after,
-  .step--arrow-down::after {
+  .steps--has-arrow-down::after {
     display: block;
-  }
-
-  .steps--centered {
-    grid-template-columns: repeat(3, 1fr);
   }
 
   .docs-grid {
