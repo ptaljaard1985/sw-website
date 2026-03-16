@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaSection from '../components/CtaSection.astro';
 import TestimonialsCarousel from '../components/TestimonialsCarousel.astro';
+import LeadMagnet from '../components/LeadMagnet.astro';
 
 const schema = {
   "@context": "https://schema.org",
@@ -107,59 +108,7 @@ const schema = {
     </div>
   </section>
 
-  <!-- Metrics -->
-  <section class="section section--navy">
-    <div class="container">
-      <div class="section__header fade-up">
-        <h2>Your goals, reflected in our results</h2>
-      </div>
-      <div class="metrics fade-up">
-        <div class="metric">
-          <div class="metric__value">120M+</div>
-          <div class="metric__label">Assets Under Advice</div>
-        </div>
-        <div class="metric">
-          <div class="metric__value">98%</div>
-          <div class="metric__label">Client Retention Rate</div>
-        </div>
-        <div class="metric">
-          <div class="metric__value">5.0/5</div>
-          <div class="metric__label">Client Satisfaction Score</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Timeline -->
-  <section class="section">
-    <div class="container">
-      <div class="section__header fade-up">
-        <h2>Our journey</h2>
-      </div>
-      <div class="timeline fade-up">
-        <div class="timeline__item">
-          <div class="timeline__year">2019</div>
-          <p>Pierre identified that the financial industry made advice overly complex, leaving people overwhelmed and unsure about their financial futures.</p>
-        </div>
-        <div class="timeline__item">
-          <div class="timeline__year">2020</div>
-          <p>Simple Wealth was founded to offer financial advice that is clear, honest, and personalised, focusing on clients' values and long-term aspirations.</p>
-        </div>
-        <div class="timeline__item">
-          <div class="timeline__year">2021</div>
-          <p>Prioritised building strong, long-term relationships with clients through tailored, easy-to-understand guidance.</p>
-        </div>
-        <div class="timeline__item">
-          <div class="timeline__year">2023</div>
-          <p>Launched client education initiatives including workshops and resources to demystify financial planning.</p>
-        </div>
-        <div class="timeline__item">
-          <div class="timeline__year">Ongoing</div>
-          <p>Expanded impact through partnerships with local organisations and charities, continuing to grow while keeping advice personal.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <LeadMagnet grey={false} />
 
   <!-- Services -->
   <section class="section section--grey">

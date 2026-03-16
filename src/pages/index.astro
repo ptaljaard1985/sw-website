@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaSection from '../components/CtaSection.astro';
 import TestimonialsCarousel from '../components/TestimonialsCarousel.astro';
+import LeadMagnet from '../components/LeadMagnet.astro';
 
 const schema = [{
   "@context": "https://schema.org",
@@ -170,36 +171,7 @@ const schema = [{
     </div>
   </section>
 
-  <!-- Lead Magnet -->
-  <section class="section section--grey" id="free-guide">
-    <div class="container">
-      <div class="lead-magnet fade-up">
-        <div class="lead-magnet__image">
-          <img loading="lazy" src="/images/leadmagnet.png" alt="Successful Investing In Pictures — a visual guide by Simple Wealth">
-        </div>
-        <div class="lead-magnet__content">
-          <span class="lead-magnet__tag">Free guide</span>
-          <h2>Successful Investing In Pictures</h2>
-          <p>Download our latest visual guide to learn about the seven key mindsets required to become a successful investor.</p>
-          <form class="lead-magnet__form" data-netlify="true" name="lead-magnet" method="POST" action="/contact-success/">
-            <input type="hidden" name="form-name" value="lead-magnet">
-            <div class="lead-magnet__fields">
-              <div class="lead-magnet__field">
-                <label for="lead-name" class="visually-hidden">Name</label>
-                <input type="text" id="lead-name" name="name" placeholder="Your name" required>
-              </div>
-              <div class="lead-magnet__field">
-                <label for="lead-email" class="visually-hidden">Email</label>
-                <input type="email" id="lead-email" name="email" placeholder="Your email" required>
-              </div>
-              <button type="submit" class="btn btn--primary">Download the free guide</button>
-            </div>
-          </form>
-          <p class="lead-magnet__disclaimer">We respect your privacy. Unsubscribe at any time.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <LeadMagnet />
 
   <!-- FAQ -->
   <section class="section" id="faq">
