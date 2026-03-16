@@ -970,6 +970,88 @@ p:last-child {
   max-height: 500px;
 }
 
+/* --- Lead Magnet --- */
+.lead-magnet {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: center;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.lead-magnet__image {
+  position: relative;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.lead-magnet__image img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-hover);
+}
+
+.lead-magnet__tag {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 12px;
+}
+
+.lead-magnet__content h2 {
+  margin-bottom: 12px;
+}
+
+.lead-magnet__content > p {
+  color: var(--color-text-light);
+  font-size: 1.05rem;
+  margin-bottom: 28px;
+}
+
+.lead-magnet__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lead-magnet__field input {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  background: var(--color-white);
+  transition: border-color var(--transition);
+}
+
+.lead-magnet__field input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.lead-magnet__field input:focus {
+  outline: none;
+  border-color: var(--color-gold);
+}
+
+.lead-magnet__form .btn {
+  width: 100%;
+  text-align: center;
+}
+
+.lead-magnet__disclaimer {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-top: 12px;
+}
+
 /* --- CTA Section --- */
 .cta-section {
   text-align: center;
@@ -1788,6 +1870,29 @@ p:last-child {
 
   .testimonials-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .lead-magnet {
+    grid-template-columns: 1fr 1.2fr;
+    gap: 56px;
+  }
+
+  .lead-magnet__image {
+    margin: 0;
+  }
+
+  .lead-magnet__fields {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .lead-magnet__field {
+    flex: 1;
+    min-width: 160px;
+  }
+
+  .lead-magnet__form .btn {
+    width: auto;
   }
 
   .footer__grid {

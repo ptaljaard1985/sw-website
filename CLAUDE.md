@@ -13,7 +13,9 @@ The site is replacing the current Webflow site at simplewealth.co.za. Built with
 - **JS:** one global script (`public/script.js`) — vanilla JS only, loaded with `is:inline`. Supports multiple carousel instances via `querySelectorAll`.
 - Mobile-first responsive design (breakpoints: 768px, 480px)
 - Semantic HTML throughout
-- **Hosting:** Netlify (free tier) — forms handled via Netlify Forms
+- **Hosting:** Netlify (free tier) — forms handled via Netlify Forms. Auto-deploys from GitHub on push to `main`
+- **Repo:** https://github.com/ptaljaard1985/sw-website.git
+- **Staging URL:** new.simplewealth.co.za (CNAME → Netlify)
 - **Schema.org structured data** on all pages (JSON-LD, passed via layout `schema` prop)
 - **Images:** all stored locally in `public/images/` (no external image dependencies)
 - **Articles:** Markdown files in `src/content/articles/` using Astro content collections
@@ -93,7 +95,7 @@ Shared navigation. Prop: `activePage` (string) — used to add `.active` class.
 Shared footer. Prop: `showSocial` (boolean) — toggles LinkedIn/website icons. Copyright year is dynamic (`new Date().getFullYear()`).
 
 ### CtaSection.astro
-Reusable navy CTA block. Props: `heading`, `text` (both have defaults).
+Reusable navy CTA block. Props: `heading`, `text` (both have defaults). Has decorative route SVG motif via `::after` (same as `.hero--short`).
 
 ### TestimonialsCarousel.astro
 Reusable Google reviews carousel with 20 real client reviews (Lene Botha excluded). Props:
@@ -184,6 +186,7 @@ Cormorant Garamond is optically smaller than most fonts — sizes are set larger
 - h1: ~3.6rem
 - h2: ~2.6rem
 - h3: ~1.65rem
+- Inner page heroes (`.hero--short`) have 20% wider text than homepage (h1: 672px, p: 576px vs homepage h1: 560px, p: 480px)
 
 ### Heading styles
 ```css
@@ -213,7 +216,8 @@ This site targets 45–65 year old affluent professionals making high-trust fina
 **DO use:**
 - Real photography (stored locally in `public/images/`)
 - Hero gradient overlay (left-to-right): `rgba(10,22,40,1) 0% → 0.6 at 50% → 0.15 at 65% → 0.05 at 80%`
-- Short hero pages (`.hero--short`) use a subtle radial gradient: `radial-gradient(ellipse at 70% 50%, rgba(30, 58, 90, 0.6) 0%, var(--color-navy) 70%)`
+- Decorative route SVG motif (dashed path with waypoints and destination pin) on `.hero--short` and `.cta-section` via `::after` pseudo-element — gold (#CD8F5E), 50% opacity, hidden on mobile ≤480px
+- `.hero-highlight` class: gold curved underline swoosh on a key word in hero h1 (used on homepage "clarity")
 - Simple line icons (inline SVGs from Lucide icon set — no CDN dependency)
 - Clean, generous whitespace
 - Subtle card shadows: `box-shadow: 0 2px 16px rgba(0,0,0,0.07)`
@@ -311,7 +315,7 @@ All internal links use trailing-slash format:
 
 ## Homepage sections (in order)
 1. Navigation (Header component)
-2. Hero — headline, subheading, dual CTA ("How we help" is white bg/gold text), trust badges, 5 gold-star circles, "5.0 star rated" links to #testimonials
+2. Hero — headline ("Financial clarity for the life you've built" with gold swoosh on "clarity"), subheading, dual CTA ("How we help" is white bg/gold text), trust badges, 5 gold-star circles, "5.0 star rated" links to #testimonials
 3. Problem — 4 pain point cards with icons
 4. Solution — 4 benefit cards with CTA (grey background)
 5. Testimonials — TestimonialsCarousel component (white background, `grey={false}`)
@@ -415,6 +419,9 @@ npm run preview   # Preview built output locally
 - Build command: `npm run build`
 - Publish directory: `dist`
 - Netlify Forms work automatically with `data-netlify="true"` in static HTML output
+- Auto-deploys on push to `main` branch via GitHub integration
+- Staging: `new.simplewealth.co.za` (CNAME to `aquamarine-pie-06e3b3.netlify.app`)
+- DNS managed at Afrihost (simplewealth.co.za)
 
 ---
 
@@ -439,7 +446,8 @@ npm run preview   # Preview built output locally
 5. Add Pierre's real headshot (replace avatar-james-hartley.jpg)
 6. Add analytics (e.g. Fathom, as used on current Webflow site)
 7. Create or link legal pages (Privacy Policy, Terms, etc.)
-8. Add netlify.toml config file
+8. ~~Add netlify.toml config file~~ ✓ Done
+9. Connect custom domain (simplewealth.co.za) when ready to replace Webflow
 
 ---
 
