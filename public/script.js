@@ -97,6 +97,20 @@ document.addEventListener('DOMContentLoaded', () => {
         closeDropdown();
       }
     });
+
+    /* Hover open on desktop (with delay to prevent accidental triggers) */
+    let hoverTimeout;
+    dropdown.addEventListener('mouseenter', () => {
+      if (window.innerWidth >= 1024) {
+        clearTimeout(hoverTimeout);
+        openDropdown();
+      }
+    });
+    dropdown.addEventListener('mouseleave', () => {
+      if (window.innerWidth >= 1024) {
+        hoverTimeout = setTimeout(closeDropdown, 150);
+      }
+    });
   }
 
   /* --- FAQ Accordion --- */
