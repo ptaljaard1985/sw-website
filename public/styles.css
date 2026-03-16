@@ -862,6 +862,67 @@ p:last-child {
   margin: 0 auto;
 }
 
+/* --- Steps: ongoing service calendar --- */
+.steps-ongoing {
+  margin-top: 48px;
+  background: var(--color-white);
+  border-radius: var(--radius);
+  padding: 36px 28px;
+  box-shadow: var(--shadow);
+}
+
+.steps-ongoing__header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.steps-ongoing__header h3 {
+  margin-bottom: 4px;
+}
+
+.steps-ongoing__header > p,
+.steps-ongoing__header > div > p {
+  color: var(--color-text-light);
+  font-size: 0.95rem;
+}
+
+.steps-ongoing__quarters {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.quarter {
+  padding: 20px;
+  background: var(--color-light-bg);
+  border-radius: 8px;
+  border-left: 3px solid var(--color-gold);
+}
+
+.quarter__label {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gold);
+  margin-bottom: 6px;
+}
+
+.quarter h4 {
+  font-size: 1.15rem;
+  margin-bottom: 6px;
+}
+
+.quarter p {
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
 /* --- Documents / What You Get --- */
 .docs-grid {
   display: grid;
@@ -1856,6 +1917,10 @@ p:last-child {
     grid-template-columns: repeat(3, 1fr);
   }
 
+  .steps-ongoing__quarters {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .docs-grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -1940,6 +2005,14 @@ p:last-child {
   }
 
   .cards-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .steps-ongoing {
+    padding: 40px 36px;
+  }
+
+  .steps-ongoing__quarters {
     grid-template-columns: repeat(4, 1fr);
   }
 
