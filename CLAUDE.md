@@ -37,18 +37,27 @@ src/
 │   ├── Header.astro              # Shared navigation (activePage prop for highlighting)
 │   ├── Footer.astro              # Shared footer (showSocial prop)
 │   ├── CtaSection.astro          # Reusable CTA block (heading/text props)
-│   └── TestimonialsCarousel.astro # Google reviews carousel (grey prop, default true)
+│   ├── TestimonialsCarousel.astro # Google reviews carousel (grey prop, default true)
+│   └── LeadMagnet.astro          # Lead magnet section (grey prop, default true)
 ├── layouts/
 │   ├── BaseLayout.astro          # Base page wrapper (head, fonts, schema, header, footer)
 │   └── ArticleLayout.astro       # Article template (hero, progress bar, author bio, share)
 ├── content/
-│   └── articles/                 # Markdown article files
-│       ├── cash-vs-invest.md
-│       ├── reduce-tax-bill.md
-│       ├── retirement-income.md
-│       ├── income-protection.md
-│       ├── markets-fall.md
-│       └── review-your-will.md
+│   ├── content.config.ts         # Content collection schema (authorPhoto default here)
+│   └── articles/                 # Markdown article files (13 articles from HUM)
+│       ├── what-game-are-you-playing.md
+│       ├── financial-fortress.md
+│       ├── two-constant-temptations.md
+│       ├── better-questions.md
+│       ├── know-your-numbers.md
+│       ├── your-financial-levers.md
+│       ├── longevity-risk.md
+│       ├── unknowns.md
+│       ├── how-many-good-summers.md
+│       ├── contributions-heavy-lifting.md
+│       ├── temperament-tactics.md
+│       ├── left-out.md
+│       └── uncomfortable-number.md
 ├── pages/
 │   ├── index.astro               # Homepage
 │   ├── investment-planning.astro  # Service page
@@ -57,8 +66,8 @@ src/
 │   ├── tax-planning.astro         # Service page
 │   ├── about-us.astro             # Team page
 │   ├── about-you.astro            # Ideal client page
-│   ├── contact.astro              # Book a discovery call (Netlify form)
-│   ├── contact-success.astro      # Form submission thank-you page
+│   ├── contact.astro              # Book a free call (Netlify form)
+│   ├── contact-success.astro      # Form submission thank-you page (no nav/footer)
 │   ├── knowledge-and-insight.astro # Editorial hub / article listing
 │   └── articles/
 │       └── [...id].astro          # Dynamic article route
@@ -78,15 +87,15 @@ public/
 ## How the Astro components work
 
 ### BaseLayout.astro
-Wraps every page. Props: `title`, `description`, `activePage`, `showSocialInFooter`, `schema`.
+Wraps every page. Props: `title`, `description`, `activePage`, `showSocialInFooter`, `schema`, `hideNav`, `hideFooter`.
 - Renders `<head>` (meta, fonts, CSS, schema JSON-LD)
-- Includes Header and Footer components
+- Includes Header and Footer components (can be hidden via `hideNav`/`hideFooter` boolean props — used on contact-success page)
 - Named slots: `head` (extra head content), `before-nav` (e.g. reading progress bar), `scripts` (page-specific JS)
 - Global script loaded via `<script src="/script.js" is:inline>`
 
 ### Header.astro
 Shared navigation. Prop: `activePage` (string) — used to add `.active` class.
-- Desktop nav with dropdown for services (keyboard accessible: Enter/Space to toggle, Escape to close)
+- Desktop nav with dropdown for services (opens on hover at 1024px+ with 150ms close delay, also keyboard accessible: Enter/Space to toggle, Escape to close)
 - Dropdown trigger has `role="button"`, `tabindex="0"`, `aria-expanded`, `aria-haspopup="true"`; menu has `role="menu"`; links have `role="menuitem"`
 - Mobile hamburger menu with `aria-expanded`, `aria-controls="mobile-nav"`; mobile nav has `id="mobile-nav"`, `aria-hidden`
 - All internal links use `/slug/` format (not `.html`)
@@ -106,6 +115,13 @@ Reusable Google reviews carousel with 20 real client reviews (Lene Botha exclude
 - Auto-advances every 5 seconds
 - Used on all pages except contact — pass `grey={false}` when surrounded by grey sections (index, about-you)
 
+### LeadMagnet.astro
+Reusable lead magnet section ("Successful Investing In Pictures" guide download). Props:
+- `grey` (boolean, default `true`) — controls section background
+- Name + email form fields (Netlify Forms placeholder, to be replaced with Mailerlite)
+- Used on homepage (grey) and about-us page (grey)
+- Guide cover image: `/images/leadmagnet.png`
+
 ### ArticleLayout.astro
 Wraps article content. Accepts all article frontmatter props + `slug`.
 - Reading progress bar, article hero with image/overlay, author bio, share row
@@ -123,7 +139,7 @@ imageAlt: string (required)
 date: string (required) — e.g. "March 2025"
 author: string (default: "Pierre Taljaard")
 authorTitle: string (default: "Certified Financial Planner")
-authorPhoto: string (default: "/images/avatar-james-hartley.jpg")
+authorPhoto: string (default: "/images/headshot-pierre.png") — central default in content.config.ts
 authorBio: string (default: "Pierre has over 15 years...")
 ```
 
@@ -216,7 +232,7 @@ This site targets 45–65 year old affluent professionals making high-trust fina
 **DO use:**
 - Real photography (stored locally in `public/images/`)
 - Hero gradient overlay (left-to-right): `rgba(10,22,40,1) 0% → 0.6 at 50% → 0.15 at 65% → 0.05 at 80%`
-- Decorative route SVG motif (dashed path with waypoints and destination pin) on `.hero--short` and `.cta-section` via `::after` pseudo-element — gold (#CD8F5E), 50% opacity, hidden on mobile ≤480px
+- Decorative route SVG motif (dashed path with waypoints and destination pin) on `.hero--short` and `.cta-section` via `::after` pseudo-element — gold (#CD8F5E), 50% opacity, hidden on mobile ≤480px. Positioned at `bottom: 10%` with `max-height: 60%` to prevent overflow into nav on shorter heroes.
 - `.hero-highlight` class: gold curved underline swoosh on a key word in hero h1 (used on homepage "clarity")
 - Simple line icons (inline SVGs from Lucide icon set — no CDN dependency)
 - Clean, generous whitespace
@@ -244,17 +260,15 @@ All images are stored locally in `public/images/`. No external image dependencie
 | Tax planning | images/service-tax.jpg (iStock 1222021819 — reviewing financials with calculator) |
 | Risk planning | images/service-risk.jpg (iStock 1199060494 — hands protecting paper-cut family) |
 | Estate planning | images/service-estate.jpg (iStock 2199281061 — signing Last Will and Testament) |
-| Article: cash vs invest | images/article-cash-vs-invest.jpg |
-| Article: reduce tax | images/article-reduce-tax.jpg |
-| Article: retirement | images/article-retirement.jpg |
-| Article: protection | images/article-protection.jpg |
-| Article: markets fall | images/article-markets-fall.jpg |
-| Article: review will | images/article-review-will.jpg |
+| Articles (shared) | images/article-cash-vs-invest.jpg, article-reduce-tax.jpg, article-retirement.jpg, article-protection.jpg, article-markets-fall.jpg, article-review-will.jpg (6 images cycled across 13 articles) |
+| Lead magnet cover | images/leadmagnet.png |
+| Pierre headshot | images/headshot-pierre.png |
 
-### Avatars
+### Avatars & headshot
 - Hero social proof uses gold-star-in-navy-circle initials (no photos)
 - Old testimonial avatar photos are no longer used on any page
-- `images/avatar-james-hartley.jpg` — Pierre Taljaard (author bio on articles)
+- `images/headshot-pierre.png` — Pierre Taljaard (author bio on articles + about-us page). Central default set in `src/content.config.ts`
+- `images/avatar-james-hartley.jpg` — old placeholder, no longer referenced
 
 ### Image CSS rules
 ```css
@@ -293,7 +307,7 @@ How we help ▾
 About you → /about-you/
 About us → /about-us/
 Knowledge → /knowledge-and-insight/
-[Book your free discovery call] → /contact/  ← CTA button, gold background
+[Book your free free call] → /contact/  ← CTA button, gold background
 ```
 
 - Navigation is defined once in `src/components/Header.astro`
@@ -321,11 +335,12 @@ All internal links use trailing-slash format:
 5. Testimonials — TestimonialsCarousel component (white background, `grey={false}`)
 6. Services — 4 service cards with photos (order: Investment, Tax, Risk, Estate) (grey background)
 7. Why choose us — 4 numbered reasons
-8. 3-step process — Discovery call, Family meeting, Review assessment
+8. How we work with you — steps 1–3 (bordered card) with dashed arrow down to step 4 (Annual service calendar, centered). Desktop-only arrows.
 9. What you get — 3 document cards
-10. FAQ accordion — 5 questions with JS expand/collapse
-11. Final CTA — CtaSection component
-12. Footer (Footer component)
+10. Lead magnet — LeadMagnet component (grey background)
+11. FAQ accordion — 5 questions with JS expand/collapse (white background)
+12. Final CTA — CtaSection component
+13. Footer (Footer component)
 
 ---
 
@@ -353,7 +368,8 @@ Newsletter signup form (AJAX with error handling) — will be replaced with Mail
 - Honeypot spam protection via `data-netlify-honeypot="bot-field"` + hidden field
 - Form validation styles: `:focus:invalid` (red border), `:focus:valid` (gold border)
 - Redirects to `/contact-success/` on submission
-- Fields: name, email, phone, age, location, service (select), message
+- Fields (all required, with custom validation messages via inline JS):
+  - name, email, phone, age, location, service (select), investable assets (select), current financial adviser (select: yes/no/it's complicated), how did you hear about us (select), message
 - Right sidebar: contact details card (email, phone, office address, response time) + Google Maps embed (responsive height via `.contact-map` class)
 
 ### Newsletter form (knowledge-and-insight.astro)
@@ -375,7 +391,7 @@ Every article page (generated from markdown via ArticleLayout) includes:
 - Author bio card below article
 - Share row: LinkedIn, Twitter/X, Copy link (clipboard JS)
 - Related articles: 3 cards linking to other articles
-- Final CTA section: navy, "Book your free discovery call"
+- Final CTA section: navy, "Book your free free call"
 
 ---
 
@@ -438,16 +454,47 @@ npm run preview   # Preview built output locally
 
 ---
 
+## Site review (March 2026)
+
+### Copy issues — UK vs SA terminology (HIGH PRIORITY)
+Several pages use UK-specific financial terms that don't apply in South Africa:
+- **Tax planning page** — References to "ISA" and "pension allowances" in FAQ. SA uses TFSAs, retirement annuities (RAs), pension/provident funds — not ISAs.
+- **Tax planning FAQ** — "inheritance tax" should be "estate duty". "Potentially exempt transfers" is a UK concept.
+- **Estate planning FAQ** — "solicitors" should be "attorneys".
+- **Investment planning FAQ** — "pensions" should reference retirement annuities / pension funds.
+- **Estate planning** — "pensions without nominated beneficiaries" should be "retirement funds".
+- **About You client stories** — Michael's story references "ISA and pension management" and "limited company" (UK). Evelyn's story uses "lifetime gifting strategies" (UK-flavoured). Stories feel fictional/AI-generated rather than real SA client narratives.
+
+### Copy issues — wording
+- **Homepage solution section** (`index.astro:101`) — "helps busy professionals to live" reads awkwardly; drop "to".
+- **Homepage "What you get"** (`index.astro:168`) — "provide clarity...by providing" is redundant. Suggest: "give you clarity...through three vital documents."
+- **Homepage process step 1** (`index.astro:152`) — "confirm alignment with expertise" is vague.
+- **All 4 service pages** — Each "approach" section intro ends with a formulaic "We make sure..." sentence. Consider cutting.
+- **Homepage FAQ** (`index.astro:186`) — "fiduciary firm" and "fee-only model excludes commissions" — verify accuracy under FAIS/FSCA regulation.
+- **About Us** (`about-us.astro:74-76`) — Verify "CFA Charterholder" and "CFP Professional" are both current.
+
+### Structural / UX issues
+- **Footer legal links** — All 6 links (Privacy Policy, Terms, etc.) point to `#`. Need real pages or removal before launch.
+- **Lead magnet form** — Redirects to `/contact-success/` which says "arrange your free free call" — wrong message for a guide download.
+- **No related articles** on article pages (noted in outstanding work item 3).
+- **Newsletter form** — AJAX handler posts to `/` not the form action. Pending Mailerlite replacement.
+- **No favicon** — `BaseLayout.astro` has no `<link rel="icon">`.
+- **No canonical URLs** — `BaseLayout.astro` has no `<link rel="canonical">`.
+- **Contact page** — Has inline styles (`style="margin-bottom: 8px;"` etc.) that should be CSS classes.
+
+---
+
 ## Outstanding work
 1. Purchase unwatermarked iStock images (hero: 1441254475, investment: 848840496, tax: 1222021819, risk: 1199060494, estate: 2199281061)
-2. Replace article stock images with better ones
+2. Replace article stock images with better/unique ones (currently cycling 6 images across 13 articles)
 3. Wire up related articles in ArticleLayout to link to actual article pages
-4. Replace Netlify newsletter form with Mailerlite embed (pending embed code)
-5. Add Pierre's real headshot (replace avatar-james-hartley.jpg)
+4. Replace lead magnet + newsletter forms with Mailerlite integration (pending embed code)
+5. ~~Add Pierre's real headshot~~ ✓ Done — `headshot-pierre.png`, default in `content.config.ts`
 6. Add analytics (e.g. Fathom, as used on current Webflow site)
 7. Create or link legal pages (Privacy Policy, Terms, etc.)
 8. ~~Add netlify.toml config file~~ ✓ Done
 9. Connect custom domain (simplewealth.co.za) when ready to replace Webflow
+10. Verify article content matches original source (humansundermanagement.com) — WebFetch tool paraphrased some articles
 
 ---
 

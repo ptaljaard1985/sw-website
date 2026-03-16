@@ -8,9 +8,11 @@ interface Props {
   activePage?: string;
   showSocialInFooter?: boolean;
   schema?: object | object[];
+  hideNav?: boolean;
+  hideFooter?: boolean;
 }
 
-const { title, description, activePage = '', showSocialInFooter = false, schema } = Astro.props;
+const { title, description, activePage = '', showSocialInFooter = false, schema, hideNav = false, hideFooter = false } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -31,13 +33,13 @@ const { title, description, activePage = '', showSocialInFooter = false, schema 
 </head>
 <body>
   <slot name="before-nav" />
-  <Header activePage={activePage} />
+  {!hideNav && <Header activePage={activePage} />}
 
   <main>
     <slot />
   </main>
 
-  <Footer showSocial={showSocialInFooter} />
+  {!hideFooter && <Footer showSocial={showSocialInFooter} />}
 
   <script src="/script.js" is:inline></script>
   <slot name="scripts" />

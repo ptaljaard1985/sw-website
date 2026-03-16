@@ -38,7 +38,7 @@ const articles = allArticles.sort((a, b) => {
     .knowledge-hero {
       background: var(--color-navy);
       color: var(--color-white);
-      padding: 140px 20px 64px;
+      padding: 140px 20px 120px;
       text-align: center;
     }
 
@@ -255,6 +255,164 @@ const articles = allArticles.sort((a, b) => {
       display: block;
     }
 
+    /* Newsletter banner — translateY(-50%) gives exact 50/50 overlap */
+    .newsletter-banner {
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+      margin-bottom: -80px;
+    }
+
+    .newsletter-banner__inner {
+      max-width: 960px;
+      margin: 0 auto;
+      transform: translateY(-50%);
+      background: var(--color-gold);
+      border: none;
+      border-radius: var(--radius);
+      padding: 36px 36px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .newsletter-banner__icon {
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(21, 45, 71, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-navy);
+    }
+
+    .newsletter-banner__content {
+      flex: 1;
+    }
+
+    .newsletter-banner__content h2 {
+      color: var(--color-navy);
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .newsletter-banner__content p {
+      color: rgba(21, 45, 71, 0.7);
+      font-size: 0.92rem;
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    .newsletter-banner__form {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .newsletter-banner__form input {
+      flex: 1;
+      min-width: 160px;
+      padding: 12px 16px;
+      border: 1px solid rgba(21, 45, 71, 0.15);
+      border-radius: 6px;
+      background: var(--color-white);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .newsletter-banner__form input::placeholder {
+      color: var(--color-text-muted);
+    }
+
+    .newsletter-banner__form input:focus {
+      border-color: var(--color-navy);
+      box-shadow: 0 0 0 3px rgba(21, 45, 71, 0.1);
+    }
+
+    .newsletter-banner__form button {
+      padding: 12px 28px;
+      border-radius: 6px;
+      background: var(--color-navy);
+      color: var(--color-white);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .newsletter-banner__form button:hover {
+      background: var(--color-navy-light);
+      transform: translateY(-1px);
+    }
+
+    .newsletter-banner__thanks {
+      display: none;
+      color: var(--color-navy);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .newsletter-banner__thanks.visible {
+      display: block;
+    }
+
+    .newsletter-banner__error {
+      display: none;
+      color: #e74c3c;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      margin-top: 8px;
+    }
+
+    .newsletter-banner__error.visible {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .knowledge-hero {
+        padding-bottom: 140px;
+      }
+
+      .newsletter-banner__inner {
+        flex-direction: column;
+        text-align: center;
+        padding: 28px 20px;
+        gap: 16px;
+        transform: translateY(-30%);
+      }
+
+      .newsletter-banner {
+        margin-bottom: -60px;
+      }
+
+      .newsletter-banner__icon {
+        width: 48px;
+        height: 48px;
+      }
+
+      .newsletter-banner__form {
+        justify-content: center;
+      }
+
+      .newsletter-banner__form input {
+        min-width: 100%;
+      }
+
+      .newsletter-banner__form button {
+        width: 100%;
+      }
+    }
+
     @media (min-width: 480px) {
       .articles-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -263,7 +421,7 @@ const articles = allArticles.sort((a, b) => {
 
     @media (min-width: 768px) {
       .knowledge-hero {
-        padding: 160px 40px 80px;
+        padding: 160px 40px 120px;
       }
 
       .newsletter {
@@ -282,6 +440,26 @@ const articles = allArticles.sort((a, b) => {
   <section class="knowledge-hero">
     <h1 class="fade-up">Knowledge &amp; Insight</h1>
     <p class="fade-up">Practical guidance to help you make better financial decisions &mdash; written in plain English, no jargon.</p>
+  </section>
+
+  <!-- Newsletter Banner -->
+  <section class="newsletter-banner">
+    <div class="newsletter-banner__inner fade-up">
+      <div class="newsletter-banner__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      </div>
+      <div class="newsletter-banner__content">
+        <h2>Want to hear more from us?</h2>
+        <p>Sign up for our monthly email digest designed to make you think about money in a different way.</p>
+        <form class="newsletter-banner__form" id="bannerNewsletterForm" name="newsletter-banner" method="POST" data-netlify="true">
+          <input type="text" name="first-name" placeholder="First name" required>
+          <input type="email" name="email" placeholder="Email address" required>
+          <button type="submit">Subscribe <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-left: 4px;"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+        </form>
+        <p class="newsletter-banner__thanks" id="bannerThanks">Thanks &mdash; you're on the list!</p>
+        <p class="newsletter-banner__error" id="bannerError">Something went wrong. Please try again.</p>
+      </div>
+    </div>
   </section>
 
   <!-- Articles -->
@@ -327,6 +505,23 @@ const articles = allArticles.sort((a, b) => {
   <CtaSection />
 
   <script slot="scripts">
+    document.getElementById('bannerNewsletterForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var form = this;
+      var errorEl = document.getElementById('bannerError');
+      errorEl.classList.remove('visible');
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString()
+      }).then(function() {
+        form.style.display = 'none';
+        document.getElementById('bannerThanks').classList.add('visible');
+      }).catch(function() {
+        errorEl.classList.add('visible');
+      });
+    });
+
     document.getElementById('newsletterForm').addEventListener('submit', function(e) {
       e.preventDefault();
       var form = this;

@@ -6,7 +6,7 @@ const schema = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
   "name": "Contact Simple Wealth",
-  "description": "Book your free discovery call with Simple Wealth. A short phone call will give us both a chance to make sure your situation matches our expertise.",
+  "description": "Book a free call with Simple Wealth. A short phone call will give us both a chance to make sure your situation matches our expertise.",
   "mainEntity": {
     "@type": "FinancialService",
     "name": "Simple Wealth",
@@ -25,14 +25,14 @@ const schema = {
 
 <BaseLayout
   title="Contact — Simple Wealth"
-  description="Book your free discovery call with Simple Wealth. A short phone call will give us both a chance to make sure your situation matches our expertise."
+  description="Book a free call with Simple Wealth. A short phone call will give us both a chance to make sure your situation matches our expertise."
   activePage="contact"
   showSocialInFooter={true}
   schema={schema}
 >
   <section class="hero hero--short">
     <div class="hero__inner">
-      <h1 class="fade-up">Book your free discovery call</h1>
+      <h1 class="fade-up">Book a free call</h1>
       <p class="fade-up">We're invested in your success, so let's get started. A short phone call will give us both a chance to make sure your situation matches our expertise.</p>
     </div>
   </section>
@@ -42,7 +42,7 @@ const schema = {
       <div class="contact-grid">
         <div>
           <h2 class="fade-up" style="margin-bottom: 8px;">Get in touch</h2>
-          <p class="fade-up" style="color: var(--color-text-light); margin-bottom: 32px;">Fill in the form below and we'll be in touch within one business day to arrange your free discovery call.</p>
+          <p class="fade-up" style="color: var(--color-text-light); margin-bottom: 32px;">Fill in the form below and we'll be in touch within one business day to arrange your free call.</p>
 
           <form class="contact-form fade-up" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/contact-success/">
             <p class="visually-hidden">
@@ -58,19 +58,19 @@ const schema = {
             </div>
             <div class="form-group">
               <label for="phone">Phone number</label>
-              <input type="tel" id="phone" name="phone" placeholder="Your phone number">
+              <input type="tel" id="phone" name="phone" placeholder="Your phone number" required>
             </div>
             <div class="form-group">
               <label for="age">Age</label>
-              <input type="text" id="age" name="age" placeholder="Your age">
+              <input type="text" id="age" name="age" placeholder="Your age" required>
             </div>
             <div class="form-group">
               <label for="location">Location</label>
-              <input type="text" id="location" name="location" placeholder="Your city or town">
+              <input type="text" id="location" name="location" placeholder="Your city or town" required>
             </div>
             <div class="form-group">
               <label for="service">What can we help with?</label>
-              <select id="service" name="service">
+              <select id="service" name="service" required>
                 <option value="">Select a service...</option>
                 <option value="investment">Investment planning</option>
                 <option value="risk">Risk planning</option>
@@ -80,8 +80,39 @@ const schema = {
               </select>
             </div>
             <div class="form-group">
+              <label for="assets">Investable assets</label>
+              <select id="assets" name="assets" required>
+                <option value="">Select a range...</option>
+                <option value="under-1m">Under R1 million</option>
+                <option value="1m-5m">R1–5 million</option>
+                <option value="5m-10m">R5–10 million</option>
+                <option value="10m+">R10 million+</option>
+                <option value="rather-not-say">Rather not say</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="adviser">Are you currently working with a financial adviser?</label>
+              <select id="adviser" name="adviser" required>
+                <option value="">Select an option...</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+                <option value="complicated">It's complicated</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="referral">How did you hear about us?</label>
+              <select id="referral" name="referral" required>
+                <option value="">Select an option...</option>
+                <option value="google">Google search</option>
+                <option value="referral">Referral from a friend or colleague</option>
+                <option value="linkedin">LinkedIn</option>
+                <option value="article">Article or blog post</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
               <label for="message">Your message</label>
-              <textarea id="message" name="message" placeholder="Tell us a bit about your situation and what you're looking for..."></textarea>
+              <textarea id="message" name="message" placeholder="Tell us a bit about your situation and what you're looking for..." required></textarea>
             </div>
             <button type="submit" class="btn btn--primary" style="align-self: flex-start;">Send your message</button>
           </form>
@@ -131,4 +162,31 @@ const schema = {
       </div>
     </div>
   </section>
+  <script is:inline slot="scripts">
+    const messages = {
+      name: 'Please enter your full name.',
+      email: 'Please enter a valid email address.',
+      phone: 'Please enter your phone number.',
+      age: 'Please enter your age.',
+      location: 'Please enter your city or town.',
+      service: 'Please select a service.',
+      assets: 'Please select an investable assets range.',
+      adviser: 'Please let us know if you have a financial adviser.',
+      referral: 'Please let us know how you heard about us.',
+      message: 'Please enter a message.'
+    };
+
+    document.querySelectorAll('.contact-form [required]').forEach(function(field) {
+      var msg = messages[field.name] || '';
+      field.addEventListener('invalid', function() {
+        field.setCustomValidity(msg);
+      });
+      field.addEventListener('input', function() {
+        field.setCustomValidity('');
+      });
+      field.addEventListener('change', function() {
+        field.setCustomValidity('');
+      });
+    });
+  </script>
 </BaseLayout>
