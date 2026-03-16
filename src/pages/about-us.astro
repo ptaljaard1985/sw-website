@@ -108,68 +108,19 @@ const schema = {
     </div>
   </section>
 
-  <LeadMagnet grey={false} />
+  <LeadMagnet />
 
-  <!-- Services -->
-  <section class="section section--grey">
+  <!-- 3-Step Process -->
+  <section class="section" id="process">
     <div class="container">
-      <div class="section__header fade-up">
-        <h2>We're standing with you through every financial challenge</h2>
+      <div class="section__header fade-up"><h2>Our three step process</h2><p>We believe that great financial advice starts with understanding your story.</p></div>
+      <div class="steps">
+        <div class="step fade-up"><div class="step__number">1</div><h3>Discovery call</h3><p>A brief 15&ndash;30 minute introductory call allowing both parties to confirm alignment with expertise.</p></div>
+        <div class="step fade-up"><div class="step__number">2</div><h3>Family meeting</h3><p>A 90-minute meeting (in-person or virtual) to understand family goals, needs, and concerns.</p></div>
+        <div class="step fade-up"><div class="step__number">3</div><h3>Review assessment</h3><p>A follow-up meeting reviewing findings and recommendations in plain language.</p></div>
       </div>
-      <div class="cards-grid cards-grid--centered">
-        <div class="card card--centered fade-up">
-          <div class="card__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-          </div>
-          <h3>Investment planning</h3>
-          <a href="/investment-planning/" class="card__link">Learn more <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-        </div>
-        <div class="card card--centered fade-up">
-          <div class="card__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
-          </div>
-          <h3>Risk planning</h3>
-          <a href="/risk-planning/" class="card__link">Learn more <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-        </div>
-        <div class="card card--centered fade-up">
-          <div class="card__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </div>
-          <h3>Estate planning</h3>
-          <a href="/estate-planning/" class="card__link">Learn more <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-        </div>
-        <div class="card card--centered fade-up">
-          <div class="card__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
-          </div>
-          <h3>Tax planning</h3>
-          <a href="/tax-planning/" class="card__link">Learn more <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Info -->
-  <section class="section">
-    <div class="container">
-      <div class="section__header fade-up">
-        <h2>Have a question? We'd love to hear from you</h2>
-      </div>
-      <div class="contact-grid contact-grid--narrow">
-        <div class="contact-info-item fade-up">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-          <div>
-            <h4>Email</h4>
-            <p><a href="mailto:info@simplewealth.co.za">info@simplewealth.co.za</a></p>
-          </div>
-        </div>
-        <div class="contact-info-item fade-up">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-          <div>
-            <h4>Office</h4>
-            <p><a href="https://maps.app.goo.gl/z5PbmNjmUYrW6vDD7" target="_blank" rel="noopener">Office 7.17, Workshop17, 7th Floor, Ballito Junction Regional Mall, Leonora Dr, Ballito, 4399</a></p>
-          </div>
-        </div>
+      <div style="text-align: center; margin-top: 48px;" class="fade-up">
+        <a href="/contact/" class="btn btn--primary">Book your free discovery call</a>
       </div>
     </div>
   </section>
