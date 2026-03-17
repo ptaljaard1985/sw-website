@@ -301,9 +301,9 @@ img {
 Logo (left) — links to /
 How we help ▾
   - Invest smarter → /investment-planning/
+  - Pay less tax → /tax-planning/
   - Protect your future → /risk-planning/
   - Plan your legacy → /estate-planning/
-  - Pay less tax → /tax-planning/
 About you → /about-you/
 About us → /about-us/
 Knowledge → /knowledge-and-insight/
@@ -347,10 +347,10 @@ All internal links use trailing-slash format:
 ## Services
 | Service | Headline | Page |
 |---|---|---|
-| Investment planning | A strategy that grows your wealth over time | /investment-planning/ |
-| Risk planning | A plan for the unexpected | /risk-planning/ |
-| Estate planning | Thoughtful planning, lasting security | /estate-planning/ |
-| Tax planning | Keep more, invest smarter | /tax-planning/ |
+| Investment planning | A plan for diversified long-term growth | /investment-planning/ |
+| Tax planning | A plan for keeping more of what you earn | /tax-planning/ |
+| Risk planning | A plan for when life doesn't go to plan | /risk-planning/ |
+| Estate planning | A plan for the people who matter most | /estate-planning/ |
 
 ---
 
@@ -369,7 +369,8 @@ Newsletter signup form (AJAX with error handling) — will be replaced with Mail
 - Form validation styles: `:focus:invalid` (red border), `:focus:valid` (gold border)
 - Redirects to `/contact-success/` on submission
 - Fields (all required, with custom validation messages via inline JS):
-  - name, email, phone, age, location, service (select), investable assets (select), current financial adviser (select: yes/no/it's complicated), how did you hear about us (select), message
+  - name, email, phone, age, location, service (select), investable assets (select: Less than R2m, R2m–R10m, R10m–R30m, R30m–R50m, R50m+), current financial adviser (select: yes/no/it's complicated), how did you hear about us (select), message
+  - Required checkbox: "I understand that for investable assets less than R2m, our minimum annual fee may not be cost-effective."
 - Right sidebar: contact details card (email, phone, office address, response time) + Google Maps embed (responsive height via `.contact-map` class)
 
 ### Newsletter form (knowledge-and-insight.astro)
@@ -412,11 +413,10 @@ All pages have JSON-LD structured data (passed via BaseLayout `schema` prop):
 Defined once in `src/components/Footer.astro`:
 ```
 Logo (image)
-Address: Office 7.17, Workshop17, 7th Floor, Ballito Junction Regional Mall, Leonora Dr, Ballito, 4399 (linked to Google Maps)
-Email: info@simplewealth.co.za (mailto link)
-Social: LinkedIn, pierretaljaard.com (toggled via showSocial prop)
-Nav links (mirroring header)
-Legal: Conflict of Interest | Anti-Slavery | Complaints | Privacy Policy | Terms of Service | Cookie Settings
+Brand description
+FSP statement: "Simple Wealth (Pty) Ltd is an authorised financial services provider. FSP no. 50637"
+Nav columns: How we help, Company, Get in touch (address, email)
+Legal links: Google Maps | POPI Statement | Conflict of Interest Management Policy | Complaints Resolution Policy
 © {current year} Simple Wealth. All rights reserved. (dynamic via JS Date)
 ```
 
@@ -463,18 +463,18 @@ Several pages use UK-specific financial terms that don't apply in South Africa:
 - **Estate planning FAQ** — "solicitors" should be "attorneys".
 - **Investment planning FAQ** — "pensions" should reference retirement annuities / pension funds.
 - **Estate planning** — "pensions without nominated beneficiaries" should be "retirement funds".
-- **About You client stories** — Michael's story references "ISA and pension management" and "limited company" (UK). Evelyn's story uses "lifetime gifting strategies" (UK-flavoured). Stories feel fictional/AI-generated rather than real SA client narratives.
+- ~~**About You client stories**~~ ✓ Removed — stories section replaced with "How we work with you" process section. Real case studies to be added later.
 
 ### Copy issues — wording
-- **Homepage solution section** (`index.astro:101`) — "helps busy professionals to live" reads awkwardly; drop "to".
-- **Homepage "What you get"** (`index.astro:168`) — "provide clarity...by providing" is redundant. Suggest: "give you clarity...through three vital documents."
-- **Homepage process step 1** (`index.astro:152`) — "confirm alignment with expertise" is vague.
+- ~~**Homepage solution section** (`index.astro:101`) — "helps busy professionals to live"~~ ✓ Fixed — now "We help busy families take control of their financial future."
+- ~~**Homepage "What you get"** (`index.astro:168`) — "provide clarity...by providing"~~ ✓ Fixed — now "Here's what you can expect from working with us."
+- ~~**Homepage process step 1** (`index.astro:152`) — "confirm alignment with expertise"~~ ✓ Fixed — now "A 10-minute call to see if our expertise matches your needs."
 - **All 4 service pages** — Each "approach" section intro ends with a formulaic "We make sure..." sentence. Consider cutting.
-- **Homepage FAQ** (`index.astro:186`) — "fiduciary firm" and "fee-only model excludes commissions" — verify accuracy under FAIS/FSCA regulation.
-- **About Us** (`about-us.astro:74-76`) — Verify "CFA Charterholder" and "CFP Professional" are both current.
+- ~~**Homepage FAQ** (`index.astro:186`) — "fiduciary firm" and "fee-only model excludes commissions"~~ ✓ Fixed — rewritten with Pierre's actual answers, no fiduciary/fee-only claims
+- ~~**About Us** (`about-us.astro:74-76`) — Verify "CFA Charterholder" and "CFP Professional"~~ ✓ Confirmed current by Pierre
 
 ### Structural / UX issues
-- **Footer legal links** — All 6 links (Privacy Policy, Terms, etc.) point to `#`. Need real pages or removal before launch.
+- ~~**Footer legal links**~~ ✓ Fixed — updated to Google Maps, POPI Statement, Conflict of Interest Management Policy, Complaints Resolution Policy (links to `#` pending real pages).
 - **Lead magnet form** — Redirects to `/contact-success/` which says "arrange your free free call" — wrong message for a guide download.
 - **No related articles** on article pages (noted in outstanding work item 3).
 - **Newsletter form** — AJAX handler posts to `/` not the form action. Pending Mailerlite replacement.
