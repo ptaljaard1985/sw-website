@@ -1156,6 +1156,12 @@ p:last-child {
   line-height: 1.6;
 }
 
+.footer__fsp {
+  font-size: 0.8rem;
+  margin-top: 12px;
+  opacity: 0.5;
+}
+
 .footer__nav h4 {
   color: var(--color-white);
   font-family: var(--font-body);
@@ -1992,7 +1998,7 @@ p:last-child {
   }
 
   .client-type {
-    width: calc(33.333% - 11px);
+    width: calc(50% - 8px);
   }
 
   .testimonials-grid {
@@ -2393,6 +2399,10 @@ p:last-child {
    ============================================ */
 
 /* About-us centered grid */
+.cards-grid--single {
+  grid-template-columns: 1fr !important;
+}
+
 .cards-grid--centered {
   max-width: 900px;
   margin: 0 auto;

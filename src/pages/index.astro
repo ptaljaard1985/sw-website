@@ -8,7 +8,7 @@ const schema = [{
   "@context": "https://schema.org",
   "@type": "FinancialService",
   "name": "Simple Wealth",
-  "description": "Expert financial planning that carefully aligns your wealth with your values, lifestyle, and long-term goals for lasting security and peace of mind.",
+  "description": "Expert financial planning that carefully aligns your wealth with your values, lifestyle, and long-term goals.",
   "url": "https://simplewealth.co.za",
   "logo": "https://simplewealth.co.za/logo.png",
   "email": "info@simplewealth.co.za",
@@ -34,18 +34,18 @@ const schema = [{
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "Do you only work with high-net-worth individuals?", "acceptedAnswer": { "@type": "Answer", "text": "While we serve many clients with significant assets, we prioritise goal complexity over account minimums. Financial clarity should be accessible to anyone committed to a long-term strategy. If you're serious about getting your finances on track, we'd love to have a conversation." } },
-    { "@type": "Question", "name": "What does this cost and what exactly am I paying for?", "acceptedAnswer": { "@type": "Answer", "text": "We operate a transparent fee structure typically based on a percentage of managed assets, ensuring our incentives are fully aligned with yours. Fees cover comprehensive financial architecture, tax planning, retirement mapping, and behavioural coaching — not just investment management." } },
-    { "@type": "Question", "name": "How do I know you're acting in my best interest?", "acceptedAnswer": { "@type": "Answer", "text": "As a fiduciary firm, we're legally and ethically obligated to prioritise your interests above our own. Our fee-only model excludes commissions or third-party incentives, so you can be confident our advice is always in your corner." } },
-    { "@type": "Question", "name": "What kind of results should I realistically expect?", "acceptedAnswer": { "@type": "Answer", "text": "Expect a portfolio that balances growth with your risk tolerance, aiming for consistent progress toward your goals rather than short-term chasing. We maximise controllable variables: cost efficiency, tax mitigation, and disciplined rebalancing to keep you on track." } },
-    { "@type": "Question", "name": "How often will we review things, and how quickly can I reach you?", "acceptedAnswer": { "@type": "Answer", "text": "Formal strategy reviews occur annually, with availability for questions anytime in between. You can expect responses within one business day, and we proactively reach out when market conditions or life changes warrant a conversation." } }
+    { "@type": "Question", "name": "Do you only work with high-net-worth individuals?", "acceptedAnswer": { "@type": "Answer", "text": "While we serve many clients with significant assets, we provide a professional and proactive financial planning service to any family willing to engage and pay for professional advice. We don't have account minimums, but our minimum annual fee means that clients with investable assets below R2 million may not find our service cost-effective." } },
+    { "@type": "Question", "name": "What does this cost and what exactly am I paying for?", "acceptedAnswer": { "@type": "Answer", "text": "We charge a percentage-based fee on your investable assets. This covers our comprehensive proactive service across investments, tax, estate planning, and risk planning. We are not remunerated by any product providers, so our incentives are fully aligned with yours. Clients are free to disengage at any time if the perceived value is less than our fee." } },
+    { "@type": "Question", "name": "How do I know you're acting in my best interest?", "acceptedAnswer": { "@type": "Answer", "text": "As a client-centred firm with no outside influence from product providers, our only incentive is to provide professional advice that results in happy clients." } },
+    { "@type": "Question", "name": "What kind of results should I realistically expect?", "acceptedAnswer": { "@type": "Answer", "text": "If you actively engage with our services, you should expect long-term peace of mind and progress towards your goals. The portfolios we build are typically focused on long-term growth, which inevitably means short-term volatility and temporary declines from time to time. Our service is designed for families who understand that long-term planning requires discipline and patience." } },
+    { "@type": "Question", "name": "How often will we review things, and how quickly can I reach you?", "acceptedAnswer": { "@type": "Answer", "text": "Our service calendar provides quarterly touchpoints, but we remain available for questions at any time in between. You can expect responses within one business day, and we proactively reach out when market conditions or life changes warrant a conversation. We have purposefully built a service model and client base that allow us to be available to our clients." } }
   ]
 }];
 ---
 
 <BaseLayout
   title="Simple Wealth — Make your wealth work harder so you don't have to"
-  description="Expert financial planning that carefully aligns your wealth with your values, lifestyle, and long-term goals for lasting security and peace of mind."
+  description="Expert financial planning that carefully aligns your wealth with your values, lifestyle, and long-term goals."
   schema={schema}
 >
   <!-- Hero -->
@@ -60,7 +60,7 @@ const schema = [{
         <div class="trust-badge"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Independent advice</div>
       </div>
       <h1 class="fade-up">Financial <span class="hero-highlight">clarity</span> for the life you've built</h1>
-      <p class="fade-up">Expert financial planning that carefully aligns your wealth with your values, lifestyle, and long-term goals to help you achieve lasting security and peace of mind.</p>
+      <p class="fade-up">Expert financial planning that carefully aligns your wealth with your values, lifestyle, and long-term goals.</p>
       <div class="btn-group fade-up">
         <a href="/contact/" class="btn btn--primary">Book a free call</a>
         <a href="#services" class="btn btn--outline-white">How we help</a>
@@ -73,7 +73,7 @@ const schema = [{
           <span class="avatar-initial"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="var(--color-gold)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
           <span class="avatar-initial"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="var(--color-gold)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
         </div>
-        <div class="social-proof__text"><a href="#testimonials" style="color: inherit; text-decoration: underline;"><strong>5.0 star rated</strong></a> &mdash; Trusted by professionals across South Africa</div>
+        <div class="social-proof__text"><a href="#testimonials" style="color: inherit; text-decoration: underline;"><strong>5.0 star rated</strong></a> &mdash; Trusted by families across South Africa</div>
       </div>
     </div>
   </section>
@@ -98,7 +98,7 @@ const schema = [{
   <section class="section section--grey" id="solution">
     <div class="container">
       <div class="section__header fade-up">
-        <h2>Simple Wealth helps busy professionals to live the life they want without being anxious about money.</h2>
+        <h2>Simple Wealth helps busy families live the life they want without being anxious about money.</h2>
         <p>We do this by being closely involved in the financial lives of our clients.</p>
       </div>
       <div class="cards-grid">
@@ -147,9 +147,9 @@ const schema = [{
   <!-- How We Work With You -->
   <section class="section section--grey" id="process">
     <div class="container">
-      <div class="section__header fade-up"><h2>How we work with you</h2><p>Great financial advice starts with understanding your story &mdash; and stays with you as it unfolds.</p></div>
+      <div class="section__header fade-up"><h2>How we work with you</h2><p>A proactive process designed for every stage of life.</p></div>
       <div class="steps steps--bordered">
-        <div class="step fade-up"><div class="step__number">1</div><h3>Introductory call</h3><p>A brief 15&ndash;30 minute introductory call allowing both parties to confirm alignment with expertise.</p></div>
+        <div class="step fade-up"><div class="step__number">1</div><h3>Introductory call</h3><p>A 10-minute call to see if our expertise matches your needs.</p></div>
         <div class="step fade-up"><div class="step__number">2</div><h3>Family meeting</h3><p>A 90-minute meeting (in-person or virtual) to understand family goals, needs, and concerns.</p></div>
         <div class="step fade-up"><div class="step__number">3</div><h3>Review assessment</h3><p>A follow-up meeting reviewing findings and recommendations in plain language.</p></div>
       </div>
@@ -165,7 +165,7 @@ const schema = [{
   <!-- What You Get -->
   <section class="section">
     <div class="container">
-      <div class="section__header fade-up"><h2>Get crystal-clear financial understanding</h2><p>We'll provide clarity on your current situation by providing you with three vital documents.</p></div>
+      <div class="section__header fade-up"><h2>Get crystal-clear financial understanding</h2><p>Here's what you can expect from working with us.</p></div>
       <div class="docs-grid">
         <div class="doc-card fade-up"><div class="doc-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg></div><h3>Your financial life on one page</h3><p>An essential guide distilling your finances into a comprehensive overview, explaining what you have and why you have it.</p></div>
         <div class="doc-card fade-up"><div class="doc-card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div><h3>A financial progress report</h3><p>Shows your current position and future direction, enabling proactive adjustments along the way.</p></div>
@@ -181,11 +181,11 @@ const schema = [{
     <div class="container">
       <div class="section__header fade-up"><h2>A few questions our clients normally ask us</h2></div>
       <div class="faq-list fade-up">
-        <div class="faq-item"><button class="faq-question">Do you only work with high-net-worth individuals?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer__inner"><p>While we serve many clients with significant assets, we prioritise goal complexity over account minimums. Financial clarity should be accessible to anyone committed to a long-term strategy. If you're serious about getting your finances on track, we'd love to have a conversation.</p></div></div></div>
-        <div class="faq-item"><button class="faq-question">What does this cost and what exactly am I paying for?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer__inner"><p>We operate a transparent fee structure typically based on a percentage of managed assets, ensuring our incentives are fully aligned with yours. Fees cover comprehensive financial architecture, tax planning, retirement mapping, and behavioural coaching &mdash; not just investment management.</p></div></div></div>
-        <div class="faq-item"><button class="faq-question">How do I know you're acting in my best interest?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer__inner"><p>As a fiduciary firm, we're legally and ethically obligated to prioritise your interests above our own. Our fee-only model excludes commissions or third-party incentives, so you can be confident our advice is always in your corner.</p></div></div></div>
-        <div class="faq-item"><button class="faq-question">What kind of results should I realistically expect?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer__inner"><p>Expect a portfolio that balances growth with your risk tolerance, aiming for consistent progress toward your goals rather than short-term chasing. We maximise controllable variables: cost efficiency, tax mitigation, and disciplined rebalancing to keep you on track.</p></div></div></div>
-        <div class="faq-item"><button class="faq-question">How often will we review things, and how quickly can I reach you?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer__inner"><p>Formal strategy reviews occur annually, with availability for questions anytime in between. You can expect responses within one business day, and we proactively reach out when market conditions or life changes warrant a conversation.</p></div></div></div>
+        <div class="faq-item"><button class="faq-question">Do you only work with high-net-worth individuals?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer__inner"><p>While we serve many clients with significant assets, we provide a professional and proactive financial planning service to any family willing to engage and pay for professional advice. We don't have account minimums, but our minimum annual fee means that clients with investable assets below R2 million may not find our service cost-effective.</p></div></div></div>
+        <div class="faq-item"><button class="faq-question">What does this cost and what exactly am I paying for?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer__inner"><p>We charge a percentage-based fee on your investable assets. This covers our comprehensive proactive service across investments, tax, estate planning, and risk planning. We are not remunerated by any product providers, so our incentives are fully aligned with yours. Clients are free to disengage at any time if the perceived value is less than our fee.</p></div></div></div>
+        <div class="faq-item"><button class="faq-question">How do I know you're acting in my best interest?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer__inner"><p>As a client-centred firm with no outside influence from product providers, our only incentive is to provide professional advice that results in happy clients.</p></div></div></div>
+        <div class="faq-item"><button class="faq-question">What kind of results should I realistically expect?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer__inner"><p>If you actively engage with our services, you should expect long-term peace of mind and progress towards your goals. The portfolios we build are typically focused on long-term growth, which inevitably means short-term volatility and temporary declines from time to time. Our service is designed for families who understand that long-term planning requires discipline and patience.</p></div></div></div>
+        <div class="faq-item"><button class="faq-question">How often will we review things, and how quickly can I reach you?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer__inner"><p>Our service calendar provides quarterly touchpoints, but we remain available for questions at any time in between. You can expect responses within one business day, and we proactively reach out when market conditions or life changes warrant a conversation. We have purposefully built a service model and client base that allow us to be available to our clients.</p></div></div></div>
       </div>
     </div>
   </section>
