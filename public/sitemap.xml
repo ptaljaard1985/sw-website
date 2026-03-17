@@ -5,35 +5,87 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://simplewealth.co.za/investment-planning.html</loc>
+    <loc>https://simplewealth.co.za/investment-planning/</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://simplewealth.co.za/risk-planning.html</loc>
+    <loc>https://simplewealth.co.za/risk-planning/</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://simplewealth.co.za/estate-planning.html</loc>
+    <loc>https://simplewealth.co.za/estate-planning/</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://simplewealth.co.za/tax-planning.html</loc>
+    <loc>https://simplewealth.co.za/tax-planning/</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://simplewealth.co.za/about-you.html</loc>
+    <loc>https://simplewealth.co.za/about-you/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://simplewealth.co.za/about-us.html</loc>
+    <loc>https://simplewealth.co.za/about-us/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://simplewealth.co.za/knowledge-and-insight.html</loc>
+    <loc>https://simplewealth.co.za/knowledge-and-insight/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://simplewealth.co.za/contact.html</loc>
+    <loc>https://simplewealth.co.za/contact/</loc>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://simplewealth.co.za/articles/what-game-are-you-playing/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://simplewealth.co.za/articles/financial-fortress/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://simplewealth.co.za/articles/two-constant-temptations/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://simplewealth.co.za/articles/better-questions/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://simplewealth.co.za/articles/know-your-numbers/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://simplewealth.co.za/articles/your-financial-levers/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://simplewealth.co.za/articles/longevity-risk/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://simplewealth.co.za/articles/unknowns/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://simplewealth.co.za/articles/how-many-good-summers/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://simplewealth.co.za/articles/contributions-heavy-lifting/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://simplewealth.co.za/articles/temperament-tactics/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://simplewealth.co.za/articles/left-out/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://simplewealth.co.za/articles/uncomfortable-number/</loc>
+    <priority>0.6</priority>
   </url>
 </urlset>

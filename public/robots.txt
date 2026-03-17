@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://simplewealth.co.za/sitemap.xml
+
+# AI crawler context
+llms.txt: https://simplewealth.co.za/llms.txt

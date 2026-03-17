@@ -77,8 +77,11 @@ public/
 ├── script.js                     # Global JS — nav, FAQ, carousel, animations
 ├── logo.png                      # Company logo (400x120px optimised)
 ├── logo large.png                # Original high-res logo (5906x1772px)
-├── sitemap.xml                   # XML sitemap
-├── robots.txt                    # Robots file pointing to sitemap
+├── favicon.ico                   # Favicon (ICO format)
+├── favicon.svg                   # Favicon (SVG format)
+├── sitemap.xml                   # XML sitemap (all pages + articles, trailing-slash URLs)
+├── robots.txt                    # Robots file pointing to sitemap + llms.txt
+├── llms.txt                      # AI crawler context (company info, credentials, services, location)
 └── images/                       # All site images (local)
 ```
 
@@ -87,8 +90,8 @@ public/
 ## How the Astro components work
 
 ### BaseLayout.astro
-Wraps every page. Props: `title`, `description`, `activePage`, `showSocialInFooter`, `schema`, `hideNav`, `hideFooter`.
-- Renders `<head>` (meta, fonts, CSS, schema JSON-LD)
+Wraps every page. Props: `title`, `description`, `activePage`, `showSocialInFooter`, `schema`, `hideNav`, `hideFooter`, `ogImage`, `ogType`.
+- Renders `<head>` (meta, fonts, CSS, schema JSON-LD, canonical URL, Open Graph, Twitter Card, favicon)
 - Includes Header and Footer components (can be hidden via `hideNav`/`hideFooter` boolean props — used on contact-success page)
 - Named slots: `head` (extra head content), `before-nav` (e.g. reading progress bar), `scripts` (page-specific JS)
 - Global script loaded via `<script src="/script.js" is:inline>`
@@ -155,11 +158,11 @@ authorBio: string (default: "Pierre has over 15 years...")
 
 **Company:** Simple Wealth
 **Founder:** Pierre Taljaard, Certified Financial Planner
-**Tagline:** "Make your wealth work harder so you don't have to"
+**Tagline:** "Independent financial planning for the life you've built"
 **Domain:** simplewealth.co.za
 **Email:** info@simplewealth.co.za
 **Phone:** 087 012 5628
-**Address:** Office 7.17, Workshop17, 7th Floor, Ballito Junction Regional Mall, Leonora Dr, Ballito, 4399
+**Address:** Office 7.17, Workshop17, 7th Floor, Ballito Junction Regional Mall, Leonora Dr, Ballito, KwaZulu-Natal, 4399
 **Google Maps:** https://maps.app.goo.gl/z5PbmNjmUYrW6vDD7
 **LinkedIn:** https://www.linkedin.com/in/ptaljaard/
 **Personal site:** https://www.pierretaljaard.com/
@@ -347,7 +350,7 @@ All internal links use trailing-slash format:
 ## Services
 | Service | Headline | Page |
 |---|---|---|
-| Investment planning | A plan for diversified long-term growth | /investment-planning/ |
+| Investment planning | Make your investments work for you | /investment-planning/ |
 | Tax planning | A plan for keeping more of what you earn | /tax-planning/ |
 | Risk planning | A plan for when life doesn't go to plan | /risk-planning/ |
 | Estate planning | A plan for the people who matter most | /estate-planning/ |
@@ -441,10 +444,16 @@ npm run preview   # Preview built output locally
 
 ---
 
-## SEO & performance
+## SEO, AIO & performance
 - Schema.org JSON-LD on all pages (including datePublished on articles, WebPage on contact-success)
-- sitemap.xml with all pages
-- robots.txt pointing to sitemap
+- Homepage FinancialService schema includes: `founder` with CFP/CFA credentials, `hasCredential` with FSP 50637, `areaServed` array (South Africa, KwaZulu-Natal, Ballito, Umhlali), `knowsAbout` with regional search terms, `addressRegion: "KwaZulu-Natal"` on all PostalAddress objects
+- Service page schemas include `areaServed` array (country + province + cities)
+- Canonical URLs on all pages via `<link rel="canonical">` (derived from `Astro.url`)
+- Open Graph and Twitter Card meta tags on all pages (default OG image: `/images/hero-adviser.jpg`)
+- `llms.txt` in public root for AI crawler discoverability (company, credentials, services, location, key pages)
+- `robots.txt` references both `sitemap.xml` and `llms.txt`
+- `sitemap.xml` includes all pages + all 13 articles with trailing-slash URLs
+- Favicon: both `favicon.ico` and `favicon.svg` linked in BaseLayout
 - All images local (no third-party dependencies except Google Fonts)
 - Lazy loading on below-fold images
 - Logo optimised: 400x120px, ~17KB
@@ -461,7 +470,7 @@ Several pages use UK-specific financial terms that don't apply in South Africa:
 - **Tax planning page** — References to "ISA" and "pension allowances" in FAQ. SA uses TFSAs, retirement annuities (RAs), pension/provident funds — not ISAs.
 - **Tax planning FAQ** — "inheritance tax" should be "estate duty". "Potentially exempt transfers" is a UK concept.
 - **Estate planning FAQ** — "solicitors" should be "attorneys".
-- **Investment planning FAQ** — "pensions" should reference retirement annuities / pension funds.
+- ~~**Investment planning FAQ** — "pensions" should reference retirement annuities / pension funds.~~ ✓ Fixed — now "retirement funds"
 - **Estate planning** — "pensions without nominated beneficiaries" should be "retirement funds".
 - ~~**About You client stories**~~ ✓ Removed — stories section replaced with "How we work with you" process section. Real case studies to be added later.
 
@@ -469,7 +478,8 @@ Several pages use UK-specific financial terms that don't apply in South Africa:
 - ~~**Homepage solution section** (`index.astro:101`) — "helps busy professionals to live"~~ ✓ Fixed — now "We help busy families take control of their financial future."
 - ~~**Homepage "What you get"** (`index.astro:168`) — "provide clarity...by providing"~~ ✓ Fixed — now "Here's what you can expect from working with us."
 - ~~**Homepage process step 1** (`index.astro:152`) — "confirm alignment with expertise"~~ ✓ Fixed — now "A 10-minute call to see if our expertise matches your needs."
-- **All 4 service pages** — Each "approach" section intro ends with a formulaic "We make sure..." sentence. Consider cutting.
+- ~~**Investment planning** — approach section intro was formulaic "We make sure..." sentence.~~ ✓ Fixed — rewritten
+- **Tax, risk, estate planning pages** — Each "approach" section intro still ends with a formulaic "We make sure..." sentence. Consider cutting.
 - ~~**Homepage FAQ** (`index.astro:186`) — "fiduciary firm" and "fee-only model excludes commissions"~~ ✓ Fixed — rewritten with Pierre's actual answers, no fiduciary/fee-only claims
 - ~~**About Us** (`about-us.astro:74-76`) — Verify "CFA Charterholder" and "CFP Professional"~~ ✓ Confirmed current by Pierre
 
@@ -478,8 +488,8 @@ Several pages use UK-specific financial terms that don't apply in South Africa:
 - **Lead magnet form** — Redirects to `/contact-success/` which says "arrange your free free call" — wrong message for a guide download.
 - **No related articles** on article pages (noted in outstanding work item 3).
 - **Newsletter form** — AJAX handler posts to `/` not the form action. Pending Mailerlite replacement.
-- **No favicon** — `BaseLayout.astro` has no `<link rel="icon">`.
-- **No canonical URLs** — `BaseLayout.astro` has no `<link rel="canonical">`.
+- ~~**No favicon** — `BaseLayout.astro` has no `<link rel="icon">`.~~ ✓ Fixed — favicon.ico and favicon.svg linked
+- ~~**No canonical URLs** — `BaseLayout.astro` has no `<link rel="canonical">`.~~ ✓ Fixed — canonical + OG + Twitter Card meta tags added
 - **Contact page** — Has inline styles (`style="margin-bottom: 8px;"` etc.) that should be CSS classes.
 
 ---
