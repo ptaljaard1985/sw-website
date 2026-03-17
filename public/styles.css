@@ -2022,7 +2022,8 @@ p:last-child {
   }
 
   .problem-card h3,
-  .solution-card h3 {
+  .solution-card h3,
+  .card h3 {
     min-height: 2.4em;
   }
 
