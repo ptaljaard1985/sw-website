@@ -353,7 +353,7 @@ All internal links use trailing-slash format:
 | Investment planning | Make your investments work for you | /investment-planning/ |
 | Tax planning | A smarter approach to tax | /tax-planning/ |
 | Risk planning | A plan for when life doesn't go to plan | /risk-planning/ |
-| Estate planning | A plan for the people who matter most | /estate-planning/ |
+| Estate planning | Plan your legacy with clarity and care | /estate-planning/ |
 
 ---
 
@@ -469,9 +469,9 @@ npm run preview   # Preview built output locally
 Several pages use UK-specific financial terms that don't apply in South Africa:
 - ~~**Tax planning page** — References to "ISA" and "pension allowances" in FAQ. SA uses TFSAs, retirement annuities (RAs), pension/provident funds — not ISAs.~~ ✓ Fixed — full FAQ rewrite with 8 SA-relevant questions, FAQPage schema added
 - ~~**Tax planning FAQ** — "inheritance tax" should be "estate duty". "Potentially exempt transfers" is a UK concept.~~ ✓ Fixed — removed all UK terms
-- **Estate planning FAQ** — "solicitors" should be "attorneys".
+- ~~**Estate planning FAQ** — "solicitors" should be "attorneys".~~ ✓ Fixed — full FAQ rewrite with SA terminology
 - ~~**Investment planning FAQ** — "pensions" should reference retirement annuities / pension funds.~~ ✓ Fixed — now "retirement funds"
-- **Estate planning** — "pensions without nominated beneficiaries" should be "retirement funds".
+- ~~**Estate planning** — "pensions without nominated beneficiaries" should be "retirement funds".~~ ✓ Fixed — now "beneficiary nominations on policies and investment accounts"
 - ~~**About You client stories**~~ ✓ Removed — stories section replaced with "How we work with you" process section. Real case studies to be added later.
 
 ### Copy issues — wording
@@ -480,7 +480,8 @@ Several pages use UK-specific financial terms that don't apply in South Africa:
 - ~~**Homepage process step 1** (`index.astro:152`) — "confirm alignment with expertise"~~ ✓ Fixed — now "A 10-minute call to see if our expertise matches your needs."
 - ~~**Investment planning** — approach section intro was formulaic "We make sure..." sentence.~~ ✓ Fixed — rewritten
 - ~~**Tax planning** — approach section intro was formulaic "We make sure..." sentence.~~ ✓ Fixed — rewritten
-- **Risk, estate planning pages** — Each "approach" section intro still ends with a formulaic "We make sure..." sentence. Consider cutting.
+- ~~**Risk planning** — approach section intro was formulaic.~~ ✓ Fixed — rewritten
+- ~~**Estate planning** — approach section intro was formulaic "We ensure..." sentence.~~ ✓ Fixed — rewritten
 - ~~**Homepage FAQ** (`index.astro:186`) — "fiduciary firm" and "fee-only model excludes commissions"~~ ✓ Fixed — rewritten with Pierre's actual answers, no fiduciary/fee-only claims
 - ~~**About Us** (`about-us.astro:74-76`) — Verify "CFA Charterholder" and "CFP Professional"~~ ✓ Confirmed current by Pierre
 
