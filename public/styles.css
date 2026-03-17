@@ -582,6 +582,7 @@ p:last-child {
 .card h3 {
   margin-bottom: 12px;
   font-size: 1.15rem;
+  font-weight: 700;
 }
 
 .card p {

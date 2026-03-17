@@ -3,11 +3,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaSection from '../components/CtaSection.astro';
 import TestimonialsCarousel from '../components/TestimonialsCarousel.astro';
 
-const schema = {
+const schema = [{
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Tax Planning",
-  "description": "With expert guidance and proactive planning, we help you reduce unnecessary tax costs and grow your wealth with confidence.",
+  "description": "Proactive tax planning to make sure you're using every available deduction and incentive to keep your money working harder.",
   "provider": {
     "@type": "FinancialService",
     "name": "Simple Wealth",
@@ -20,12 +20,25 @@ const schema = {
     { "@type": "City", "name": "Umhlali" }
   ],
   "serviceType": "Tax Planning"
-};
+}, {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How do you work with my accountant?", "acceptedAnswer": { "@type": "Answer", "text": "We handle the financial planning side (investment structuring, retirement contributions, tax-efficient drawdowns) and coordinate with your accountant on filing and compliance. You get one joined-up strategy." } },
+    { "@type": "Question", "name": "What tax deductions should I be using?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on your situation, but most clients benefit from maximising retirement fund contributions (up to 27.5% of taxable income), using their annual TFSA allowance, and timing capital gains carefully. We review your full picture and identify what you're missing." } },
+    { "@type": "Question", "name": "When should I start tax planning?", "acceptedAnswer": { "@type": "Answer", "text": "Now. The earlier in the tax year we start, the more options you have. Most people only think about tax in February, by which point the best opportunities have passed." } },
+    { "@type": "Question", "name": "How does tax affect my investment returns?", "acceptedAnswer": { "@type": "Answer", "text": "Dividends tax, capital gains tax, and income tax on interest all erode your returns over time. We structure your portfolio across the right vehicles to keep more of what your investments earn." } },
+    { "@type": "Question", "name": "Can you help me structure my income more efficiently?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Whether it's salary, dividends, rental income, or trust distributions, the way your income flows affects what you pay. We look at the full picture and recommend a structure that works." } },
+    { "@type": "Question", "name": "What happens to my tax when I retire?", "acceptedAnswer": { "@type": "Answer", "text": "Your tax situation changes significantly at retirement. How you draw from your living annuity, when you withdraw lump sums, and how your income is structured all affect what you pay. We plan for this well in advance." } },
+    { "@type": "Question", "name": "Do I need a trust for tax purposes?", "acceptedAnswer": { "@type": "Answer", "text": "Not always. Trusts can be useful for estate planning, but they come with their own tax implications. We'll advise you on whether a trust makes sense for your specific situation." } },
+    { "@type": "Question", "name": "Is your tax advice compliant with SARS?", "acceptedAnswer": { "@type": "Answer", "text": "Everything we recommend is fully above board. We work within the law to reduce your tax. There are no grey areas." } }
+  ]
+}];
 ---
 
 <BaseLayout
   title="Tax Planning — Simple Wealth"
-  description="With expert guidance and proactive planning, we help you reduce unnecessary tax costs and grow your wealth with confidence."
+  description="Proactive tax planning to make sure you're using every available deduction and incentive to keep your money working harder."
   activePage="tax-planning"
   showSocialInFooter={false}
   schema={schema}
@@ -33,8 +46,8 @@ const schema = {
   <section class="hero hero--short">
     <div class="hero__inner">
       <span class="service-hero-badge fade-up">Tax Planning</span>
-      <h1 class="fade-up">Minimise your tax burden, maximise your financial success</h1>
-      <p class="fade-up">With expert guidance and proactive planning, we help you reduce unnecessary tax costs and grow your wealth with confidence.</p>
+      <h1 class="fade-up">A smarter approach to tax</h1>
+      <p class="fade-up">With proactive tax planning, we make sure you're using every available deduction and incentive to keep your money working harder for you.</p>
       <div class="btn-group fade-up"><a href="/contact/" class="btn btn--primary">Book a free call</a></div>
     </div>
   </section>
@@ -43,28 +56,28 @@ const schema = {
     <div class="container">
       <div class="section__header fade-up">
         <h2>Do these tax issues keep you up at night?</h2>
-        <p>Tax can be overwhelming, confusing, and easy to get wrong &mdash; especially when the rules keep changing.</p>
+        <p>If any of these sound familiar, you're not alone.</p>
       </div>
       <div class="cards-grid">
         <div class="card problem-card fade-up">
-          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg></div>
-          <h3>You feel like you may be paying more tax than you legally need to</h3>
-          <p>Many people overpay simply because they're not aware of the reliefs and allowances available to them.</p>
+          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" x2="5" y1="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div>
+          <h3>You're not using all the deductions available to you</h3>
+          <p>There are deductions and incentives you may not know about.</p>
         </div>
         <div class="card problem-card fade-up">
-          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></div>
-          <h3>You're confused by all the tax rules</h3>
-          <p>Tax legislation is complex and constantly changing. It's difficult to keep up without professional guidance.</p>
+          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 12h-5"/><path d="M15 8h-5"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2"/></svg></div>
+          <h3>The tax rules are hard to keep up with</h3>
+          <p>Legislation changes every year and it's easy to miss something that affects you.</p>
         </div>
         <div class="card problem-card fade-up">
-          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-          <h3>You typically leave tax planning until year-end</h3>
-          <p>Last-minute scrambling means missed opportunities. Proactive planning throughout the year delivers far better results.</p>
+          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><line x1="10" x2="14" y1="14" y2="18"/><line x1="14" x2="10" y1="14" y2="18"/></svg></div>
+          <h3>Tax planning is always last minute</h3>
+          <p>The best tax savings come from planning ahead, not scrambling in February.</p>
         </div>
         <div class="card problem-card fade-up">
-          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
-          <h3>You're unsure if you're structured in the most tax-efficient way</h3>
-          <p>The way your income and investments are structured can significantly impact how much tax you pay.</p>
+          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg></div>
+          <h3>Your financial structure hasn't been reviewed</h3>
+          <p>Are your income, investments, and entities structured correctly?</p>
         </div>
       </div>
     </div>
@@ -74,28 +87,28 @@ const schema = {
     <div class="container">
       <div class="section__header fade-up">
         <h2>Our approach to tax planning</h2>
-        <p>We simplify the complex, reduce your tax burden and let you focus on what matters most. Our proactive approach ensures you never miss an opportunity to keep more of what you earn. We make sure your tax planning is smart and proactive.</p>
+        <p>Tax planning works best when it's proactive, not reactive. Here's what we focus on.</p>
       </div>
       <div class="cards-grid">
         <div class="card fade-up">
-          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-          <h3>Personalised Tax Strategies</h3>
-          <p>Custom tax plans that minimise your liability based on your unique income, assets, and goals.</p>
+          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" x2="5" y1="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div>
+          <h3>Optimise your deductions</h3>
+          <p>We make sure you're using TFSAs, retirement funds, and every available incentive to help you plan smarter.</p>
         </div>
         <div class="card fade-up">
           <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-          <h3>Proactive Tax Savings</h3>
-          <p>We identify tax reliefs and allowances before deadlines, not after. Year-round planning means more money stays in your pocket.</p>
+          <h3>Proactive tax planning</h3>
+          <p>We plan ahead so you're always positioned to take advantage of changes in tax legislation before they pass you by.</p>
         </div>
         <div class="card fade-up">
-          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg></div>
-          <h3>Peace of Mind Through Expert Guidance</h3>
-          <p>Confident tax planning with clear, expert advice. Everything we recommend is fully compliant and above board.</p>
+          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
+          <h3>Income and retirement structuring</h3>
+          <p>From salary and dividends to retirement contributions and living annuity drawdowns, we structure your income to optimise tax at every stage.</p>
         </div>
         <div class="card fade-up">
-          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-          <h3>Simplified Tax Management</h3>
-          <p>Easy-to-understand reports and ongoing tax support that keeps everything clear and organised.</p>
+          <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Work alongside your accountant</h3>
+          <p>We coordinate with your accountant so your tax strategy and financial plan are aligned.</p>
         </div>
       </div>
     </div>
@@ -110,24 +123,36 @@ const schema = {
       </div>
       <div class="faq-list fade-up">
         <div class="faq-item">
-          <button class="faq-question">What's the best way to use my ISA and pension allowances each year?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-          <div class="faq-answer"><div class="faq-answer__inner"><p>We review your full financial picture to determine the optimal split between ISAs and pensions based on your tax bracket, access needs, and retirement timeline. Most clients benefit from using both strategically.</p></div></div>
+          <button class="faq-question">How do you work with my accountant?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer__inner"><p>We handle the financial planning side (investment structuring, retirement contributions, tax-efficient drawdowns) and coordinate with your accountant on filing and compliance. You get one joined-up strategy.</p></div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">How do dividend and capital gains taxes affect my investments?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-          <div class="faq-answer"><div class="faq-answer__inner"><p>These taxes can significantly erode returns if not managed properly. We structure your portfolio to minimise both, using tax-efficient wrappers and strategic timing of gains and income.</p></div></div>
+          <button class="faq-question">What tax deductions should I be using?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer__inner"><p>It depends on your situation, but most clients benefit from maximising retirement fund contributions (up to 27.5% of taxable income), using their annual TFSA allowance, and timing capital gains carefully. We review your full picture and identify what you're missing.</p></div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">Can you coordinate with my accountant?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-          <div class="faq-answer"><div class="faq-answer__inner"><p>Absolutely. We regularly work alongside accountants to ensure your overall tax plan is cohesive. Good financial planning and good accounting go hand in hand.</p></div></div>
+          <button class="faq-question">When should I start tax planning?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer__inner"><p>Now. The earlier in the tax year we start, the more options you have. Most people only think about tax in February, by which point the best opportunities have passed.</p></div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">What happens if my income varies year to year?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-          <div class="faq-answer"><div class="faq-answer__inner"><p>Variable income actually creates planning opportunities. We help you make the most of lower-income years for pension contributions and use higher-income years to maximise other reliefs.</p></div></div>
+          <button class="faq-question">How does tax affect my investment returns?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer__inner"><p>Dividends tax, capital gains tax, and income tax on interest all erode your returns over time. We structure your portfolio across the right vehicles to keep more of what your investments earn.</p></div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-question">Should I be making gifts to family now to reduce inheritance tax later?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-          <div class="faq-answer"><div class="faq-answer__inner"><p>Gifting can be a powerful tool, but it needs to be done thoughtfully. We help you balance current lifestyle needs with estate planning goals, using annual exemptions and potentially exempt transfers effectively.</p></div></div>
+          <button class="faq-question">Can you help me structure my income more efficiently?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer__inner"><p>Yes. Whether it's salary, dividends, rental income, or trust distributions, the way your income flows affects what you pay. We look at the full picture and recommend a structure that works.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">What happens to my tax when I retire?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer__inner"><p>Your tax situation changes significantly at retirement. How you draw from your living annuity, when you withdraw lump sums, and how your income is structured all affect what you pay. We plan for this well in advance.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Do I need a trust for tax purposes?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer__inner"><p>Not always. Trusts can be useful for estate planning, but they come with their own tax implications. We'll advise you on whether a trust makes sense for your specific situation.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Is your tax advice compliant with SARS?<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="faq-answer"><div class="faq-answer__inner"><p>Everything we recommend is fully above board. We work within the law to reduce your tax. There are no grey areas.</p></div></div>
         </div>
       </div>
     </div>

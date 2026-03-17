@@ -351,7 +351,7 @@ All internal links use trailing-slash format:
 | Service | Headline | Page |
 |---|---|---|
 | Investment planning | Make your investments work for you | /investment-planning/ |
-| Tax planning | A plan for keeping more of what you earn | /tax-planning/ |
+| Tax planning | A smarter approach to tax | /tax-planning/ |
 | Risk planning | A plan for when life doesn't go to plan | /risk-planning/ |
 | Estate planning | A plan for the people who matter most | /estate-planning/ |
 
@@ -402,7 +402,7 @@ Every article page (generated from markdown via ArticleLayout) includes:
 ## Schema.org structured data
 All pages have JSON-LD structured data (passed via BaseLayout `schema` prop):
 - **Homepage:** FinancialService (full business info), WebSite, FAQPage
-- **Service pages:** Service with FinancialService provider
+- **Service pages:** Service with FinancialService provider (tax planning also has FAQPage schema)
 - **About us:** AboutPage with FinancialService entity
 - **About you:** WebPage
 - **Contact:** ContactPage with address/email
@@ -467,8 +467,8 @@ npm run preview   # Preview built output locally
 
 ### Copy issues — UK vs SA terminology (HIGH PRIORITY)
 Several pages use UK-specific financial terms that don't apply in South Africa:
-- **Tax planning page** — References to "ISA" and "pension allowances" in FAQ. SA uses TFSAs, retirement annuities (RAs), pension/provident funds — not ISAs.
-- **Tax planning FAQ** — "inheritance tax" should be "estate duty". "Potentially exempt transfers" is a UK concept.
+- ~~**Tax planning page** — References to "ISA" and "pension allowances" in FAQ. SA uses TFSAs, retirement annuities (RAs), pension/provident funds — not ISAs.~~ ✓ Fixed — full FAQ rewrite with 8 SA-relevant questions, FAQPage schema added
+- ~~**Tax planning FAQ** — "inheritance tax" should be "estate duty". "Potentially exempt transfers" is a UK concept.~~ ✓ Fixed — removed all UK terms
 - **Estate planning FAQ** — "solicitors" should be "attorneys".
 - ~~**Investment planning FAQ** — "pensions" should reference retirement annuities / pension funds.~~ ✓ Fixed — now "retirement funds"
 - **Estate planning** — "pensions without nominated beneficiaries" should be "retirement funds".
@@ -479,7 +479,8 @@ Several pages use UK-specific financial terms that don't apply in South Africa:
 - ~~**Homepage "What you get"** (`index.astro:168`) — "provide clarity...by providing"~~ ✓ Fixed — now "Here's what you can expect from working with us."
 - ~~**Homepage process step 1** (`index.astro:152`) — "confirm alignment with expertise"~~ ✓ Fixed — now "A 10-minute call to see if our expertise matches your needs."
 - ~~**Investment planning** — approach section intro was formulaic "We make sure..." sentence.~~ ✓ Fixed — rewritten
-- **Tax, risk, estate planning pages** — Each "approach" section intro still ends with a formulaic "We make sure..." sentence. Consider cutting.
+- ~~**Tax planning** — approach section intro was formulaic "We make sure..." sentence.~~ ✓ Fixed — rewritten
+- **Risk, estate planning pages** — Each "approach" section intro still ends with a formulaic "We make sure..." sentence. Consider cutting.
 - ~~**Homepage FAQ** (`index.astro:186`) — "fiduciary firm" and "fee-only model excludes commissions"~~ ✓ Fixed — rewritten with Pierre's actual answers, no fiduciary/fee-only claims
 - ~~**About Us** (`about-us.astro:74-76`) — Verify "CFA Charterholder" and "CFP Professional"~~ ✓ Confirmed current by Pierre
 
