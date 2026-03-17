@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaSection from '../components/CtaSection.astro';
 import TestimonialsCarousel from '../components/TestimonialsCarousel.astro';
 
-const schema = {
+const schema = [{
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Investment Planning",
@@ -20,7 +20,17 @@ const schema = {
     { "@type": "City", "name": "Umhlali" }
   ],
   "serviceType": "Investment Planning"
-};
+}, {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How do you decide where to invest my money?", "acceptedAnswer": { "@type": "Answer", "text": "We start by understanding your goals, risk tolerance, and time horizon. From there, we build a diversified portfolio designed to grow steadily over time, and help you understand what the journey is likely to look and feel like." } },
+    { "@type": "Question", "name": "How often will you review my investments?", "acceptedAnswer": { "@type": "Answer", "text": "We review your portfolio at least once a year. A well-built portfolio doesn't need constant tinkering, it needs patience and discipline. We'll only suggest changes when your life circumstances materially change." } },
+    { "@type": "Question", "name": "How much money do I need to get started?", "acceptedAnswer": { "@type": "Answer", "text": "We don't have account minimums, but our minimum annual fee means that clients with investable assets below R2 million may not find our service cost-effective. We'll have an honest conversation during the introductory call about whether we're the right fit." } },
+    { "@type": "Question", "name": "Will I know what I'm invested in?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. You'll always know where your money is and what it's been invested in." } },
+    { "@type": "Question", "name": "Can you help consolidate my old investments and retirement funds?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, this is one of the most common things we help with. We'll review all your existing accounts, assess whether consolidation makes sense, and handle the process for you to simplify your financial life." } }
+  ]
+}];
 ---
 
 <BaseLayout

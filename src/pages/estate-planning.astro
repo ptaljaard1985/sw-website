@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaSection from '../components/CtaSection.astro';
 import TestimonialsCarousel from '../components/TestimonialsCarousel.astro';
 
-const schema = {
+const schema = [{
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Estate Planning",
@@ -20,7 +20,17 @@ const schema = {
     { "@type": "City", "name": "Umhlali" }
   ],
   "serviceType": "Estate Planning"
-};
+}, {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How do you work with my attorney?", "acceptedAnswer": { "@type": "Answer", "text": "We handle the financial planning side and coordinate with your attorney to make sure your will, trusts, and financial plan are all aligned." } },
+    { "@type": "Question", "name": "How often should I update my estate plan?", "acceptedAnswer": { "@type": "Answer", "text": "We review it at least once a year as part of our annual process. That's where we pick up any changes in your life or in the law that affect your plan." } },
+    { "@type": "Question", "name": "How involved will I be?", "acceptedAnswer": { "@type": "Answer", "text": "We work collaboratively with you throughout the process. We take the time to understand your needs, present you with clear options, and help you make informed decisions. Nothing happens without your input." } },
+    { "@type": "Question", "name": "How do you reduce estate duty?", "acceptedAnswer": { "@type": "Answer", "text": "We use legitimate strategies including donations tax exemptions, trust structures, and beneficiary nominations to ensure as much of your wealth reaches your family as possible." } },
+    { "@type": "Question", "name": "What happens if laws change?", "acceptedAnswer": { "@type": "Answer", "text": "Our annual review process means any legislative changes that affect your estate plan will be picked up and addressed." } }
+  ]
+}];
 ---
 
 <BaseLayout

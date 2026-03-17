@@ -115,6 +115,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* --- FAQ Accordion --- */
   document.querySelectorAll('.faq-question').forEach(btn => {
+    const answer = btn.nextElementSibling;
+    const answerId = 'faq-answer-' + Math.random().toString(36).substr(2, 9);
+    if (answer) answer.id = answerId;
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-controls', answerId);
+
     btn.addEventListener('click', () => {
       const item = btn.closest('.faq-item');
       const wasOpen = item.classList.contains('open');
@@ -122,9 +128,13 @@ document.addEventListener('DOMContentLoaded', () => {
       /* Close all in same list */
       item.closest('.faq-list').querySelectorAll('.faq-item').forEach(i => {
         i.classList.remove('open');
+        i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
       });
 
-      if (!wasOpen) item.classList.add('open');
+      if (!wasOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
     });
   });
 

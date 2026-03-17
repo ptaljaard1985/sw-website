@@ -31,6 +31,11 @@ The site is replacing the current Webflow site at simplewealth.co.za. Built with
 astro.config.mjs                  # Astro config (site URL)
 package.json                      # Dependencies
 tsconfig.json                     # TypeScript config
+netlify.toml                      # Netlify config (build, functions, headers)
+
+netlify/
+└── functions/
+    └── subscribe.js              # Serverless function — proxies lead magnet form to MailerLite API
 
 src/
 ├── components/
@@ -121,13 +126,16 @@ Reusable Google reviews carousel with 20 real client reviews (Lene Botha exclude
 ### LeadMagnet.astro
 Reusable lead magnet section ("Successful Investing In Pictures" guide download). Props:
 - `grey` (boolean, default `true`) — controls section background
-- Name + email form fields (Netlify Forms placeholder, to be replaced with Mailerlite)
+- Name + email form fields submitted via JS fetch to `/.netlify/functions/subscribe`
+- Subscriber added to MailerLite with SIIP group (triggers guide delivery automation)
+- Inline success/error messages (no page redirect)
 - Used on homepage (grey) and about-us page (grey)
 - Guide cover image: `/images/leadmagnet.png`
 
 ### ArticleLayout.astro
 Wraps article content. Accepts all article frontmatter props + `slug`.
 - Reading progress bar, article hero with image/overlay, author bio, share row
+- Related articles section: 3 cards (same category first, then others, excluding current)
 - `<slot />` receives rendered markdown content
 - Parses `date` prop ("Month Year") into ISO format for schema `datePublished` and `dateModified`
 
@@ -376,9 +384,16 @@ Newsletter signup form (AJAX with error handling) — will be replaced with Mail
   - Required checkbox: "I understand that for investable assets less than R2m, our minimum annual fee may not be cost-effective."
 - Right sidebar: contact details card (email, phone, office address, response time) + Google Maps embed (responsive height via `.contact-map` class)
 
+### Lead magnet form (LeadMagnet.astro)
+- Submits via JS fetch to `/.netlify/functions/subscribe` (Netlify serverless function)
+- Function adds subscriber to MailerLite via API (email + name + SIIP group)
+- MailerLite API key stored as `MAILERLITE_API_KEY` environment variable in Netlify (never in code)
+- MailerLite group ID `84731331148252747` (SIIP) triggers guide delivery automation
+- Inline success message on submit; no page redirect
+
 ### Newsletter form (knowledge-and-insight.astro)
 - Currently Netlify Forms (`data-netlify="true"`, name="newsletter")
-- To be replaced with **Mailerlite** embed (pending embed code)
+- To be replaced with MailerLite via the same `/.netlify/functions/subscribe` endpoint
 - AJAX submission with inline thank-you message on success, error message on failure
 
 ---
@@ -402,7 +417,7 @@ Every article page (generated from markdown via ArticleLayout) includes:
 ## Schema.org structured data
 All pages have JSON-LD structured data (passed via BaseLayout `schema` prop):
 - **Homepage:** FinancialService (full business info), WebSite, FAQPage
-- **Service pages:** Service with FinancialService provider (tax planning also has FAQPage schema)
+- **Service pages:** Service with FinancialService provider + FAQPage schema (all 4 pages)
 - **About us:** AboutPage with FinancialService entity
 - **About you:** WebPage
 - **Contact:** ContactPage with address/email
@@ -487,20 +502,20 @@ Several pages use UK-specific financial terms that don't apply in South Africa:
 
 ### Structural / UX issues
 - ~~**Footer legal links**~~ ✓ Fixed — updated to Google Maps, POPI Statement, Conflict of Interest Management Policy, Complaints Resolution Policy (links to `#` pending real pages).
-- **Lead magnet form** — Redirects to `/contact-success/` which says "arrange your free free call" — wrong message for a guide download.
-- **No related articles** on article pages (noted in outstanding work item 3).
-- **Newsletter form** — AJAX handler posts to `/` not the form action. Pending Mailerlite replacement.
+- ~~**Lead magnet form**~~ ✓ Fixed — now submits to MailerLite via Netlify Function, inline success message, no redirect.
+- ~~**No related articles**~~ ✓ Fixed — ArticleLayout shows 3 related articles (same category first).
+- **Newsletter form** — AJAX handler posts to `/` not the form action. Pending MailerLite replacement via same subscribe function.
 - ~~**No favicon** — `BaseLayout.astro` has no `<link rel="icon">`.~~ ✓ Fixed — favicon.ico and favicon.svg linked
 - ~~**No canonical URLs** — `BaseLayout.astro` has no `<link rel="canonical">`.~~ ✓ Fixed — canonical + OG + Twitter Card meta tags added
-- **Contact page** — Has inline styles (`style="margin-bottom: 8px;"` etc.) that should be CSS classes.
+- ~~**Contact page** — Has inline styles~~ ✓ Fixed — replaced with CSS utility classes.
 
 ---
 
 ## Outstanding work
 1. Purchase unwatermarked iStock images (hero: 1441254475, investment: 848840496, tax: 1222021819, risk: 1199060494, estate: 2199281061)
 2. Replace article stock images with better/unique ones (currently cycling 6 images across 13 articles)
-3. Wire up related articles in ArticleLayout to link to actual article pages
-4. Replace lead magnet + newsletter forms with Mailerlite integration (pending embed code)
+3. ~~Wire up related articles in ArticleLayout to link to actual article pages~~ ✓ Done — shows 3 related articles per page
+4. ~~Replace lead magnet form with MailerLite integration~~ ✓ Done — via Netlify Function + MailerLite API. Newsletter form still pending.
 5. ~~Add Pierre's real headshot~~ ✓ Done — `headshot-pierre.png`, default in `content.config.ts`
 6. Add analytics (e.g. Fathom, as used on current Webflow site)
 7. Create or link legal pages (Privacy Policy, Terms, etc.)

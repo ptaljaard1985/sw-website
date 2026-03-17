@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaSection from '../components/CtaSection.astro';
 import TestimonialsCarousel from '../components/TestimonialsCarousel.astro';
 
-const schema = {
+const schema = [{
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Risk Planning",
@@ -20,7 +20,17 @@ const schema = {
     { "@type": "City", "name": "Umhlali" }
   ],
   "serviceType": "Risk Planning"
-};
+}, {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How do you decide what protection I need?", "acceptedAnswer": { "@type": "Answer", "text": "We conduct a thorough review of your financial situation, dependants, lifestyle, and obligations. This helps us identify where you're most vulnerable and recommend only the cover that genuinely makes sense for your circumstances." } },
+    { "@type": "Question", "name": "Will you review my existing cover?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. Many clients come to us with policies they've never reviewed. We'll assess what you already have, check for gaps or overlaps, and make sure your cover is still fit for purpose." } },
+    { "@type": "Question", "name": "Are your recommendations fully independent and unbiased?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We work with an independent brokerage that isn't tied to any product provider, so recommendations are based solely on what's best for you." } },
+    { "@type": "Question", "name": "Do you handle the application and paperwork?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Our brokerage partner handles the entire process from sourcing quotes to completing applications, so you don't have to." } },
+    { "@type": "Question", "name": "How do you balance affordability with good protection?", "acceptedAnswer": { "@type": "Answer", "text": "We work within your budget to prioritise the most critical risks first. It's about having the right cover in place, not the most." } }
+  ]
+}];
 ---
 
 <BaseLayout

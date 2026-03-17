@@ -37,6 +37,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://simplewealth.co.za/contact-success/</loc>
+    <priority>0.3</priority>
+  </url>
+  <url>
     <loc>https://simplewealth.co.za/articles/what-game-are-you-playing/</loc>
     <priority>0.6</priority>
   </url>

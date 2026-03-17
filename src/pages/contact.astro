@@ -43,8 +43,8 @@ const schema = {
     <div class="container">
       <div class="contact-grid">
         <div>
-          <h2 class="fade-up" style="margin-bottom: 8px;">Get in touch</h2>
-          <p class="fade-up" style="color: var(--color-text-light); margin-bottom: 32px;">Fill in the form below and we'll be in touch within one business day to arrange your free call.</p>
+          <h2 class="contact-intro fade-up">Get in touch</h2>
+          <p class="fade-up">Fill in the form below and we'll be in touch within one business day to arrange your free call.</p>
 
           <form class="contact-form fade-up" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/contact-success/">
             <p class="visually-hidden">
@@ -117,9 +117,9 @@ const schema = {
               <textarea id="message" name="message" placeholder="Tell us a bit about your situation and what you're looking for..." required></textarea>
             </div>
             <div class="form-group form-group--checkbox">
-              <label><input type="checkbox" name="fee-acknowledgement" required> I understand that for investable assets less than R2m, our minimum annual fee may not be cost-effective.</label>
+              <label for="fee-acknowledgement"><input type="checkbox" id="fee-acknowledgement" name="fee-acknowledgement" required> I understand that for investable assets less than R2m, our minimum annual fee may not be cost-effective.</label>
             </div>
-            <button type="submit" class="btn btn--primary" style="align-self: flex-start;">Send your message</button>
+            <button type="submit" class="btn btn--primary">Send your message</button>
           </form>
         </div>
 
@@ -161,7 +161,7 @@ const schema = {
           </div>
 
           <div class="contact-map fade-up">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000!2d31.2036188!3d-29.5266659!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ef715d63d4a00df%3A0xfafd4b1168f6fd97!2sSimple%20Wealth!5e0!3m2!1sen!2sza!4v1" width="100%" height="600" style="border:0; display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000!2d31.2036188!3d-29.5266659!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ef715d63d4a00df%3A0xfafd4b1168f6fd97!2sSimple%20Wealth!5e0!3m2!1sen!2sza!4v1" width="100%" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
       </div>

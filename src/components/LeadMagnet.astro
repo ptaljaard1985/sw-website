@@ -15,8 +15,7 @@ const { grey = true } = Astro.props;
         <span class="lead-magnet__tag">Free guide</span>
         <h2>Successful Investing In Pictures</h2>
         <p>Download our latest visual guide to learn about the seven key mindsets required to become a successful investor.</p>
-        <form class="lead-magnet__form" data-netlify="true" name="lead-magnet" method="POST" action="/contact-success/">
-          <input type="hidden" name="form-name" value="lead-magnet">
+        <form class="lead-magnet__form" id="lead-magnet-form">
           <div class="lead-magnet__fields">
             <div class="lead-magnet__field">
               <label for="lead-name" class="visually-hidden">Name</label>
@@ -29,8 +28,49 @@ const { grey = true } = Astro.props;
             <button type="submit" class="btn btn--primary">Download the free guide</button>
           </div>
         </form>
+        <p class="lead-magnet__success" style="display:none;">Thanks! Check your email for the guide.</p>
+        <p class="lead-magnet__error" style="display:none;">Something went wrong. Please try again.</p>
         <p class="lead-magnet__disclaimer">We respect your privacy. Unsubscribe at any time.</p>
       </div>
     </div>
   </div>
 </section>
+
+<script is:inline>
+(function() {
+  var form = document.getElementById('lead-magnet-form');
+  if (!form) return;
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('button[type="submit"]');
+    var name = form.querySelector('#lead-name').value;
+    var email = form.querySelector('#lead-email').value;
+    var success = form.parentElement.querySelector('.lead-magnet__success');
+    var error = form.parentElement.querySelector('.lead-magnet__error');
+
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    error.style.display = 'none';
+
+    fetch('/.netlify/functions/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, email: email })
+    })
+    .then(function(res) {
+      if (res.ok) {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      } else {
+        throw new Error('Failed');
+      }
+    })
+    .catch(function() {
+      error.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Download the free guide';
+    });
+  });
+})();
+</script>
