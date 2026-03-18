@@ -13,7 +13,7 @@
   --color-text: #333333;
   --color-text-light: #666666;
   --color-border: #e2e5e9;
-  --color-text-muted: #999999;
+  --color-text-muted: #767676;
   --color-error: #e74c3c;
   --font-heading: 'Cormorant Garamond', serif;
   --font-body: 'Inter', sans-serif;
@@ -187,14 +187,14 @@ p:last-child {
 
 .btn--outline-white {
   background: var(--color-white);
-  color: var(--color-gold);
+  color: var(--color-navy);
   border: 2px solid var(--color-white);
 }
 
 .btn--outline-white:hover {
   background: var(--color-light-bg);
   border-color: var(--color-light-bg);
-  color: var(--color-gold-hover);
+  color: var(--color-navy);
 }
 
 .btn-group {
@@ -272,6 +272,11 @@ p:last-child {
   color: var(--color-gold);
 }
 
+.nav.scrolled .nav__link:hover,
+.nav.scrolled .nav__link.active {
+  color: var(--color-navy);
+}
+
 /* Dropdown */
 .nav__dropdown {
   position: relative;
@@ -325,7 +330,7 @@ p:last-child {
 
 .nav__dropdown-menu a:hover {
   background: var(--color-light-bg);
-  color: var(--color-gold);
+  color: var(--color-navy);
 }
 
 .nav__cta {
@@ -598,7 +603,7 @@ p:last-child {
   margin-top: 16px;
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--color-gold);
+  color: var(--color-navy);
   transition: gap var(--transition);
 }
 
@@ -698,7 +703,7 @@ p:last-child {
 }
 
 .google-rating a {
-  color: var(--color-gold);
+  color: var(--color-navy);
   font-weight: 600;
   text-decoration: none;
 }
@@ -1003,12 +1008,12 @@ p:last-child {
 }
 
 .faq-answer__inner a {
-  color: var(--color-gold);
+  color: var(--color-navy);
   text-decoration: underline;
 }
 
 .faq-answer__inner a:hover {
-  color: var(--color-gold-hover);
+  color: var(--color-navy-light);
 }
 
 .faq-item.open .faq-answer {
@@ -1045,7 +1050,7 @@ p:last-child {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--color-navy);
   margin-bottom: 12px;
 }
 
@@ -1191,7 +1196,7 @@ p:last-child {
   opacity: 0.5;
 }
 
-.footer__nav h4 {
+.footer__heading {
   color: var(--color-white);
   font-family: var(--font-body);
   font-size: 0.85rem;
@@ -2236,9 +2241,9 @@ p:last-child {
 }
 
 .article-body a {
-  color: var(--color-gold);
-  text-decoration: none;
-  transition: text-decoration 0.2s ease;
+  color: var(--color-navy);
+  text-decoration: underline;
+  transition: color 0.2s ease;
 }
 
 .article-body a:hover {
