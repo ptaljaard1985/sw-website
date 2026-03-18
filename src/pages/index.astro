@@ -76,12 +76,16 @@ const schema = [{
   description="Independent financial planning from Ballito, KZN north coast. We align your wealth with your values, lifestyle, and long-term goals."
   schema={schema}
 >
-  <link rel="preload" href="/images/hero-adviser.webp" as="image" type="image/webp" slot="head">
+  <link rel="preload" href="/images/hero-adviser-mobile.webp" as="image" type="image/webp" media="(max-width: 768px)" slot="head">
+  <link rel="preload" href="/images/hero-adviser.webp" as="image" type="image/webp" media="(min-width: 769px)" slot="head">
 
   <!-- Hero -->
   <section class="hero hero--bg-photo">
     <div class="hero__bg">
-      <img src="/images/hero-adviser.webp" alt="Multigenerational family sharing a meal together outdoors" width="1920" height="1280" loading="eager">
+      <picture>
+        <source srcset="/images/hero-adviser-mobile.webp" media="(max-width: 768px)" type="image/webp">
+        <img src="/images/hero-adviser.webp" alt="Multigenerational family sharing a meal together outdoors" width="1920" height="1280" loading="eager">
+      </picture>
     </div>
     <div class="hero__inner">
       <div class="trust-badges fade-up">
