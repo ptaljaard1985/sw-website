@@ -536,13 +536,17 @@ All pages served with:
 - Nav logo has `fetchpriority="high"` (Lighthouse identified it as mobile LCP element)
 
 ### Mobile performance — optimisation log (March 2026)
-Current mobile PageSpeed: **97 Performance**, FCP 1.6s, LCP 2.1s, Speed Index 4.0s, CLS 0 (Moto G Power, slow 4G).
+Current mobile PageSpeed: **97 Performance**, FCP 0.9s, LCP 2.0s, Speed Index 4.1s, CLS 0 (Moto G Power, slow 4G).
 Desktop: **100 Performance**, FCP/LCP 0.5s, Speed Index 0.8s.
+Accessibility 96, Best Practices 100, SEO 100 (both mobile and desktop).
 
 **What worked:**
 1. **Self-hosted Google Fonts** (commit 5a5c83e) — downloaded 3 woff2 files (Cormorant Garamond normal + italic, Inter) to `public/fonts/`, added `@font-face` with `font-display: swap` in styles.css, preloaded critical fonts in `<head>`. Eliminated 2 DNS lookups + 4 TLS handshakes to fonts.googleapis.com / fonts.gstatic.com. Mobile performance jumped from 89 to 97, FCP from 2.7s to 1.6s.
 2. **`fetchpriority="high"` on nav logo** — Lighthouse identified logo as mobile LCP element.
 3. **Descriptive link text on service cards** — fixed SEO audit (generic "Learn more" links), SEO went from 92 to 100.
+4. **Logo PNG → WebP** via `<picture>` element (17 KB → 7 KB, 59% smaller). PNG kept as fallback.
+5. **Hero mobile image recompressed** (41 KB → 32 KB at q65 — fine under dark gradient overlay).
+6. **Plausible preconnect** — reduced critical chain from 721ms to 446ms.
 
 **Things that were tried and reverted:**
 1. **Deferred Google Fonts stylesheet** (`<link rel="preload" as="style" onload="...">` swap) — caused CLS regression from 0 to 0.258 because text reflowed when fonts loaded late. Reverted in commit d6db7a8.
@@ -551,16 +555,18 @@ Desktop: **100 Performance**, FCP/LCP 0.5s, Speed Index 0.8s.
 **What's still in place:**
 - Self-hosted fonts in `public/fonts/` with `@font-face` declarations in styles.css (woff2 only, latin subset)
 - Font preloads in BaseLayout `<head>` for above-fold fonts (Cormorant Garamond normal + Inter)
+- Logo served as WebP with PNG fallback via `<picture>` (Header + Footer)
 - `fetchpriority="high"` on nav logo (LCP element)
+- Plausible preconnect in `<head>`
 - Hero image eager-loaded with mobile-specific smaller src
 - All below-fold images lazy-loaded
 - Single CSS file, single JS file, zero framework JS
-- CSP updated: `font-src 'self'` (no more external font origins)
+- CSP: `font-src 'self'` (no external font origins)
+- Fonts cached immutably for 1 year via netlify.toml
 
 **Options not yet explored (if further improvement needed):**
-- Inline critical CSS (above-the-fold styles in `<style>` tag) and async-load the rest
-- Convert logo from PNG to WebP/AVIF for smaller LCP payload
-- Reduce CSS file size (currently ~8.6 KiB gzipped — audit for unused rules)
+- Inline critical CSS (above-the-fold styles in `<style>` tag) and async-load the rest — only remaining lever for the 330ms render-blocking CSS flag, but high risk of regression and maintenance burden
+- Reduce CSS file size (currently ~8.7 KiB gzipped — audit for unused rules)
 
 ---
 
