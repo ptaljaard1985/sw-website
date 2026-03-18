@@ -575,7 +575,7 @@ Several pages use UK-specific financial terms that don't apply in South Africa:
 3. ~~Wire up related articles in ArticleLayout to link to actual article pages~~ ✓ Done — shows 3 related articles per page
 4. ~~Replace lead magnet form with MailerLite integration~~ ✓ Done — via Netlify Function + MailerLite API. Newsletter forms also wired to MailerLite (newsletter group).
 5. ~~Add Pierre's real headshot~~ ✓ Done — `headshot-pierre.png`, default in `content.config.ts`
-6. Add analytics (e.g. Fathom, as used on current Webflow site)
+6. ~~Add analytics~~ ✓ Done — Plausible Analytics (privacy-friendly, no cookies, GDPR compliant)
 7. ~~Link compliance documents in footer~~ ✓ Done — PDFs in `public/documents/`, linked from Footer component
 8. ~~Add netlify.toml config file~~ ✓ Done
 9. Connect custom domain (simplewealth.co.za) when ready to replace Webflow
