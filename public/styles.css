@@ -33,8 +33,11 @@
 }
 
 html {
-  scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+}
+
+html:has(:target) {
+  scroll-behavior: smooth;
 }
 
 body {
