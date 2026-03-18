@@ -535,26 +535,32 @@ All pages served with:
 - `@media (prefers-reduced-motion: reduce)` disables animations, hover transforms, and smooth scroll
 - Nav logo has `fetchpriority="high"` (Lighthouse identified it as mobile LCP element)
 
-### Mobile performance — attempted optimisations (March 2026)
-Current mobile PageSpeed: **90 Performance**, FCP/LCP 2.7s, Speed Index 4.3s (Moto G Power, slow 4G).
-Remaining Lighthouse flags: Forced reflow (red), Network dependency tree (red), Render blocking requests (orange).
+### Mobile performance — optimisation log (March 2026)
+Current mobile PageSpeed: **97 Performance**, FCP 1.6s, LCP 2.1s, Speed Index 4.0s, CLS 0 (Moto G Power, slow 4G).
+Desktop: **100 Performance**, FCP/LCP 0.5s, Speed Index 0.8s.
+
+**What worked:**
+1. **Self-hosted Google Fonts** (commit 5a5c83e) — downloaded 3 woff2 files (Cormorant Garamond normal + italic, Inter) to `public/fonts/`, added `@font-face` with `font-display: swap` in styles.css, preloaded critical fonts in `<head>`. Eliminated 2 DNS lookups + 4 TLS handshakes to fonts.googleapis.com / fonts.gstatic.com. Mobile performance jumped from 89 to 97, FCP from 2.7s to 1.6s.
+2. **`fetchpriority="high"` on nav logo** — Lighthouse identified logo as mobile LCP element.
+3. **Descriptive link text on service cards** — fixed SEO audit (generic "Learn more" links), SEO went from 92 to 100.
 
 **Things that were tried and reverted:**
 1. **Deferred Google Fonts stylesheet** (`<link rel="preload" as="style" onload="...">` swap) — caused CLS regression from 0 to 0.258 because text reflowed when fonts loaded late. Reverted in commit d6db7a8.
 2. **`defer` on script.js** — script is already at end of `<body>` and wrapped in `DOMContentLoaded`. Adding `defer` dropped performance from 92 to 90 and regressed Speed Index from 2.7s to 4.3s (more blank frames in filmstrip). Reverted.
 
 **What's still in place:**
-- Google Fonts loaded via `<link rel="preload" as="style">` with `onload` swap + `<noscript>` fallback
+- Self-hosted fonts in `public/fonts/` with `@font-face` declarations in styles.css (woff2 only, latin subset)
+- Font preloads in BaseLayout `<head>` for above-fold fonts (Cormorant Garamond normal + Inter)
 - `fetchpriority="high"` on nav logo (LCP element)
-- Hero image eager-loaded with mobile-specific smaller src (via `<picture>` / srcset where applicable)
+- Hero image eager-loaded with mobile-specific smaller src
 - All below-fold images lazy-loaded
 - Single CSS file, single JS file, zero framework JS
+- CSP updated: `font-src 'self'` (no more external font origins)
 
-**Remaining bottleneck:** The critical chain is HTML (401ms) → styles.css (444ms) → rendering. Google Fonts add a parallel chain. On slow 4G the 8.6 KiB CSS file alone takes 444ms. Options not yet explored:
+**Options not yet explored (if further improvement needed):**
 - Inline critical CSS (above-the-fold styles in `<style>` tag) and async-load the rest
-- Self-host Google Fonts (eliminates DNS + connection to fonts.googleapis.com / fonts.gstatic.com)
-- Reduce CSS file size (currently 8.6 KiB — audit for unused rules)
 - Convert logo from PNG to WebP/AVIF for smaller LCP payload
+- Reduce CSS file size (currently ~8.6 KiB gzipped — audit for unused rules)
 
 ---
 
