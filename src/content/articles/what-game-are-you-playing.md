@@ -7,7 +7,6 @@ imageAlt: "Abstract black and gold background with flowing curves"
 date: "February 2021"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
-authorBio: "Pierre has over 15 years of experience in financial planning, helping families across South Africa build and protect their wealth."
 ---
 
 As January was drawing to an end the financial press was gripped by the story of a group of rebellious internet-based stock market traders taking on the giants of the hedge fund industry at their own game. A few hedge funds had taken significant bets on the demise (and share price decline) of a company called GameStop — an American video game retailer.

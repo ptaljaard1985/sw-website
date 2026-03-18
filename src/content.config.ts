@@ -14,7 +14,7 @@ const articles = defineCollection({
     authorTitle: z.string().default('Certified Financial Planner'),
     authorPhoto: z.string().default('/images/headshot-pierre.webp'),
     authorBio: z.string().default(
-      'Pierre has over 15 years of experience helping individuals and families build, protect, and grow their wealth. As a Certified Financial Planner and founder of Simple Wealth, he believes in straightforward advice and long-term thinking.'
+      'Pierre is the founder of Simple Wealth and a Certified Financial Planner based on the KZN north coast. He is passionate about simplifying finance and helping families make confident decisions about their future.'
     ),
   }),
 });

@@ -7,7 +7,6 @@ imageAlt: "Abstract blue wave of light on black background"
 date: "September 2024"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
-authorBio: "Pierre has over 15 years of experience in financial planning, helping families across South Africa build and protect their wealth."
 ---
 
 You've probably heard a few stories of investors who made a fortune with a single investment decision. The neighbour who bought Amazon early and saw massive returns, or the colleague who invested in AI startups and is now talking about early retirement.

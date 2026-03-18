@@ -7,7 +7,6 @@ imageAlt: "Abstract dark flowing fabric with dramatic texture"
 date: "July 2024"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
-authorBio: "Pierre has over 15 years of experience in financial planning, helping families across South Africa build and protect their wealth."
 ---
 
 The world is filled with investors constantly seeking the next winning move. They watch financial news intently, adjust portfolios based on headlines, and worry about timing each market swing perfectly. For these investors, investing becomes a never-ending series of tactical decisions.

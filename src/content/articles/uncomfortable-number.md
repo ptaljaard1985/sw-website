@@ -7,7 +7,6 @@ imageAlt: "Abstract red and black painting with deep warm tones"
 date: "November 2024"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
-authorBio: "Pierre has over 15 years of experience in financial planning, helping families across South Africa build and protect their wealth."
 ---
 
 "Am I saving enough?"

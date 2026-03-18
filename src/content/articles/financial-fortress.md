@@ -7,7 +7,6 @@ imageAlt: "Abstract blue and black painting with deep navy tones"
 date: "January 2023"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
-authorBio: "Pierre has over 15 years of experience in financial planning, helping families across South Africa build and protect their wealth."
 ---
 
 Empires fall for many reasons, but one of the surest ways to ruin is by letting the enemy inside the city walls. For this reason, fortresses are built to protect the people from unfriendly forces outside.

@@ -7,7 +7,6 @@ imageAlt: "Abstract black background with flowing wavy lines"
 date: "November 2023"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
-authorBio: "Pierre has over 15 years of experience in financial planning, helping families across South Africa build and protect their wealth."
 ---
 
 There are two distinct stages in an investor's financial planning lifetime.

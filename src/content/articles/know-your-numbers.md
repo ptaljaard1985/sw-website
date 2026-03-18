@@ -7,7 +7,6 @@ imageAlt: "Abstract blue and black painting with sharp dark patterns"
 date: "July 2023"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
-authorBio: "Pierre has over 15 years of experience in financial planning, helping families across South Africa build and protect their wealth."
 ---
 
 The road to financial freedom is a journey of a thousand steps. Fortunately, the path is well-trodden by millions of investors who have already reached financial independence. From their experience and our experience advising many such clients, we can extract the key learnings and metrics you'll need as you continue your financial journey.

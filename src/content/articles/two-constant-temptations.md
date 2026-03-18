@@ -7,7 +7,6 @@ imageAlt: "Abstract red and blue fluid painting with contrasting tones"
 date: "March 2023"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
-authorBio: "Pierre has over 15 years of experience in financial planning, helping families across South Africa build and protect their wealth."
 ---
 
 Smart long-term investors generally have a good understanding of the mindsets and behaviours that lead to financial success. They diligently act on a solid plan and have thought through the various trade-offs that all financial decisions demand.

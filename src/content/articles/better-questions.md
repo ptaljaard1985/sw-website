@@ -7,7 +7,6 @@ imageAlt: "Abstract blue and white fluid art with swirling patterns"
 date: "May 2023"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
-authorBio: "Pierre has over 15 years of experience in financial planning, helping families across South Africa build and protect their wealth."
 ---
 
 The journey to financial success is often fraught with anxiety and uncertainty as we struggle to identify the most effective path towards our desired lifestyle. With countless investment options, complex economic conditions, and unique personal financial situations, selecting the best course of action can feel overwhelming.

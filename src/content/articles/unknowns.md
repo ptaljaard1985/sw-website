@@ -7,7 +7,6 @@ imageAlt: "Abstract blue and white painting on dark background"
 date: "January 2024"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
-authorBio: "Pierre has over 15 years of experience in financial planning, helping families across South Africa build and protect their wealth."
 ---
 
 In our work with clients, we have built hundreds of financial plans for real families. These plans include all the knowns and some "known unknowns." This includes provision for essential and non-essential items, an allocation for possible medical expenses, and aspirational bucket-list expenses. However, as we know, "Man plans, and God laughs."

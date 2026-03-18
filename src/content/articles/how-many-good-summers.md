@@ -7,7 +7,6 @@ imageAlt: "Abstract orange and black fluid painting with warm golden tones"
 date: "March 2024"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
-authorBio: "Pierre has over 15 years of experience in financial planning, helping families across South Africa build and protect their wealth."
 ---
 
 The change of seasons is a welcome reminder that we're not living in a never-ending now. Time marches on, and it waits for no one. Whether you find yourself on your way into, or out of, another summer, it is a good time to reflect on the shortness of time.

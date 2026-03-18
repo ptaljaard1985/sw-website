@@ -7,7 +7,6 @@ imageAlt: "Abstract curved lines in dark sepia tone"
 date: "September 2023"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
-authorBio: "Pierre has over 15 years of experience in financial planning, helping families across South Africa build and protect their wealth."
 ---
 
 When managing money and working towards financial goals, it's important to understand which factors we can control and which we can't.
