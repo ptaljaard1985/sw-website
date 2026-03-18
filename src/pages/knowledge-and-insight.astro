@@ -77,6 +77,9 @@ const articles = allArticles.sort((a, b) => {
     }
 
     .article-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
       background: var(--color-white);
       border-radius: 8px;
       box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
@@ -468,7 +471,7 @@ const articles = allArticles.sort((a, b) => {
       <div class="articles-grid">
 
         {articles.map(article => (
-          <article class="article-card fade-up">
+          <a href={`/articles/${article.id}/`} class="article-card fade-up">
             <div class="article-card__photo">
               <img loading="lazy" src={article.data.image} alt={article.data.imageAlt}>
             </div>
@@ -477,9 +480,9 @@ const articles = allArticles.sort((a, b) => {
               <h3 class="article-card__headline">{article.data.title}</h3>
               <p class="article-card__teaser">{article.data.description}</p>
               <p class="article-card__date">{article.data.date}</p>
-              <a href={`/articles/${article.id}/`} class="article-card__link">Read more &rarr;</a>
+              <span class="article-card__link">Read more &rarr;</span>
             </div>
-          </article>
+          </a>
         ))}
 
       </div>

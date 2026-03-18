@@ -1,6 +1,6 @@
 ---
 title: "Temperament Trumps Tactics"
-description: "The most important factor in investment success isn't tactical brilliance — it's your temperament and emotional discipline."
+description: "The most important factor in investment success isn't tactical brilliance. It's your temperament and emotional discipline."
 category: "Investing"
 image: "/images/article-temperament.jpg"
 imageAlt: "Abstract dark flowing fabric with dramatic texture"

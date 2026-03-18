@@ -1,6 +1,6 @@
 ---
 title: "Asking Better Questions"
-description: "The key to better financial decisions isn't better answers — it's asking different and better questions in the first place."
+description: "The key to better financial decisions isn't better answers. It's asking different and better questions in the first place."
 category: "Financial Planning"
 image: "/images/article-better-questions.jpg"
 imageAlt: "Abstract blue and white fluid art with swirling patterns"
