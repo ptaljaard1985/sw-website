@@ -22,7 +22,7 @@ exports.handler = async (event) => {
   }
 
   const SIIP_GROUP_ID = '84731331148252747';
-  const NEWSLETTER_GROUP_ID = '84731331148252747'; // same group for now — update when a dedicated newsletter group exists
+  const NEWSLETTER_GROUP_ID = '84731160014357766';
 
   const groupId = data.group === 'newsletter' ? NEWSLETTER_GROUP_ID : SIIP_GROUP_ID;
 
