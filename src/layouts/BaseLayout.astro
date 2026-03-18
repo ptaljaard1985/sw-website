@@ -60,7 +60,7 @@ const canonicalUrl = new URL(Astro.url.pathname, 'https://simplewealth.co.za').h
 
   {!hideFooter && <Footer showSocial={showSocialInFooter} />}
 
-  <script src="/script.js" is:inline></script>
+  <script src="/script.js" is:inline defer></script>
   <slot name="scripts" />
 </body>
 </html>
