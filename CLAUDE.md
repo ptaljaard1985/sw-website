@@ -533,6 +533,28 @@ All pages served with:
 - Google Fonts trimmed to 6 weights with `display=swap`
 - Astro outputs zero client-side framework JS
 - `@media (prefers-reduced-motion: reduce)` disables animations, hover transforms, and smooth scroll
+- Nav logo has `fetchpriority="high"` (Lighthouse identified it as mobile LCP element)
+
+### Mobile performance — attempted optimisations (March 2026)
+Current mobile PageSpeed: **90 Performance**, FCP/LCP 2.7s, Speed Index 4.3s (Moto G Power, slow 4G).
+Remaining Lighthouse flags: Forced reflow (red), Network dependency tree (red), Render blocking requests (orange).
+
+**Things that were tried and reverted:**
+1. **Deferred Google Fonts stylesheet** (`<link rel="preload" as="style" onload="...">` swap) — caused CLS regression from 0 to 0.258 because text reflowed when fonts loaded late. Reverted in commit d6db7a8.
+2. **`defer` on script.js** — script is already at end of `<body>` and wrapped in `DOMContentLoaded`. Adding `defer` dropped performance from 92 to 90 and regressed Speed Index from 2.7s to 4.3s (more blank frames in filmstrip). Reverted.
+
+**What's still in place:**
+- Google Fonts loaded via `<link rel="preload" as="style">` with `onload` swap + `<noscript>` fallback
+- `fetchpriority="high"` on nav logo (LCP element)
+- Hero image eager-loaded with mobile-specific smaller src (via `<picture>` / srcset where applicable)
+- All below-fold images lazy-loaded
+- Single CSS file, single JS file, zero framework JS
+
+**Remaining bottleneck:** The critical chain is HTML (401ms) → styles.css (444ms) → rendering. Google Fonts add a parallel chain. On slow 4G the 8.6 KiB CSS file alone takes 444ms. Options not yet explored:
+- Inline critical CSS (above-the-fold styles in `<style>` tag) and async-load the rest
+- Self-host Google Fonts (eliminates DNS + connection to fonts.googleapis.com / fonts.gstatic.com)
+- Reduce CSS file size (currently 8.6 KiB — audit for unused rules)
+- Convert logo from PNG to WebP/AVIF for smaller LCP payload
 
 ---
 
