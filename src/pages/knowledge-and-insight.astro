@@ -27,15 +27,15 @@ const schema = [{
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "name": "Knowledge & Insight",
-  "url": "https://simplewealth.co.za/knowledge-and-insight/",
+  "url": "https://www.simplewealth.co.za/knowledge-and-insight/",
   "description": "Practical guidance to help you make better financial decisions. Written in plain English, no jargon.",
-  "publisher": { "@type": "FinancialService", "@id": "https://simplewealth.co.za/#organization", "name": "Simple Wealth" },
+  "publisher": { "@type": "FinancialService", "@id": "https://www.simplewealth.co.za/#organization", "name": "Simple Wealth" },
   "mainEntity": {
     "@type": "ItemList",
     "itemListElement": articles.map((a, i) => ({
       "@type": "ListItem",
       "position": i + 1,
-      "url": `https://simplewealth.co.za/articles/${a.id}/`,
+      "url": `https://www.simplewealth.co.za/articles/${a.id}/`,
       "name": a.data.title
     }))
   }

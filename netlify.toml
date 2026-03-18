@@ -3,6 +3,13 @@
   publish = "dist"
   functions = "netlify/functions"
 
+# Redirect non-www to www (301 permanent)
+[[redirects]]
+  from = "https://simplewealth.co.za/*"
+  to = "https://www.simplewealth.co.za/:splat"
+  status = 301
+  force = true
+
 [[headers]]
   for = "/*"
   [headers.values]

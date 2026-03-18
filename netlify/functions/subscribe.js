@@ -1,5 +1,5 @@
 const ALLOWED_ORIGINS = [
-  'https://simplewealth.co.za',
+  'https://www.simplewealth.co.za',
   'https://new.simplewealth.co.za',
 ];
 

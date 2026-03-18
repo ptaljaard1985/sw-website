@@ -5,7 +5,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://simplewealth.co.za',
+  site: 'https://www.simplewealth.co.za',
   trailingSlash: 'always',
   integrations: [
     sitemap({
