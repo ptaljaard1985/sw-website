@@ -1342,6 +1342,23 @@ p:last-child {
   font-weight: 600;
 }
 
+.bio-section__linkedin {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-gold);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.bio-section__linkedin:hover {
+  color: var(--color-gold-hover);
+}
+
 /* Values */
 .values-grid {
   display: grid;
@@ -2281,6 +2298,23 @@ p:last-child {
   font-size: 0.9rem;
   color: var(--color-text-light);
   line-height: 1.6;
+}
+
+.author-bio__linkedin {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-gold);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.author-bio__linkedin:hover {
+  color: var(--color-gold-hover);
 }
 
 /* Share row */
