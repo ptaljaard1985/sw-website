@@ -2,7 +2,7 @@
 title: "The Investor's Two Constant Temptations"
 description: "Even smart investors face two recurring temptations: forecasting the economy and timing the market. Here's why resisting both is essential."
 category: "Investing"
-image: "/images/article-temptations.jpg"
+image: "/images/article-temptations.webp"
 imageAlt: "Abstract red and blue fluid painting with contrasting tones"
 date: "March 2023"
 author: "Pierre Taljaard"

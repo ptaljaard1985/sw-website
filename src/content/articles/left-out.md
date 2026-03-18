@@ -2,7 +2,7 @@
 title: "The Courage to Feel Left Out"
 description: "For every investment success story you hear, there are countless failures you don't. Wise investors have the courage to feel left out."
 category: "Investing"
-image: "/images/article-left-out.jpg"
+image: "/images/article-left-out.webp"
 imageAlt: "Abstract blue wave of light on black background"
 date: "September 2024"
 author: "Pierre Taljaard"

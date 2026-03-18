@@ -2,7 +2,7 @@
 title: "Asking Better Questions"
 description: "The key to better financial decisions isn't better answers. It's asking different and better questions in the first place."
 category: "Financial Planning"
-image: "/images/article-better-questions.jpg"
+image: "/images/article-better-questions.webp"
 imageAlt: "Abstract blue and white fluid art with swirling patterns"
 date: "May 2023"
 author: "Pierre Taljaard"

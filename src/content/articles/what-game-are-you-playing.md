@@ -2,7 +2,7 @@
 title: "What Game Are You Playing?"
 description: "The GameStop saga reminded us that not all investors are playing the same game. Understanding your game, and sticking to it, is the key to long-term success."
 category: "Investing"
-image: "/images/article-game.jpg"
+image: "/images/article-game.webp"
 imageAlt: "Abstract black and gold background with flowing curves"
 date: "February 2021"
 author: "Pierre Taljaard"

@@ -2,7 +2,7 @@
 title: "Longevity: The Underappreciated Retirement Risk"
 description: "Retirees fear market volatility but often overlook a bigger risk: the chance of living much longer than expected."
 category: "Retirement"
-image: "/images/article-longevity.jpg"
+image: "/images/article-longevity.webp"
 imageAlt: "Abstract black background with flowing wavy lines"
 date: "November 2023"
 author: "Pierre Taljaard"

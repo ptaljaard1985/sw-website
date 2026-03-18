@@ -2,7 +2,7 @@
 title: "Building Wealth for the Unknowns"
 description: "Financial plans address the known, but what about the unknown unknowns? Building surplus wealth provides crucial flexibility when life surprises you."
 category: "Financial Planning"
-image: "/images/article-unknowns.jpg"
+image: "/images/article-unknowns.webp"
 imageAlt: "Abstract blue and white painting on dark background"
 date: "January 2024"
 author: "Pierre Taljaard"

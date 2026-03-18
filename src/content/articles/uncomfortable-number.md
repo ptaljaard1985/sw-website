@@ -2,7 +2,7 @@
 title: "The Uncomfortable Number"
 description: "If your savings amount feels perfectly comfortable, there's a reasonable chance it's not enough. The right number should feel like a stretch."
 category: "Financial Planning"
-image: "/images/article-uncomfortable.jpg"
+image: "/images/article-uncomfortable.webp"
 imageAlt: "Abstract red and black painting with deep warm tones"
 date: "November 2024"
 author: "Pierre Taljaard"

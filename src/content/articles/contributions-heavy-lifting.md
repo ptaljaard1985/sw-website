@@ -2,7 +2,7 @@
 title: "Your Investment Contributions Should Do the Heavy Lifting"
 description: "Investment returns get all the attention, but it's your contributions that do the heavy lifting, especially in the early years."
 category: "Investing"
-image: "/images/article-contributions.jpg"
+image: "/images/article-contributions.webp"
 imageAlt: "Abstract blue and brown fluid painting with gold tones"
 date: "May 2024"
 author: "Pierre Taljaard"

@@ -474,7 +474,7 @@ const articles = allArticles.sort((a, b) => {
         {articles.map(article => (
           <a href={`/articles/${article.id}/`} class="article-card fade-up">
             <div class="article-card__photo">
-              <img loading="lazy" src={article.data.image} alt={article.data.imageAlt}>
+              <img loading="lazy" src={article.data.image} alt={article.data.imageAlt} width="800" height="533">
             </div>
             <div class="article-card__body">
               <span class="article-card__category">{article.data.category}</span>

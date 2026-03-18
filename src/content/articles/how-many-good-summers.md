@@ -2,7 +2,7 @@
 title: "How Many Good Summers Do You Have Left?"
 description: "Time is your most precious asset. True wealth means using money to buy back time for the things that matter most."
 category: "Financial Planning"
-image: "/images/article-good-summers.jpg"
+image: "/images/article-good-summers.webp"
 imageAlt: "Abstract orange and black fluid painting with warm golden tones"
 date: "March 2024"
 author: "Pierre Taljaard"

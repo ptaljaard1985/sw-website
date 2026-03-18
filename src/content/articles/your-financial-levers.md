@@ -2,7 +2,7 @@
 title: "Understanding Your Financial Levers"
 description: "You can't control markets, but you can control your financial levers. Here are the key factors that put you in charge of your financial future."
 category: "Financial Planning"
-image: "/images/article-levers.jpg"
+image: "/images/article-levers.webp"
 imageAlt: "Abstract curved lines in dark sepia tone"
 date: "September 2023"
 author: "Pierre Taljaard"

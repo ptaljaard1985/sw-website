@@ -2,7 +2,7 @@
 title: "Your Financial Fortress"
 description: "Your family's wealth faces constant threats. Learn why protecting your financial fortress matters more than chasing exciting returns."
 category: "Investing"
-image: "/images/article-fortress.jpg"
+image: "/images/article-fortress.webp"
 imageAlt: "Abstract blue and black painting with deep navy tones"
 date: "January 2023"
 author: "Pierre Taljaard"

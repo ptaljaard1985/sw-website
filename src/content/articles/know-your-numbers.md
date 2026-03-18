@@ -2,7 +2,7 @@
 title: "Know Your Numbers"
 description: "The road to financial freedom requires tracking the right metrics. Here are the key numbers every investor should know."
 category: "Financial Planning"
-image: "/images/article-know-numbers.jpg"
+image: "/images/article-know-numbers.webp"
 imageAlt: "Abstract blue and black painting with sharp dark patterns"
 date: "July 2023"
 author: "Pierre Taljaard"
