@@ -271,9 +271,37 @@ All images are stored locally in `public/images/`. No external image dependencie
 | Tax planning | images/service-tax.jpg (iStock 1222021819 — reviewing financials with calculator) |
 | Risk planning | images/service-risk.jpg (iStock 1199060494 — hands protecting paper-cut family) |
 | Estate planning | images/service-estate.jpg (iStock 2199281061 — signing Last Will and Testament) |
-| Articles (shared) | images/article-cash-vs-invest.jpg, article-reduce-tax.jpg, article-retirement.jpg, article-protection.jpg, article-markets-fall.jpg, article-review-will.jpg (6 images cycled across 13 articles) |
+| Articles | One unique abstract image per article (see "Article images" section below) |
 | Lead magnet cover | images/leadmagnet.png |
 | Pierre headshot | images/headshot-pierre.png |
+
+### Article images
+Each article has a unique abstract image sourced from **Pawel Czerwinski on Unsplash** (free, commercial use, no attribution required). The visual style is dark, moody, fluid abstract textures in navy/gold/warm tones that match the brand palette.
+
+**When creating a new article:**
+1. Search Unsplash for a Pawel Czerwinski abstract image that loosely matches the article's theme/mood
+2. Download at L size (~2000px wide) as JPEG
+3. Save to `public/images/` with naming convention `article-{short-slug}.jpg`
+4. Set `image` and `imageAlt` in the article frontmatter
+
+**Current article image assignments:**
+| Article | Image file | Style |
+|---|---|---|
+| Asking Better Questions | article-better-questions.jpg | Blue/white fluid swirls |
+| Contributions Do the Heavy Lifting | article-contributions.jpg | Blue/brown/gold fluid |
+| Your Financial Fortress | article-fortress.jpg | Blue/black dense painting |
+| How Many Good Summers | article-good-summers.jpg | Orange/gold/black fluid |
+| Know Your Numbers | article-know-numbers.jpg | Blue/black sharp patterns |
+| The Courage to Feel Left Out | article-left-out.jpg | Blue wave on black |
+| Longevity Risk | article-longevity.jpg | Black with flowing lines |
+| Temperament Trumps Tactics | article-temperament.jpg | Dark flowing fabric |
+| Two Constant Temptations | article-temptations.jpg | Red/blue fluid |
+| The Uncomfortable Number | article-uncomfortable.jpg | Red/black waves |
+| Building Wealth for Unknowns | article-unknowns.jpg | Blue/white on dark |
+| What Game Are You Playing? | article-game.jpg | Black/gold curves |
+| Understanding Your Financial Levers | article-levers.jpg | Dark sepia curves |
+
+**Photographer:** Pawel Czerwinski — https://unsplash.com/@pawel_czerwinski
 
 ### Avatars & headshot
 - Hero social proof uses gold-star-in-navy-circle initials (no photos)
@@ -512,10 +540,10 @@ Several pages use UK-specific financial terms that don't apply in South Africa:
 ---
 
 ## Outstanding work
-1. Purchase unwatermarked iStock images (hero: 1441254475, investment: 848840496, tax: 1222021819, risk: 1199060494, estate: 2199281061)
-2. Replace article stock images with better/unique ones (currently cycling 6 images across 13 articles)
+1. ~~Purchase unwatermarked iStock images~~ ✓ Done — licensed L-size images replaced for hero + all 4 service pages
+2. ~~Replace article stock images with better/unique ones~~ ✓ Done — 13 unique abstract images from Pawel Czerwinski (Unsplash), one per article
 3. ~~Wire up related articles in ArticleLayout to link to actual article pages~~ ✓ Done — shows 3 related articles per page
-4. ~~Replace lead magnet form with MailerLite integration~~ ✓ Done — via Netlify Function + MailerLite API. Newsletter form still pending.
+4. ~~Replace lead magnet form with MailerLite integration~~ ✓ Done — via Netlify Function + MailerLite API. Newsletter forms also wired to MailerLite (newsletter group).
 5. ~~Add Pierre's real headshot~~ ✓ Done — `headshot-pierre.png`, default in `content.config.ts`
 6. Add analytics (e.g. Fathom, as used on current Webflow site)
 7. Create or link legal pages (Privacy Policy, Terms, etc.)
