@@ -15,18 +15,23 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: JSON.stringify({ error: 'Invalid request' }) };
   }
 
-  const { email, name } = data;
+  const { email, name, group } = data;
 
   if (!email) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Email is required' }) };
   }
 
-  const SIIP_GROUP_ID = '84731331148252747';
+  const GROUPS = {
+    siip: '84731331148252747',
+    newsletter: '84731160014357766',
+  };
+
+  const groupId = GROUPS[group] || GROUPS.siip;
 
   const payload = {
     email,
     fields: {},
-    groups: [SIIP_GROUP_ID],
+    groups: [groupId],
   };
 
   if (name) {

@@ -451,7 +451,7 @@ const articles = allArticles.sort((a, b) => {
       <div class="newsletter-banner__content">
         <h2>Want to hear more from us?</h2>
         <p>Sign up for our monthly email digest designed to make you think about money in a different way.</p>
-        <form class="newsletter-banner__form" id="bannerNewsletterForm" name="newsletter-banner" method="POST" data-netlify="true">
+        <form class="newsletter-banner__form" id="bannerNewsletterForm">
           <input type="text" name="first-name" placeholder="First name" required>
           <input type="email" name="email" placeholder="Email address" required>
           <button type="submit">Subscribe <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-left: 4px;"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
@@ -491,7 +491,7 @@ const articles = allArticles.sort((a, b) => {
     <div class="container">
       <h2 class="fade-up">Get financial insights delivered to your inbox</h2>
       <p class="fade-up">Practical guidance, tax tips, and planning ideas &mdash; sent monthly. No spam, unsubscribe anytime.</p>
-      <form class="newsletter-form fade-up" id="newsletterForm" name="newsletter" method="POST" data-netlify="true">
+      <form class="newsletter-form fade-up" id="newsletterForm">
         <input type="email" name="email" placeholder="Your email address" required>
         <button type="submit">Subscribe</button>
       </form>
@@ -504,39 +504,47 @@ const articles = allArticles.sort((a, b) => {
 
   <CtaSection />
 
-  <script slot="scripts">
-    document.getElementById('bannerNewsletterForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      var form = this;
-      var errorEl = document.getElementById('bannerError');
-      errorEl.classList.remove('visible');
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(new FormData(form)).toString()
-      }).then(function() {
-        form.style.display = 'none';
-        document.getElementById('bannerThanks').classList.add('visible');
-      }).catch(function() {
-        errorEl.classList.add('visible');
-      });
-    });
+  <script slot="scripts" is:inline>
+    function subscribeNewsletter(form, thanksId, errorId) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var btn = form.querySelector('button[type="submit"]');
+        var errorEl = document.getElementById(errorId);
+        var nameInput = form.querySelector('input[name="first-name"]');
+        var emailInput = form.querySelector('input[name="email"]');
 
-    document.getElementById('newsletterForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      var form = this;
-      var errorEl = document.getElementById('newsletterError');
-      errorEl.classList.remove('visible');
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(new FormData(form)).toString()
-      }).then(function() {
-        form.style.display = 'none';
-        document.getElementById('newsletterThanks').classList.add('visible');
-      }).catch(function() {
-        errorEl.classList.add('visible');
+        btn.disabled = true;
+        errorEl.classList.remove('visible');
+
+        fetch('/.netlify/functions/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: emailInput.value,
+            name: nameInput ? nameInput.value : '',
+            group: 'newsletter'
+          })
+        }).then(function(res) {
+          if (res.ok) {
+            form.style.display = 'none';
+            document.getElementById(thanksId).classList.add('visible');
+          } else {
+            throw new Error('Failed');
+          }
+        }).catch(function() {
+          errorEl.classList.add('visible');
+          btn.disabled = false;
+        });
       });
-    });
+    }
+
+    subscribeNewsletter(
+      document.getElementById('bannerNewsletterForm'),
+      'bannerThanks', 'bannerError'
+    );
+    subscribeNewsletter(
+      document.getElementById('newsletterForm'),
+      'newsletterThanks', 'newsletterError'
+    );
   </script>
 </BaseLayout>
