@@ -31,11 +31,11 @@ The site is replacing the current Webflow site at simplewealth.co.za. Built with
 astro.config.mjs                  # Astro config (site URL)
 package.json                      # Dependencies
 tsconfig.json                     # TypeScript config
-netlify.toml                      # Netlify config (build, functions, headers)
+netlify.toml                      # Netlify config (build, functions, security headers)
 
 netlify/
 └── functions/
-    └── subscribe.js              # Serverless function — proxies lead magnet form to MailerLite API
+    └── subscribe.js              # Serverless function — proxies forms to MailerLite API (origin check, honeypot, email validation)
 
 src/
 ├── components/
@@ -87,6 +87,7 @@ public/
 ├── sitemap.xml                   # XML sitemap (all pages + articles, trailing-slash URLs)
 ├── robots.txt                    # Robots file pointing to sitemap + llms.txt
 ├── llms.txt                      # AI crawler context (company info, credentials, services, location)
+├── documents/                    # Compliance PDFs (POPI, Conflict of Interest, Complaints)
 └── images/                       # All site images (local)
 ```
 
@@ -410,19 +411,29 @@ Newsletter signup form (AJAX with error handling) — will be replaced with Mail
 - Fields (all required, with custom validation messages via inline JS):
   - name, email, phone, age, location, service (select), investable assets (select: Less than R2m, R2m–R10m, R10m–R30m, R30m–R50m, R50m+), current financial adviser (select: yes/no/it's complicated), how did you hear about us (select), message
   - Required checkbox: "I understand that for investable assets less than R2m, our minimum annual fee may not be cost-effective."
-- Right sidebar: contact details card (email, phone, office address, response time) + Google Maps embed (responsive height via `.contact-map` class)
+- Right sidebar: contact details card (email, phone, office address, response time) + Google Maps embed (responsive height via `.contact-map` class, sandboxed iframe)
 
 ### Lead magnet form (LeadMagnet.astro)
 - Submits via JS fetch to `/.netlify/functions/subscribe` (Netlify serverless function)
 - Function adds subscriber to MailerLite via API (email + name + SIIP group)
 - MailerLite API key stored as `MAILERLITE_API_KEY` environment variable in Netlify (never in code)
 - MailerLite group ID `84731331148252747` (SIIP) triggers guide delivery automation
+- Honeypot field (`website`) for bot protection — checked server-side
 - Inline success message on submit; no page redirect
 
 ### Newsletter form (knowledge-and-insight.astro)
-- Currently Netlify Forms (`data-netlify="true"`, name="newsletter")
-- To be replaced with MailerLite via the same `/.netlify/functions/subscribe` endpoint
+- Submits via JS fetch to `/.netlify/functions/subscribe` with `group: 'newsletter'`
+- MailerLite group ID `84731160014357766` (newsletter)
+- Honeypot field (`website`) for bot protection — checked server-side
 - AJAX submission with inline thank-you message on success, error message on failure
+
+### Subscribe serverless function (netlify/functions/subscribe.js)
+- Origin whitelist: only accepts requests from `simplewealth.co.za` and `new.simplewealth.co.za`
+- CORS headers returned on all responses
+- Honeypot check: silently accepts if `website` field is filled (bot trap)
+- Server-side email validation: regex + 254-char limit
+- Name length limit: 200 chars
+- Group selector: whitelist lookup (`siip` or `newsletter`), defaults to `siip`
 
 ---
 
@@ -485,6 +496,15 @@ npm run preview   # Preview built output locally
 - Staging: `new.simplewealth.co.za` (CNAME to `aquamarine-pie-06e3b3.netlify.app`)
 - DNS managed at Afrihost (simplewealth.co.za)
 
+### Security headers (netlify.toml)
+All pages served with:
+- `X-Frame-Options: DENY` — prevents clickjacking
+- `X-Content-Type-Options: nosniff` — prevents MIME sniffing
+- `Referrer-Policy: strict-origin-when-cross-origin`
+- `Strict-Transport-Security: max-age=31536000; includeSubDomains` — enforces HTTPS
+- `Permissions-Policy: camera=(), microphone=(), geolocation=()` — restricts browser features
+- `Content-Security-Policy` — restricts script/style/font/frame sources to self + Google Fonts + Google Maps
+
 ---
 
 ## SEO, AIO & performance
@@ -495,7 +515,7 @@ npm run preview   # Preview built output locally
 - Open Graph and Twitter Card meta tags on all pages (default OG image: `/images/hero-adviser.jpg`)
 - `llms.txt` in public root for AI crawler discoverability (company, credentials, services, location, key pages)
 - `robots.txt` references both `sitemap.xml` and `llms.txt`
-- `sitemap.xml` includes all pages + all 13 articles with trailing-slash URLs
+- `sitemap.xml` includes all pages + all 13 articles with trailing-slash URLs (contact-success excluded)
 - Favicon: both `favicon.ico` and `favicon.svg` linked in BaseLayout
 - All images local (no third-party dependencies except Google Fonts)
 - Lazy loading on below-fold images
@@ -529,10 +549,10 @@ Several pages use UK-specific financial terms that don't apply in South Africa:
 - ~~**About Us** (`about-us.astro:74-76`) — Verify "CFA Charterholder" and "CFP Professional"~~ ✓ Confirmed current by Pierre
 
 ### Structural / UX issues
-- ~~**Footer legal links**~~ ✓ Fixed — updated to Google Maps, POPI Statement, Conflict of Interest Management Policy, Complaints Resolution Policy (links to `#` pending real pages).
+- ~~**Footer legal links**~~ ✓ Fixed — updated to Google Maps, POPI Statement, Conflict of Interest Management Policy, Complaints Resolution Policy (linked to PDFs in `public/documents/`).
 - ~~**Lead magnet form**~~ ✓ Fixed — now submits to MailerLite via Netlify Function, inline success message, no redirect.
 - ~~**No related articles**~~ ✓ Fixed — ArticleLayout shows 3 related articles (same category first).
-- **Newsletter form** — AJAX handler posts to `/` not the form action. Pending MailerLite replacement via same subscribe function.
+- ~~**Newsletter form** — AJAX handler posts to `/` not the form action.~~ ✓ Fixed — wired to MailerLite via `/.netlify/functions/subscribe` with honeypot.
 - ~~**No favicon** — `BaseLayout.astro` has no `<link rel="icon">`.~~ ✓ Fixed — favicon.ico and favicon.svg linked
 - ~~**No canonical URLs** — `BaseLayout.astro` has no `<link rel="canonical">`.~~ ✓ Fixed — canonical + OG + Twitter Card meta tags added
 - ~~**Contact page** — Has inline styles~~ ✓ Fixed — replaced with CSS utility classes.
@@ -546,7 +566,7 @@ Several pages use UK-specific financial terms that don't apply in South Africa:
 4. ~~Replace lead magnet form with MailerLite integration~~ ✓ Done — via Netlify Function + MailerLite API. Newsletter forms also wired to MailerLite (newsletter group).
 5. ~~Add Pierre's real headshot~~ ✓ Done — `headshot-pierre.png`, default in `content.config.ts`
 6. Add analytics (e.g. Fathom, as used on current Webflow site)
-7. Create or link legal pages (Privacy Policy, Terms, etc.)
+7. ~~Link compliance documents in footer~~ ✓ Done — PDFs in `public/documents/`, linked from Footer component
 8. ~~Add netlify.toml config file~~ ✓ Done
 9. Connect custom domain (simplewealth.co.za) when ready to replace Webflow
 10. Verify article content matches original source (humansundermanagement.com) — WebFetch tool paraphrased some articles

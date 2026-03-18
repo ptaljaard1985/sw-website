@@ -25,6 +25,7 @@ const { grey = true } = Astro.props;
               <label for="lead-email" class="visually-hidden">Email</label>
               <input type="email" id="lead-email" name="email" placeholder="Your email" required>
             </div>
+            <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
             <button type="submit" class="btn btn--primary">Download the free guide</button>
           </div>
         </form>
@@ -46,6 +47,7 @@ const { grey = true } = Astro.props;
     var btn = form.querySelector('button[type="submit"]');
     var name = form.querySelector('#lead-name').value;
     var email = form.querySelector('#lead-email').value;
+    var honeypot = form.querySelector('input[name="website"]').value;
     var success = form.parentElement.querySelector('.lead-magnet__success');
     var error = form.parentElement.querySelector('.lead-magnet__error');
 
@@ -56,7 +58,7 @@ const { grey = true } = Astro.props;
     fetch('/.netlify/functions/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: name, email: email })
+      body: JSON.stringify({ name: name, email: email, website: honeypot })
     })
     .then(function(res) {
       if (res.ok) {

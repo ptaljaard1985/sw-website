@@ -457,6 +457,7 @@ const articles = allArticles.sort((a, b) => {
         <form class="newsletter-banner__form" id="bannerNewsletterForm">
           <input type="text" name="first-name" placeholder="First name" required>
           <input type="email" name="email" placeholder="Email address" required>
+          <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
           <button type="submit">Subscribe <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-left: 4px;"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
         </form>
         <p class="newsletter-banner__thanks" id="bannerThanks">Thanks! You're on the list.</p>
@@ -496,6 +497,7 @@ const articles = allArticles.sort((a, b) => {
       <p class="fade-up">Sign up for our monthly email digest designed to make you think about money in a different way.</p>
       <form class="newsletter-form fade-up" id="newsletterForm">
         <input type="email" name="email" placeholder="Your email address" required>
+        <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
         <button type="submit">Subscribe</button>
       </form>
       <p class="newsletter-thanks fade-up" id="newsletterThanks">Thanks! We'll be in touch soon.</p>
@@ -515,6 +517,7 @@ const articles = allArticles.sort((a, b) => {
         var errorEl = document.getElementById(errorId);
         var nameInput = form.querySelector('input[name="first-name"]');
         var emailInput = form.querySelector('input[name="email"]');
+        var honeypotInput = form.querySelector('input[name="website"]');
 
         btn.disabled = true;
         errorEl.classList.remove('visible');
@@ -525,7 +528,8 @@ const articles = allArticles.sort((a, b) => {
           body: JSON.stringify({
             email: emailInput.value,
             name: nameInput ? nameInput.value : '',
-            group: 'newsletter'
+            group: 'newsletter',
+            website: honeypotInput ? honeypotInput.value : ''
           })
         }).then(function(res) {
           if (res.ok) {
