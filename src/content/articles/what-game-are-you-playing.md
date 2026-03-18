@@ -4,7 +4,7 @@ description: "The GameStop saga reminded us that not all investors are playing t
 category: "Investing"
 image: "/images/article-game.webp"
 imageAlt: "Abstract black and gold background with flowing curves"
-date: "February 2021"
+date: "March 2021"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
 ---

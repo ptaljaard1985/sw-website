@@ -4,7 +4,7 @@ description: "Investment returns get all the attention, but it's your contributi
 category: "Investing"
 image: "/images/article-contributions.webp"
 imageAlt: "Abstract blue and brown fluid painting with gold tones"
-date: "May 2024"
+date: "December 2024"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
 ---

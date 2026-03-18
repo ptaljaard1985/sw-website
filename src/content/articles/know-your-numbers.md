@@ -4,7 +4,7 @@ description: "The road to financial freedom requires tracking the right metrics.
 category: "Financial Planning"
 image: "/images/article-know-numbers.webp"
 imageAlt: "Abstract blue and black painting with sharp dark patterns"
-date: "July 2023"
+date: "October 2023"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
 ---

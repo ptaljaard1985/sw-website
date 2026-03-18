@@ -4,7 +4,7 @@ description: "Time is your most precious asset. True wealth means using money to
 category: "Financial Planning"
 image: "/images/article-good-summers.webp"
 imageAlt: "Abstract orange and black fluid painting with warm golden tones"
-date: "March 2024"
+date: "November 2021"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
 ---

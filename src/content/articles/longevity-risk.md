@@ -4,7 +4,7 @@ description: "Retirees fear market volatility but often overlook a bigger risk: 
 category: "Retirement"
 image: "/images/article-longevity.webp"
 imageAlt: "Abstract black background with flowing wavy lines"
-date: "November 2023"
+date: "February 2024"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
 ---

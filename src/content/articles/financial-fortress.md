@@ -4,7 +4,7 @@ description: "Your family's wealth faces constant threats. Learn why protecting 
 category: "Investing"
 image: "/images/article-fortress.webp"
 imageAlt: "Abstract blue and black painting with deep navy tones"
-date: "January 2023"
+date: "March 2022"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
 ---

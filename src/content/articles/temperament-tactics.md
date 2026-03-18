@@ -4,7 +4,7 @@ description: "The most important factor in investment success isn't tactical bri
 category: "Investing"
 image: "/images/article-temperament.webp"
 imageAlt: "Abstract dark flowing fabric with dramatic texture"
-date: "July 2024"
+date: "May 2025"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
 ---

@@ -4,7 +4,7 @@ description: "For every investment success story you hear, there are countless f
 category: "Investing"
 image: "/images/article-left-out.webp"
 imageAlt: "Abstract blue wave of light on black background"
-date: "September 2024"
+date: "June 2025"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
 ---

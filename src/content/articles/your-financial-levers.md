@@ -4,7 +4,7 @@ description: "You can't control markets, but you can control your financial leve
 category: "Financial Planning"
 image: "/images/article-levers.webp"
 imageAlt: "Abstract curved lines in dark sepia tone"
-date: "September 2023"
+date: "December 2023"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
 ---

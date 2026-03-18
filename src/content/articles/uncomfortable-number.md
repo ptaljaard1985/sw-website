@@ -4,7 +4,7 @@ description: "If your savings amount feels perfectly comfortable, there's a reas
 category: "Financial Planning"
 image: "/images/article-uncomfortable.webp"
 imageAlt: "Abstract red and black painting with deep warm tones"
-date: "November 2024"
+date: "March 2026"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
 ---

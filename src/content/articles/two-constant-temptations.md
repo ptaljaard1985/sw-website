@@ -4,7 +4,7 @@ description: "Even smart investors face two recurring temptations: forecasting t
 category: "Investing"
 image: "/images/article-temptations.webp"
 imageAlt: "Abstract red and blue fluid painting with contrasting tones"
-date: "March 2023"
+date: "April 2023"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
 ---

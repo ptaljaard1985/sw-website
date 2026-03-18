@@ -4,7 +4,7 @@ description: "Financial plans address the known, but what about the unknown unkn
 category: "Financial Planning"
 image: "/images/article-unknowns.webp"
 imageAlt: "Abstract blue and white painting on dark background"
-date: "January 2024"
+date: "June 2024"
 author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
 ---
