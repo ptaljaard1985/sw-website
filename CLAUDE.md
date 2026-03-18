@@ -28,7 +28,7 @@ The site is replacing the current Webflow site at simplewealth.co.za. Built with
 
 ## File structure
 ```
-astro.config.mjs                  # Astro config (site URL)
+astro.config.mjs                  # Astro config (site URL, trailingSlash, sitemap integration)
 package.json                      # Dependencies
 tsconfig.json                     # TypeScript config
 netlify.toml                      # Netlify config (build, functions, security headers)
@@ -84,9 +84,8 @@ public/
 ├── logo large.png                # Original high-res logo (5906x1772px)
 ├── favicon.ico                   # Favicon (ICO format)
 ├── favicon.svg                   # Favicon (SVG format)
-├── sitemap.xml                   # XML sitemap (all pages + articles, trailing-slash URLs)
 ├── robots.txt                    # Robots file pointing to sitemap + llms.txt
-├── llms.txt                      # AI crawler context (company info, credentials, services, location)
+├── llms.txt                      # AI crawler context (company info, services, articles, philosophy)
 ├── documents/                    # Compliance PDFs (POPI, Conflict of Interest, Complaints)
 └── images/                       # All site images (local)
 ```
@@ -131,14 +130,17 @@ Reusable lead magnet section ("Successful Investing In Pictures" guide download)
 - Subscriber added to MailerLite with SIIP group (triggers guide delivery automation)
 - Inline success/error messages (no page redirect)
 - Used on homepage (grey) and about-us page (grey)
-- Guide cover image: `/images/leadmagnet.png`
+- Guide cover image: `/images/leadmagnet.webp`
 
 ### ArticleLayout.astro
 Wraps article content. Accepts all article frontmatter props + `slug`.
-- Reading progress bar, article hero with image/overlay, author bio, share row
+- Reading progress bar, article hero with image/overlay, author bio
 - Related articles section: 3 cards (same category first, then others, excluding current)
 - `<slot />` receives rendered markdown content
 - Parses `date` prop ("Month Year") into ISO format for schema `datePublished` and `dateModified`
+- Passes `ogImage` and `ogType="article"` to BaseLayout for correct social sharing
+- Adds `article:published_time` and `article:author` OG meta tags
+- BreadcrumbList schema (Home > Knowledge & Insight > Article Title)
 
 ### Content collections
 Articles are `.md` files in `src/content/articles/`. Frontmatter schema:
@@ -146,12 +148,12 @@ Articles are `.md` files in `src/content/articles/`. Frontmatter schema:
 title: string (required)
 description: string (required)
 category: string (required)
-image: string (required) — path like "/images/article-cash-vs-invest.jpg"
+image: string (required) — path like "/images/article-game.webp"
 imageAlt: string (required)
 date: string (required) — e.g. "March 2025"
 author: string (default: "Pierre Taljaard")
 authorTitle: string (default: "Certified Financial Planner")
-authorPhoto: string (default: "/images/headshot-pierre.png") — central default in content.config.ts
+authorPhoto: string (default: "/images/headshot-pierre.webp") — central default in content.config.ts
 authorBio: string (default: "Pierre has over 15 years...")
 ```
 
@@ -196,11 +198,11 @@ authorBio: string (default: "Pierre has over 15 years...")
 ```
 
 ### Typography
-- **Headings:** Cormorant Garamond (Google Fonts) — weights 300, 400, 500, 600, 700, italic
-- **Body / UI:** Inter (Google Fonts) — weights 300, 400, 500, 600
+- **Headings:** Cormorant Garamond (Google Fonts) — weights 500, 600, 700, italic 300, 400
+- **Body / UI:** Inter (Google Fonts) — weights 400, 500, 600
 - Google Fonts link:
 ```
-https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap
+https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,300;1,400&family=Inter:wght@400;500;600&display=swap
 ```
 
 ### CSS font variables
@@ -267,48 +269,47 @@ All images are stored locally in `public/images/`. No external image dependencie
 
 | Location | File |
 |---|---|
-| Hero | images/hero-adviser.jpg (iStock 1441254475 — multigenerational family dinner, flipped horizontally) |
-| Investment planning | images/service-investment.jpg (iStock 848840496 — magnifying glass on growth charts) |
-| Tax planning | images/service-tax.jpg (iStock 1222021819 — reviewing financials with calculator) |
-| Risk planning | images/service-risk.jpg (iStock 1199060494 — hands protecting paper-cut family) |
-| Estate planning | images/service-estate.jpg (iStock 2199281061 — signing Last Will and Testament) |
+| Hero | images/hero-adviser.webp (iStock 1441254475 — multigenerational family dinner, 1200px) |
+| Investment planning | images/service-investment.webp (iStock 848840496 — magnifying glass, 1200px) |
+| Tax planning | images/service-tax.webp (iStock 1222021819 — reviewing financials, 1200px) |
+| Risk planning | images/service-risk.webp (iStock 1199060494 — hands protecting family, 1200px) |
+| Estate planning | images/service-estate.webp (iStock 2199281061 — signing will, 1200px) |
 | Articles | One unique abstract image per article (see "Article images" section below) |
-| Lead magnet cover | images/leadmagnet.png |
-| Pierre headshot | images/headshot-pierre.png |
+| Lead magnet cover | images/leadmagnet.webp (800px) |
+| Pierre headshot | images/headshot-pierre.webp (400px) |
 
 ### Article images
 Each article has a unique abstract image sourced from **Pawel Czerwinski on Unsplash** (free, commercial use, no attribution required). The visual style is dark, moody, fluid abstract textures in navy/gold/warm tones that match the brand palette.
 
 **When creating a new article:**
 1. Search Unsplash for a Pawel Czerwinski abstract image that loosely matches the article's theme/mood
-2. Download at L size (~2000px wide) as JPEG
-3. Save to `public/images/` with naming convention `article-{short-slug}.jpg`
+2. Download at L size (~2000px wide), resize to 800px wide, convert to WebP (quality 80)
+3. Save to `public/images/` with naming convention `article-{short-slug}.webp`
 4. Set `image` and `imageAlt` in the article frontmatter
 
 **Current article image assignments:**
 | Article | Image file | Style |
 |---|---|---|
-| Asking Better Questions | article-better-questions.jpg | Blue/white fluid swirls |
-| Contributions Do the Heavy Lifting | article-contributions.jpg | Blue/brown/gold fluid |
-| Your Financial Fortress | article-fortress.jpg | Blue/black dense painting |
-| How Many Good Summers | article-good-summers.jpg | Orange/gold/black fluid |
-| Know Your Numbers | article-know-numbers.jpg | Blue/black sharp patterns |
-| The Courage to Feel Left Out | article-left-out.jpg | Blue wave on black |
-| Longevity Risk | article-longevity.jpg | Black with flowing lines |
-| Temperament Trumps Tactics | article-temperament.jpg | Dark flowing fabric |
-| Two Constant Temptations | article-temptations.jpg | Red/blue fluid |
-| The Uncomfortable Number | article-uncomfortable.jpg | Red/black waves |
-| Building Wealth for Unknowns | article-unknowns.jpg | Blue/white on dark |
-| What Game Are You Playing? | article-game.jpg | Black/gold curves |
-| Understanding Your Financial Levers | article-levers.jpg | Dark sepia curves |
+| Asking Better Questions | article-better-questions.webp | Blue/white fluid swirls |
+| Contributions Do the Heavy Lifting | article-contributions.webp | Blue/brown/gold fluid |
+| Your Financial Fortress | article-fortress.webp | Blue/black dense painting |
+| How Many Good Summers | article-good-summers.webp | Orange/gold/black fluid |
+| Know Your Numbers | article-know-numbers.webp | Blue/black sharp patterns |
+| The Courage to Feel Left Out | article-left-out.webp | Blue wave on black |
+| Longevity Risk | article-longevity.webp | Black with flowing lines |
+| Temperament Trumps Tactics | article-temperament.webp | Dark flowing fabric |
+| Two Constant Temptations | article-temptations.webp | Red/blue fluid |
+| The Uncomfortable Number | article-uncomfortable.webp | Red/black waves |
+| Building Wealth for Unknowns | article-unknowns.webp | Blue/white on dark |
+| What Game Are You Playing? | article-game.webp | Black/gold curves |
+| Understanding Your Financial Levers | article-levers.webp | Dark sepia curves |
 
 **Photographer:** Pawel Czerwinski — https://unsplash.com/@pawel_czerwinski
 
 ### Avatars & headshot
 - Hero social proof uses gold-star-in-navy-circle initials (no photos)
 - Old testimonial avatar photos are no longer used on any page
-- `images/headshot-pierre.png` — Pierre Taljaard (author bio on articles + about-us page). Central default set in `src/content.config.ts`
-- `images/avatar-james-hartley.jpg` — old placeholder, no longer referenced
+- `images/headshot-pierre.webp` — Pierre Taljaard (400px, author bio on articles + about-us page). Central default set in `src/content.config.ts`
 
 ### Image CSS rules
 ```css
@@ -447,22 +448,23 @@ Every article page (generated from markdown via ArticleLayout) includes:
 - Article body: max-width 720px centered column
 - Blockquote styling: 3px gold left border, Cormorant italic
 - Author bio card below article
-- Share row: LinkedIn, Twitter/X, Copy link (clipboard JS)
 - Related articles: 3 cards linking to other articles
-- Final CTA section: navy, "Book your free free call"
+- Final CTA section: navy, "Book your free call"
 
 ---
 
 ## Schema.org structured data
-All pages have JSON-LD structured data (passed via BaseLayout `schema` prop):
-- **Homepage:** FinancialService (full business info), WebSite, FAQPage
-- **Service pages:** Service with FinancialService provider + FAQPage schema (all 4 pages)
-- **About us:** AboutPage with FinancialService entity
-- **About you:** WebPage
-- **Contact:** ContactPage with address/email
-- **Knowledge & Insight:** CollectionPage
-- **Contact success:** WebPage
-- **Articles:** Article with author, publisher, image, datePublished, dateModified
+All pages have JSON-LD structured data (passed via BaseLayout `schema` prop).
+Homepage FinancialService has `@id: "https://simplewealth.co.za/#organization"` — all other pages reference it via `@id`.
+
+- **Homepage:** FinancialService (full business info with `@id`, `image`), WebSite, FAQPage
+- **Service pages:** Service (with `url`, `provider` via `@id`) + BreadcrumbList + FAQPage (all 4 pages)
+- **About us:** AboutPage (via `@id`) + Person schema for Pierre (credentials, image, LinkedIn)
+- **About you:** WebPage (via `@id`)
+- **Contact:** ContactPage (via `@id`)
+- **Knowledge & Insight:** CollectionPage (via `@id`) with ItemList of all articles
+- **Contact success:** WebPage (via `@id`, `noindex`)
+- **Articles:** Article (absolute image URL, datePublished, author, publisher via `@id`) + BreadcrumbList + `article:published_time` OG meta
 
 ---
 
@@ -508,19 +510,27 @@ All pages served with:
 ---
 
 ## SEO, AIO & performance
-- Schema.org JSON-LD on all pages (including datePublished on articles, WebPage on contact-success)
-- Homepage FinancialService schema includes: `founder` with CFP/CFA credentials, `hasCredential` with FSP 50637, `areaServed` array (South Africa, KwaZulu-Natal, Ballito, Umhlali), `knowsAbout` with regional search terms, `addressRegion: "KwaZulu-Natal"` on all PostalAddress objects
-- Service page schemas include `areaServed` array (country + province + cities)
+- Schema.org JSON-LD on all pages with `@id` entity linking across the site
+- Homepage FinancialService schema includes: `@id`, `image`, `founder` with CFP/CFA credentials, `hasCredential` with FSP 50637, `areaServed` array (South Africa, KwaZulu-Natal, Ballito, Umhlali), `knowsAbout` with regional search terms
+- Service page schemas include `url`, `provider` via `@id`, `areaServed`, BreadcrumbList
+- About Us includes Person schema for Pierre (credentials, image, LinkedIn)
+- Knowledge & Insight includes ItemList of all articles
+- Article pages include BreadcrumbList and `article:published_time` OG meta
+- `lang="en-ZA"` for South African regional targeting
+- `og:locale` = `en_ZA` on all pages
 - Canonical URLs on all pages via `<link rel="canonical">` (derived from `Astro.url`)
-- Open Graph and Twitter Card meta tags on all pages (default OG image: `/images/hero-adviser.jpg`)
-- `llms.txt` in public root for AI crawler discoverability (company, credentials, services, location, key pages)
-- `robots.txt` references both `sitemap.xml` and `llms.txt`
-- `sitemap.xml` includes all pages + all 13 articles with trailing-slash URLs (contact-success excluded)
+- Open Graph and Twitter Card meta tags on all pages (articles pass their own `ogImage` and `ogType="article"`)
+- `llms.txt` in public root for AI crawler discoverability (company, credentials, services, philosophy, all 13 articles)
+- `robots.txt` references `sitemap-index.xml` and `llms.txt`
+- Sitemap auto-generated by `@astrojs/sitemap` integration (contact-success excluded via filter)
+- `trailingSlash: 'always'` in Astro config for URL consistency
+- `contact-success` page has `<meta name="robots" content="noindex">`
+- All images in WebP format with `width`/`height` attributes (prevents CLS)
+- Cache-Control headers: images/documents 1 year immutable, CSS/JS 1 day
 - Favicon: both `favicon.ico` and `favicon.svg` linked in BaseLayout
 - All images local (no third-party dependencies except Google Fonts)
-- Lazy loading on below-fold images
-- Logo optimised: 400x120px, ~17KB
-- Google Fonts with `display=swap`
+- Lazy loading on below-fold images; eager for hero/nav logo
+- Google Fonts trimmed to 6 weights with `display=swap`
 - Astro outputs zero client-side framework JS
 - `@media (prefers-reduced-motion: reduce)` disables animations, hover transforms, and smooth scroll
 

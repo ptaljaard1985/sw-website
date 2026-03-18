@@ -4,14 +4,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaSection from '../components/CtaSection.astro';
 import TestimonialsCarousel from '../components/TestimonialsCarousel.astro';
 
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "Knowledge & Insight",
-  "description": "Practical guidance to help you make better financial decisions — written in plain English, no jargon.",
-  "publisher": { "@type": "Organization", "name": "Simple Wealth", "url": "https://simplewealth.co.za" }
-};
-
 // Parse "Month Year" to a sortable date
 const months: Record<string, number> = {
   January: 0, February: 1, March: 2, April: 3,
@@ -30,9 +22,27 @@ const articles = allArticles.sort((a, b) => {
   };
   return parseDate(b.data.date).getTime() - parseDate(a.data.date).getTime();
 });
+
+const schema = [{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Knowledge & Insight",
+  "url": "https://simplewealth.co.za/knowledge-and-insight/",
+  "description": "Practical guidance to help you make better financial decisions. Written in plain English, no jargon.",
+  "publisher": { "@type": "FinancialService", "@id": "https://simplewealth.co.za/#organization", "name": "Simple Wealth" },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": articles.map((a, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "url": `https://simplewealth.co.za/articles/${a.id}/`,
+      "name": a.data.title
+    }))
+  }
+}];
 ---
 
-<BaseLayout title="Knowledge & Insight — Simple Wealth" description="Practical guidance to help you make better financial decisions — written in plain English, no jargon." activePage="knowledge" schema={schema}>
+<BaseLayout title="Financial Planning Articles and Insights | Simple Wealth" description="Practical guidance to help you make better financial decisions. Written in plain English by a Certified Financial Planner in Ballito, South Africa." activePage="knowledge" schema={schema}>
   <style slot="head">
     /* --- Knowledge & Insight page --- */
     .knowledge-hero {

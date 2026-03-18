@@ -7,10 +7,12 @@ import LeadMagnet from '../components/LeadMagnet.astro';
 const schema = [{
   "@context": "https://schema.org",
   "@type": "FinancialService",
+  "@id": "https://simplewealth.co.za/#organization",
   "name": "Simple Wealth",
   "alternateName": "Simple Wealth (Pty) Ltd",
   "description": "Independent financial planning from Ballito on the KZN north coast. We help affluent families align their wealth with their values, lifestyle, and long-term goals.",
   "url": "https://simplewealth.co.za",
+  "image": "https://simplewealth.co.za/images/hero-adviser.webp",
   "logo": "https://simplewealth.co.za/logo.png",
   "telephone": "087 012 5628",
   "email": "info@simplewealth.co.za",
@@ -69,7 +71,7 @@ const schema = [{
 ---
 
 <BaseLayout
-  title="Simple Wealth — Independent financial planning for the life you've built"
+  title="Independent Financial Planning, Ballito | Simple Wealth"
   description="Independent financial planning from Ballito, KZN north coast. We align your wealth with your values, lifestyle, and long-term goals."
   schema={schema}
 >

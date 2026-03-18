@@ -7,12 +7,9 @@ const schema = [{
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Risk Planning",
+  "url": "https://simplewealth.co.za/risk-planning/",
   "description": "We help you prepare for the unexpected with a risk strategy that protects your income, your family, and your future.",
-  "provider": {
-    "@type": "FinancialService",
-    "name": "Simple Wealth",
-    "url": "https://simplewealth.co.za"
-  },
+  "provider": { "@type": "FinancialService", "@id": "https://simplewealth.co.za/#organization", "name": "Simple Wealth" },
   "areaServed": [
     { "@type": "Country", "name": "South Africa" },
     { "@type": "AdministrativeArea", "name": "KwaZulu-Natal" },
@@ -20,6 +17,13 @@ const schema = [{
     { "@type": "City", "name": "Umhlali" }
   ],
   "serviceType": "Risk Planning"
+}, {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://simplewealth.co.za/" },
+    { "@type": "ListItem", "position": 2, "name": "Risk Planning", "item": "https://simplewealth.co.za/risk-planning/" }
+  ]
 }, {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -34,8 +38,8 @@ const schema = [{
 ---
 
 <BaseLayout
-  title="Risk Planning — Simple Wealth"
-  description="We help you prepare for the unexpected with a risk strategy that protects your income, your family, and your future."
+  title="Risk Planning | Financial Adviser in Ballito | Simple Wealth"
+  description="A risk strategy that protects your income, your family, and your future. Independent advice from a Certified Financial Planner in Ballito, KZN."
   activePage="risk-planning"
   showSocialInFooter={false}
   schema={schema}

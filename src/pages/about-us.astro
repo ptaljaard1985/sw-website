@@ -4,27 +4,26 @@ import CtaSection from '../components/CtaSection.astro';
 import TestimonialsCarousel from '../components/TestimonialsCarousel.astro';
 import LeadMagnet from '../components/LeadMagnet.astro';
 
-const schema = {
+const schema = [{
   "@context": "https://schema.org",
   "@type": "AboutPage",
   "name": "About Simple Wealth",
+  "url": "https://simplewealth.co.za/about-us/",
   "description": "Choosing someone to help with your finances is a big decision. Learn about our team, values, and why clients trust Simple Wealth.",
-  "mainEntity": {
-    "@type": "FinancialService",
-    "name": "Simple Wealth",
-    "url": "https://simplewealth.co.za",
-    "email": "info@simplewealth.co.za",
-    "telephone": "087 012 5628",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Office 7.17, Workshop17, 7th Floor, Ballito Junction Regional Mall, Leonora Dr",
-      "addressLocality": "Ballito",
-      "addressRegion": "KwaZulu-Natal",
-      "postalCode": "4399",
-      "addressCountry": "ZA"
-    }
-  }
-};
+  "mainEntity": { "@type": "FinancialService", "@id": "https://simplewealth.co.za/#organization", "name": "Simple Wealth" }
+}, {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Pierre Taljaard",
+  "jobTitle": "Director & Financial Planner",
+  "image": "https://simplewealth.co.za/images/headshot-pierre.webp",
+  "worksFor": { "@type": "FinancialService", "@id": "https://simplewealth.co.za/#organization", "name": "Simple Wealth" },
+  "hasCredential": [
+    { "@type": "EducationalOccupationalCredential", "name": "Certified Financial Planner (CFP)" },
+    { "@type": "EducationalOccupationalCredential", "name": "CFA Charterholder" }
+  ],
+  "sameAs": ["https://www.linkedin.com/in/ptaljaard/", "https://www.pierretaljaard.com/"]
+}];
 ---
 
 <BaseLayout

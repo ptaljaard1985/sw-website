@@ -7,12 +7,9 @@ const schema = [{
   "@context": "https://schema.org",
   "@type": "Service",
   "name": "Estate Planning",
+  "url": "https://simplewealth.co.za/estate-planning/",
   "description": "Estate planning that makes sure your wealth goes to the right people, at the right time, in the right way.",
-  "provider": {
-    "@type": "FinancialService",
-    "name": "Simple Wealth",
-    "url": "https://simplewealth.co.za"
-  },
+  "provider": { "@type": "FinancialService", "@id": "https://simplewealth.co.za/#organization", "name": "Simple Wealth" },
   "areaServed": [
     { "@type": "Country", "name": "South Africa" },
     { "@type": "AdministrativeArea", "name": "KwaZulu-Natal" },
@@ -20,6 +17,13 @@ const schema = [{
     { "@type": "City", "name": "Umhlali" }
   ],
   "serviceType": "Estate Planning"
+}, {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://simplewealth.co.za/" },
+    { "@type": "ListItem", "position": 2, "name": "Estate Planning", "item": "https://simplewealth.co.za/estate-planning/" }
+  ]
 }, {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -34,8 +38,8 @@ const schema = [{
 ---
 
 <BaseLayout
-  title="Estate Planning — Simple Wealth"
-  description="Estate planning that makes sure your wealth goes to the right people, at the right time, in the right way."
+  title="Estate Planning | Financial Adviser in Ballito | Simple Wealth"
+  description="Estate planning that makes sure your wealth goes to the right people, at the right time, in the right way. Independent advice from a CFP in Ballito, South Africa."
   activePage="estate-planning"
   showSocialInFooter={false}
   schema={schema}

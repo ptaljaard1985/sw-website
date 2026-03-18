@@ -1,7 +1,6 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://simplewealth.co.za/sitemap.xml
+Sitemap: https://simplewealth.co.za/sitemap-index.xml
 
-# AI crawler context
-llms.txt: https://simplewealth.co.za/llms.txt
+# AI crawler context — see /llms.txt for company info, services, and articles
