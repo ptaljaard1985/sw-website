@@ -2638,6 +2638,20 @@ p:last-child {
     display: none;
   }
 
+  .trust-badges {
+    gap: 12px;
+  }
+
+  .trust-badge {
+    font-size: 0.8rem;
+    gap: 4px;
+  }
+
+  .trust-badge svg {
+    width: 16px;
+    height: 16px;
+  }
+
   .contact-map iframe {
     height: 250px;
   }
