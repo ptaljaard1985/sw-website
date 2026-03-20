@@ -243,12 +243,13 @@ p:last-child {
   z-index: 1000;
   padding: 16px 0;
   transition: all var(--transition);
-  background: var(--color-white);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+  background: transparent;
 }
 
 .nav.scrolled {
   padding: 12px 0;
+  background: var(--color-white);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
 }
 
 .nav__inner {
@@ -268,6 +269,12 @@ p:last-child {
 .nav__logo img {
   height: 64px;
   width: auto;
+  filter: brightness(0) invert(1);
+  transition: filter var(--transition);
+}
+
+.nav.scrolled .nav__logo img {
+  filter: none;
 }
 
 .nav__links {
@@ -279,17 +286,26 @@ p:last-child {
 .nav__link {
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--color-text);
+  color: rgba(255, 255, 255, 0.85);
   transition: color var(--transition);
   position: relative;
 }
 
 .nav__link:hover {
-  color: var(--color-gold);
+  color: var(--color-white);
 }
 
 .nav__link.active {
-  color: var(--color-gold);
+  color: var(--color-white);
+}
+
+.nav.scrolled .nav__link {
+  color: var(--color-text);
+}
+
+.nav.scrolled .nav__link:hover,
+.nav.scrolled .nav__link.active {
+  color: var(--color-navy);
 }
 
 /* Dropdown */
@@ -365,9 +381,13 @@ p:last-child {
   display: block;
   width: 24px;
   height: 2px;
-  background: var(--color-navy);
+  background: var(--color-white);
   border-radius: 2px;
   transition: all var(--transition);
+}
+
+.nav.scrolled .nav__hamburger span {
+  background: var(--color-navy);
 }
 
 .nav__hamburger.active span:nth-child(1) {
@@ -431,6 +451,22 @@ p:last-child {
 .nav__mobile .btn {
   margin-top: 16px;
   text-align: center;
+}
+
+/* Mobile nav: always white with color logo */
+@media (max-width: 1023px) {
+  .nav {
+    background: var(--color-white);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .nav__logo img {
+    filter: none;
+  }
+
+  .nav__hamburger span {
+    background: var(--color-navy);
+  }
 }
 
 /* --- Hero --- */
