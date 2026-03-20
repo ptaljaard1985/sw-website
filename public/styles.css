@@ -2630,6 +2630,24 @@ p:last-child {
   .contact-map iframe {
     height: 300px;
   }
+
+  .trust-badges {
+    gap: 10px;
+  }
+
+  .trust-badge {
+    font-size: 0.85rem;
+    background: rgba(255, 255, 255, 0.12);
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+
+  .hero .fade-up,
+  .contact-grid .fade-up,
+  .contact-form.fade-up {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @media (max-width: 480px) {
