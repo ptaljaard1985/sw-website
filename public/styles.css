@@ -243,12 +243,11 @@ p:last-child {
   z-index: 1000;
   padding: 16px 0;
   transition: all var(--transition);
-  background: transparent;
+  background: var(--color-white);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
 }
 
 .nav.scrolled {
-  background: var(--color-white);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
   padding: 12px 0;
 }
 
@@ -269,12 +268,6 @@ p:last-child {
 .nav__logo img {
   height: 64px;
   width: auto;
-  filter: brightness(0) invert(1);
-  transition: filter var(--transition);
-}
-
-.nav.scrolled .nav__logo img {
-  filter: none;
 }
 
 .nav__links {
@@ -286,13 +279,9 @@ p:last-child {
 .nav__link {
   font-size: 0.9rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--color-text);
   transition: color var(--transition);
   position: relative;
-}
-
-.nav.scrolled .nav__link {
-  color: var(--color-text);
 }
 
 .nav__link:hover {
@@ -301,11 +290,6 @@ p:last-child {
 
 .nav__link.active {
   color: var(--color-gold);
-}
-
-.nav.scrolled .nav__link:hover,
-.nav.scrolled .nav__link.active {
-  color: var(--color-navy);
 }
 
 /* Dropdown */
@@ -381,13 +365,9 @@ p:last-child {
   display: block;
   width: 24px;
   height: 2px;
-  background: var(--color-white);
+  background: var(--color-navy);
   border-radius: 2px;
   transition: all var(--transition);
-}
-
-.nav.scrolled .nav__hamburger span {
-  background: var(--color-navy);
 }
 
 .nav__hamburger.active span:nth-child(1) {
@@ -410,7 +390,7 @@ p:last-child {
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--color-navy);
+  background: var(--color-white);
   z-index: 999;
   padding: 80px 24px 40px;
   flex-direction: column;
@@ -424,9 +404,9 @@ p:last-child {
 
 .nav__mobile a {
   font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--color-navy);
   padding: 12px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--color-border);
   transition: color var(--transition);
 }
 
@@ -443,7 +423,7 @@ p:last-child {
 .nav__mobile .mobile-sub a {
   display: block;
   font-size: 1rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--color-text-light);
   border: none;
   padding: 8px 0;
 }
@@ -2683,10 +2663,6 @@ p:last-child {
     display: none;
   }
 
-  .trust-badge + .trust-badge::before {
-    content: " · ";
-    color: rgba(255, 255, 255, 0.5);
-  }
 
   .contact-map iframe {
     height: 250px;
