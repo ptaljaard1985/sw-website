@@ -37,7 +37,7 @@ But your life goes beyond rules of thumb, and while they are a brilliant way to 
 
 However, we think that this topic goes beyond numbers. Your correct savings number is better understood as a feeling. You need to be able to sustain it month after month, but it also requires intention and occasional sacrifice. That's the sweet spot. If it feels easy, you're probably selling your "future self" short. If it feels impossible, you'll abandon ship at the first unexpected expense.
 
-Somewhere in the middle — right between where it feels like a pinch and where it feels impossible — is most often the right answer.
+Somewhere in the middle, right between where it feels like a pinch and where it feels impossible, is most often the right answer.
 
 We think this mental model carries over into other topics, too.
 
@@ -45,7 +45,7 @@ Your emergency fund should probably feel slightly larger than strictly necessary
 
 ## An ongoing challenge
 
-As life evolves, so should your number. Every pay increase is an opportunity to widen the gap between what you earn and what you spend, and annual nudges that push you gently back into that discomfort zone will keep your "future self" on track
+As life evolves, so should your number. Every pay increase is an opportunity to widen the gap between what you earn and what you spend, and annual nudges that push you gently back into that discomfort zone will keep your "future self" on track.
 
 In summary, being easy on your "present self" harms your "future self". We encourage you to aim for some discomfort now so that you can enjoy significant comfort later. That's the trade-off, but we think the sacrifice will be worth it in the long run.
 
