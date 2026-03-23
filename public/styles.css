@@ -1451,28 +1451,31 @@ p:last-child {
   gap: 48px;
 }
 
-.belief {
-  text-align: center;
+.belief__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
 }
 
 .belief__number {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
   background: var(--color-navy);
   color: var(--color-gold);
   border-radius: 50%;
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  margin-bottom: 16px;
 }
 
 .belief h3 {
   color: var(--color-gold);
-  margin-bottom: 12px;
+  font-weight: 700;
 }
 
 .belief p {
