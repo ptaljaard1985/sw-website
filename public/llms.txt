@@ -44,9 +44,20 @@ Professionals and families — typically aged 45 to 65 — who want clear, indep
 - Transparent: fee-based model with no hidden commissions, clients can leave at any time
 - Proactive: structured annual service calendar with quarterly touchpoints, not just an annual review
 
-## Investment philosophy
+## What we believe
 
-Simple Wealth follows an evidence-based, long-term investment approach. Core principles: broad diversification, low costs, disciplined rebalancing, and patience. We do not try to time markets or chase short-term returns. Our role is to build a plan, keep clients on track, and adjust when life changes.
+10 core beliefs that underpin everything we do:
+
+1. There are only two types of investors — some outlive their money, others' money outlives them. Our primary purpose is to guide you towards an independent retirement you can't outlive.
+2. Purchasing power is the only sane definition of money — money is only useful to the extent that it helps you fund the life you want to live.
+3. Inflation is the investor's chief enemy — the slow and steady increase in the price of goods and services, and your financial plan needs to be designed to defeat it.
+4. Global equities provide the best protection from inflation — historically the asset class that offers the highest long-term returns.
+5. We are owners, not speculators — we invest as long-term owners of businesses, not short-term stock market speculators.
+6. Temporary market declines are guaranteed and cannot be timed — the only way to earn the market's full return has been to remain invested at all times.
+7. Goals > Plan > Portfolio — portfolio decisions must be based on a personal financial plan, based on your unique circumstances and life goals.
+8. No portfolio changes without good reason — if there's been no change to your circumstances, your plan and portfolio should not change.
+9. We always act on a plan and never react to current events — lifetime investment success comes from continuously acting on your plan.
+10. Simplicity is the ultimate sophistication — transparent simplicity will always triumph over opaque complexity.
 
 ## Key pages
 
@@ -58,6 +69,7 @@ Simple Wealth follows an evidence-based, long-term investment approach. Core pri
 - About us: https://www.simplewealth.co.za/about-us/
 - About you: https://www.simplewealth.co.za/about-you/
 - Knowledge and insight: https://www.simplewealth.co.za/knowledge-and-insight/
+- What we believe: https://www.simplewealth.co.za/what-we-believe/
 - Contact: https://www.simplewealth.co.za/contact/
 
 ## Articles

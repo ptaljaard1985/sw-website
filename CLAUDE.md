@@ -71,6 +71,7 @@ src/
 │   ├── tax-planning.astro         # Service page
 │   ├── about-us.astro             # Team page
 │   ├── about-you.astro            # Ideal client page
+│   ├── what-we-believe.astro       # 10 core investment beliefs
 │   ├── contact.astro              # Book a free call (Netlify form)
 │   ├── contact-success.astro      # Form submission thank-you page (no nav/footer)
 │   ├── knowledge-and-insight.astro # Editorial hub / article listing
@@ -347,6 +348,7 @@ How we help ▾
   - Plan your legacy → /estate-planning/
 About you → /about-you/
 About us → /about-us/
+What we believe → /what-we-believe/
 Knowledge → /knowledge-and-insight/
 [Book your free free call] → /contact/  ← CTA button, gold background
 ```
@@ -361,7 +363,7 @@ Knowledge → /knowledge-and-insight/
 All internal links use trailing-slash format:
 - `/` (homepage)
 - `/investment-planning/`, `/risk-planning/`, `/estate-planning/`, `/tax-planning/`
-- `/about-us/`, `/about-you/`
+- `/about-us/`, `/about-you/`, `/what-we-believe/`
 - `/contact/`, `/contact-success/`
 - `/knowledge-and-insight/`
 - `/articles/{slug}/` (dynamic from content collection)
