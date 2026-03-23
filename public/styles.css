@@ -1438,6 +1438,19 @@ p:last-child {
   font-size: 0.95rem;
 }
 
+.value-card p + p {
+  margin-top: 8px;
+}
+
+/* Beliefs grid — single column, max-width for readability */
+.beliefs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
 /* Metrics */
 .metrics {
   display: grid;
