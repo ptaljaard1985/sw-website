@@ -1442,13 +1442,46 @@ p:last-child {
   margin-top: 8px;
 }
 
-/* Beliefs grid — single column, max-width for readability */
-.beliefs-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
+/* Beliefs list */
+.beliefs-list {
   max-width: 720px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.belief {
+  text-align: center;
+}
+
+.belief__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: var(--color-navy);
+  color: var(--color-gold);
+  border-radius: 50%;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.belief h3 {
+  color: var(--color-gold);
+  margin-bottom: 12px;
+}
+
+.belief p {
+  color: var(--color-text-light);
+  font-size: 0.95rem;
+}
+
+.belief p + p {
+  margin-top: 8px;
 }
 
 /* Metrics */
