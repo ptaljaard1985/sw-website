@@ -163,8 +163,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const slidesArray = Array.from(track.children);
     for (let i = slidesArray.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      track.appendChild(slidesArray[j]);
+      [slidesArray[i], slidesArray[j]] = [slidesArray[j], slidesArray[i]];
     }
+    slidesArray.forEach(slide => track.appendChild(slide));
     const slides = carousel.querySelectorAll('.carousel__slide');
     const prevBtn = carousel.querySelector('.carousel__btn--prev');
     const nextBtn = carousel.querySelector('.carousel__btn--next');
