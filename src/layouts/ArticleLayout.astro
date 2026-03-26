@@ -19,11 +19,14 @@ interface Props {
 
 const { title, description, category, image, imageAlt, date, author, authorTitle, authorPhoto, authorBio, slug } = Astro.props;
 
-// Get related articles: same category first, then others, excluding current
+// Get 3 random related articles, excluding current
 const allArticles = await getCollection('articles');
-const sameCategory = allArticles.filter(a => a.data.category === category && a.id !== slug);
-const otherArticles = allArticles.filter(a => a.data.category !== category && a.id !== slug);
-const related = [...sameCategory, ...otherArticles].slice(0, 3);
+const others = allArticles.filter(a => a.id !== slug);
+for (let i = others.length - 1; i > 0; i--) {
+  const j = Math.floor(Math.random() * (i + 1));
+  [others[i], others[j]] = [others[j], others[i]];
+}
+const related = others.slice(0, 3);
 
 // Parse "Month Year" date string to ISO format for schema
 const months: Record<string, string> = {

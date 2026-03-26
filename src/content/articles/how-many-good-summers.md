@@ -9,7 +9,7 @@ author: "Pierre Taljaard"
 authorTitle: "Certified Financial Planner"
 ---
 
-The change of seasons is a welcome reminder that we're not living in a never-ending now. Time marches on, and it waits for no one. Whether you find yourself on your way into, or out of, another summer, it is a good time to reflect on the shortness of time.
+The change of seasons is a welcome reminder that we're not living in a never-ending now. Time marches on, and it waits for no one. Whether you find yourself on your way into, or out of, another Summer, it is a good time to reflect on the shortness of time.
 
 At this time of the year we also ponder the year that's been and start thinking about our aspirations for what lies ahead. We're roaring through the roaring twenties. While the days can feel long, the years are indeed short.
 
@@ -23,7 +23,7 @@ Those who attain monetary wealth realise, sometimes too late, that real wealth i
 
 One of the few benefits of the pandemic is that it forced most of us to spend time very differently from how we used to. It's given us a valuable opportunity to recalibrate how we view the trade-off between time and money. Time is an abstract concept, difficult to get our heads around at times. One exercise that brings it to life is to consider how many specific events or seasons you may have left.
 
-How many books will you realistically still be able to read? How many holidays do you have left to enjoy with your parents or children? How many good summers do you have to look forward to, ones you are healthy enough to enjoy? We rarely reflect on how much quality time we have left, mostly caught up in the hustle and bustle of life.
+How many books will you realistically still be able to read? How many holidays do you have left to enjoy with your parents or children? How many good Summers do you have to look forward to, ones you are healthy enough to enjoy? We rarely reflect on how much quality time we have left, mostly caught up in the hustle and bustle of life.
 
 ## Time enough
 
@@ -37,4 +37,4 @@ A more holistic approach to your own financial planning may, therefore, involve 
 
 Given that we find ourselves nearing the end of another calendar year, being intentional with our time is a challenge we can all rise to. It is our job to help you to make a connection between your money and the life you wish to live. It is a responsibility we take seriously and cherish.
 
-As always, we are here to help you to make informed decisions about your money and enjoy the summers you have left.
+As always, we are here to help you to make informed decisions about your money and enjoy the Summers you have left.
