@@ -29,15 +29,15 @@ Investing more is a powerful lever that can significantly impact our long-term f
 
 ## Enhancing investment returns
 
-While controlling expenses, increasing income, and investing more are essential, investors should also focus on enhancing their investment returns. This lever involves making informed decisions about asset allocation and diversification, and selecting investments that align with our long-term objectives. Optimising our investment strategy and seeking opportunities to maximise returns can significantly impact our overall wealth accumulation.
+While controlling expenses, increasing income, and investing more are essential, investors should also focus on enhancing their investment returns. This lever involves making informed decisions about asset allocation and diversification, and selecting investments that align with our long-term objectives. While investment returns alone should not be relied upon as the primary driver of financial success, optimising our investment strategy and seeking opportunities to maximise returns can significantly impact our overall wealth accumulation.
 
 ## Adjusting your retirement timeline
 
-One often overlooked financial lever is adjusting our retirement timeline. While many individuals plan to retire at a specific age, it's important to re-evaluate this timeline based on our financial situation and goals. Extending our working years can give us additional time to save and invest, allowing our assets to grow further. On the other hand, some individuals may choose to retire earlier, focusing on achieving financial independence and creating a fulfilling lifestyle.
+One often overlooked financial lever is adjusting our retirement timeline. While many individuals plan to retire at a specific age, it's important to re-evaluate this timeline based on our financial situation and goals. Extending our working years can give us additional time to save and invest, allowing our assets to grow further. On the other hand, some individuals may choose to retire earlier, focusing on achieving financial independence and creating a fulfilling lifestyle. By carefully considering our retirement timeline, we can make informed decisions that align with our unique circumstances.
 
 ## Avoiding financial mistakes
 
-Avoiding financial mistakes is critical to protecting our wealth and financial well-being. By being vigilant and educated about common financial pitfalls, we can mitigate risks and preserve our financial resources. Learning from our mistakes and seeking wisdom from experienced individuals can help us navigate the complex landscape of personal finance.
+Avoiding financial mistakes is critical to protecting our wealth and financial well-being. By being vigilant and educated about common financial pitfalls, we can mitigate risks and preserve our financial resources. Learning from our mistakes and seeking wisdom from experienced individuals can help us navigate the complex landscape of personal finance and make sound financial decisions.
 
 ## Housing considerations
 
@@ -47,4 +47,4 @@ Housing decisions can also serve as a financial lever. Right-sizing or downsizin
 
 In summary, investors have a range of powerful financial levers to take control of their financial situation. Pulling these levers consistently over time can compound to create life-changing results.
 
-Working with a qualified financial adviser can provide invaluable guidance in adjusting these levers to match your specific circumstances and goals. By understanding these levers and collaborating with an adviser on how to pull them, you put yourself in the best position to progress steadily towards your definition of financial success.
+However, working with a qualified financial adviser can provide invaluable guidance in adjusting these levers to match your specific circumstances and financial goals. By understanding these levers and collaborating with an adviser on how to pull them, you put yourself in the best position to progress steadily towards your definition of financial success.
