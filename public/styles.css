@@ -2349,6 +2349,28 @@ p:last-child {
   text-decoration: underline;
 }
 
+.article-body ol,
+.article-body ul {
+  padding-left: 1.5em;
+  margin-bottom: 24px;
+}
+
+.article-body ol {
+  list-style: decimal;
+}
+
+.article-body ul {
+  list-style: disc;
+}
+
+.article-body li {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
 /* Author bio */
 .author-bio {
   max-width: 720px;
