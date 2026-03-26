@@ -23,7 +23,7 @@ Think of your financial journey as an ocean voyage. Your strategy is the charted
 
 In this metaphorical example, tactics are the day-to-day adjustments you might make in response to changing conditions, such as changing your sail configuration for a passing storm.
 
-While the weather may change dramatically from day to day, your destination remains constant. Unless something significant changes in your life (your health, family situation, career, or financial goals) your fundamental strategy likely doesn't need to change. Yet many investors abandon solid strategies in favour of tactical adjustments, often based on nothing more substantial than market volatility or predictions from so-called experts about what might happen next.
+While the weather may change dramatically from day to day, your destination remains constant. Unless something significant changes in your life (your health, family situation, career, or financial goals), your fundamental strategy likely doesn't need to change. Yet many investors abandon solid strategies in favour of tactical adjustments, often based on nothing more substantial than market volatility or predictions from so-called experts about what might happen next.
 
 Successful investors understand that no one consistently knows what will happen next in the markets — not the economists, not the strategists, not the portfolio managers. Markets are complex systems influenced by countless variables, making short-term predictions impossible and ultimately irrelevant.
 
