@@ -33,11 +33,9 @@ The reality is that temporary declines happen regularly without warning. The bes
 
 Over the last few decades, the average investor's life expectancy has significantly increased. A few generations ago, it was rare for a retiree to live for longer than fifteen years while relying on their investment assets. Today, thanks to advancements in medical care, diets, and healthier lifestyles, a retired couple has a one-in-three chance of one of them living to age 95.
 
-For the average retiree, that is over three decades of living expenses, medical care, and unexpected emergencies that need to be funded by their pensions and investment assets. From experience, the typical retiree vastly underestimates the risk that this poses to them in their quest to remain financially independent.
+For the average retiree, that is over three decades of living expenses, medical care, and unexpected emergencies that need to be funded by their pensions and investment assets. From experience, the typical retiree vastly underestimates the risk that this poses to them in their quest to remain financially independent. The investment decisions they will need to make to provide for this period will require them to put aside other fears, such as the innate fear of market declines, to give them the best chance of success.
 
 The goal is three decades of a rising, inflation-cancelling income. The risk is that they focus on short-term fears that disadvantage them in the long term.
-
-The investment decisions they will need to make to provide for this period will require them to put aside other fears, such as the innate fear of market declines, to give them the best chance of success.
 
 ## A changing landscape
 
