@@ -45,6 +45,6 @@ The shift in focus that increasing longevity brings into play will impact the mi
 
 Additionally, those who are still firmly in the "savings stage" will need to adjust their expectations for what the appropriate amount is to save for their future selves. It's a changing world, and no one is safe from the need to adapt.
 
-As the world continues to evolve, we encourage you to consider how this impacts the way you are providing for your own future. Our financial planning philosophy will always emphasise regular reviews, and in this way we hope to make sure that our clients are always prepared for changes that others are yet to identify.
+As the world continues to evolve in various ways, we encourage you to consider how this impacts the way you are providing for your own future. Our financial planning philosophy will always emphasise regular reviews, and in this way we hope to make sure that our clients are always prepared for changes that others are yet to identify.
 
 We look forward to working with you in preparing for a longer future.
