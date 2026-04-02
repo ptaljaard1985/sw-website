@@ -3,7 +3,7 @@
 ## What this project is
 A financial advisory website for **Simple Wealth**, a South Africa-based independent financial planning firm. The site targets affluent professionals aged 45–65 who need wealth management, investment, tax, estate, and protection planning services.
 
-The site is replacing the current Webflow site at simplewealth.co.za. Built with **Astro** for templating and content collections, outputting static HTML. No client-side frameworks — just vanilla CSS and JS.
+The live website at simplewealth.co.za. Built with **Astro** for templating and content collections, outputting static HTML. No client-side frameworks — just vanilla CSS and JS.
 
 ---
 
@@ -15,7 +15,7 @@ The site is replacing the current Webflow site at simplewealth.co.za. Built with
 - Semantic HTML throughout
 - **Hosting:** Netlify (free tier) — forms handled via Netlify Forms. Auto-deploys from GitHub on push to `main`
 - **Repo:** https://github.com/ptaljaard1985/sw-website.git
-- **Staging URL:** new.simplewealth.co.za (CNAME → Netlify)
+- **Live URL:** www.simplewealth.co.za
 - **Schema.org structured data** on all pages (JSON-LD, passed via layout `schema` prop)
 - **Images:** all stored locally in `public/images/` (no external image dependencies)
 - **Articles:** Markdown files in `src/content/articles/` using Astro content collections
@@ -497,8 +497,8 @@ npm run preview   # Preview built output locally
 - Publish directory: `dist`
 - Netlify Forms work automatically with `data-netlify="true"` in static HTML output
 - Auto-deploys on push to `main` branch via GitHub integration
-- Staging: `new.simplewealth.co.za` (CNAME to `aquamarine-pie-06e3b3.netlify.app`)
-- DNS managed at Afrihost (simplewealth.co.za)
+- Live: `www.simplewealth.co.za`
+- DNS managed at Cloudflare (simplewealth.co.za)
 
 ### Security headers (netlify.toml)
 All pages served with:
@@ -614,7 +614,7 @@ Several pages use UK-specific financial terms that don't apply in South Africa:
 6. ~~Add analytics~~ ✓ Done — Plausible Analytics (privacy-friendly, no cookies, GDPR compliant)
 7. ~~Link compliance documents in footer~~ ✓ Done — PDFs in `public/documents/`, linked from Footer component
 8. ~~Add netlify.toml config file~~ ✓ Done
-9. Connect custom domain (simplewealth.co.za) when ready to replace Webflow
+9. ~~Connect custom domain (simplewealth.co.za) when ready to replace Webflow~~ ✓ Done — live at www.simplewealth.co.za
 10. Verify article content matches original source (humansundermanagement.com) — WebFetch tool paraphrased some articles
 
 ---
