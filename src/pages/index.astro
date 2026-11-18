@@ -76,7 +76,7 @@ const schema = [{
   description="Independent financial planning from Ballito, KZN north coast. We align your wealth with your values, lifestyle, and long-term goals."
   schema={schema}
 >
-  <link rel="stylesheet" href="/home.css" slot="head">
+  <link rel="stylesheet" href="/home.css?v=2" slot="head">
   <link rel="preload" href="/images/hero-adviser-mobile.webp" as="image" type="image/webp" media="(max-width: 768px)" slot="head">
   <link rel="preload" href="/images/hero-adviser.webp" as="image" type="image/webp" media="(min-width: 769px)" slot="head">
 
@@ -91,35 +91,41 @@ const schema = [{
       </picture>
     </div>
     <div class="hero__inner">
-      <div class="trust-badges fade-up">
-        <div class="trust-badge"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Clarity</div>
-        <div class="trust-badge"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> Peace of mind</div>
-        <div class="trust-badge"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Independent advice</div>
-      </div>
-      <h1 class="fade-up">Financial <span class="hero-highlight">clarity</span> for the life you've built</h1>
-      <p class="fade-up">Expert financial planning that carefully aligns your money with your values, lifestyle, and long-term goals.</p>
-      <div class="btn-group fade-up">
-        <a href="/contact/" class="btn btn--primary">Book a free call</a>
-        <a href="#services" class="btn btn--outline-white">How we help</a>
-      </div>
-      <div class="social-proof fade-up">
-        <div class="avatar-stack">
-          <span class="avatar-initial"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="var(--color-gold)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
-          <span class="avatar-initial"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="var(--color-gold)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
-          <span class="avatar-initial"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="var(--color-gold)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
-          <span class="avatar-initial"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="var(--color-gold)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
-          <span class="avatar-initial"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="var(--color-gold)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+      <h1 class="fade-up">Financial <em class="hero-highlight">clarity</em> for the life you've built</h1>
+      <div class="hv-hero__side">
+        <p class="fade-up">Expert financial planning that carefully aligns your money with your values, lifestyle, and long-term goals.</p>
+        <div class="btn-group fade-up">
+          <a href="/contact/" class="btn btn--primary">Book a free call</a>
+          <a href="#services" class="btn btn--outline-white">How we help</a>
         </div>
-        <div class="social-proof__text"><a href="#testimonials" class="social-proof__link"><strong>5.0 star rated</strong></a> &mdash; Trusted by families across South Africa</div>
+        <div class="social-proof fade-up">
+          <div class="avatar-stack">
+            <span class="avatar-initial"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="var(--color-gold)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="avatar-initial"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="var(--color-gold)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="avatar-initial"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="var(--color-gold)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="avatar-initial"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="var(--color-gold)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+            <span class="avatar-initial"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="var(--color-gold)" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+          </div>
+          <div class="social-proof__text"><a href="#testimonials" class="social-proof__link"><strong>5.0 star rated</strong></a> &mdash; Trusted by families across South Africa</div>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- Promise band -->
+  <div class="hv-band">
+    <ul class="hv-band__list">
+      <li>Clarity</li>
+      <li>Peace of mind</li>
+      <li>Independent advice</li>
+    </ul>
+  </div>
+
   <!-- Problem Section -->
-  <section class="section hv-problem" id="problems">
+  <section class="section hv-problem hv-navy" id="problems">
     <div class="container">
       <div class="hv-lede fade-up">
-        <h2>Managing your financial life can feel complex, time consuming, and risky</h2>
+        <h2>Managing your financial life can feel <em>complex, time consuming, and risky</em></h2>
         <p>Do any of these problems sound familiar?</p>
       </div>
       <ul class="hv-cols">
@@ -135,7 +141,7 @@ const schema = [{
   <section class="section hv-paper" id="solution">
     <div class="container hv-split">
       <div class="hv-split__intro fade-up">
-        <h2>We help busy families take control of their financial future.</h2>
+        <h2>We help busy families <em>take control</em> of their financial future.</h2>
         <p>Our clients experience the following benefits from working with us.</p>
       </div>
       <div class="hv-split__body">
@@ -150,7 +156,7 @@ const schema = [{
     </div>
   </section>
 
-  <TestimonialsCarousel grey={false} />
+  <TestimonialsCarousel grey={false} perView={1} />
 
   <!-- Services Section -->
   <section class="section" id="services">
@@ -172,7 +178,7 @@ const schema = [{
   <section class="section hv-paper" id="why">
     <div class="container hv-split">
       <div class="hv-split__intro fade-up">
-        <h2>Why people choose Simple Wealth</h2>
+        <h2>Why people choose <em>Simple Wealth</em></h2>
         <p>Clients choose us because we put their goals first, speak in plain English, and provide advice they can trust.</p>
       </div>
       <ol class="hv-split__body hv-reasons">
@@ -205,7 +211,7 @@ const schema = [{
   <section class="section hv-navy">
     <div class="container">
       <div class="hv-lede hv-lede--center fade-up">
-        <h2>Get crystal-clear financial understanding</h2>
+        <h2>Get <em>crystal-clear</em> financial understanding</h2>
         <p>Here's what you can expect from working with us.</p>
       </div>
       <div class="hv-sheets">

@@ -585,3 +585,354 @@
     transform: none;
   }
 }
+
+/* ============================================================
+   Bolder pass: scale, colour blocks, single large testimonial
+   ============================================================ */
+
+/* --- Type scale and emphasis --- */
+.home h2 {
+  font-size: clamp(2.5rem, 5.4vw, 4.75rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+}
+
+.home h2 em,
+.home h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-gold);
+}
+
+.home .hv-paper h2 em {
+  color: var(--color-gold-text);
+}
+
+.home .hv-lede {
+  max-width: 1040px;
+}
+
+/* --- Hero: full-bleed photo, oversized headline --- */
+.home .hero {
+  min-height: 100vh;
+  padding-top: 120px;
+  padding-bottom: 40px;
+}
+
+.home .hero h1 {
+  font-size: clamp(3.2rem, 9.4vw, 9rem);
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  max-width: 1100px;
+  margin-bottom: 32px;
+  text-wrap: balance;
+}
+
+.home .hero .hero-highlight::after {
+  bottom: -0.04em;
+  height: 0.12em;
+}
+
+.home .hero .btn-group {
+  margin-bottom: 28px;
+}
+
+/* --- Gold band --- */
+.home .hv-band {
+  background: var(--color-gold);
+  color: var(--color-navy);
+  padding: 22px 20px;
+  overflow: hidden;
+}
+
+.home .hv-band__list {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px 28px;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.5rem, 3.4vw, 2.6rem);
+  line-height: 1.15;
+}
+
+.home .hv-band__list li + li::before {
+  content: '\2022';
+  font-style: normal;
+  margin-right: 28px;
+  opacity: 0.55;
+}
+
+/* --- Problems on navy --- */
+.home .hv-problem.hv-navy h3 {
+  color: var(--color-white);
+}
+
+.home .hv-problem.hv-navy .hv-col {
+  border-color: var(--color-rule-light);
+}
+
+.home .hv-problem.hv-navy .hv-cols {
+  border-color: var(--color-rule-light);
+}
+
+.home .hv-problem.hv-navy .hv-col p {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.home .hv-problem.hv-navy .hv-lede p {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.6rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.home .hv-col h3 {
+  font-size: 1.75rem;
+}
+
+/* --- Testimonials: one large quote over a dark texture --- */
+.home #testimonials {
+  position: relative;
+  background:
+    linear-gradient(rgba(12, 24, 40, 0.86), rgba(12, 24, 40, 0.93)),
+    url('/images/article-levers.webp') center / cover no-repeat,
+    var(--color-navy);
+}
+
+.home #testimonials .section__header {
+  margin-bottom: 24px;
+}
+
+.home #testimonials h2 {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.home #testimonials .carousel {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.home #testimonials .carousel__slide {
+  flex: 0 0 100%;
+}
+
+.home #testimonials .testimonial-card {
+  border-top: none;
+  padding: 16px 8px 0;
+  text-align: center;
+  align-items: center;
+}
+
+.home #testimonials .testimonial-card__stars {
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.home #testimonials .testimonial-card blockquote {
+  font-size: clamp(1.7rem, 3.6vw, 3rem);
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+  font-weight: 300;
+  flex: 0 1 auto;
+  margin-bottom: 28px;
+  text-wrap: balance;
+}
+
+.home #testimonials .testimonial-card__author {
+  font-size: 0.85rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.home #testimonials .carousel__dots {
+  display: none;
+}
+
+/* --- Services: oversized index rows that invert on hover --- */
+.home .hv-service h4 {
+  font-size: clamp(1.9rem, 4.2vw, 3.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  transition: color var(--transition);
+}
+
+.home .hv-service p {
+  font-size: 1.05rem;
+}
+
+/* --- Why: bigger numerals --- */
+.home .hv-reason h3 {
+  font-size: 1.8rem;
+}
+
+/* --- Process --- */
+.home .hv-step h3 {
+  font-size: 1.7rem;
+}
+
+/* --- Final CTA --- */
+.home .cta-section {
+  padding: 96px 20px;
+}
+
+.home .cta-section h2 {
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.96;
+  margin-bottom: 24px;
+}
+
+.home .cta-section p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@media (min-width: 768px) {
+  .home .hero--bg-photo .hero__bg::after {
+    background:
+      linear-gradient(to top, rgba(10, 22, 40, 0.94) 0%, rgba(10, 22, 40, 0.55) 38%, rgba(10, 22, 40, 0) 68%),
+      linear-gradient(to bottom, rgba(10, 22, 40, 0.55) 0%, rgba(10, 22, 40, 0) 22%);
+  }
+
+  .home #testimonials .carousel__dots {
+    display: none;
+  }
+
+  .home .cta-section {
+    padding: 160px 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .home .hero {
+    padding-bottom: 64px;
+  }
+
+  /* headline, then supporting copy and actions in a row beneath it */
+  .home .hv-hero__side {
+    display: grid;
+    grid-template-columns: minmax(0, 520px) auto;
+    align-items: end;
+    justify-content: space-between;
+    column-gap: 48px;
+    row-gap: 24px;
+  }
+
+  .home .hv-hero__side p {
+    margin-bottom: 0;
+    max-width: none;
+    font-size: 1.25rem;
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .home .hv-hero__side .btn-group {
+    grid-row: 1;
+    grid-column: 2;
+    margin-bottom: 0;
+  }
+
+  .home .hv-hero__side .social-proof {
+    grid-column: 1 / -1;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-rule-light);
+  }
+
+  .home .hv-service {
+    grid-template-columns: 200px 1fr auto;
+    padding: 56px 0;
+  }
+
+  .home .hv-service::before {
+    content: '';
+    position: absolute;
+    inset: 0 -40px;
+    background: var(--color-navy);
+    opacity: 0;
+    transition: opacity var(--transition);
+    z-index: 0;
+  }
+
+  .home .hv-service > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .home .hv-service__link {
+    position: static;
+  }
+
+  .home .hv-service__link::after {
+    z-index: 2;
+  }
+
+  .home .hv-service:hover::before {
+    opacity: 1;
+  }
+
+  .home .hv-service:hover h4,
+  .home .hv-service:hover .hv-service__link {
+    color: var(--color-white);
+  }
+
+  .home .hv-service:hover h3 {
+    color: var(--color-gold);
+  }
+
+  .home .hv-service:hover p {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .home .hv-reason__number {
+    flex-basis: 88px;
+    font-size: 6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home .hv-service::before,
+  .home .hv-service h4 {
+    transition: none;
+  }
+}
+
+/* --- Refinements after review --- */
+.home .hero h1 {
+  font-size: clamp(3.2rem, 8vw, 7.6rem);
+}
+
+.home .hv-band__list {
+  flex-direction: column;
+  align-items: center;
+}
+
+.home .hv-band__list li + li::before {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .home .hero--bg-photo .hero__bg::after {
+    background:
+      linear-gradient(to top, rgba(10, 22, 40, 0.97) 0%, rgba(10, 22, 40, 0.88) 30%, rgba(10, 22, 40, 0.45) 52%, rgba(10, 22, 40, 0) 74%),
+      linear-gradient(to bottom, rgba(10, 22, 40, 0.55) 0%, rgba(10, 22, 40, 0) 22%);
+  }
+
+  .home .hv-band__list {
+    flex-direction: row;
+    align-items: baseline;
+  }
+
+  .home .hv-band__list li + li::before {
+    display: inline;
+  }
+}

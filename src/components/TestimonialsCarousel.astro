@@ -1,8 +1,9 @@
 ---
 interface Props {
   grey?: boolean;
+  perView?: number;
 }
-const { grey = true } = Astro.props;
+const { grey = true, perView } = Astro.props;
 ---
 
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none"><symbol id="star" viewBox="0 0 24 24"><path fill="#FBBC04" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></symbol></svg>
@@ -16,7 +17,7 @@ const { grey = true } = Astro.props;
         <a href="https://www.google.com/maps/place/Simple+Wealth/@-29.5266659,31.2010439,1605m/data=!3m1!1e3!4m18!1m9!3m8!1s0x1ef715d63d4a00df:0xfafd4b1168f6fd97!2sSimple+Wealth!8m2!3d-29.5266659!4d31.2036188!9m1!1b1!16s%2Fg%2F11kx3jq53p!3m7!1s0x1ef715d63d4a00df:0xfafd4b1168f6fd97!8m2!3d-29.5266659!4d31.2036188!9m1!1b1!16s%2Fg%2F11kx3jq53p?entry=ttu" target="_blank" rel="noopener">Google</a>
       </div>
     </div>
-    <div class="carousel fade-up">
+    <div class="carousel fade-up" data-per-view={perView}>
       <div class="carousel__track">
         <div class="carousel__slide">
           <div class="testimonial-card">
