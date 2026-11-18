@@ -190,7 +190,6 @@ authorBio: string (default: "Pierre has over 15 years...")
 --color-navy-light: #1e3a5a;
 --color-gold: #CD8F5E;
 --color-gold-hover: #b87d4e;
---color-gold-text: #9C6532; /* small gold text on white/grey — plain gold fails contrast there */
 --color-white: #ffffff;
 --color-light-bg: #f8f9fa;
 --color-text: #333333;
@@ -374,9 +373,8 @@ All internal links use trailing-slash format:
 ## Homepage sections (in order)
 1. Navigation (Header component)
 2. Hero — headline ("Financial clarity for the life you've built" with gold swoosh on "clarity"), subheading, dual CTA ("How we help" is white bg/gold text), trust badges, 5 gold-star circles, "5.0 star rated" links to #testimonials
-3. Problem — `.split` layout: heading left, 4 pain points as a hairline-separated `.plain-list` right (no cards)
-4. Solution — 4 benefits as open `.benefits` columns under a gold rule, with CTA (grey background, no cards)
-   (The four service pages use the same `.split` and `.benefits` layouts for their problem and approach sections)
+3. Problem — 4 pain point cards with icons
+4. Solution — 4 benefit cards with CTA (grey background)
 5. Testimonials — TestimonialsCarousel component (white background, `grey={false}`)
 6. Services — 4 service cards with photos (order: Investment, Tax, Risk, Estate) (grey background)
 7. Why choose us — 4 numbered reasons
