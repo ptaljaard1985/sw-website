@@ -684,21 +684,6 @@ p:last-child {
 }
 
 /* --- Problem / Solution cards --- */
-.problem-card,
-.solution-card {
-  text-align: center;
-  padding: 36px 24px;
-}
-
-.problem-card h3,
-.solution-card h3 {
-  font-weight: 600;
-}
-
-.problem-card .card__icon,
-.solution-card .card__icon {
-  margin: 0 auto 20px;
-}
 
 
 /* --- Split section: heading left, plain list right (homepage problems) --- */
@@ -2269,8 +2254,6 @@ p:last-child {
     grid-template-columns: repeat(4, 1fr);
   }
 
-  .problem-card h3,
-  .solution-card h3,
   .card h3 {
     min-height: 2.4em;
   }
