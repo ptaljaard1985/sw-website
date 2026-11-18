@@ -190,6 +190,7 @@ authorBio: string (default: "Pierre has over 15 years...")
 --color-navy-light: #1e3a5a;
 --color-gold: #CD8F5E;
 --color-gold-hover: #b87d4e;
+--color-gold-text: #9C6532; /* small gold text on white/grey — plain gold fails contrast there */
 --color-white: #ffffff;
 --color-light-bg: #f8f9fa;
 --color-text: #333333;
