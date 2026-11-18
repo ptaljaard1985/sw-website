@@ -17,7 +17,7 @@ function corsHeaders(origin) {
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-exports.handler = async (event) => {
+export const handler = async (event) => {
   const origin = event.headers.origin || event.headers.Origin || '';
   const headers = corsHeaders(origin);
 
