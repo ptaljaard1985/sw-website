@@ -34,7 +34,7 @@ The result updates as the visitor types or moves the slider, once age, savings a
 **Results:**
 
 1. The headline, one of two forms. Either "At R40 000 a month, your savings could last until about age 90." or "At R32 000 a month, your savings could last beyond age 100." In the second case add what would be left at 100 in today's money. Put the results in an `aria-live="polite"` region. Round displayed income to the nearest R100 and capital to the nearest R10 000.
-2. The draw rate, stated plainly beside the guide: "You would be drawing 6.0% of your savings in the first year. A commonly used guide at age 65 is about 4.8%." Use neutral wording when the rate is at or below the guide, and a plain caution when it is above. No red alarm styling: a gold accent is enough.
+2. The draw rate, stated plainly beside the guide: "You would be drawing 6.0% of your savings in the first year. A commonly used guide at age 65 is about 4.8%." Use neutral wording when the rate is at or below the guide, and a plain caution when it is above. No red alarm styling: the gold figure in the answer panel is enough.
 3. The income that lasts: "An income of about R33 500 a month could last to age 100." (This figure includes the other income.) Show it only when the chosen income runs out before 100.
 4. A chart: savings in today's money at each age from now to 100, as an area or line, with the run-out age marked if there is one. Inline SVG, responsive, with a visually hidden table of the same figures.
 5. "What this leaves out": Tax on the income. Investment and advice fees. Markets do not grow in a straight line, and poor returns early in retirement matter more than the average. Living annuities have legal limits on how much may be drawn each year (between 2.5% and 17.5%), which this ignores. It treats all savings as one pot. Other income is assumed to rise with inflation.
@@ -43,6 +43,16 @@ The result updates as the visitor types or moves the slider, once age, savings a
 8. `CtaSection`, with a heading and text that follow from this tool.
 
 Also: make the second card on `/tools/` live (remove "Coming soon"), and add a short cross-link on each calculator to the other one ("Still saving" on this page, "Already retired or close to it" on the first).
+
+## Look and behaviour
+
+Follow the first calculator exactly: the same white sheet on the grey section, the same order (Your details, then the cover row with the navy answer panel on the left and the chart on the right, then the 6px gold rule, then the numbered sections and the disclaimer), the same type, colour, control and chart rules, the same empty state, and the same instant updating. Reuse its styles and chart code. Do not invent a second look. Where the two pages need the same thing, move it into the shared files instead of copying it.
+
+On this page:
+
+- **Answer panel.** Small label ("Your savings could last until about age"), then the headline, very large in the heading font: the age (90), or "Beyond 100". Under it one muted line ("Drawing R40 000 a month in today's money, before tax"). Then the ruled list: First-year draw rate, Guide rate at your age, Income that could last to 100 (only when the money runs out before 100), Left at age 100 in today's money (only when it lasts). When the draw rate is above the guide, show the draw rate value in gold.
+- **Chart.** One view, no segmented control: savings in today's money at each age from now to 100, in the first calculator's line and area style. The run-out age is marked with a dot and labelled "Runs out at 90". If the money lasts, the end point is labelled with what is left at 100.
+- **Numbered sections.** 01 How your draw rate compares (the two sentences from result 2 below), 02 What this leaves out, 03 How this is worked out.
 
 ## The maths (implement exactly)
 

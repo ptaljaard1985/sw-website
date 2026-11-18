@@ -14,7 +14,7 @@ I use two detailed planning tools with clients in meetings. They live in another
 
 Decisions already made, do not reopen them:
 
-- Built as normal Astro pages in this site's own design (navy, gold, Cormorant Garamond, Inter). Not an embed, no iframe.
+- Built as normal Astro pages, in this site's colours and fonts, but laid out like my meeting tool (see "Look and behaviour"). Not an embed, no iframe.
 - Before tax. No tax tables anywhere.
 - Open to everyone. No email gate, no form submission. Nothing a visitor types may leave the browser: no network calls, no localStorage, no cookies, no figures in analytics.
 - A new "Tools" item in the main menu. This is the explicit request that rule 4 in `CLAUDE.md` asks for.
@@ -65,14 +65,45 @@ The result updates as the visitor types (no submit button needed), once age, ret
 
 **Results:**
 
-1. The headline: the monthly income at the planned retirement age, in today's money, before tax. For example "About R34 600 a month at 65, in today's money, before tax." Round displayed income to the nearest R100 and capital to the nearest R10 000. Put the results in an `aria-live="polite"` region.
-2. Two supporting figures: savings at retirement in today's money, and years until retirement.
-3. A chart: monthly income (today's money) for every retirement age from 55 (or the visitor's age plus one, if that is higher) to 75, as a line or bars, with the planned age marked. If a goal was entered, draw it as a horizontal line. Inline SVG, responsive, readable on a phone, with a visually hidden table of the same figures for screen readers.
+1. The headline: the monthly income at the planned retirement age, in today's money, before tax (R34 600 in the first reference case). It sits in the navy answer panel described under "Look and behaviour". Round displayed income to the nearest R100 and capital to the nearest R10 000. Put the results in an `aria-live="polite"` region.
+2. Supporting figures in the answer panel's ruled list: savings at retirement in today's money, years until retirement, and the goal rows when a goal was entered.
+3. Two chart views, switched by the segmented control. The default: monthly income (today's money) for every retirement age from 55 (or the visitor's age plus one, if that is higher) to 75, with the planned age marked and the goal line if a goal was entered. The second: savings in today's money at each age from now to the planned retirement age. Inline SVG, responsive, readable on a phone, each with a visually hidden table of the same figures for screen readers.
 4. If a goal was entered and the result is below it, a "Closing the gap" card with two plain statements: how much more to save each month to reach the goal at the planned age, and the first retirement age (up to 75) at which the current saving reaches it. If no age up to 75 reaches it, say so plainly. If the result meets the goal, say that instead.
 5. "What this leaves out": a short plain list. Tax on the income. Investment and advice fees (the expected return is before fees unless the visitor lowers it). Markets do not grow in a straight line. It treats all savings as one pot.
 6. "How this is worked out": two or three sentences. Savings grow monthly at the expected return you chose (inflation is assumed to be 5% a year, so inflation plus 4% means 9%). Your monthly saving rises with inflation once a year. The total is brought back to today's money using inflation. The income applies a withdrawal rate that depends on the age you retire (4.8% a year at 65, lower if you retire earlier, higher if later), divided by twelve.
 7. Disclaimer, always visible under the results, wording for my review: "This calculator gives a general illustration based on the figures and assumptions you enter. It is not financial advice and does not take your personal circumstances into account. Actual results will differ. Simple Wealth (Pty) Ltd is an authorised financial services provider, FSP no. 50637."
 8. `CtaSection` with a heading and text that follow from the tool (for example heading "Want a plan built on your real numbers", text about a free 10-minute call).
+
+## Look and behaviour (follow this closely)
+
+The calculator should look and work like the planning tool I use in client meetings, set in this website's colours and fonts. That tool reads like a printed private-client statement, not a web app. You cannot see it, so here is its design. Use only the site's existing `--color-*` and `--font-*` variables. Add no fonts.
+
+**Page frame.** The normal site header, a `.hero--short` hero with the title and one sentence, then the calculator, then the testimonials, call-to-action and footer. The calculator section has the light grey background (`--color-light-bg`) and holds one white "sheet" (max-width about 1100px, centred, the site's card shadow, square corners). Everything from the inputs to the disclaimer sits on that sheet.
+
+**Order on the sheet:**
+
+1. **Your details**: the input fields in a compact grid (two or three across on desktop, one per row on a phone), then the expected return slider on its own full-width row.
+2. **The cover row**, two columns on desktop (about 40% and 60%), stacked on a phone with the panel first:
+   - Left, the **answer panel**: solid navy (`--color-navy`), white text, generous padding, no rounded corners. A small label ("Monthly income if you retire at 65"), then the headline figure, very large (about 4.5rem on desktop, 3rem on a phone) in the heading font. Under it one line in muted white ("In today's money, before tax, drawing 4.8% a year"). Then a ruled list of label and value rows, separated by thin lines: Your goal, Against the goal (the percentage, in gold), Goal first reached (the age, or "Not by age 75"), Savings at retirement, Years to retirement. Leave the three goal rows out when no goal was entered.
+   - Right, the **chart**: a small heading that names the view, a two-option segmented control ("Income by retirement age" and "Savings over time"), and the chart.
+3. **A solid gold rule** across the full width of the sheet, 6px high (`--color-gold`).
+4. **Numbered sections**, each with a thin top rule and a number in gold beside its heading (01, 02, 03), numbered with CSS counters so a hidden section is skipped: Closing the gap (only with a goal not yet met), What this leaves out, How this is worked out. Then the disclaimer in small muted text.
+
+**Before the visitor has entered anything**, the answer panel shows a dash in place of the figure and one line saying what to fill in, and the chart area shows a dashed outline with a short note. No sample figures.
+
+**Type.** Headings and the big figures in `--font-heading`, everything else in `--font-body`. Figures use `font-variant-numeric: lining-nums tabular-nums` so digits line up (check this works with the site's self-hosted font files, and tell me if the figures look uneven). Labels in sentence case, never letter-spaced capitals.
+
+**Colour.** Navy for the answer panel and selected states only. Gold for rules, the chart's goal line and accents, and for text only on navy. Do not use gold for small text on white (it is too faint to read): use `--color-text` or `--color-text-light` there. No gradients except the chart's soft area fill. No shadow except the sheet's. Every text pair must reach a contrast of 4.5 to 1.
+
+**Controls.** Text inputs with a clear 1px border, the "R" shown inside the field as a prefix, 4px corners, at least 44px high. The slider is a thin 2px rail with a round navy thumb, inside a touch area at least 44px high, with its current value in words above the rail and the two end labels ("Inflation", "Inflation plus 5%") below it. The segmented control is a boxed pair of options, the selected one filled navy with white text. No filled buttons in the calculator: the only button is the gold one in the site's call-to-action below.
+
+**Charts** (inline SVG, drawn by `calculators.js`):
+
+- "Income by retirement age": a navy line 2.5px thick with a very light navy area fill under it, thin light grey horizontal gridlines, a solid dark baseline, small axis labels in `--color-text-light` (ages along the bottom, rands up the side, shortened as R20k, R40k). The planned retirement age is a navy dot ringed in white, labelled "R34 600 at 65" in the heading font. The goal, if entered, is a dashed gold horizontal line labelled "Goal R60 000".
+- "Savings over time": the same style, savings in today's money at each age from now to the planned retirement age, with the end point marked and labelled.
+- Hovering over or tapping a point shows that point's age and figure. The chart must also be readable without hovering.
+
+**How it behaves.** Everything updates at once as the visitor types or drags the slider (no "Calculate" button, no page jump, no layout shift when figures change length). The headline figure may ease to its new value over about 200ms, switched off under `prefers-reduced-motion`. On a phone the answer panel stays directly under the inputs so the visitor sees the figure change as they adjust.
 
 ## The maths (implement exactly)
 

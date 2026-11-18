@@ -13,13 +13,14 @@ Two simplified, public versions of the meeting tools in the CRM repo (`tools/acc
 
 ## Decisions
 
-1. **Rebuild, do not embed.** The meeting tools are 430 to 530 KB single files in a different look, built for an adviser with a client. The public tools are written fresh in the website's own design, with only the core maths carried across.
+1. **Rebuild, do not embed.** The meeting tools are 430 to 530 KB single files in a different look, built for an adviser with a client. The public tools are written fresh, with the core maths and the layout carried across (see decision 7).
 2. **Both tools are before tax** (Pierre). No tax tables on the website, so nothing to update each February. Tax is named as something the tool leaves out.
 3. **Open to everyone, no email gate** (Pierre). Nothing a visitor types leaves their browser. Each result ends with an invitation to book a free call.
 4. **A new "Tools" item in the main menu** (Pierre), between "What we believe" and "Knowledge", leading to a page listing both calculators.
 5. **Charts are drawn by the page itself (inline SVG).** The site's security header blocks outside scripts, so the meeting tools' chart library cannot load. No new dependency.
 6. **Expected return is a slider, from inflation to inflation plus 5%** (Pierre). Inflation is fixed at 5% a year in the background and is not an input. Monthly saving is assumed to rise with inflation.
-7. **Illustration, never advice.** Each page shows its assumptions, says what it leaves out, and carries the FSP statement. No product or fund is named.
+7. **Laid out and behaving like the meeting tool, in the website's colours and fonts** (Pierre): a white sheet, a navy answer panel beside the chart, a gold rule, numbered sections, the same chart style and slider, everything updating as you type. No new fonts.
+8. **Illustration, never advice.** Each page shows its assumptions, says what it leaves out, and carries the FSP statement. No product or fund is named.
 
 ## Pages
 
