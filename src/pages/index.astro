@@ -76,11 +76,14 @@ const schema = [{
   description="Independent financial planning from Ballito, KZN north coast. We align your wealth with your values, lifestyle, and long-term goals."
   schema={schema}
 >
-  <link rel="stylesheet" href="/home.css?v=2" slot="head">
+  <link rel="stylesheet" href="/home.css?v=3" slot="head">
   <link rel="preload" href="/images/hero-adviser-mobile.webp" as="image" type="image/webp" media="(max-width: 768px)" slot="head">
   <link rel="preload" href="/images/hero-adviser.webp" as="image" type="image/webp" media="(min-width: 769px)" slot="head">
 
   <div class="home">
+
+  <!-- First screen: hero and promise band together fill the viewport -->
+  <div class="hv-fold">
 
   <!-- Hero -->
   <section class="hero hero--bg-photo">
@@ -119,6 +122,8 @@ const schema = [{
       <li>Peace of mind</li>
       <li>Independent advice</li>
     </ul>
+  </div>
+
   </div>
 
   <!-- Problem Section -->
@@ -242,7 +247,7 @@ const schema = [{
     </div>
   </section>
 
-  </div>
-
   <CtaSection />
+
+  </div>
 </BaseLayout>

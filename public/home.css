@@ -936,3 +936,20 @@
     display: inline;
   }
 }
+
+/* --- First screen: hero + gold band together are exactly one viewport --- */
+.home .hv-fold {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh; /* visible height on phones, excluding the address bar */
+}
+
+.home .hv-fold .hero {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.home .hv-fold .hv-band {
+  flex: 0 0 auto;
+}
