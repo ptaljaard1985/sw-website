@@ -181,42 +181,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const getMaxIndex = () => Math.max(0, slides.length - getSlidesPerView());
 
-    // One dot per page of reviews; a "3 / 20" counter when there are too many pages for dots
-    const MAX_DOTS = 8;
-
     const buildDots = () => {
       dotsContainer.innerHTML = '';
-      const perView = getSlidesPerView();
-      const pages = Math.ceil(slides.length / perView);
-      if (pages > MAX_DOTS) {
-        const count = document.createElement('span');
-        count.className = 'carousel__count';
-        dotsContainer.appendChild(count);
-        return;
-      }
-      for (let i = 0; i < pages; i++) {
+      const total = getMaxIndex() + 1;
+      for (let i = 0; i < total; i++) {
         const dot = document.createElement('button');
-        dot.className = 'carousel__dot';
-        dot.setAttribute('aria-label', 'Go to reviews page ' + (i + 1));
-        dot.addEventListener('click', () => goTo(i * perView));
+        dot.className = 'carousel__dot' + (i === currentIndex ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        dot.addEventListener('click', () => goTo(i));
         dotsContainer.appendChild(dot);
       }
     };
 
     const updateCarousel = () => {
-      const perView = getSlidesPerView();
-      const slideWidth = 100 / perView;
+      const slideWidth = 100 / getSlidesPerView();
       track.style.transform = 'translateX(-' + (currentIndex * slideWidth) + '%)';
-      const count = dotsContainer.querySelector('.carousel__count');
-      if (count) {
-        count.textContent = (currentIndex + 1) + ' / ' + slides.length;
-        return;
-      }
-      const activePage = currentIndex >= getMaxIndex()
-        ? Math.ceil(slides.length / perView) - 1
-        : Math.floor(currentIndex / perView);
       dotsContainer.querySelectorAll('.carousel__dot').forEach((dot, i) => {
-        dot.classList.toggle('active', i === activePage);
+        dot.classList.toggle('active', i === currentIndex);
       });
     };
 
