@@ -36,6 +36,7 @@
   --color-navy-light: #1e3a5a;
   --color-gold: #CD8F5E;
   --color-gold-hover: #b87d4e;
+  --color-gold-text: #9C6532; /* gold for small text on light backgrounds (4.5:1+) */
   --color-white: #ffffff;
   --color-light-bg: #f8f9fa;
   --color-text: #333333;
@@ -100,6 +101,7 @@ button {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
   font-family: var(--font-heading);
   font-weight: 500;
   line-height: 1.15;
@@ -161,6 +163,7 @@ p:last-child {
 }
 
 .section__header p {
+  text-wrap: balance;
   color: var(--color-text-light);
   margin-top: 16px;
   font-size: 1.05rem;
@@ -186,7 +189,7 @@ p:last-child {
 
 .btn--primary {
   background: var(--color-gold);
-  color: var(--color-white);
+  color: var(--color-navy);
 }
 
 .btn--primary:hover {
@@ -637,8 +640,8 @@ p:last-child {
 
 .card h3 {
   margin-bottom: 12px;
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: 1.35rem;
+  font-weight: 600;
 }
 
 .card p {
@@ -681,22 +684,106 @@ p:last-child {
 }
 
 /* --- Problem / Solution cards --- */
-.problem-card,
-.solution-card {
-  text-align: center;
-  padding: 36px 24px;
+
+
+/* --- Split section: heading left, plain list right (homepage problems) --- */
+.split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
 }
 
-.problem-card h3,
-.solution-card h3 {
-  font-weight: 700;
+.split__intro p {
+  color: var(--color-text-light);
+  margin-top: 16px;
+  font-size: 1.05rem;
 }
 
-.problem-card .card__icon,
-.solution-card .card__icon {
-  margin: 0 auto 20px;
+.plain-list__item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 24px 0;
+  border-top: 1px solid var(--color-border);
 }
 
+.plain-list__item:last-child {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.plain-list__icon {
+  flex-shrink: 0;
+  color: var(--color-gold);
+  margin-top: 4px;
+}
+
+.plain-list__icon svg,
+.benefit__icon svg {
+  width: 26px;
+  height: 26px;
+  stroke-width: 1.5;
+}
+
+.plain-list__item h3 {
+  margin-bottom: 6px;
+}
+
+.plain-list__item p {
+  color: var(--color-text-light);
+  margin-bottom: 0;
+}
+
+/* --- Benefits: open columns under a gold rule, no card boxes (homepage solution) --- */
+.benefits {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.benefit {
+  border-top: 2px solid var(--color-gold);
+  padding-top: 20px;
+}
+
+.benefit__icon {
+  display: block;
+  color: var(--color-gold);
+  margin-bottom: 14px;
+}
+
+.benefit h3 {
+  margin-bottom: 8px;
+}
+
+.benefit p {
+  color: var(--color-text-light);
+  font-size: 0.95rem;
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .benefits {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .split {
+    grid-template-columns: 5fr 6fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .split__intro {
+    position: sticky;
+    top: 120px;
+  }
+
+  .benefits {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
 
 /* --- Testimonial --- */
 .testimonial {
@@ -831,7 +918,16 @@ p:last-child {
 
 .carousel__dots {
   display: flex;
+  align-items: center;
   gap: 8px;
+}
+
+.carousel__count {
+  min-width: 56px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  font-variant-numeric: tabular-nums;
 }
 
 .carousel__dot {
@@ -868,7 +964,7 @@ p:last-child {
   width: 48px;
   height: 48px;
   background: var(--color-gold);
-  color: var(--color-white);
+  color: var(--color-navy);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1149,7 +1245,7 @@ p:last-child {
 .lead-magnet__success {
   font-size: 1rem;
   font-weight: 500;
-  color: var(--color-gold);
+  color: var(--color-gold-text);
   margin-top: 12px;
 }
 
@@ -1376,7 +1472,7 @@ p:last-child {
 }
 
 .bio-section__title {
-  color: var(--color-gold);
+  color: var(--color-gold-text);
   font-weight: 600;
   margin-bottom: 8px;
   font-size: 0.95rem;
@@ -1390,7 +1486,7 @@ p:last-child {
 
 .bio-section__credentials span {
   background: rgba(201, 168, 76, 0.1);
-  color: var(--color-gold);
+  color: var(--color-gold-text);
   padding: 4px 14px;
   border-radius: 50px;
   font-size: 0.85rem;
@@ -1405,7 +1501,7 @@ p:last-child {
   font-family: var(--font-body);
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--color-gold);
+  color: var(--color-gold-text);
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -1474,7 +1570,7 @@ p:last-child {
 }
 
 .belief h3 {
-  color: var(--color-gold);
+  color: var(--color-navy);
   font-weight: 700;
 }
 
@@ -1622,7 +1718,7 @@ p:last-child {
 .story-card__tag {
   display: inline-block;
   background: rgba(201, 168, 76, 0.1);
-  color: var(--color-gold);
+  color: var(--color-gold-text);
   padding: 4px 14px;
   border-radius: 50px;
   font-size: 0.8rem;
@@ -1671,9 +1767,11 @@ p:last-child {
 }
 
 .testimonial-card blockquote {
-  font-size: 0.95rem;
-  color: var(--color-text);
-  line-height: 1.7;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--color-navy);
+  line-height: 1.45;
   margin-bottom: 16px;
   font-style: italic;
 }
@@ -2156,8 +2254,6 @@ p:last-child {
     grid-template-columns: repeat(4, 1fr);
   }
 
-  .problem-card h3,
-  .solution-card h3,
   .card h3 {
     min-height: 2.4em;
   }
@@ -2414,7 +2510,7 @@ p:last-child {
 .author-bio__title {
   font-family: var(--font-body);
   font-size: 0.85rem;
-  color: var(--color-gold);
+  color: var(--color-gold-text);
   font-weight: 500;
   margin-bottom: 8px;
 }
@@ -2434,7 +2530,7 @@ p:last-child {
   font-family: var(--font-body);
   font-size: 0.85rem;
   font-weight: 500;
-  color: var(--color-gold);
+  color: var(--color-gold-text);
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -2469,7 +2565,7 @@ p:last-child {
   font-family: var(--font-body);
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--color-gold);
+  color: var(--color-gold-text);
   text-decoration: none;
   transition: text-decoration 0.2s ease;
   cursor: pointer;
@@ -2541,7 +2637,7 @@ p:last-child {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--color-gold);
+  color: var(--color-gold-text);
   margin-bottom: 10px;
 }
 
@@ -2567,7 +2663,7 @@ p:last-child {
   font-family: var(--font-body);
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--color-gold);
+  color: var(--color-gold-text);
   text-decoration: none;
 }
 
