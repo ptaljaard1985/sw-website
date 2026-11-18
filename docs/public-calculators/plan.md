@@ -18,7 +18,8 @@ Two simplified, public versions of the meeting tools in the CRM repo (`tools/acc
 3. **Open to everyone, no email gate** (Pierre). Nothing a visitor types leaves their browser. Each result ends with an invitation to book a free call.
 4. **A new "Tools" item in the main menu** (Pierre), between "What we believe" and "Knowledge", leading to a page listing both calculators.
 5. **Charts are drawn by the page itself (inline SVG).** The site's security header blocks outside scripts, so the meeting tools' chart library cannot load. No new dependency.
-6. **Illustration, never advice.** Each page shows its assumptions, says what it leaves out, and carries the FSP statement. No product or fund is named.
+6. **Expected return is a slider, from inflation to inflation plus 5%** (Pierre). Inflation is fixed at 5% a year in the background and is not an input. Monthly saving is assumed to rise with inflation.
+7. **Illustration, never advice.** Each page shows its assumptions, says what it leaves out, and carries the FSP statement. No product or fund is named.
 
 ## Pages
 
@@ -38,7 +39,7 @@ Reference figures for both are in the prompts, so the website agent can test aga
 
 ## For Pierre to confirm before anything goes live
 
-1. **The default assumptions**: growth of 9% a year, inflation of 5%, contributions rising 5% a year. The 9% and 5% are the drawdown meeting tool's defaults. A visitor can change all three. A default return on a public page is a compliance choice, so it needs your say.
+1. **Two background choices I made**: the slider starts at inflation plus 4% (a starting point on a public page is a compliance choice), and monthly saving rises with inflation each year, with no separate input for it.
 2. **All wording on the three pages**, including the "what this leaves out" notes and the disclaimer. The agent drafts. Nothing merges to `main` (which publishes the site) without your sign-off.
 3. **The menu at laptop width** once "Tools" is added (six items plus the button).
 

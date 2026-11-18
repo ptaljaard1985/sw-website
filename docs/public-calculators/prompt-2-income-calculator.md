@@ -25,14 +25,11 @@ Title on the page: "Retirement income calculator". It is for someone at or near 
 | Monthly income you want, in today's money, before tax | empty | above R0 |
 | Other monthly income, such as a pension or rent (optional) | empty | R0 or more |
 
-Under a collapsed "Change the assumptions" control:
+**Expected return slider:** the same slider as on the first calculator (reuse its markup, styles and script). "Expected return", from "inflation" to "inflation plus 5%", steps of 0.5%, default inflation plus 4%, always visible.
 
-| Assumption | Default | Limits |
-|---|---|---|
-| Growth a year | 9% | 0% to 15% |
-| Inflation a year | 5% | 2% to 10% |
+**Background assumption (not an input):** inflation is 5% a year, the shared constant already in `calculators.js`. The growth rate in the maths is 5% plus the slider value.
 
-Use these defaults as given. The result updates as the visitor types, once age, savings and income are filled in. Same rand input behaviour as the first calculator.
+The result updates as the visitor types or moves the slider, once age, savings and income are filled in. Same rand input behaviour as the first calculator.
 
 **Results:**
 
@@ -41,7 +38,7 @@ Use these defaults as given. The result updates as the visitor types, once age, 
 3. The income that lasts: "An income of about R33 500 a month could last to age 100." (This figure includes the other income.) Show it only when the chosen income runs out before 100.
 4. A chart: savings in today's money at each age from now to 100, as an area or line, with the run-out age marked if there is one. Inline SVG, responsive, with a visually hidden table of the same figures.
 5. "What this leaves out": Tax on the income. Investment and advice fees. Markets do not grow in a straight line, and poor returns early in retirement matter more than the average. Living annuities have legal limits on how much may be drawn each year (between 2.5% and 17.5%), which this ignores. It treats all savings as one pot. Other income is assumed to rise with inflation.
-6. "How this is worked out": two or three sentences. The income you want, less any other income, is taken from your savings at the start of each year and rises with inflation. What remains grows at the growth rate. The calculation runs to age 100.
+6. "How this is worked out": two or three sentences. The income you want, less any other income, is taken from your savings at the start of each year and rises with inflation. What remains grows at the expected return you chose (inflation is assumed to be 5% a year). The calculation runs to age 100.
 7. The same disclaimer as the first calculator, word for word.
 8. `CtaSection`, with a heading and text that follow from this tool.
 
@@ -52,6 +49,7 @@ Also: make the second card on `/tools/` live (remove "Coming soon"), and add a s
 Add pure functions to `public/calculators.js`, using the withdrawal table already there.
 
 ```
+inflation = 0.05 (fixed) ; growth = inflation + slider value (0 to 0.05)
 need0   = max(0, monthlyIncome - otherIncome) * 12
 balance = savings
 runOutAge = none
@@ -75,12 +73,12 @@ If other income covers the income wanted, say so plainly ("Your other income alr
 
 **Reference figures for the tests** (exact engine output, before display rounding):
 
-| Age | Savings | Income | Other | Growth | Inflation | Runs out at | Left at 100, today's money | First-year rate | Guide | Income that lasts |
-|---|---|---|---|---|---|---|---|---|---|---|
-| 65 | 8 000 000 | 40 000 | 0 | 9% | 5% | 90 | 0 | 6.00% | 4.8% | 33 523 |
-| 65 | 8 000 000 | 32 000 | 0 | 9% | 5% | never | 1 345 096 | 4.80% | 4.8% | (not shown) |
-| 70 | 5 000 000 | 35 000 | 10 000 | 8% | 5% | 92 | 0 | 6.00% | 5.3% | 30 287 |
-| 60 | 10 000 000 | 60 000 | 0 | 9% | 5% | 79 | 0 | 7.20% | 4.5% | 39 415 |
+| Age | Savings | Income | Other | Expected return | Runs out at | Left at 100, today's money | First-year rate | Guide | Income that lasts |
+|---|---|---|---|---|---|---|---|---|---|
+| 65 | 8 000 000 | 40 000 | 0 | inflation plus 4% | 90 | 0 | 6.00% | 4.8% | 33 523 |
+| 65 | 8 000 000 | 32 000 | 0 | inflation plus 4% | never | 1 345 096 | 4.80% | 4.8% | (not shown) |
+| 70 | 5 000 000 | 35 000 | 10 000 | inflation plus 3% | 92 | 0 | 6.00% | 5.3% | 30 287 |
+| 60 | 10 000 000 | 60 000 | 0 | inflation plus 4% | 79 | 0 | 7.20% | 4.5% | 39 415 |
 
 Allow R1 on the rand figures. Add these to `tests/calculators.test.mjs`.
 

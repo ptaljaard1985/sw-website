@@ -50,15 +50,16 @@ Title on the page: "Retirement savings calculator". It answers: at this rate of 
 | What you save each month | empty | R0 or more |
 | Monthly income you would like in retirement, in today's money (optional) | empty | |
 
-Under a collapsed "Change the assumptions" control:
+**Expected return slider** (always visible, below the inputs, not hidden in a collapsed section):
 
-| Assumption | Default | Limits |
-|---|---|---|
-| Growth a year | 9% | 0% to 15% |
-| Inflation a year | 5% | 2% to 10% |
-| Your monthly saving rises each year by | 5% | 0% to 12% |
+A slider labelled "Expected return", running from "inflation" (left end) to "inflation plus 5%" (right end), in steps of 0.5%. Default: inflation plus 4%. The label beside the slider shows the current setting in words, for example "Inflation plus 4% a year". It is a real `<input type="range">`, keyboard usable, with an `aria-valuetext` that reads the same words, and a thumb large enough for a phone.
 
-Use these three defaults as given. Do not choose different ones. I will confirm them at review.
+**Background assumptions (not inputs, the visitor cannot change them):**
+
+- Inflation is 5% a year.
+- The visitor's monthly saving rises with inflation each year (5%).
+
+So the growth rate used in the maths is 5% plus the slider value: 5% a year at the left end, 10% at the right end, 9% at the default. Keep inflation as one named constant in `calculators.js`, shared by both calculators. State both background assumptions in "How this is worked out". Use these values as given. I will confirm them at review.
 
 The result updates as the visitor types (no submit button needed), once age, retirement age and at least one of the two money fields are filled in. Rand inputs format with spaces as thousands separators while typing (R1 500 000) and accept pasted numbers with spaces or commas.
 
@@ -68,14 +69,17 @@ The result updates as the visitor types (no submit button needed), once age, ret
 2. Two supporting figures: savings at retirement in today's money, and years until retirement.
 3. A chart: monthly income (today's money) for every retirement age from 55 (or the visitor's age plus one, if that is higher) to 75, as a line or bars, with the planned age marked. If a goal was entered, draw it as a horizontal line. Inline SVG, responsive, readable on a phone, with a visually hidden table of the same figures for screen readers.
 4. If a goal was entered and the result is below it, a "Closing the gap" card with two plain statements: how much more to save each month to reach the goal at the planned age, and the first retirement age (up to 75) at which the current saving reaches it. If no age up to 75 reaches it, say so plainly. If the result meets the goal, say that instead.
-5. "What this leaves out": a short plain list. Tax on the income. Investment and advice fees (the growth figure is before fees unless the visitor lowers it). Markets do not grow in a straight line. It treats all savings as one pot.
-6. "How this is worked out": two or three sentences. Savings grow monthly at the growth rate. Monthly saving rises once a year. The total is brought back to today's money using inflation. The income applies a withdrawal rate that depends on the age you retire (4.8% a year at 65, lower if you retire earlier, higher if later), divided by twelve.
+5. "What this leaves out": a short plain list. Tax on the income. Investment and advice fees (the expected return is before fees unless the visitor lowers it). Markets do not grow in a straight line. It treats all savings as one pot.
+6. "How this is worked out": two or three sentences. Savings grow monthly at the expected return you chose (inflation is assumed to be 5% a year, so inflation plus 4% means 9%). Your monthly saving rises with inflation once a year. The total is brought back to today's money using inflation. The income applies a withdrawal rate that depends on the age you retire (4.8% a year at 65, lower if you retire earlier, higher if later), divided by twelve.
 7. Disclaimer, always visible under the results, wording for my review: "This calculator gives a general illustration based on the figures and assumptions you enter. It is not financial advice and does not take your personal circumstances into account. Actual results will differ. Simple Wealth (Pty) Ltd is an authorised financial services provider, FSP no. 50637."
 8. `CtaSection` with a heading and text that follow from the tool (for example heading "Want a plan built on your real numbers", text about a free 10-minute call).
 
 ## The maths (implement exactly)
 
 ```
+inflation  = 0.05 (fixed)
+growth     = inflation + slider value (0 to 0.05)
+escalation = inflation
 years   = max(1, retirementAge - age)
 rMonth  = (1 + growth)^(1/12) - 1
 balance = savings ; contrib = monthlySaving
@@ -104,12 +108,13 @@ Closing the gap: income is a straight line in the monthly saving, so run the pro
 
 **Reference figures for the tests** (exact engine output, before display rounding; allow a R1 tolerance):
 
-| Age | Retire | Savings | Monthly | Growth | Inflation | Rises | Savings at retirement, today's money | Monthly income |
-|---|---|---|---|---|---|---|---|---|
-| 40 | 65 | 1 500 000 | 10 000 | 9% | 5% | 5% | 8 647 280 | 34 589 |
-| 50 | 60 | 4 000 000 | 25 000 | 9% | 5% | 5% | 9 351 668 | 35 069 |
-| 30 | 67 | 0 | 5 000 | 10% | 6% | 6% | 4 604 611 | 19 186 |
-| 58 | 70 | 8 000 000 | 0 | 8% | 5% | 5% | 11 217 691 | 49 545 |
+| Age | Retire | Savings | Monthly | Expected return | Savings at retirement, today's money | Monthly income |
+|---|---|---|---|---|---|---|
+| 40 | 65 | 1 500 000 | 10 000 | inflation plus 4% | 8 647 280 | 34 589 |
+| 50 | 60 | 4 000 000 | 25 000 | inflation plus 4% | 9 351 668 | 35 069 |
+| 30 | 67 | 0 | 5 000 | inflation plus 5% | 5 757 938 | 23 991 |
+| 45 | 65 | 2 000 000 | 8 000 | inflation | 3 870 107 | 15 480 |
+| 58 | 70 | 8 000 000 | 0 | inflation plus 3% | 11 217 691 | 49 545 |
 
 For the first row with a goal of R60 000 a month: each extra R1 000 a month buys R1 931.06 of monthly income, the saving needed is R23 160 a month in total (R13 160 more, shown as R13 200), and the first retirement age that reaches the goal on the current saving is 73.
 
