@@ -445,7 +445,9 @@ Pages:
 
 "Tools" is picked out in the menu with a gold dot and gold text (`.nav__link--tools`), and the homepage has a Tools section linking to both. The calculator pages carry no testimonials.
 
-The savings calculator has a full-width gold section (`.calc-today`) under the tool that restates the result in the rands of the retirement year, so today's money is not mistaken for the actual amounts. The calculator sheet is `--container-max` wide so it lines up with the hero text.
+On the savings calculator the gold rule inside the sheet (`.calc-today`) carries a short note, once there is a result, that restates it in the rands of the retirement year, so today's money is not mistaken for the actual amounts. Keep it compact: a large full-width gold section was tried and rejected. The calculator sheet is `--container-max` wide so it lines up with the hero text.
+
+The savings calculator has a numbered section "Your expected return" that comments on the slider setting. The wording lives in `returnComment()` in `calculators.js`, in six bands (inflation only, up to plus 1%, 2%, 3%, 4%, 5%). It describes asset mixes in general terms only, with no percentages, products or promises, and needs Pierre's sign-off if changed.
 
 The two calculators cross-link to each other and must stay a matching pair: same sheet, same order, same controls and chart style.
 

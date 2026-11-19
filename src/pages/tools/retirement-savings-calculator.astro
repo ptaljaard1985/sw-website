@@ -32,7 +32,7 @@ const schema = [{
   showSocialInFooter={true}
   schema={schema}
 >
-  <link rel="stylesheet" href="/calculators.css?v=4" slot="head">
+  <link rel="stylesheet" href="/calculators.css?v=5" slot="head">
 
   <div class="v2">
 
@@ -128,13 +128,21 @@ const schema = [{
           </div>
         </div>
 
-        <hr class="calc__rule">
+        <!-- The gold rule. Once there is a result it carries a short note on today's money. -->
+        <div class="calc__rule calc-today" aria-live="polite">
+          <p id="sc-today" hidden><strong>These figures are in today's money.</strong> After <span id="sc-today-years"></span> of inflation at 5% a year, your income at <span id="sc-today-age"></span> could be about <strong><span id="sc-today-income-future"></span> a month</strong>, but it would only buy what <strong id="sc-today-income"></strong> buys today. Your savings could be about <strong id="sc-today-capital-future"></strong>, but they would only be worth what <strong id="sc-today-capital"></strong> is worth today.</p>
+        </div>
 
         <!-- Numbered sections -->
         <div class="calc__sections">
           <section class="calc-part" id="sc-gap" hidden>
             <div class="calc-part__head"><h2 id="sc-gap-heading">Closing the gap</h2></div>
             <div class="calc-part__body" id="sc-gap-body"></div>
+          </section>
+
+          <section class="calc-part" aria-live="polite">
+            <div class="calc-part__head"><h2>Your expected return</h2></div>
+            <div class="calc-part__body" id="sc-return-comment"></div>
           </section>
 
           <section class="calc-part">
@@ -166,22 +174,11 @@ const schema = [{
     </div>
   </section>
 
-  <section class="calc-today" id="sc-today" aria-live="polite" hidden>
-    <div class="calc-today__inner">
-      <h2>These figures are in today's money</h2>
-      <p>The numbers above have had the effect of inflation taken out, so the actual amounts when you retire at <span id="sc-today-age"></span> would be much higher. Here is what <span id="sc-today-years"></span> of inflation at 5% a year does.</p>
-      <div class="calc-today__pairs">
-        <p>Your income could be about <strong><span id="sc-today-income-future"></span> a month</strong> by then, but it would only buy what <strong><span id="sc-today-income"></span></strong> buys today.</p>
-        <p>Your savings could be about <strong id="sc-today-capital-future"></strong> by then, but they would only be worth what <strong id="sc-today-capital"></strong> is worth today.</p>
-      </div>
-    </div>
-  </section>
-
   <CtaSection heading="Want a plan built on your real numbers" text="A free 10-minute call is a simple way to see whether we can help you build one." />
 
   </div>
 
-  <script src="/calculators.js?v=3" is:inline slot="scripts"></script>
+  <script src="/calculators.js?v=4" is:inline slot="scripts"></script>
   <script is:inline slot="scripts">
     (function () {
       var C = window.SWCalc;
@@ -301,6 +298,15 @@ const schema = [{
           if (g.met) {
             $('sc-gap-heading').textContent = 'Your goal';
             body = '<p>On these figures, the income at ' + input.retirementAge + ' is at or above your goal of ' + goalText + '.</p>';
+            // and the first retirement age at which the goal is reached
+            var firstShown = Math.max(55, input.age + 1);
+            if (reached === firstShown && reached < input.retirementAge) {
+              body += '<p>On what you save now, the income could already reach your goal at <strong>' + reached + '</strong>, the earliest retirement age shown.</p>';
+            } else if (reached < input.retirementAge) {
+              body += '<p>On what you save now, the income could first reach your goal if you retire at <strong>' + reached + '</strong>.</p>';
+            } else {
+              body += '<p><strong>' + reached + '</strong> is the first retirement age at which it could.</p>';
+            }
           } else {
             $('sc-gap-heading').textContent = 'Closing the gap';
             if (g.extraDisplay !== null) {
@@ -322,7 +328,12 @@ const schema = [{
 
       [age, retire].forEach(function (input) { input.addEventListener('input', update); });
       [savings, monthly, goal].forEach(function (input) { C.bindRandInput(input, update); });
-      C.bindReturnSlider(slider, $('sc-return-value'), update, $('sc-return-sentence'));
+      C.bindReturnSlider(slider, $('sc-return-value'), function () {
+        $('sc-return-comment').innerHTML = C.returnComment(parseFloat(slider.value)).map(function (line, i) {
+          return '<p>' + (i === 0 ? '<strong>' + line + '</strong>' : line) + '</p>';
+        }).join('');
+        update();
+      }, $('sc-return-sentence'));
 
       $('sc-view-income').addEventListener('click', function () { view = 'income'; drawChart(); });
       $('sc-view-savings').addEventListener('click', function () { view = 'savings'; drawChart(); });

@@ -485,59 +485,27 @@
   color: var(--color-text-light);
 }
 
-/* --- Full-width gold section under the tool: what today's money means --- */
+/* --- The gold rule doubles as a short note on today's money once there is a result --- */
 .calc-today {
-  background: var(--color-gold);
+  height: auto;
+  min-height: 6px;
   color: var(--color-navy);
-  padding: 56px 20px;
-  font-variant-numeric: lining-nums tabular-nums;
-}
-
-.calc-today[hidden] {
-  display: none;
-}
-
-.calc-today__inner {
-  max-width: var(--container-max);
-  margin: 0 auto;
-}
-
-.calc-today h2,
-.v2 .calc-today h2 {
-  font-family: var(--font-heading);
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  color: var(--color-navy);
-  margin: 0 0 20px;
 }
 
 .calc-today p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: var(--color-navy);
   margin: 0;
-  max-width: 760px;
+  padding: 14px 20px;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--color-navy);
 }
 
-.calc-today__pairs {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
-  margin-top: 28px;
-}
-
-.calc-today__pairs p {
-  font-family: var(--font-heading);
-  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
-  line-height: 1.3;
-  padding: 20px 0;
-  border-top: 1px solid color-mix(in srgb, var(--color-navy) 35%, transparent);
-  max-width: none;
+.calc-today p[hidden] {
+  display: none;
 }
 
 .calc-today strong {
-  font-weight: 700;
+  font-weight: 600;
   white-space: nowrap;
 }
 
@@ -632,13 +600,8 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .calc-today {
-    padding: 88px 20px;
-  }
-
-  .calc-today__pairs {
-    grid-template-columns: 1fr 1fr;
-    gap: 0 56px;
+  .calc-today p {
+    padding: 16px 40px;
   }
 }
 
