@@ -32,7 +32,7 @@ const schema = [{
   showSocialInFooter={true}
   schema={schema}
 >
-  <link rel="stylesheet" href="/calculators.css?v=4" slot="head">
+  <link rel="stylesheet" href="/calculators.css?v=5" slot="head">
 
   <div class="v2">
 
@@ -128,7 +128,10 @@ const schema = [{
           </div>
         </div>
 
-        <hr class="calc__rule">
+        <!-- The gold rule. Once there is a result it carries a short note on today's money. -->
+        <div class="calc__rule calc-today" aria-live="polite">
+          <p id="sc-today" hidden><strong>These figures are in today's money.</strong> After <span id="sc-today-years"></span> of inflation at 5% a year, your income at <span id="sc-today-age"></span> could be about <strong><span id="sc-today-income-future"></span> a month</strong>, but it would only buy what <strong id="sc-today-income"></strong> buys today. Your savings could be about <strong id="sc-today-capital-future"></strong>, but they would only be worth what <strong id="sc-today-capital"></strong> is worth today.</p>
+        </div>
 
         <!-- Numbered sections -->
         <div class="calc__sections">
@@ -162,17 +165,6 @@ const schema = [{
           <p class="calc__disclaimer">This calculator gives a general illustration based on the figures and assumptions you enter. It is not financial advice and does not take your personal circumstances into account. Actual results will differ. Simple Wealth (Pty) Ltd is an authorised financial services provider, FSP no. 50637.</p>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-  <section class="calc-today" id="sc-today" aria-live="polite" hidden>
-    <div class="calc-today__inner">
-      <h2>These figures are in today's money</h2>
-      <p>The numbers above have had the effect of inflation taken out, so the actual amounts when you retire at <span id="sc-today-age"></span> would be much higher. Here is what <span id="sc-today-years"></span> of inflation at 5% a year does.</p>
-      <div class="calc-today__pairs">
-        <p>Your income could be about <strong><span id="sc-today-income-future"></span> a month</strong> by then, but it would only buy what <strong><span id="sc-today-income"></span></strong> buys today.</p>
-        <p>Your savings could be about <strong id="sc-today-capital-future"></strong> by then, but they would only be worth what <strong id="sc-today-capital"></strong> is worth today.</p>
       </div>
     </div>
   </section>
