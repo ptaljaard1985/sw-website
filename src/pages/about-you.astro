@@ -20,72 +20,53 @@ const schema = {
   showSocialInFooter={true}
   schema={schema}
 >
-  <section class="hero hero--short">
+  <div class="v2">
+
+  <section class="hero hv-hero-sub hv-hero-plain hv-hero-plain--b">
     <div class="hero__inner">
       <h1 class="fade-up">A clear plan for the road ahead</h1>
-      <p class="fade-up">Whether you're building wealth, planning for retirement, running a business or thinking about your legacy, it helps to have a trusted adviser by your side. Our clients come from all walks of life, but they share one thing in common: they want to make smart decisions with confidence and clarity.</p>
+      <div class="hv-hero__side">
+        <p class="fade-up">Whether you're building wealth, planning for retirement, running a business or thinking about your legacy, it helps to have a trusted adviser by your side. Our clients come from all walks of life, but they share one thing in common: they want to make smart decisions with confidence and clarity.</p>
+      </div>
     </div>
   </section>
 
   <!-- Who We Work With -->
-  <section class="section">
+  <section class="section hv-problem hv-navy">
     <div class="container">
-      <div class="section__header fade-up">
+      <div class="hv-lede fade-up">
         <h2>Who we work best with</h2>
         <p>You might recognise yourself in one of these.</p>
       </div>
-      <div class="client-types">
-        <div class="client-type fade-up">
-          <div class="client-type__icon">
-            <!-- Lucide: Compass -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
-          </div>
-          <h4>Professionals earning well but unsure if their money is working hard enough</h4>
-        </div>
-        <div class="client-type fade-up">
-          <div class="client-type__icon">
-            <!-- Lucide: Sunset -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10V2"/><path d="m4.93 10.93 1.41 1.41"/><path d="M2 18h2"/><path d="M20 18h2"/><path d="m19.07 10.93-1.41 1.41"/><path d="M22 22H2"/><path d="m16 6-4 4-4-4"/><path d="M16 18a4 4 0 0 0-8 0"/></svg>
-          </div>
-          <h4>Pre-retirees wanting to know they're doing the right things in the lead up to retirement</h4>
-        </div>
-        <div class="client-type fade-up">
-          <div class="client-type__icon">
-            <!-- Lucide: Wallet -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
-          </div>
-          <h4>Retirees who want to draw a sustainable retirement income in a tax-efficient manner</h4>
-        </div>
-        <div class="client-type fade-up">
-          <div class="client-type__icon">
-            <!-- Lucide: Building2 -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
-          </div>
-          <h4>Business owners whose personal and business finances are tangled</h4>
-        </div>
-      </div>
+      <ul class="hv-cols">
+        <li class="hv-col fade-up"><span class="hv-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span><h4>Professionals earning well but unsure if their money is working hard enough</h4></li>
+        <li class="hv-col fade-up"><span class="hv-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10V2"/><path d="m4.93 10.93 1.41 1.41"/><path d="M2 18h2"/><path d="M20 18h2"/><path d="m19.07 10.93-1.41 1.41"/><path d="M22 22H2"/><path d="m16 6-4 4-4-4"/><path d="M16 18a4 4 0 0 0-8 0"/></svg></span><h4>Pre-retirees wanting to know they're doing the right things in the lead up to retirement</h4></li>
+        <li class="hv-col fade-up"><span class="hv-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg></span><h4>Retirees who want to draw a sustainable retirement income in a tax-efficient manner</h4></li>
+        <li class="hv-col fade-up"><span class="hv-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></span><h4>Business owners whose personal and business finances are tangled</h4></li>
+      </ul>
     </div>
   </section>
 
   <!-- How We Work With You -->
-  <section class="section section--grey" id="process">
+  <section class="section" id="process">
     <div class="container">
-      <div class="section__header fade-up"><h2>How we work with you</h2><p>A proactive process designed for every stage of life.</p></div>
-      <div class="steps steps--bordered">
-        <div class="step fade-up"><div class="step__number">1</div><h3>Introductory call</h3><p>A 10-minute call to see if our expertise matches your needs.</p></div>
-        <div class="step fade-up"><div class="step__number">2</div><h3>Family meeting</h3><p>A 90-minute meeting (in-person or virtual) to understand your family goals, needs, and concerns.</p></div>
-        <div class="step fade-up"><div class="step__number">3</div><h3>Review assessment</h3><p>A follow-up meeting to discuss our findings and recommendations.</p></div>
+      <div class="hv-lede hv-lede--center fade-up">
+        <h2>How we work with you</h2>
+        <p>A proactive process designed for every stage of life.</p>
       </div>
-      <div class="steps steps--centered">
-        <div class="step fade-up"><div class="step__number">4</div><h3>Annual service calendar</h3><p>Four annual touchpoints to keep your plan on track as life and markets evolve.<br><a href="/files/2026-simple-wealth-client-service-calendar.pdf" target="_blank" rel="noopener" class="card__link">View our service calendar <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></p></div>
-      </div>
-      <div class="section-cta-center fade-up">
-        <a href="/contact/" class="btn btn--primary">Book a free call</a>
-      </div>
+      <ol class="hv-timeline">
+        <li class="hv-step fade-up"><span class="hv-step__number">1</span><h3>Introductory call</h3><p>A 10-minute call to see if our expertise matches your needs.</p></li>
+        <li class="hv-step fade-up"><span class="hv-step__number">2</span><h3>Family meeting</h3><p>A 90-minute meeting (in-person or virtual) to understand your family goals, needs, and concerns.</p></li>
+        <li class="hv-step fade-up"><span class="hv-step__number">3</span><h3>Review assessment</h3><p>A follow-up meeting to discuss our findings and recommendations.</p></li>
+        <li class="hv-step fade-up"><span class="hv-step__number">4</span><h3>Annual service calendar</h3><p>Four annual touchpoints to keep your plan on track as life and markets evolve.<br><a href="/files/2026-simple-wealth-client-service-calendar.pdf" target="_blank" rel="noopener" class="card__link">View our service calendar <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></p></li>
+      </ol>
+      <div class="hv-cta hv-cta--center fade-up"><a href="/contact/" class="btn btn--primary">Book a free call</a></div>
     </div>
   </section>
 
-  <TestimonialsCarousel grey={false} />
+  <TestimonialsCarousel grey={false} perView={1} />
 
   <CtaSection />
+
+  </div>
 </BaseLayout>

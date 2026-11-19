@@ -34,38 +34,31 @@ const schema = [{
   schema={schema}
 >
   <!-- Hero -->
-  <section class="hero hero--short">
+  <div class="v2">
+
+  <section class="hero hv-hero-sub hv-hero-plain hv-hero-plain--a">
     <div class="hero__inner">
       <h1 class="fade-up">Trust starts with getting to know us</h1>
-      <p class="fade-up">Choosing someone to help with your finances is a big decision. You should feel confident not just in our advice, but in who we are. Here's a bit about us.</p>
+      <div class="hv-hero__side">
+        <p class="fade-up">Choosing someone to help with your finances is a big decision. You should feel confident not just in our advice, but in who we are. Here's a bit about us.</p>
+      </div>
     </div>
   </section>
 
   <!-- Founder Quote -->
-  <section class="section">
+  <section class="section hv-paper">
     <div class="container">
-      <div class="founder-quote fade-up">
+      <figure class="hv-quote fade-up">
         <blockquote>&ldquo;I saw that financial advice was becoming too complex for clients, so I decided to do something different. That's how Simple Wealth was born.&rdquo;</blockquote>
-        <cite>&mdash; Pierre Taljaard, Director &amp; Financial Planner</cite>
-      </div>
-    </div>
-  </section>
-
-  <!-- Origin -->
-  <section class="section section--grey">
-    <div class="container">
-      <div class="section__header fade-up">
-        <h2>Our story</h2>
-        <p>We started Simple Wealth to challenge the way financial advice is often delivered. Too often it's complicated, unclear, and focused more on products than people.</p>
-        <p>We believe good financial planning should give you <strong>clarity</strong>, <strong>confidence</strong>, and the <strong>freedom</strong> to focus on what really matters. That's why we simplify the complex and put your life at the centre of every decision.</p>
-      </div>
+        <figcaption><cite>&mdash; Pierre Taljaard, Director &amp; Financial Planner</cite></figcaption>
+      </figure>
     </div>
   </section>
 
   <!-- Meet Pierre -->
   <section class="section">
     <div class="container">
-      <div class="bio-section fade-up">
+      <div class="bio-section hv-bio fade-up">
         <div class="bio-section__photo"><img src="/images/headshot-pierre.webp" alt="Pierre Taljaard, Certified Financial Planner" width="400" height="400" loading="lazy"></div>
         <div class="bio-section__content">
           <h2>Pierre Taljaard</h2>
@@ -82,52 +75,56 @@ const schema = [{
     </div>
   </section>
 
-  <!-- Core Values -->
-  <section class="section section--grey">
-    <div class="container">
-      <div class="section__header fade-up">
-        <h2>Our promise to you</h2>
-        <p>Four principles that guide everything we do.</p>
+  <!-- Origin -->
+  <section class="section hv-navy hv-story">
+    <div class="container hv-split">
+      <div class="hv-split__intro fade-up">
+        <h2>Our story</h2>
       </div>
-      <div class="values-grid">
-        <div class="value-card fade-up">
-          <h3>Integrity</h3>
-          <p>We always act in your best interests. Honest, transparent advice that puts you first.</p>
-        </div>
-        <div class="value-card fade-up">
-          <h3>Clarity</h3>
-          <p>We cut through the jargon and give you advice you can actually understand.</p>
-        </div>
-        <div class="value-card fade-up">
-          <h3>Partnership</h3>
-          <p>We work with you, not just for you. This is a long-term relationship, not a one-time service.</p>
-        </div>
-        <div class="value-card fade-up">
-          <h3>Accountability</h3>
-          <p>We follow through, review regularly, and adjust when life changes.</p>
-        </div>
+      <div class="hv-split__body fade-up">
+        <p>We started Simple Wealth to challenge the way financial advice is often delivered. Too often it's complicated, unclear, and focused more on products than people.</p>
+        <p>We believe good financial planning should give you <strong>clarity</strong>, <strong>confidence</strong>, and the <strong>freedom</strong> to focus on what really matters. That's why we simplify the complex and put your life at the centre of every decision.</p>
       </div>
     </div>
   </section>
 
-  <TestimonialsCarousel grey={false} />
+  <!-- Core Values -->
+  <section class="section hv-paper">
+    <div class="container">
+      <div class="hv-lede fade-up">
+        <h2>Our promise to you</h2>
+        <p>Four principles that guide everything we do.</p>
+      </div>
+      <ul class="hv-cols">
+        <li class="hv-col fade-up"><h3>Integrity</h3><p>We always act in your best interests. Honest, transparent advice that puts you first.</p></li>
+        <li class="hv-col fade-up"><h3>Clarity</h3><p>We cut through the jargon and give you advice you can actually understand.</p></li>
+        <li class="hv-col fade-up"><h3>Partnership</h3><p>We work with you, not just for you. This is a long-term relationship, not a one-time service.</p></li>
+        <li class="hv-col fade-up"><h3>Accountability</h3><p>We follow through, review regularly, and adjust when life changes.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <TestimonialsCarousel grey={false} perView={1} />
 
   <!-- How We Work With You -->
-  <section class="section section--grey" id="process">
+  <section class="section" id="process">
     <div class="container">
-      <div class="section__header fade-up"><h2>How we work with you</h2><p>A proactive process designed for every stage of life.</p></div>
-      <div class="steps steps--bordered">
-        <div class="step fade-up"><div class="step__number">1</div><h3>Introductory call</h3><p>A 10-minute call to see if our expertise matches your needs.</p></div>
-        <div class="step fade-up"><div class="step__number">2</div><h3>Family meeting</h3><p>A 90-minute meeting (in-person or virtual) to understand your family goals, needs, and concerns.</p></div>
-        <div class="step fade-up"><div class="step__number">3</div><h3>Review assessment</h3><p>A follow-up meeting to discuss our findings and recommendations.</p></div>
+      <div class="hv-lede hv-lede--center fade-up">
+        <h2>How we work with you</h2>
+        <p>A proactive process designed for every stage of life.</p>
       </div>
-      <div class="steps steps--centered">
-        <div class="step fade-up"><div class="step__number">4</div><h3>Annual service calendar</h3><p>Four annual touchpoints to keep your plan on track as life and markets evolve.<br><a href="/files/2026-simple-wealth-client-service-calendar.pdf" target="_blank" rel="noopener" class="card__link">View our service calendar <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></p></div>
-      </div>
+      <ol class="hv-timeline">
+        <li class="hv-step fade-up"><span class="hv-step__number">1</span><h3>Introductory call</h3><p>A 10-minute call to see if our expertise matches your needs.</p></li>
+        <li class="hv-step fade-up"><span class="hv-step__number">2</span><h3>Family meeting</h3><p>A 90-minute meeting (in-person or virtual) to understand your family goals, needs, and concerns.</p></li>
+        <li class="hv-step fade-up"><span class="hv-step__number">3</span><h3>Review assessment</h3><p>A follow-up meeting to discuss our findings and recommendations.</p></li>
+        <li class="hv-step fade-up"><span class="hv-step__number">4</span><h3>Annual service calendar</h3><p>Four annual touchpoints to keep your plan on track as life and markets evolve.<br><a href="/files/2026-simple-wealth-client-service-calendar.pdf" target="_blank" rel="noopener" class="card__link">View our service calendar <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></p></li>
+      </ol>
     </div>
   </section>
 
   <LeadMagnet grey={false} />
 
   <CtaSection />
+
+  </div>
 </BaseLayout>

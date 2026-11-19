@@ -28,17 +28,21 @@ const schema = [{
   schema={schema}
 >
   <!-- Hero -->
-  <section class="hero hero--short">
+  <div class="v2">
+
+  <section class="hero hv-hero-sub hv-hero-plain hv-hero-plain--c">
     <div class="hero__inner">
       <h1 class="fade-up">What we believe</h1>
-      <p class="fade-up">10 core beliefs that underpin everything we do.</p>
+      <div class="hv-hero__side">
+        <p class="fade-up">10 core beliefs that underpin everything we do.</p>
+      </div>
     </div>
   </section>
 
   <!-- Beliefs -->
   <section class="section">
     <div class="container">
-      <div class="beliefs-list">
+      <div class="beliefs-list hv-beliefs">
         <div class="belief fade-up">
           <div class="belief__header"><div class="belief__number">1</div>
           <h3>There are only two types of investors</h3></div>
@@ -94,7 +98,9 @@ const schema = [{
     </div>
   </section>
 
-  <TestimonialsCarousel />
+  <TestimonialsCarousel grey={false} perView={1} />
 
   <CtaSection />
+
+  </div>
 </BaseLayout>

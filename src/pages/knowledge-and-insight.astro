@@ -46,13 +46,19 @@ const schema = [{
   <style slot="head">
     /* --- Knowledge & Insight page --- */
     .knowledge-hero {
-      background: var(--color-navy);
+      background:
+        linear-gradient(to top, rgba(12, 26, 44, 0.97) 0%, rgba(21, 45, 71, 0.82) 60%, rgba(21, 45, 71, 0.9) 100%),
+        url('/images/article-unknowns.webp') center / cover no-repeat,
+        var(--color-navy);
       color: var(--color-white);
       padding: 140px 20px 120px;
       text-align: center;
     }
 
     .knowledge-hero h1 {
+      font-size: clamp(2.8rem, 6.6vw, 6.2rem);
+      line-height: 0.96;
+      letter-spacing: -0.03em;
       color: var(--color-white);
       margin-bottom: 12px;
       display: inline-block;
@@ -515,9 +521,13 @@ const schema = [{
     </div>
   </section>
 
-  <TestimonialsCarousel />
+  <div class="v2">
+
+  <TestimonialsCarousel grey={false} perView={1} />
 
   <CtaSection />
+
+  </div>
 
   <script slot="scripts" is:inline>
     function subscribeNewsletter(form, thanksId, errorId) {
