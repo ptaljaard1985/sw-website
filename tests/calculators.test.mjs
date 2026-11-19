@@ -230,3 +230,22 @@ test('income calculator: amounts in the rands of each year', () => {
   near(ref.leftAt100Today, 1345096);
   near(ref.leftAt100Actual, 1345096 * Math.pow(1.05, 35), 10);
 });
+
+test('"Your expected return" has its own wording for the income calculator', () => {
+  for (let p = 0; p <= 5; p += 0.5) {
+    const saving = calc.returnComment(p);
+    const income = calc.returnComment(p, 'income');
+    assert.equal(income.length, 3);
+    assert.equal(income[0], saving[0]);                       // same opening sentence
+    for (const line of income) {
+      assert.ok(line && line.length > 20);
+      assert.ok(!/[\u2014!?]/.test(line));
+      assert.ok(!/how much you save|what you put in|investment accounts/.test(line), 'no saving-stage wording: ' + line);
+    }
+  }
+  // the default is still the saving wording, unchanged
+  assert.equal(calc.returnComment(5)[2], 'The unavoidable result is bigger (temporary) declines when markets are volatile.');
+  assert.equal(calc.returnComment(4)[1], 'This is achievable, but it needs most of your savings to be invested in growth assets (shares and listed property), across all your investment accounts.');
+  assert.equal(calc.returnComment(0)[2], 'At this setting almost all of the growth in your savings has to come from what you put in.');
+  assert.equal(new Set([0, 1, 2, 3, 4, 5].map((p) => calc.returnComment(p, 'income')[1])).size, 6);
+});
