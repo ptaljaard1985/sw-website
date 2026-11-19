@@ -274,6 +274,32 @@
   color: var(--color-gold);
 }
 
+/* The same figures before inflation is taken off */
+.calc-answer__future {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 3px solid var(--color-gold);
+}
+
+.calc-answer__future[hidden] {
+  display: none;
+}
+
+.calc-answer__future-title {
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--color-white);
+  margin: 0 0 6px;
+}
+
+.calc-answer__future .calc-answer__rows {
+  margin-top: 0;
+}
+
+.calc-answer__future .calc-answer__row:first-child {
+  border-top: 0;
+}
+
 .calc-chart {
   padding: 28px 20px 20px;
   min-width: 0;
