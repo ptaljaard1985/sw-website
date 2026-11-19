@@ -1,0 +1,334 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaSection from '../../components/CtaSection.astro';
+import TestimonialsCarousel from '../../components/TestimonialsCarousel.astro';
+
+const url = 'https://www.simplewealth.co.za/tools/retirement-savings-calculator/';
+const schema = [{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Retirement savings calculator",
+  "description": "An illustration of the monthly income your retirement savings could pay you, in today's money and before tax.",
+  "url": url,
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "ZAR" },
+  "provider": { "@id": "https://simplewealth.co.za/#organization" }
+}, {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.simplewealth.co.za/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://www.simplewealth.co.za/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "Retirement savings calculator", "item": url }
+  ]
+}];
+---
+
+<BaseLayout
+  title="Retirement Savings Calculator | Simple Wealth"
+  description="See what your savings could pay you each month when you retire, in today's money and before tax. A free illustration from Simple Wealth. Nothing you type leaves your browser."
+  activePage="tools"
+  showSocialInFooter={true}
+  schema={schema}
+>
+  <link rel="stylesheet" href="/calculators.css?v=1" slot="head">
+
+  <div class="v2">
+
+  <section class="hero hv-hero-sub hv-hero-plain hv-hero-plain--c hv-hero-plain--short">
+    <div class="hero__inner">
+      <h1 class="fade-up">Retirement savings calculator</h1>
+      <div class="hv-hero__side">
+        <p class="fade-up">See what your savings could pay you each month when you retire, in today's money.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--grey calc-section">
+    <div class="calc" id="savings-calc">
+      <div class="calc__sheet">
+
+        <!-- Your details -->
+        <div class="calc__block">
+          <h2 class="calc__heading">Your details</h2>
+          <div class="calc__fields">
+            <div class="calc-field">
+              <label for="sc-age">Your age</label>
+              <div class="calc-field__control">
+                <input id="sc-age" type="text" inputmode="numeric" autocomplete="off" maxlength="2" value="45" aria-describedby="sc-age-error">
+              </div>
+              <p class="calc-field__error" id="sc-age-error" role="alert"></p>
+            </div>
+            <div class="calc-field">
+              <label for="sc-retire">Age you plan to retire</label>
+              <div class="calc-field__control">
+                <input id="sc-retire" type="text" inputmode="numeric" autocomplete="off" maxlength="2" value="65" aria-describedby="sc-retire-error">
+              </div>
+              <p class="calc-field__error" id="sc-retire-error" role="alert"></p>
+            </div>
+            <div class="calc-field calc-field--rand">
+              <label for="sc-savings">Retirement savings today <span class="calc-field__hint">All pots together</span></label>
+              <div class="calc-field__control">
+                <span class="calc-field__prefix" aria-hidden="true">R</span>
+                <input id="sc-savings" type="text" inputmode="numeric" autocomplete="off" maxlength="15">
+              </div>
+            </div>
+            <div class="calc-field calc-field--rand calc-field--wide">
+              <label for="sc-monthly">What you save each month</label>
+              <div class="calc-field__control">
+                <span class="calc-field__prefix" aria-hidden="true">R</span>
+                <input id="sc-monthly" type="text" inputmode="numeric" autocomplete="off" maxlength="12">
+              </div>
+            </div>
+            <div class="calc-field calc-field--rand calc-field--wide">
+              <label for="sc-goal">Monthly income you would like in retirement <span class="calc-field__hint">In today's money (optional)</span></label>
+              <div class="calc-field__control">
+                <span class="calc-field__prefix" aria-hidden="true">R</span>
+                <input id="sc-goal" type="text" inputmode="numeric" autocomplete="off" maxlength="12">
+              </div>
+            </div>
+          </div>
+
+          <div class="calc-slider">
+            <div class="calc-slider__top">
+              <label class="calc-slider__name" for="sc-return">Expected return</label>
+              <span class="calc-slider__value" id="sc-return-value" aria-hidden="true">Inflation plus 4% a year</span>
+            </div>
+            <input id="sc-return" type="range" min="0" max="5" step="0.5" value="4" aria-valuetext="Inflation plus 4% a year">
+            <div class="calc-slider__ends" aria-hidden="true"><span>Inflation</span><span>Inflation plus 5%</span></div>
+          </div>
+        </div>
+
+        <!-- Cover row -->
+        <div class="calc__cover">
+          <div class="calc-answer" aria-live="polite">
+            <p class="calc-answer__label" id="sc-label">Monthly income when you retire</p>
+            <p class="calc-answer__figure" id="sc-figure">&ndash;</p>
+            <p class="calc-answer__note" id="sc-note">Enter your age, the age you plan to retire, and what you have saved or what you save each month.</p>
+            <dl class="calc-answer__rows" id="sc-rows" hidden>
+              <div class="calc-answer__row" data-goal-row hidden><dt>Your goal</dt><dd id="sc-row-goal"></dd></div>
+              <div class="calc-answer__row" data-goal-row hidden><dt>Against the goal</dt><dd id="sc-row-against" class="is-gold"></dd></div>
+              <div class="calc-answer__row" data-goal-row hidden><dt>Goal first reached</dt><dd id="sc-row-reached"></dd></div>
+              <div class="calc-answer__row"><dt>Savings at retirement</dt><dd id="sc-row-capital"></dd></div>
+              <div class="calc-answer__row"><dt>Years to retirement</dt><dd id="sc-row-years"></dd></div>
+            </dl>
+          </div>
+
+          <div class="calc-chart">
+            <h2 class="calc-chart__title" id="sc-chart-title">Monthly income by retirement age</h2>
+            <div class="calc-toggle" role="group" aria-label="Chart view">
+              <button type="button" id="sc-view-income" aria-pressed="true">Income by retirement age</button>
+              <button type="button" id="sc-view-savings" aria-pressed="false">Savings over time</button>
+            </div>
+            <div class="calc-chart__canvas" id="sc-chart">
+              <div class="calc-chart__empty">Your chart appears here once you have filled in your details.</div>
+            </div>
+            <div class="visually-hidden"><table id="sc-table"></table></div>
+          </div>
+        </div>
+
+        <hr class="calc__rule">
+
+        <!-- Numbered sections -->
+        <div class="calc__sections">
+          <section class="calc-part" id="sc-gap" hidden>
+            <div class="calc-part__head"><h2 id="sc-gap-heading">Closing the gap</h2></div>
+            <div class="calc-part__body" id="sc-gap-body"></div>
+          </section>
+
+          <section class="calc-part">
+            <div class="calc-part__head"><h2>What this leaves out</h2></div>
+            <div class="calc-part__body">
+              <ul>
+                <li><strong>Tax.</strong> The income shown is before tax.</li>
+                <li><strong>Fees.</strong> The expected return is before investment and advice fees, unless you lower it to allow for them.</li>
+                <li><strong>Ups and downs.</strong> Markets do not grow in a straight line, so the real path will be bumpier than the chart.</li>
+                <li><strong>One pot.</strong> It treats all your savings as a single pot.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="calc-part">
+            <div class="calc-part__head"><h2>How this is worked out</h2></div>
+            <div class="calc-part__body">
+              <p>Your savings grow each month at the expected return you chose. Inflation is assumed to be 5% a year, so inflation plus 4% means 9% a year. What you save each month is assumed to rise with inflation once a year.</p>
+              <p>The total is then brought back to today's money using inflation. The monthly income applies a withdrawal rate that depends on the age you retire (4.8% a year at 65, lower if you retire earlier, higher if later), divided by twelve.</p>
+            </div>
+          </section>
+
+          <p class="calc__disclaimer">This calculator gives a general illustration based on the figures and assumptions you enter. It is not financial advice and does not take your personal circumstances into account. Actual results will differ. Simple Wealth (Pty) Ltd is an authorised financial services provider, FSP no. 50637.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <TestimonialsCarousel grey={false} perView={1} />
+
+  <CtaSection heading="Want a plan built on your real numbers" text="A free 10-minute call is a simple way to see whether we can help you build one." />
+
+  </div>
+
+  <script src="/calculators.js?v=1" is:inline slot="scripts"></script>
+  <script is:inline slot="scripts">
+    (function () {
+      var C = window.SWCalc;
+      var $ = function (id) { return document.getElementById(id); };
+      var age = $('sc-age'), retire = $('sc-retire'), savings = $('sc-savings'), monthly = $('sc-monthly'), goal = $('sc-goal');
+      var slider = $('sc-return');
+      var view = 'income';
+      var last = null;
+
+      function rand(n, step) { return C.formatRand(C.roundTo(n, step)); }
+
+      function wholeNumber(input) {
+        var text = input.value.replace(/\D/g, '');
+        if (text !== input.value) input.value = text;
+        return text === '' ? null : parseInt(text, 10);
+      }
+
+      function setError(input, errorId, message) {
+        $(errorId).textContent = message;
+        if (message) input.setAttribute('aria-invalid', 'true'); else input.removeAttribute('aria-invalid');
+      }
+
+      function read() {
+        var a = wholeNumber(age), r = wholeNumber(retire);
+        var ageError = '', retireError = '';
+        if (a !== null && (a < 18 || a > 74)) ageError = 'Enter an age from 18 to 74.';
+        if (r !== null && (r < 55 || r > 75)) retireError = 'Enter a retirement age from 55 to 75.';
+        else if (r !== null && a !== null && !ageError && r <= a) retireError = 'Your retirement age needs to be higher than your age.';
+        setError(age, 'sc-age-error', ageError);
+        setError(retire, 'sc-retire-error', retireError);
+
+        var s = C.parseRand(savings.value), m = C.parseRand(monthly.value), g = C.parseRand(goal.value);
+        if (a === null || r === null || ageError || retireError) return null;
+        if (s === null && m === null) return null;
+        return {
+          age: a, retirementAge: r, savings: s || 0, monthlySaving: m || 0,
+          extraReturn: parseFloat(slider.value) / 100, goal: g && g > 0 ? g : null
+        };
+      }
+
+      function showEmpty() {
+        last = null;
+        $('sc-label').textContent = 'Monthly income when you retire';
+        $('sc-figure').textContent = '–';
+        $('sc-figure')._swValue = undefined;
+        $('sc-note').textContent = 'Enter your age, the age you plan to retire, and what you have saved or what you save each month.';
+        $('sc-rows').hidden = true;
+        $('sc-gap').hidden = true;
+        $('sc-chart').innerHTML = '<div class="calc-chart__empty">Your chart appears here once you have filled in your details.</div>';
+        $('sc-table').innerHTML = '';
+      }
+
+      function drawChart() {
+        if (!last) return;
+        var input = last.input, result = last.result;
+        var income = view === 'income';
+        $('sc-chart-title').textContent = income ? 'Monthly income by retirement age' : 'Your savings over time';
+        $('sc-view-income').setAttribute('aria-pressed', income ? 'true' : 'false');
+        $('sc-view-savings').setAttribute('aria-pressed', income ? 'false' : 'true');
+
+        if (income) {
+          var points = C.incomeByRetirementAge(input);
+          C.drawChart($('sc-chart'), {
+            points: points,
+            title: 'Monthly income in today’s money for each retirement age from ' + points[0].age + ' to 75',
+            valueLabel: function (v) { return rand(v, 100) + ' a month'; },
+            marker: { age: input.retirementAge, label: rand(result.monthlyIncome, 100) + ' at ' + input.retirementAge },
+            goal: input.goal ? { value: input.goal, label: 'Goal ' + C.formatRand(input.goal) } : null
+          });
+          C.fillTable($('sc-table'), 'Monthly income in today’s money, before tax, by retirement age',
+            ['Retirement age', 'Monthly income'],
+            points.map(function (p) { return [p.age, rand(p.value, 100)]; }));
+        } else {
+          var series = C.savingsOverTime(input);
+          C.drawChart($('sc-chart'), {
+            points: series,
+            title: 'Savings in today’s money at each age from ' + input.age + ' to ' + input.retirementAge,
+            valueLabel: function (v) { return rand(v, 10000); },
+            marker: { age: series[series.length - 1].age, label: rand(result.capitalToday, 10000) + ' at ' + series[series.length - 1].age }
+          });
+          C.fillTable($('sc-table'), 'Savings in today’s money at each age',
+            ['Age', 'Savings'],
+            series.map(function (p) { return [p.age, rand(p.value, 10000)]; }));
+        }
+      }
+
+      function update() {
+        var input = read();
+        if (!input) { showEmpty(); return; }
+        C.trackUse('Retirement savings calculator');
+
+        var result = C.projectSavings(input);
+        last = { input: input, result: result };
+
+        $('sc-label').textContent = 'Monthly income if you retire at ' + input.retirementAge;
+        C.easeNumber($('sc-figure'), C.roundTo(result.monthlyIncome, 100), function (v) { return C.formatRand(C.roundTo(v, 100)); });
+        $('sc-note').textContent = 'In today’s money, before tax, drawing ' + result.rate.toFixed(1) + '% a year';
+
+        $('sc-rows').hidden = false;
+        $('sc-row-capital').textContent = rand(result.capitalToday, 10000);
+        $('sc-row-years').textContent = String(result.years);
+
+        var goalRows = document.querySelectorAll('#sc-rows [data-goal-row]');
+        var gap = $('sc-gap');
+        if (input.goal) {
+          var g = C.closeGap(input, input.goal);
+          var goalText = C.formatRand(input.goal) + ' a month';
+          // earliest retirement age on the chart's range that reaches the goal
+          var reached = null;
+          C.incomeByRetirementAge(input).some(function (p) { if (p.value >= input.goal) { reached = p.age; return true; } return false; });
+          for (var i = 0; i < goalRows.length; i++) goalRows[i].hidden = false;
+          $('sc-row-goal').textContent = goalText;
+          $('sc-row-against').textContent = Math.round(result.monthlyIncome / input.goal * 100) + '%';
+          $('sc-row-reached').textContent = reached ? 'Age ' + reached : 'Not by age 75';
+
+          gap.hidden = false;
+          var body = '';
+          if (g.met) {
+            $('sc-gap-heading').textContent = 'Your goal';
+            body = '<p>On these figures, the income at ' + input.retirementAge + ' is at or above your goal of ' + goalText + '.</p>';
+          } else {
+            $('sc-gap-heading').textContent = 'Closing the gap';
+            if (g.extraDisplay !== null) {
+              body += '<p>Saving about <strong>' + C.formatRand(g.extraDisplay) + ' more each month</strong> (about ' +
+                C.formatRand(input.monthlySaving + g.extraDisplay) + ' in total) could reach ' + goalText + ' at ' + input.retirementAge + '.</p>';
+            }
+            body += g.firstAge
+              ? '<p>On what you save now, the income could reach ' + goalText + ' if you retire at <strong>' + g.firstAge + '</strong>.</p>'
+              : '<p>On what you save now, the income does not reach ' + goalText + ' at any retirement age up to 75.</p>';
+          }
+          $('sc-gap-body').innerHTML = body;
+        } else {
+          for (var j = 0; j < goalRows.length; j++) goalRows[j].hidden = true;
+          gap.hidden = true;
+        }
+
+        drawChart();
+      }
+
+      [age, retire].forEach(function (input) { input.addEventListener('input', update); });
+      [savings, monthly, goal].forEach(function (input) { C.bindRandInput(input, update); });
+      C.bindReturnSlider(slider, $('sc-return-value'), update);
+
+      $('sc-view-income').addEventListener('click', function () { view = 'income'; drawChart(); });
+      $('sc-view-savings').addEventListener('click', function () { view = 'savings'; drawChart(); });
+      if (!last) { $('sc-view-income').setAttribute('aria-pressed', 'true'); }
+
+      // Redraw at the new width when the window is resized or a phone is turned
+      var resizeTimer = null, lastWidth = window.innerWidth;
+      window.addEventListener('resize', function () {
+        if (window.innerWidth === lastWidth) return;
+        lastWidth = window.innerWidth;
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(drawChart, 120);
+      });
+
+      update();
+    })();
+  </script>
+</BaseLayout>

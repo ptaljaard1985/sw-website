@@ -4115,3 +4115,15 @@ p:last-child {
   margin-right: auto;
   text-wrap: balance;
 }
+
+/* Small laptops: with six menu items the links need tighter spacing to stay on one line.
+   Same type size; only the gap between items changes. */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .nav__links {
+    gap: 20px;
+  }
+
+  .nav__link {
+    white-space: nowrap;
+  }
+}

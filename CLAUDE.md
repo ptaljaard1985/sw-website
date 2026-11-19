@@ -75,12 +75,20 @@ src/
 │   ├── contact.astro              # Book a free call (Netlify form)
 │   ├── contact-success.astro      # Form submission thank-you page (no nav/footer)
 │   ├── knowledge-and-insight.astro # Editorial hub / article listing
+│   ├── tools/
+│   │   ├── index.astro                    # Lists the public calculators
+│   │   └── retirement-savings-calculator.astro
 │   └── articles/
 │       └── [...id].astro          # Dynamic article route
+
+tests/
+└── calculators.test.mjs          # Node tests for the calculator maths (npm test)
 
 public/
 ├── styles.css                    # Global stylesheet
 ├── script.js                     # Global JS — nav, FAQ, carousel, animations
+├── calculators.css               # Calculator styles (loaded only on /tools/ pages)
+├── calculators.js                # Calculator maths (pure functions) + chart and input helpers
 ├── logo.png                      # Company logo (400x120px optimised)
 ├── logo large.png                # Original high-res logo (5906x1772px)
 ├── favicon.ico                   # Favicon (ICO format)
@@ -354,6 +362,7 @@ How we help ▾
 About you → /about-you/
 About us → /about-us/
 What we believe → /what-we-believe/
+Tools → /tools/
 Knowledge → /knowledge-and-insight/
 [Book your free free call] → /contact/  ← CTA button, gold background
 ```
@@ -371,6 +380,7 @@ All internal links use trailing-slash format:
 - `/about-us/`, `/about-you/`, `/what-we-believe/`
 - `/contact/`, `/contact-success/`
 - `/knowledge-and-insight/`
+- `/tools/`, `/tools/retirement-savings-calculator/`
 - `/articles/{slug}/` (dynamic from content collection)
 
 ---
@@ -403,6 +413,30 @@ Every page was rebuilt in an editorial style. The copy did not change.
 11. FAQ: split layout
 12. Final CTA (CtaSection component)
 13. Footer (Footer component)
+
+---
+
+## Calculators
+
+Public, simplified versions of the meeting tools in the CRM repo. They are separate small pages; the meeting tools are not embedded or changed.
+
+Rules:
+- **Before tax.** No tax tables anywhere on the website. Each page names tax as something it leaves out.
+- **Nothing a visitor types leaves the browser.** No network calls, no localStorage, no cookies, no figures in analytics. The only analytics is one Plausible event per visit, "Calculator used", carrying the calculator's name.
+- **No dependencies and no outside scripts.** The security header in `netlify.toml` must not be loosened. Charts are inline SVG drawn by `public/calculators.js`.
+- **Illustration, never advice.** Results "could" happen. No product, fund or provider is named. Every page shows its assumptions, what it leaves out, and the disclaimer with the FSP statement.
+- **The withdrawal table in `calculators.js` is shared with both meeting tools and must match them.** If it changes there, change it here and update the tests.
+- **Inflation is one constant (`INFLATION`, 5%)** shared by every calculator. It is not a visitor input. The expected return slider runs from inflation to inflation plus 5% (default plus 4%).
+- All wording is for Pierre's sign-off before it merges.
+
+How it is built:
+- `public/calculators.js`: pure maths (`projectSavings`, `incomeByRetirementAge`, `savingsOverTime`, `closeGap`, `withdrawalRate`) exported as `window.SWCalc` in the browser and `module.exports` under Node, plus DOM helpers (`bindRandInput`, `bindReturnSlider`, `drawChart`, `fillTable`, `easeNumber`, `trackUse`).
+- `public/calculators.css`: loaded through the `head` slot on tools pages only, as `/calculators.css?v=N`. Bump `N` (and the `?v=` on `calculators.js`) when either file changes.
+- Each calculator page wires its own inputs in an inline script in the `scripts` slot.
+- Layout follows the meeting tool: white sheet on the paper background, "Your details", navy answer panel beside the chart, 6px gold rule, numbered sections (CSS counters, hidden sections are skipped), disclaimer.
+- `tests/calculators.test.mjs` checks the reference figures. Run `npm test` before every change to the maths.
+
+Pages: `/tools/` (list), `/tools/retirement-savings-calculator/`. A retirement income calculator is planned at `/tools/retirement-income-calculator/`.
 
 ---
 
@@ -509,6 +543,7 @@ Legal links: Google Maps | POPI Statement | Conflict of Interest Management Poli
 npm run dev       # Start dev server at http://localhost:4321
 npm run build     # Build to dist/ (static HTML)
 npm run preview   # Preview built output locally
+npm test          # Calculator maths against the reference figures
 ```
 
 ### Netlify deployment
