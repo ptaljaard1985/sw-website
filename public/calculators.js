@@ -215,6 +215,48 @@
     return 'Inflation is assumed to be ' + inflation + '% a year, so inflation plus ' + percent + '% means ' + total + '% a year.';
   }
 
+  // "Your expected return": a plain comment on the slider setting, as paragraphs.
+  // General description only. It names no product and makes no promise.
+  function returnComment(percent) {
+    var p = percent || 0;
+    var first = p === 0
+      ? 'Your expected return is inflation only.'
+      : 'Your expected return is inflation plus ' + p + '% a year.';
+    var rest;
+    if (p === 0) {
+      rest = [
+        'This assumes your savings keep up with rising prices and grow no faster. It is roughly what a portfolio held mostly in cash and other low-risk investments aims for.',
+        'At this setting almost all of the growth in your savings has to come from what you put in.'
+      ];
+    } else if (p <= 1) {
+      rest = [
+        'This is a cautious assumption. It suits a portfolio held mostly in cash and bonds, with only a small share in growth assets (shares and listed property).',
+        'The ups and downs should be small, but so is the growth above inflation, so most of the result depends on how much you save.'
+      ];
+    } else if (p <= 2) {
+      rest = [
+        'This is a conservative assumption. It suits a portfolio with a meaningful share in growth assets (shares and listed property), balanced by a large share in cash and bonds.',
+        'You should expect modest (temporary) declines when markets fall.'
+      ];
+    } else if (p <= 3) {
+      rest = [
+        'This is a moderate assumption. It needs a substantial share of your savings in growth assets (shares and listed property), with the rest in cash and bonds.',
+        'Your savings will fall in value from time to time, sometimes noticeably, and these (temporary) declines are part of earning this return.'
+      ];
+    } else if (p <= 4) {
+      rest = [
+        'This is achievable, but it needs most of your savings to be invested in growth assets (shares and listed property), across all your investment accounts.',
+        'The price of this return is larger (temporary) declines when markets fall, and the discipline to stay invested through them.'
+      ];
+    } else {
+      rest = [
+        'This is possible, but it asks a lot. All your investment accounts would need to be invested in strategies that are likely to deliver this return over time, which means the great majority of your savings in growth assets (shares and listed property).',
+        'The unavoidable result is bigger (temporary) declines when markets are volatile.'
+      ];
+    }
+    return [first].concat(rest);
+  }
+
   // A tidy step for axis gridlines.
   function niceStep(max, targetLines) {
     if (max <= 0) return 1;
@@ -242,6 +284,7 @@
     parseRand: parseRand,
     returnInWords: returnInWords,
     returnSentence: returnSentence,
+    returnComment: returnComment,
     niceStep: niceStep
   };
 

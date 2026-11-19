@@ -140,6 +140,11 @@ const schema = [{
             <div class="calc-part__body" id="sc-gap-body"></div>
           </section>
 
+          <section class="calc-part" aria-live="polite">
+            <div class="calc-part__head"><h2>Your expected return</h2></div>
+            <div class="calc-part__body" id="sc-return-comment"></div>
+          </section>
+
           <section class="calc-part">
             <div class="calc-part__head"><h2>What this leaves out</h2></div>
             <div class="calc-part__body">
@@ -173,7 +178,7 @@ const schema = [{
 
   </div>
 
-  <script src="/calculators.js?v=3" is:inline slot="scripts"></script>
+  <script src="/calculators.js?v=4" is:inline slot="scripts"></script>
   <script is:inline slot="scripts">
     (function () {
       var C = window.SWCalc;
@@ -323,7 +328,12 @@ const schema = [{
 
       [age, retire].forEach(function (input) { input.addEventListener('input', update); });
       [savings, monthly, goal].forEach(function (input) { C.bindRandInput(input, update); });
-      C.bindReturnSlider(slider, $('sc-return-value'), update, $('sc-return-sentence'));
+      C.bindReturnSlider(slider, $('sc-return-value'), function () {
+        $('sc-return-comment').innerHTML = C.returnComment(parseFloat(slider.value)).map(function (line, i) {
+          return '<p>' + (i === 0 ? '<strong>' + line + '</strong>' : line) + '</p>';
+        }).join('');
+        update();
+      }, $('sc-return-sentence'));
 
       $('sc-view-income').addEventListener('click', function () { view = 'income'; drawChart(); });
       $('sc-view-savings').addEventListener('click', function () { view = 'savings'; drawChart(); });

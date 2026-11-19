@@ -162,3 +162,23 @@ test('savings calculator: figures before inflation is taken off', () => {
   near(r.capitalFuture, r.capitalToday * Math.pow(1.05, 24), 0.01);
   near(r.monthlyIncomeFuture, r.monthlyIncome * Math.pow(1.05, 24), 0.01);
 });
+
+test('"Your expected return" has a comment for every slider setting', () => {
+  for (let p = 0; p <= 5; p += 0.5) {
+    const lines = calc.returnComment(p);
+    assert.equal(lines.length, 3);
+    assert.equal(lines[0], p === 0 ? 'Your expected return is inflation only.' : `Your expected return is inflation plus ${p}% a year.`);
+    for (const line of lines) {
+      assert.ok(line.length > 20);
+      assert.ok(!/[\u2014!?]/.test(line), 'no em dashes, exclamation marks or questions');
+    }
+  }
+  // the six bands
+  const band = (p) => calc.returnComment(p)[1];
+  assert.equal(band(0.5), band(1));
+  assert.equal(band(1.5), band(2));
+  assert.equal(band(2.5), band(3));
+  assert.equal(band(3.5), band(4));
+  assert.equal(band(4.5), band(5));
+  assert.equal(new Set([0, 1, 2, 3, 4, 5].map(band)).size, 6);
+});
