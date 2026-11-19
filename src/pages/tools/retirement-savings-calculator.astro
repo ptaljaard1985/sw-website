@@ -32,7 +32,7 @@ const schema = [{
   showSocialInFooter={true}
   schema={schema}
 >
-  <link rel="stylesheet" href="/calculators.css?v=3" slot="head">
+  <link rel="stylesheet" href="/calculators.css?v=4" slot="head">
 
   <div class="v2">
 
@@ -113,13 +113,6 @@ const schema = [{
               <div class="calc-answer__row"><dt>Savings at retirement, in today's money</dt><dd id="sc-row-capital"></dd></div>
               <div class="calc-answer__row"><dt>Years to retirement</dt><dd id="sc-row-years"></dd></div>
             </dl>
-            <div class="calc-answer__future" id="sc-future" hidden>
-              <p class="calc-answer__future-title" id="sc-future-title"></p>
-              <dl class="calc-answer__rows">
-                <div class="calc-answer__row"><dt>Monthly income</dt><dd id="sc-row-income-future"></dd></div>
-                <div class="calc-answer__row"><dt>Savings at retirement</dt><dd id="sc-row-capital-future"></dd></div>
-              </dl>
-            </div>
           </div>
 
           <div class="calc-chart">
@@ -173,6 +166,17 @@ const schema = [{
     </div>
   </section>
 
+  <section class="calc-today" id="sc-today" aria-live="polite" hidden>
+    <div class="calc-today__inner">
+      <h2>These figures are in today's money</h2>
+      <p>The numbers above have had the effect of inflation taken out, so the actual amounts when you retire at <span id="sc-today-age"></span> would be much higher. Here is what <span id="sc-today-years"></span> of inflation at 5% a year does.</p>
+      <div class="calc-today__pairs">
+        <p>Your income could be about <strong><span id="sc-today-income-future"></span> a month</strong> by then, but it would only buy what <strong><span id="sc-today-income"></span></strong> buys today.</p>
+        <p>Your savings could be about <strong id="sc-today-capital-future"></strong> by then, but they would only be worth what <strong id="sc-today-capital"></strong> is worth today.</p>
+      </div>
+    </div>
+  </section>
+
   <CtaSection heading="Want a plan built on your real numbers" text="A free 10-minute call is a simple way to see whether we can help you build one." />
 
   </div>
@@ -214,7 +218,7 @@ const schema = [{
         $('sc-figure')._swValue = undefined;
         $('sc-note').textContent = 'Enter your age, the age you plan to retire, and what you have saved or what you save each month.';
         $('sc-rows').hidden = true;
-        $('sc-future').hidden = true;
+        $('sc-today').hidden = true;
         $('sc-gap').hidden = true;
         $('sc-chart').innerHTML = '<div class="calc-chart__empty">Your chart appears here once you have filled in your details.</div>';
         $('sc-table').innerHTML = '';
@@ -270,11 +274,14 @@ const schema = [{
         $('sc-row-capital').textContent = rand(result.capitalToday, 10000);
         $('sc-row-years').textContent = String(result.years);
 
-        // The same figures in the rands of the retirement year, so today's money is not mistaken for them
-        $('sc-future').hidden = false;
-        $('sc-future-title').textContent = 'The same figures in ' + result.years + (result.years === 1 ? ' year\u2019s' : ' years\u2019') + ' time, after inflation of 5% a year';
-        $('sc-row-income-future').textContent = rand(result.monthlyIncomeFuture, 100);
-        $('sc-row-capital-future').textContent = rand(result.capitalFuture, 10000);
+        // Gold section below the tool: what today's money means, in the visitor's own figures
+        $('sc-today').hidden = false;
+        $('sc-today-age').textContent = String(input.retirementAge);
+        $('sc-today-years').textContent = result.years + (result.years === 1 ? ' year' : ' years');
+        $('sc-today-income-future').textContent = rand(result.monthlyIncomeFuture, 100);
+        $('sc-today-income').textContent = rand(result.monthlyIncome, 100);
+        $('sc-today-capital-future').textContent = rand(result.capitalFuture, 10000);
+        $('sc-today-capital').textContent = rand(result.capitalToday, 10000);
 
         var goalRows = document.querySelectorAll('#sc-rows [data-goal-row]');
         var gap = $('sc-gap');

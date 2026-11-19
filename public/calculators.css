@@ -21,7 +21,7 @@
 
 /* --- The sheet --- */
 .calc__sheet {
-  max-width: 1360px;
+  max-width: var(--container-max);   /* lines up with the hero text above it */
   margin: 0 auto;
   background: var(--color-white);
   box-shadow: var(--shadow);
@@ -274,32 +274,6 @@
   color: var(--color-gold);
 }
 
-/* The same figures before inflation is taken off */
-.calc-answer__future {
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 3px solid var(--color-gold);
-}
-
-.calc-answer__future[hidden] {
-  display: none;
-}
-
-.calc-answer__future-title {
-  font-size: 0.95rem;
-  line-height: 1.45;
-  color: var(--color-white);
-  margin: 0 0 6px;
-}
-
-.calc-answer__future .calc-answer__rows {
-  margin-top: 0;
-}
-
-.calc-answer__future .calc-answer__row:first-child {
-  border-top: 0;
-}
-
 .calc-chart {
   padding: 28px 20px 20px;
   min-width: 0;
@@ -511,6 +485,62 @@
   color: var(--color-text-light);
 }
 
+/* --- Full-width gold section under the tool: what today's money means --- */
+.calc-today {
+  background: var(--color-gold);
+  color: var(--color-navy);
+  padding: 56px 20px;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.calc-today[hidden] {
+  display: none;
+}
+
+.calc-today__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.calc-today h2,
+.v2 .calc-today h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--color-navy);
+  margin: 0 0 20px;
+}
+
+.calc-today p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--color-navy);
+  margin: 0;
+  max-width: 760px;
+}
+
+.calc-today__pairs {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin-top: 28px;
+}
+
+.calc-today__pairs p {
+  font-family: var(--font-heading);
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  line-height: 1.3;
+  padding: 20px 0;
+  border-top: 1px solid color-mix(in srgb, var(--color-navy) 35%, transparent);
+  max-width: none;
+}
+
+.calc-today strong {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
 /* --- Tools index cards --- */
 .tools-grid {
   display: grid;
@@ -601,6 +631,15 @@
   .tools-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .calc-today {
+    padding: 88px 20px;
+  }
+
+  .calc-today__pairs {
+    grid-template-columns: 1fr 1fr;
+    gap: 0 56px;
+  }
 }
 
 /* ============================================================
@@ -633,5 +672,18 @@
   .calc * {
     transition: none !important;
     animation: none !important;
+  }
+}
+
+/* Less empty space between the hero and the calculator */
+.v2 .calc-section.section {
+  padding-top: 28px;
+  padding-bottom: 48px;
+}
+
+@media (min-width: 700px) {
+  .v2 .calc-section.section {
+    padding-top: 48px;
+    padding-bottom: 72px;
   }
 }

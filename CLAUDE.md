@@ -445,6 +445,8 @@ Pages:
 
 "Tools" is picked out in the menu with a gold dot and gold text (`.nav__link--tools`), and the homepage has a Tools section linking to both. The calculator pages carry no testimonials.
 
+The savings calculator has a full-width gold section (`.calc-today`) under the tool that restates the result in the rands of the retirement year, so today's money is not mistaken for the actual amounts. The calculator sheet is `--container-max` wide so it lines up with the hero text.
+
 The two calculators cross-link to each other and must stay a matching pair: same sheet, same order, same controls and chart style.
 
 ---
