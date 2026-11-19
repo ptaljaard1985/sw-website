@@ -3689,7 +3689,7 @@ p:last-child {
   .v2 .hv-service::before {
     content: '';
     position: absolute;
-    inset: 0 -40px;
+    inset: 0 -20px; /* stays inside the container's side padding, so no horizontal scroll */
     background: var(--color-navy);
     opacity: 0;
     transition: opacity var(--transition);
@@ -4059,7 +4059,10 @@ p:last-child {
   align-self: flex-start;
 }
 
-@media (min-width: 768px) {
+/* Pair fields only where the form column is wide enough: large phones and small
+   tablets (single-column page), and desktop. Between 768px and 1023px the form
+   shares the row with the sidebar and stays one field per row. */
+@media (min-width: 600px) and (max-width: 767px), (min-width: 1024px) {
   .v2 .contact-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -4097,7 +4100,7 @@ p:last-child {
   min-height: 46svh;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 600px) and (max-width: 767px), (min-width: 1024px) {
   .v2 .contact-form {
     align-items: end;
   }
