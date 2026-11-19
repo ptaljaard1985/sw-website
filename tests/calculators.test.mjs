@@ -182,3 +182,51 @@ test('"Your expected return" has a comment for every slider setting', () => {
   assert.equal(band(4.5), band(5));
   assert.equal(new Set([0, 1, 2, 3, 4, 5].map(band)).size, 6);
 });
+
+test('income calculator: income paid at each age, in today\'s money', () => {
+  const r = calc.projectDrawdown({ age: 65, savings: 8000000, monthlyIncome: 40000, otherIncome: 0, extraReturn: 0.04 });
+  assert.equal(r.income.length, 35);            // ages 65 to 99
+  assert.equal(r.income[0].age, 65);
+  assert.equal(r.income.at(-1).age, 99);
+  const at = (age) => r.income.find((row) => row.age === age);
+  near(at(65).fromSavings, 40000, 0.01);        // paid in full before the savings run out
+  near(at(89).fromSavings, 40000, 0.01);
+  assert.ok(at(90).fromSavings > 0 && at(90).fromSavings < 40000);  // part of a year at the run-out age
+  assert.equal(at(91).fromSavings, 0);
+  assert.equal(at(99).fromSavings, 0);
+  assert.ok(r.income.every((row) => row.wanted === 40000 && row.fromOther === 0));
+
+  // with other income: the two parts add up to the income wanted until the savings run out
+  const o = calc.projectDrawdown({ age: 70, savings: 5000000, monthlyIncome: 35000, otherIncome: 10000, extraReturn: 0.03 });
+  near(o.income[0].fromSavings, 25000, 0.01);
+  assert.equal(o.income[0].fromOther, 10000);
+  near(o.income.find((row) => row.age === 91).fromSavings + 10000, 35000, 0.01);
+  assert.equal(o.income.find((row) => row.age === 93).fromSavings, 0);
+  assert.equal(o.income.find((row) => row.age === 93).fromOther, 10000);
+
+  // savings that last pay the full income at every age
+  const l = calc.projectDrawdown({ age: 65, savings: 8000000, monthlyIncome: 32000, otherIncome: 0, extraReturn: 0.04 });
+  assert.ok(l.income.every((row) => Math.abs(row.fromSavings - 32000) < 0.01));
+});
+
+test('income calculator: amounts in the rands of each year', () => {
+  const r = calc.projectDrawdown({ age: 65, savings: 8000000, monthlyIncome: 32000, otherIncome: 5000, extraReturn: 0.04 });
+  // the first year is the same either way
+  near(r.income[0].wantedActual, 32000, 0.01);
+  near(r.income[0].fromSavingsActual, 27000, 0.01);
+  near(r.income[0].fromOtherActual, 5000, 0.01);
+  near(r.points[0].actual, 8000000, 0.01);
+  // every later year is the today's-money figure grown by inflation
+  for (const row of r.income) {
+    const f = Math.pow(1.05, row.age - 65);
+    near(row.wantedActual, row.wanted * f, 0.01);
+    near(row.fromSavingsActual, row.fromSavings * f, 0.01);
+    near(row.fromOtherActual, row.fromOther * f, 0.01);
+  }
+  for (const pt of r.points) near(pt.actual, pt.value * Math.pow(1.05, pt.age - 65), 0.01);
+  near(r.leftAt100Actual, r.leftAt100Today * Math.pow(1.05, 35), 0.01);
+  // the reference case: R1 345 096 in today's money is about R7.42 million at 100
+  const ref = calc.projectDrawdown({ age: 65, savings: 8000000, monthlyIncome: 32000, otherIncome: 0, extraReturn: 0.04 });
+  near(ref.leftAt100Today, 1345096);
+  near(ref.leftAt100Actual, 1345096 * Math.pow(1.05, 35), 10);
+});
