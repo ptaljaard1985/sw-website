@@ -357,7 +357,7 @@
 .calc-chart__bar-savings { fill: var(--color-navy); }
 .calc-chart__bar-other { fill: var(--color-gold); }
 .calc-chart__short { fill: color-mix(in srgb, var(--color-gold) 16%, transparent); }
-.calc-chart__want { stroke: var(--color-text); stroke-width: 2; stroke-dasharray: 7 5; }
+.calc-chart__want { fill: none; stroke: var(--color-text); stroke-width: 2; stroke-linejoin: miter; }
 .calc-chart__note { pointer-events: none; }
 .calc-chart__note-dot { fill: var(--color-white); stroke: var(--color-navy); stroke-width: 2.5; }
 .calc-chart__note-box { fill: var(--color-navy); }
@@ -396,7 +396,7 @@
 .calc-chart__key .is-savings { background: var(--color-navy); }
 .calc-chart__key .is-other { background: var(--color-gold); }
 .calc-chart__key .is-short { background: color-mix(in srgb, var(--color-gold) 16%, transparent); border: 1px solid color-mix(in srgb, var(--color-gold) 60%, transparent); }
-.calc-chart__key .is-want { height: 0; width: 18px; border-top: 2px dashed var(--color-text); background: none; }
+.calc-chart__key .is-want { height: 0; width: 18px; border-top: 2px solid var(--color-text); background: none; }
 
 /* --- Gold rule --- */
 .calc__rule {

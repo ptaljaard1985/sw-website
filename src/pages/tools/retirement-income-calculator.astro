@@ -7,7 +7,7 @@ const schema = [{
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Retirement income calculator",
-  "description": "An illustration of how long your savings could last at the income you want, in today's money and before tax.",
+  "description": "An illustration of how long your savings could last at the income you want, before tax.",
   "url": url,
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Any",
@@ -27,12 +27,12 @@ const schema = [{
 
 <BaseLayout
   title="Retirement Income Calculator | Simple Wealth"
-  description="See how long your savings could last at the income you want, in today's money and before tax. A free illustration from Simple Wealth. Nothing you type leaves your browser."
+  description="See how long your savings could last at the income you want, before tax. A free illustration from Simple Wealth. Nothing you type leaves your browser."
   activePage="tools"
   showSocialInFooter={true}
   schema={schema}
 >
-  <link rel="stylesheet" href="/calculators.css?v=6" slot="head">
+  <link rel="stylesheet" href="/calculators.css?v=7" slot="head">
 
   <div class="v2">
 
@@ -68,7 +68,7 @@ const schema = [{
               </div>
             </div>
             <div class="calc-field calc-field--rand calc-field--wide">
-              <label for="ic-income">Monthly income you want <span class="calc-field__hint">In today's money, before tax</span></label>
+              <label for="ic-income">Monthly income you want <span class="calc-field__hint">To start with, before tax</span></label>
               <div class="calc-field__control">
                 <span class="calc-field__prefix" aria-hidden="true">R</span>
                 <input id="ic-income" type="text" inputmode="numeric" autocomplete="off" maxlength="12">
@@ -103,8 +103,8 @@ const schema = [{
             <dl class="calc-answer__rows" id="ic-rows" hidden>
               <div class="calc-answer__row"><dt>First-year draw rate</dt><dd id="ic-row-rate"></dd></div>
               <div class="calc-answer__row"><dt>Guide rate at your age</dt><dd id="ic-row-guide"></dd></div>
-              <div class="calc-answer__row" id="ic-row-lasts-wrap" hidden><dt>Income that could last to 100</dt><dd id="ic-row-lasts"></dd></div>
-              <div class="calc-answer__row" id="ic-row-left-wrap" hidden><dt>Left at age 100 in today's money</dt><dd id="ic-row-left"></dd></div>
+              <div class="calc-answer__row" id="ic-row-lasts-wrap" hidden><dt>Starting income that could last to 100</dt><dd id="ic-row-lasts"></dd></div>
+              <div class="calc-answer__row" id="ic-row-left-wrap" hidden><dt>Left at age 100</dt><dd id="ic-row-left"></dd></div>
             </dl>
           </div>
 
@@ -153,8 +153,8 @@ const schema = [{
           <section class="calc-part">
             <div class="calc-part__head"><h2>How this is worked out</h2></div>
             <div class="calc-part__body">
-              <p>The income you want, less any other income, is taken from your savings at the start of each year and rises with inflation. What remains grows at the expected return you chose. <span id="ic-return-sentence">Inflation is assumed to be 5% a year, so inflation plus 4% means 9% a year.</span></p>
-              <p>The calculation runs to age 100, and the chart shows your savings in today's money. Today's money means the amounts are shown at today's prices, so you can compare them with what you earn and spend now.</p>
+              <p>The income you want, less any other income, is taken from your savings at the start of each year. It starts at the amount you enter and rises with inflation every year after that. What remains grows at the expected return you chose. <span id="ic-return-sentence">Inflation is assumed to be 5% a year, so inflation plus 4% means 9% a year.</span></p>
+              <p>The calculation runs to age 100. Every amount is shown in the rands of its own year, not in today's money, so the income climbs each year as prices rise.</p>
             </div>
           </section>
 
@@ -171,7 +171,7 @@ const schema = [{
 
   </div>
 
-  <script src="/calculators.js?v=5" is:inline slot="scripts"></script>
+  <script src="/calculators.js?v=6" is:inline slot="scripts"></script>
   <script is:inline slot="scripts">
     (function () {
       var C = window.SWCalc;
@@ -218,28 +218,30 @@ const schema = [{
 
         if (income) {
           C.drawIncomeChart($('ic-chart'), {
-            rows: r.income,
-            title: 'Monthly income in today\u2019s money at each age from ' + input.age + ' to 99, against the income you want',
+            rows: r.income.map(function (row) {
+              return { age: row.age, wanted: row.wantedActual, fromSavings: row.fromSavingsActual, fromOther: row.fromOtherActual };
+            }),
+            title: 'Monthly income at each age from ' + input.age + ' to 99, against the income you want, rising with inflation',
             valueLabel: function (v) { return rand(v, 100) + ' a month'; },
             marker: r.runOutAge !== null ? { age: r.runOutAge, label: 'Savings run out at ' + r.runOutAge } : null
           });
-          C.fillTable($('ic-table'), 'Monthly income in today\u2019s money at each age, before tax',
+          C.fillTable($('ic-table'), 'Monthly income at each age, before tax, in the rands of that year',
             ['Age', 'From your savings', 'Other income', 'Income you want'],
-            r.income.map(function (row) { return [row.age, rand(row.fromSavings, 100), rand(row.fromOther, 100), rand(row.wanted, 100)]; }));
+            r.income.map(function (row) { return [row.age, rand(row.fromSavingsActual, 100), rand(row.fromOtherActual, 100), rand(row.wantedActual, 100)]; }));
           return;
         }
 
         var marker = r.runOutAge !== null
           ? { age: r.runOutAge, label: 'Runs out at ' + r.runOutAge, side: 'right' }
-          : { age: 100, label: rand(r.leftAt100Today, 10000) + ' left at 100' };
+          : { age: 100, label: rand(r.leftAt100Actual, 10000) + ' left at 100' };
         C.drawChart($('ic-chart'), {
-          points: r.points,
-          title: 'Savings in today\u2019s money at each age from ' + input.age + ' to 100',
+          points: r.points.map(function (pt) { return { age: pt.age, value: pt.actual }; }),
+          title: 'Savings at each age from ' + input.age + ' to 100, in the rands of that year',
           valueLabel: function (v) { return rand(v, 10000); },
           marker: marker
         });
-        C.fillTable($('ic-table'), 'Savings in today\u2019s money at each age', ['Age', 'Savings'],
-          r.points.map(function (p) { return [p.age, rand(p.value, 10000)]; }));
+        C.fillTable($('ic-table'), 'Savings at each age, in the rands of that year', ['Age', 'Savings'],
+          r.points.map(function (pt) { return [pt.age, rand(pt.actual, 10000)]; }));
       }
 
       function update() {
@@ -264,20 +266,20 @@ const schema = [{
         if (lasts) {
           $('ic-label').textContent = 'Your savings could last';
           $('ic-figure').textContent = 'Beyond 100';
-          $('ic-row-left').textContent = rand(r.leftAt100Today, 10000);
+          $('ic-row-left').textContent = rand(r.leftAt100Actual, 10000);
           if (r.covered) {
             $('ic-note').textContent = 'Your other income already covers this, so your savings are left untouched.';
             summary = 'Your other income already covers ' + incomeText + ', so your savings are left untouched.';
           } else {
-            $('ic-note').textContent = 'Drawing ' + incomeText + ' in today’s money, before tax';
-            summary = 'At ' + incomeText + ', your savings could last beyond age 100, with about ' + rand(r.leftAt100Today, 10000) + ' left at 100 in today’s money.';
+            $('ic-note').textContent = 'Starting at ' + incomeText + ' before tax, rising with inflation each year';
+            summary = 'Starting at ' + incomeText + ' and rising with inflation, your savings could last beyond age 100, with about ' + rand(r.leftAt100Actual, 10000) + ' left at 100.';
           }
         } else {
           $('ic-label').textContent = 'Your savings could last until about age';
           $('ic-figure').textContent = String(r.runOutAge);
-          $('ic-note').textContent = 'Drawing ' + incomeText + ' in today’s money, before tax';
+          $('ic-note').textContent = 'Starting at ' + incomeText + ' before tax, rising with inflation each year';
           $('ic-row-lasts').textContent = C.formatRand(C.floorTo(C.incomeThatLasts(input), 100)) + ' a month';
-          summary = 'At ' + incomeText + ', your savings could last until about age ' + r.runOutAge + '.';
+          summary = 'Starting at ' + incomeText + ' and rising with inflation, your savings could last until about age ' + r.runOutAge + '.';
         }
         $('ic-summary').textContent = summary;
 
@@ -290,7 +292,7 @@ const schema = [{
             ? '<p>A draw rate above the guide makes it more likely that savings run out during a long retirement.</p>'
             : '<p>That is at or below the guide.</p>';
           if (!lasts) {
-            body += '<p>An income of about <strong>' + C.formatRand(C.floorTo(C.incomeThatLasts(input), 100)) + ' a month</strong> could last to age 100' +
+            body += '<p>A starting income of about <strong>' + C.formatRand(C.floorTo(C.incomeThatLasts(input), 100)) + ' a month</strong>, rising with inflation, could last to age 100' +
               (input.otherIncome ? ' (this figure includes your other income)' : '') + '.</p>';
           }
         }

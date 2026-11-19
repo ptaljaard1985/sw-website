@@ -141,24 +141,29 @@
     for (var age = input.age; age <= 99; age++) {
       var y = age - input.age;
       var need = need0 * Math.pow(1 + INFLATION, y);
-      points.push({ age: age, value: balance / Math.pow(1 + INFLATION, y) });
+      points.push({ age: age, value: balance / Math.pow(1 + INFLATION, y), actual: balance });
       if (balance < need && runOutAge === null) runOutAge = age;
       var draw = Math.min(balance, need);
       income.push({
         age: age,
         wanted: wanted,
         fromSavings: draw / Math.pow(1 + INFLATION, y) / 12,
-        fromOther: fromOther
+        fromOther: fromOther,
+        // the same three amounts in the rands of that year (everything rises with inflation)
+        wantedActual: wanted * Math.pow(1 + INFLATION, y),
+        fromSavingsActual: draw / 12,
+        fromOtherActual: fromOther * Math.pow(1 + INFLATION, y)
       });
       balance = (balance - draw) * (1 + growth);
     }
     var leftAt100Today = balance / Math.pow(1 + INFLATION, 100 - input.age);
-    points.push({ age: 100, value: leftAt100Today });
+    points.push({ age: 100, value: leftAt100Today, actual: balance });
     return {
       points: points,
       income: income,
       runOutAge: runOutAge,                       // first age the savings cannot pay the full year
       leftAt100Today: leftAt100Today,
+      leftAt100Actual: balance,                  // in the rands of that year
       firstYearRate: input.savings > 0 ? need0 / input.savings * 100 : 0,   // percent
       guideRate: withdrawalRate(input.age),       // percent
       covered: need0 === 0                        // other income already pays the income wanted
@@ -609,10 +614,11 @@
         }
       });
 
-      // The income wanted, as a line across every age
-      svg.appendChild(el('line', {
-        x1: pad.left, x2: width - pad.right, y1: y(rows[0].wanted), y2: y(rows[0].wanted), 'class': 'calc-chart__want'
-      }));
+      // The income wanted, stepping up at each age
+      var steps = rows.map(function (r, i) {
+        return (i ? 'L' : 'M') + x(i).toFixed(1) + ' ' + y(r.wanted).toFixed(1) + ' L' + (x(i) + slot).toFixed(1) + ' ' + y(r.wanted).toFixed(1);
+      }).join(' ');
+      svg.appendChild(el('path', { d: steps, 'class': 'calc-chart__want' }));
 
       if (config.marker) {
         var mi = -1;
@@ -621,9 +627,11 @@
           var labelW = config.marker.label.length * 9.5;
           var cx = x(mi) + slot / 2;
           var roomRight = width - pad.right - cx > labelW;
+          // to the left of the run-out age, above the rising line, where there is open space
+          var roomLeft = cx - pad.left > labelW + 12;
           svg.appendChild(el('text', {
-            x: roomRight ? cx : width - pad.right, y: y(rows[mi].wanted) - 12,
-            'text-anchor': roomRight ? 'start' : 'end', 'class': 'calc-chart__marker-label'
+            x: roomLeft ? cx - 10 : (roomRight ? cx : width - pad.right), y: y(rows[mi].wanted) - 14,
+            'text-anchor': roomLeft ? 'end' : (roomRight ? 'start' : 'end'), 'class': 'calc-chart__marker-label'
           }, config.marker.label));
         }
       }
