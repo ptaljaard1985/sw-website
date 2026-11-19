@@ -449,6 +449,10 @@ On the savings calculator the gold rule inside the sheet (`.calc-today`) carries
 
 The savings calculator has a numbered section "Your expected return" that comments on the slider setting. The wording lives in `returnComment()` in `calculators.js`, in six bands (inflation only, up to plus 1%, 2%, 3%, 4%, 5%). It describes asset mixes in general terms only, with no percentages, products or promises, and needs Pierre's sign-off if changed.
 
+The income calculator has two chart views: "Income each year" (the default: stacked bars of the monthly income paid at each age, from savings and from other income, against the income wanted, with any shortfall shaded; drawn by `drawIncomeChart`) and "Savings over time" (the line chart). Both are in today's money, so the income wanted is a flat line. The meeting tool's version of this chart is in future rands and rises each year; the website deliberately does not copy that.
+
+Any element toggled with the `hidden` attribute inside the calculators needs a matching `[hidden] { display: none }` rule if its class sets `display`. This has caused three bugs.
+
 The two calculators cross-link to each other and must stay a matching pair: same sheet, same order, same controls and chart style.
 
 ---

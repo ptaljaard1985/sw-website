@@ -135,18 +135,28 @@
     var balance = input.savings || 0;
     var runOutAge = null;
     var points = [];
+    var income = [];   // monthly income paid at each age, in today's money
+    var wanted = input.monthlyIncome || 0;
+    var fromOther = Math.min(input.otherIncome || 0, wanted);
     for (var age = input.age; age <= 99; age++) {
       var y = age - input.age;
       var need = need0 * Math.pow(1 + INFLATION, y);
       points.push({ age: age, value: balance / Math.pow(1 + INFLATION, y) });
       if (balance < need && runOutAge === null) runOutAge = age;
       var draw = Math.min(balance, need);
+      income.push({
+        age: age,
+        wanted: wanted,
+        fromSavings: draw / Math.pow(1 + INFLATION, y) / 12,
+        fromOther: fromOther
+      });
       balance = (balance - draw) * (1 + growth);
     }
     var leftAt100Today = balance / Math.pow(1 + INFLATION, 100 - input.age);
     points.push({ age: 100, value: leftAt100Today });
     return {
       points: points,
+      income: income,
       runOutAge: runOutAge,                       // first age the savings cannot pay the full year
       leftAt100Today: leftAt100Today,
       firstYearRate: input.savings > 0 ? need0 / input.savings * 100 : 0,   // percent
@@ -524,6 +534,122 @@
         svg.appendChild(hit);
       });
       svg.addEventListener('pointerleave', hide);
+      svg.appendChild(note);
+
+      container.innerHTML = '';
+      container.appendChild(svg);
+    };
+
+    /* Stacked bars of the income paid at each age against the income wanted,
+       in the same style as the line chart.
+       config: {
+         rows: [{ age, wanted, fromSavings, fromOther }],
+         valueLabel(value) -> text,
+         marker: { age, label }   (optional, a label above that age's bar)
+         title:  text for the SVG's accessible name
+       } */
+    api.drawIncomeChart = function (container, config) {
+      var width = Math.max(280, container.clientWidth || 600);
+      var height = Math.round(Math.min(380, Math.max(260, width * 0.56)));
+      var pad = { top: 34, right: 18, bottom: 34, left: 52 };
+      var rows = config.rows;
+      var w = width - pad.left - pad.right;
+      var h = height - pad.top - pad.bottom;
+
+      var maxValue = 1;
+      rows.forEach(function (r) { maxValue = Math.max(maxValue, r.wanted, r.fromSavings + r.fromOther); });
+      var step = niceStep(maxValue * 1.12, 4);
+      var top = Math.ceil(maxValue * 1.12 / step) * step;
+      var slot = w / rows.length;
+      var barW = Math.max(2, slot * 0.8);
+      function x(i) { return pad.left + i * slot; }
+      function y(value) { return pad.top + h - value / top * h; }
+
+      var svg = el('svg', {
+        viewBox: '0 0 ' + width + ' ' + height, width: width, height: height,
+        role: 'img', 'aria-label': config.title || 'Chart', 'class': 'calc-chart__svg'
+      });
+
+      for (var v = 0; v <= top + step / 2; v += step) {
+        var gy = y(v);
+        svg.appendChild(el('line', {
+          x1: pad.left, x2: width - pad.right, y1: gy, y2: gy,
+          'class': v === 0 ? 'calc-chart__baseline' : 'calc-chart__grid'
+        }));
+        svg.appendChild(el('text', {
+          x: pad.left - 8, y: gy + 4, 'text-anchor': 'end', 'class': 'calc-chart__axis'
+        }, formatRandShort(v)));
+      }
+
+      var minAge = rows[0].age, maxAge = rows[rows.length - 1].age;
+      var span = maxAge - minAge;
+      var every = span <= 6 ? 1 : span <= 12 ? 2 : span <= 30 ? 5 : 10;
+      rows.forEach(function (r, i) {
+        var isEnd = i === 0 || i === rows.length - 1;
+        var crowdsEnd = !isEnd && (r.age - minAge < every / 2 || maxAge - r.age < every / 2);
+        if ((r.age % every === 0 || isEnd) && !crowdsEnd) {
+          svg.appendChild(el('text', {
+            x: x(i) + slot / 2, y: height - pad.bottom + 20, 'text-anchor': 'middle', 'class': 'calc-chart__axis'
+          }, String(r.age)));
+        }
+      });
+
+      // Shortfall shading, then the bars: other income at the bottom, savings on top
+      rows.forEach(function (r, i) {
+        var bx = x(i) + (slot - barW) / 2;
+        var paid = r.fromSavings + r.fromOther;
+        if (r.wanted - paid > 0.5) {
+          svg.appendChild(el('rect', { x: x(i), y: y(r.wanted), width: slot, height: y(paid) - y(r.wanted), 'class': 'calc-chart__short' }));
+        }
+        if (r.fromOther > 0.5) {
+          svg.appendChild(el('rect', { x: bx, y: y(r.fromOther), width: barW, height: y(0) - y(r.fromOther), 'class': 'calc-chart__bar-other' }));
+        }
+        if (r.fromSavings > 0.5) {
+          svg.appendChild(el('rect', { x: bx, y: y(paid), width: barW, height: y(r.fromOther) - y(paid), 'class': 'calc-chart__bar-savings' }));
+        }
+      });
+
+      // The income wanted, as a line across every age
+      svg.appendChild(el('line', {
+        x1: pad.left, x2: width - pad.right, y1: y(rows[0].wanted), y2: y(rows[0].wanted), 'class': 'calc-chart__want'
+      }));
+
+      if (config.marker) {
+        var mi = -1;
+        rows.forEach(function (r, i) { if (r.age === config.marker.age) mi = i; });
+        if (mi >= 0) {
+          var labelW = config.marker.label.length * 9.5;
+          var cx = x(mi) + slot / 2;
+          var roomRight = width - pad.right - cx > labelW;
+          svg.appendChild(el('text', {
+            x: roomRight ? cx : width - pad.right, y: y(rows[mi].wanted) - 12,
+            'text-anchor': roomRight ? 'start' : 'end', 'class': 'calc-chart__marker-label'
+          }, config.marker.label));
+        }
+      }
+
+      // Hover and tap
+      var note = el('g', { 'class': 'calc-chart__note', visibility: 'hidden' });
+      var noteBox = el('rect', { rx: 3, ry: 3, height: 26, 'class': 'calc-chart__note-box' });
+      var noteText = el('text', { 'class': 'calc-chart__note-text', 'text-anchor': 'middle' });
+      note.appendChild(noteBox); note.appendChild(noteText);
+      rows.forEach(function (r, i) {
+        var hit = el('rect', { x: x(i), y: pad.top, width: slot, height: h, 'class': 'calc-chart__hit' });
+        function show() {
+          var text = 'Age ' + r.age + ': ' + config.valueLabel(r.fromSavings + r.fromOther);
+          noteText.textContent = text;
+          var boxW = text.length * 6.9 + 18;
+          var bx = Math.min(width - pad.right - boxW, Math.max(pad.left, x(i) + slot / 2 - boxW / 2));
+          var by = pad.top + 4;
+          noteBox.setAttribute('x', bx); noteBox.setAttribute('y', by); noteBox.setAttribute('width', boxW);
+          noteText.setAttribute('x', bx + boxW / 2); noteText.setAttribute('y', by + 17.5);
+          note.setAttribute('visibility', 'visible');
+        }
+        hit.addEventListener('pointerenter', show);
+        hit.addEventListener('pointerdown', show);
+        svg.appendChild(hit);
+      });
+      svg.addEventListener('pointerleave', function () { note.setAttribute('visibility', 'hidden'); });
       svg.appendChild(note);
 
       container.innerHTML = '';

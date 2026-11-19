@@ -182,3 +182,29 @@ test('"Your expected return" has a comment for every slider setting', () => {
   assert.equal(band(4.5), band(5));
   assert.equal(new Set([0, 1, 2, 3, 4, 5].map(band)).size, 6);
 });
+
+test('income calculator: income paid at each age, in today\'s money', () => {
+  const r = calc.projectDrawdown({ age: 65, savings: 8000000, monthlyIncome: 40000, otherIncome: 0, extraReturn: 0.04 });
+  assert.equal(r.income.length, 35);            // ages 65 to 99
+  assert.equal(r.income[0].age, 65);
+  assert.equal(r.income.at(-1).age, 99);
+  const at = (age) => r.income.find((row) => row.age === age);
+  near(at(65).fromSavings, 40000, 0.01);        // paid in full before the savings run out
+  near(at(89).fromSavings, 40000, 0.01);
+  assert.ok(at(90).fromSavings > 0 && at(90).fromSavings < 40000);  // part of a year at the run-out age
+  assert.equal(at(91).fromSavings, 0);
+  assert.equal(at(99).fromSavings, 0);
+  assert.ok(r.income.every((row) => row.wanted === 40000 && row.fromOther === 0));
+
+  // with other income: the two parts add up to the income wanted until the savings run out
+  const o = calc.projectDrawdown({ age: 70, savings: 5000000, monthlyIncome: 35000, otherIncome: 10000, extraReturn: 0.03 });
+  near(o.income[0].fromSavings, 25000, 0.01);
+  assert.equal(o.income[0].fromOther, 10000);
+  near(o.income.find((row) => row.age === 91).fromSavings + 10000, 35000, 0.01);
+  assert.equal(o.income.find((row) => row.age === 93).fromSavings, 0);
+  assert.equal(o.income.find((row) => row.age === 93).fromOther, 10000);
+
+  // savings that last pay the full income at every age
+  const l = calc.projectDrawdown({ age: 65, savings: 8000000, monthlyIncome: 32000, otherIncome: 0, extraReturn: 0.04 });
+  assert.ok(l.income.every((row) => Math.abs(row.fromSavings - 32000) < 0.01));
+});

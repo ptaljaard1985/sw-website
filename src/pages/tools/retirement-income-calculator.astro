@@ -32,7 +32,7 @@ const schema = [{
   showSocialInFooter={true}
   schema={schema}
 >
-  <link rel="stylesheet" href="/calculators.css?v=5" slot="head">
+  <link rel="stylesheet" href="/calculators.css?v=6" slot="head">
 
   <div class="v2">
 
@@ -109,7 +109,17 @@ const schema = [{
           </div>
 
           <div class="calc-chart">
-            <h2 class="calc-chart__title">Your savings over time</h2>
+            <h2 class="calc-chart__title" id="ic-chart-title">Your income each year</h2>
+            <div class="calc-toggle" role="group" aria-label="Chart view">
+              <button type="button" id="ic-view-income" aria-pressed="true">Income each year</button>
+              <button type="button" id="ic-view-savings" aria-pressed="false">Savings over time</button>
+            </div>
+            <ul class="calc-chart__key" id="ic-key" hidden>
+              <li><span class="is-savings"></span>From your savings</li>
+              <li id="ic-key-other"><span class="is-other"></span>Other income</li>
+              <li><span class="is-want"></span>Income you want</li>
+              <li><span class="is-short"></span>Shortfall</li>
+            </ul>
             <div class="calc-chart__canvas" id="ic-chart">
               <div class="calc-chart__empty">Your chart appears here once you have filled in your details.</div>
             </div>
@@ -161,7 +171,7 @@ const schema = [{
 
   </div>
 
-  <script src="/calculators.js?v=4" is:inline slot="scripts"></script>
+  <script src="/calculators.js?v=5" is:inline slot="scripts"></script>
   <script is:inline slot="scripts">
     (function () {
       var C = window.SWCalc;
@@ -169,6 +179,7 @@ const schema = [{
       var age = $('ic-age'), savings = $('ic-savings'), income = $('ic-income'), other = $('ic-other');
       var slider = $('ic-return');
       var last = null;
+      var view = 'income';
 
       function rand(n, step) { return C.formatRand(C.roundTo(n, step)); }
       function pct(n) { return n.toFixed(1) + '%'; }
@@ -192,21 +203,42 @@ const schema = [{
         $('ic-compare').hidden = true;
         $('ic-chart').innerHTML = '<div class="calc-chart__empty">Your chart appears here once you have filled in your details.</div>';
         $('ic-table').innerHTML = '';
+        $('ic-key').hidden = true;
       }
 
       function drawChart() {
         if (!last) return;
-        var r = last.result;
+        var r = last.result, input = last.input;
+        var income = view === 'income';
+        $('ic-chart-title').textContent = income ? 'Your income each year' : 'Your savings over time';
+        $('ic-view-income').setAttribute('aria-pressed', income ? 'true' : 'false');
+        $('ic-view-savings').setAttribute('aria-pressed', income ? 'false' : 'true');
+        $('ic-key').hidden = !income;
+        $('ic-key-other').hidden = !(input.otherIncome > 0);
+
+        if (income) {
+          C.drawIncomeChart($('ic-chart'), {
+            rows: r.income,
+            title: 'Monthly income in today\u2019s money at each age from ' + input.age + ' to 99, against the income you want',
+            valueLabel: function (v) { return rand(v, 100) + ' a month'; },
+            marker: r.runOutAge !== null ? { age: r.runOutAge, label: 'Savings run out at ' + r.runOutAge } : null
+          });
+          C.fillTable($('ic-table'), 'Monthly income in today\u2019s money at each age, before tax',
+            ['Age', 'From your savings', 'Other income', 'Income you want'],
+            r.income.map(function (row) { return [row.age, rand(row.fromSavings, 100), rand(row.fromOther, 100), rand(row.wanted, 100)]; }));
+          return;
+        }
+
         var marker = r.runOutAge !== null
           ? { age: r.runOutAge, label: 'Runs out at ' + r.runOutAge, side: 'right' }
           : { age: 100, label: rand(r.leftAt100Today, 10000) + ' left at 100' };
         C.drawChart($('ic-chart'), {
           points: r.points,
-          title: 'Savings in today’s money at each age from ' + last.input.age + ' to 100',
+          title: 'Savings in today\u2019s money at each age from ' + input.age + ' to 100',
           valueLabel: function (v) { return rand(v, 10000); },
           marker: marker
         });
-        C.fillTable($('ic-table'), 'Savings in today’s money at each age', ['Age', 'Savings'],
+        C.fillTable($('ic-table'), 'Savings in today\u2019s money at each age', ['Age', 'Savings'],
           r.points.map(function (p) { return [p.age, rand(p.value, 10000)]; }));
       }
 
@@ -268,6 +300,8 @@ const schema = [{
         drawChart();
       }
 
+      $('ic-view-income').addEventListener('click', function () { view = 'income'; drawChart(); });
+      $('ic-view-savings').addEventListener('click', function () { view = 'savings'; drawChart(); });
       age.addEventListener('input', update);
       [savings, income, other].forEach(function (input) { C.bindRandInput(input, update); });
       C.bindReturnSlider(slider, $('ic-return-value'), update, $('ic-return-sentence'));

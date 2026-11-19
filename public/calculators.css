@@ -354,10 +354,49 @@
 .calc-chart__marker { fill: var(--color-navy); stroke: var(--color-white); stroke-width: 3; }
 .calc-chart__marker-label { font-family: var(--font-heading); font-size: 19px; font-weight: 600; fill: var(--color-navy); paint-order: stroke; stroke: var(--color-white); stroke-width: 4px; stroke-linejoin: round; }
 .calc-chart__hit { fill: transparent; cursor: crosshair; }
+.calc-chart__bar-savings { fill: var(--color-navy); }
+.calc-chart__bar-other { fill: var(--color-gold); }
+.calc-chart__short { fill: color-mix(in srgb, var(--color-gold) 16%, transparent); }
+.calc-chart__want { stroke: var(--color-text); stroke-width: 2; stroke-dasharray: 7 5; }
 .calc-chart__note { pointer-events: none; }
 .calc-chart__note-dot { fill: var(--color-white); stroke: var(--color-navy); stroke-width: 2.5; }
 .calc-chart__note-box { fill: var(--color-navy); }
 .calc-chart__note-text { font-family: var(--font-body); font-size: 12.5px; font-weight: 600; fill: var(--color-white); }
+
+/* Chart key */
+.calc-chart__key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+  font-size: 0.85rem;
+  color: var(--color-text);
+}
+
+.calc-chart__key[hidden],
+.calc-chart__key li[hidden] {
+  display: none;
+}
+
+.calc-chart__key li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.calc-chart__key span {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  flex: none;
+}
+
+.calc-chart__key .is-savings { background: var(--color-navy); }
+.calc-chart__key .is-other { background: var(--color-gold); }
+.calc-chart__key .is-short { background: color-mix(in srgb, var(--color-gold) 16%, transparent); border: 1px solid color-mix(in srgb, var(--color-gold) 60%, transparent); }
+.calc-chart__key .is-want { height: 0; width: 18px; border-top: 2px dashed var(--color-text); background: none; }
 
 /* --- Gold rule --- */
 .calc__rule {
