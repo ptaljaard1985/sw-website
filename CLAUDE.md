@@ -370,19 +370,33 @@ All internal links use trailing-slash format:
 
 ---
 
+## Site redesign (v2, November 2026)
+
+Every page was rebuilt in an editorial style. The copy did not change.
+
+- All v2 rules live at the end of `public/styles.css`, scoped under `.v2`. A page opts in by wrapping its content in `<div class="v2">`. Close that div before any `slot="scripts"` element (slotted elements must stay direct children of the layout).
+- **Cache-busting:** `BaseLayout.astro` links `/styles.css?v=N` and `/script.js?v=N`. CSS and JS are cached for a day, so bump the number whenever either file changes. Without it, returning visitors get new markup with an old stylesheet and the page renders unstyled.
+- New tokens: `--color-paper` (#F7F3EC, replaces the grey section background on v2 pages), `--color-gold-text` (#9C6532, for small gold text on light backgrounds; plain gold fails contrast there), `--color-rule`, `--color-rule-light`.
+- Building blocks (class prefix `hv-`): `.hv-lede` (large section opener), `.hv-cols` (four ruled columns), `.hv-split` (heading left, content right), `.hv-pairs` (two-by-two list), `.hv-services` (index rows that turn navy on hover), `.hv-reasons` (large numerals), `.hv-timeline` (process), `.hv-sheets` (paper cards on navy), `.hv-quote`, `.hv-bio`, `.hv-story`, `.hv-beliefs`, `.hv-navy`, `.hv-paper`.
+- Heroes: homepage uses `.hv-fold` (hero + gold `.hv-band` together fill one viewport). Service pages use `.hero.hero--bg-photo.hv-hero-sub` (service photo, greyscale under a navy tint). Other pages use `.hv-hero-plain` with a dark article image as texture (`--a`, `--b`, `--c`; `--short` on contact).
+- `<em>` inside an `h1`/`h2` renders as gold italic emphasis.
+- Testimonials: pass `perView={1}` for the single large quote (handled by `data-per-view` in `script.js`).
+- Knowledge and article pages are a light touch: only the hero type, testimonials and final call to action use v2.
+- Rules 6 and 7 below describe the pre-v2 look. On v2 pages, sections move between white, paper and navy, and primary buttons keep white text on gold.
+
 ## Homepage sections (in order)
 1. Navigation (Header component)
-2. Hero — headline ("Financial clarity for the life you've built" with gold swoosh on "clarity"), subheading, dual CTA ("How we help" is white bg/gold text), trust badges, 5 gold-star circles, "5.0 star rated" links to #testimonials
-3. Problem — 4 pain point cards with icons
-4. Solution — 4 benefit cards with CTA (grey background)
-5. Testimonials — TestimonialsCarousel component (white background, `grey={false}`)
-6. Services — 4 service cards with photos (order: Investment, Tax, Risk, Estate) (grey background)
-7. Why choose us — 4 numbered reasons
-8. How we work with you — steps 1–3 (bordered card) with dashed arrow down to step 4 (Annual service calendar, centered). Desktop-only arrows.
-9. What you get — 3 document cards
-10. Lead magnet — LeadMagnet component (grey background)
-11. FAQ accordion — 5 questions with JS expand/collapse (white background)
-12. Final CTA — CtaSection component
+2. First screen (`.hv-fold`): full-bleed photo hero with oversized headline, then the gold band (Clarity, Peace of mind, Independent advice)
+3. Problem: navy, four ruled columns
+4. Solution: paper, split layout with four benefits and CTA
+5. Testimonials: one large quote at a time over a dark texture
+6. Services: four index rows (Investment, Tax, Risk, Estate), no photos
+7. Why choose us: paper, split layout with large numerals
+8. How we work with you: four-step timeline with CTA
+9. What you get: three paper sheets on navy
+10. Lead magnet (paper)
+11. FAQ: split layout
+12. Final CTA (CtaSection component)
 13. Footer (Footer component)
 
 ---

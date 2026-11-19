@@ -2830,3 +2830,1288 @@ p:last-child {
     scroll-behavior: auto;
   }
 }
+
+/* ============================================================
+   Homepage redesign — editorial layout
+   Loaded only by src/pages/index.astro, after styles.css.
+   Everything is scoped under .v2 so no other page is affected.
+   ============================================================ */
+
+:root {
+  --color-paper: #F7F3EC;        /* warm paper background */
+  --color-gold-text: #9C6532;    /* gold for small text on light backgrounds (4.5:1+) */
+  --color-rule: rgba(21, 45, 71, 0.14);
+  --color-rule-light: rgba(255, 255, 255, 0.16);
+}
+
+/* --- Rhythm and type --- */
+.v2 .section {
+  padding: 72px 0;
+}
+
+.v2 h2 {
+  font-size: clamp(2.2rem, 4.2vw, 3.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.v2 h3 {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.v2 .hv-paper,
+.v2 .section--grey {
+  background: var(--color-paper);
+}
+
+.v2 .hv-icon {
+  display: block;
+  color: var(--color-gold);
+  margin-bottom: 18px;
+}
+
+.v2 .hv-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke-width: 1.5;
+}
+
+/* Section opener: large left-aligned statement */
+.v2 .hv-lede {
+  max-width: 860px;
+  margin-bottom: 48px;
+}
+
+.v2 .hv-lede p,
+.v2 .hv-split__intro p {
+  margin: 20px 0 0;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--color-text-light);
+  max-width: 560px;
+}
+
+.v2 .hv-lede--center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.v2 .hv-lede--center p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.v2 .hv-cta {
+  margin-top: 40px;
+}
+
+.v2 .hv-cta--center {
+  text-align: center;
+  margin-top: 56px;
+}
+
+/* --- Hero --- */
+.v2 .hero {
+  min-height: 100vh;
+  max-height: none;
+  align-items: flex-end;
+  padding-bottom: 56px;
+}
+
+.v2 .hero h1 {
+  font-size: clamp(2.9rem, 6.2vw, 5.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  max-width: 760px;
+  margin-bottom: 24px;
+}
+
+.v2 .hero p {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 500px;
+}
+
+.v2 .hero--bg-photo .hero__bg {
+  display: block;
+}
+
+.v2 .hero--bg-photo .hero__bg::after {
+  background: linear-gradient(to bottom, rgba(10, 22, 40, 0.55) 0%, rgba(10, 22, 40, 0.7) 40%, rgba(10, 22, 40, 0.96) 100%);
+}
+
+/* --- Problems: four ruled columns --- */
+.v2 .hv-cols {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.v2 .hv-col {
+  padding: 28px 0;
+  border-top: 1px solid var(--color-rule);
+}
+
+.v2 .hv-col h3,
+.v2 .hv-pair h3 {
+  margin-bottom: 10px;
+}
+
+.v2 .hv-col p,
+.v2 .hv-pair p,
+.v2 .hv-reason p,
+.v2 .hv-step p {
+  color: var(--color-text-light);
+  margin: 0;
+}
+
+/* --- Split sections: statement left, content right --- */
+.v2 .hv-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+.v2 .hv-pairs {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.v2 .hv-pair {
+  padding: 28px 0;
+  border-top: 1px solid var(--color-rule);
+}
+
+/* --- Testimonials: quotes on navy --- */
+.v2 #testimonials {
+  background: var(--color-navy);
+}
+
+.v2 #testimonials h2 {
+  color: var(--color-white);
+}
+
+.v2 #testimonials .google-rating,
+.v2 #testimonials .google-rating strong,
+.v2 #testimonials .google-rating a {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.v2 #testimonials .testimonial-card {
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  border-top: 1px solid var(--color-rule-light);
+  padding: 28px 12px 8px 0;
+}
+
+.v2 #testimonials .testimonial-card blockquote {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.45rem;
+  line-height: 1.4;
+  color: var(--color-white);
+}
+
+.v2 #testimonials .testimonial-card__author {
+  color: var(--color-gold);
+  letter-spacing: 0.04em;
+}
+
+.v2 #testimonials .carousel__btn {
+  background: transparent;
+  border-color: var(--color-rule-light);
+  color: var(--color-white);
+}
+
+.v2 #testimonials .carousel__btn:hover {
+  background: var(--color-white);
+  border-color: var(--color-white);
+  color: var(--color-navy);
+}
+
+.v2 #testimonials .carousel__dot {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.v2 #testimonials .carousel__dot.active {
+  background: var(--color-gold);
+}
+
+/* 20 dots do not fit on a phone; the arrows are enough there */
+.v2 #testimonials .carousel__dots {
+  display: none;
+}
+
+/* --- Services: editorial index --- */
+.v2 .hv-services {
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.v2 .hv-service {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  padding: 32px 0;
+  border-top: 1px solid var(--color-rule);
+  transition: background var(--transition);
+}
+
+.v2 .hv-service h3 {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-gold-text);
+}
+
+.v2 .hv-service h4 {
+  font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+  line-height: 1.12;
+  margin-bottom: 8px;
+}
+
+.v2 .hv-service p {
+  color: var(--color-text-light);
+  margin: 0;
+}
+
+.v2 .hv-service__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-navy);
+}
+
+/* whole row is clickable */
+.v2 .hv-service__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.v2 .hv-service__link svg {
+  transition: transform var(--transition);
+}
+
+.v2 .hv-service:hover .hv-service__link svg {
+  transform: translateX(6px);
+}
+
+.v2 .hv-service:hover h4 {
+  color: var(--color-gold-text);
+}
+
+.v2 .hv-service__link:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 4px;
+}
+
+/* --- Why choose us: large numerals --- */
+.v2 .hv-reason {
+  display: flex;
+  gap: 24px;
+  align-items: baseline;
+  padding: 28px 0;
+  border-top: 1px solid var(--color-rule);
+}
+
+.v2 .hv-reason__number {
+  flex: 0 0 44px;
+  font-family: var(--font-heading);
+  font-size: 3.2rem;
+  line-height: 0.9;
+  color: var(--color-gold);
+}
+
+.v2 .hv-reason h3 {
+  margin-bottom: 8px;
+}
+
+/* --- Process: timeline --- */
+.v2 .hv-timeline {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.v2 .hv-step {
+  position: relative;
+  padding: 0 0 36px 68px;
+}
+
+.v2 .hv-step:last-child {
+  padding-bottom: 0;
+}
+
+.v2 .hv-step__number {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-navy);
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 600;
+  z-index: 1;
+}
+
+.v2 .hv-step:last-child .hv-step__number {
+  background: var(--color-gold);
+  color: var(--color-navy);
+}
+
+/* connecting line */
+.v2 .hv-step::before {
+  content: '';
+  position: absolute;
+  left: 21px;
+  top: 44px;
+  bottom: 0;
+  border-left: 2px dashed var(--color-gold);
+  opacity: 0.6;
+}
+
+.v2 .hv-step:last-child::before {
+  display: none;
+}
+
+.v2 .hv-step h3 {
+  margin-bottom: 8px;
+  padding-top: 6px;
+}
+
+.v2 .hv-step .card__link {
+  margin-top: 12px;
+  color: var(--color-navy);
+}
+
+/* --- What you get: paper sheets on navy --- */
+.v2 .hv-navy {
+  background: var(--color-navy);
+}
+
+.v2 .hv-navy h2 {
+  color: var(--color-white);
+}
+
+.v2 .hv-navy .hv-lede p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.v2 .hv-sheets {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.v2 .hv-sheet {
+  background: var(--color-paper);
+  border-radius: 4px;
+  padding: 36px 30px 40px;
+  border-top: 4px solid var(--color-gold);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+}
+
+.v2 .hv-sheet .hv-icon {
+  color: var(--color-gold-text);
+}
+
+.v2 .hv-sheet h3 {
+  font-size: 1.7rem;
+  margin-bottom: 12px;
+}
+
+.v2 .hv-sheet p {
+  color: var(--color-text-light);
+  margin: 0;
+}
+
+/* --- Lead magnet --- */
+.v2 .lead-magnet__tag {
+  color: var(--color-gold-text);
+}
+
+/* --- FAQ --- */
+.v2 .hv-faq .faq-list {
+  max-width: none;
+  margin: 0;
+}
+
+.v2 .hv-faq .faq-question {
+  font-size: 1.1rem;
+}
+
+/* ============================================================
+   Tablet and up
+   ============================================================ */
+@media (min-width: 768px) {
+  .v2 .section {
+    padding: 104px 0;
+  }
+
+  .v2 .hv-lede {
+    margin-bottom: 64px;
+  }
+
+  .v2 .hero--bg-photo .hero__bg::after {
+    background:
+      linear-gradient(to top, rgba(10, 22, 40, 0.85) 0%, rgba(10, 22, 40, 0) 55%),
+      linear-gradient(to right, rgba(10, 22, 40, 0.95) 0%, rgba(10, 22, 40, 0.6) 45%, rgba(10, 22, 40, 0.1) 70%, rgba(10, 22, 40, 0) 85%);
+  }
+
+  .v2 #testimonials .carousel__dots {
+    display: flex;
+  }
+
+  .v2 .hv-cols {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 40px;
+  }
+
+  .v2 .hv-pairs {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 40px;
+  }
+
+  .v2 .hv-service {
+    grid-template-columns: 200px 1fr;
+    column-gap: 32px;
+    padding: 40px 0;
+  }
+
+  .v2 .hv-service h3 {
+    padding-top: 12px;
+  }
+
+  .v2 .hv-service__link {
+    grid-column: 2;
+    margin-top: 8px;
+  }
+
+  .v2 .hv-sheets {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .v2 .hv-sheet:nth-child(1) { transform: rotate(-1.2deg); }
+  .v2 .hv-sheet:nth-child(2) { transform: translateY(-14px); }
+  .v2 .hv-sheet:nth-child(3) { transform: rotate(1.2deg); }
+}
+
+/* ============================================================
+   Desktop
+   ============================================================ */
+@media (min-width: 1024px) {
+  .v2 .section {
+    padding: 128px 0;
+  }
+
+  .v2 .hero {
+    padding-bottom: 88px;
+  }
+
+  /* Problems: four columns divided by vertical rules */
+  .v2 .hv-cols {
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 0;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .v2 .hv-col {
+    border-top: none;
+    border-left: 1px solid var(--color-rule);
+    padding: 36px 28px 8px;
+  }
+
+  .v2 .hv-col:first-child {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .v2 .hv-split {
+    grid-template-columns: 5fr 7fr;
+    gap: 96px;
+    align-items: start;
+  }
+
+  .v2 .hv-split__intro {
+    position: sticky;
+    top: 128px;
+  }
+
+  .v2 .hv-service {
+    grid-template-columns: 220px 1fr auto;
+    align-items: center;
+    padding: 44px 0;
+  }
+
+  .v2 .hv-service h3 {
+    padding-top: 0;
+    align-self: start;
+    margin-top: 14px;
+  }
+
+  .v2 .hv-service__link {
+    grid-column: 3;
+    margin-top: 0;
+    white-space: nowrap;
+  }
+
+  .v2 .hv-reason__number {
+    flex-basis: 64px;
+    font-size: 4.2rem;
+  }
+
+  /* Process: horizontal timeline */
+  .v2 .hv-timeline {
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 40px;
+  }
+
+  .v2 .hv-step {
+    padding: 76px 0 0;
+  }
+
+  .v2 .hv-step__number {
+    width: 52px;
+    height: 52px;
+    font-size: 1.5rem;
+  }
+
+  .v2 .hv-step::before {
+    left: 52px;
+    right: -40px;
+    top: 26px;
+    bottom: auto;
+    border-left: none;
+    border-top: 2px dashed var(--color-gold);
+  }
+
+  .v2 .hv-step h3 {
+    padding-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2 .hv-service,
+  .v2 .hv-service__link svg {
+    transition: none;
+  }
+
+  .v2 .hv-service:hover .hv-service__link svg {
+    transform: none;
+  }
+}
+
+/* ============================================================
+   Bolder pass: scale, colour blocks, single large testimonial
+   ============================================================ */
+
+/* --- Type scale and emphasis --- */
+.v2 h2 {
+  font-size: clamp(2.5rem, 5.4vw, 4.75rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+}
+
+.v2 h2 em,
+.v2 h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-gold);
+}
+
+.v2 .hv-paper h2 em {
+  color: var(--color-gold-text);
+}
+
+.v2 .hv-lede {
+  max-width: 1040px;
+}
+
+/* --- Hero: full-bleed photo, oversized headline --- */
+.v2 .hero {
+  min-height: 100vh;
+  padding-top: 120px;
+  padding-bottom: 40px;
+}
+
+.v2 .hero h1 {
+  font-size: clamp(3.2rem, 9.4vw, 9rem);
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  max-width: 1100px;
+  margin-bottom: 32px;
+  text-wrap: balance;
+}
+
+.v2 .hero .hero-highlight::after {
+  bottom: -0.04em;
+  height: 0.12em;
+}
+
+.v2 .hero .btn-group {
+  margin-bottom: 28px;
+}
+
+/* --- Gold band --- */
+.v2 .hv-band {
+  background: var(--color-gold);
+  color: var(--color-navy);
+  padding: 22px 20px;
+  overflow: hidden;
+}
+
+.v2 .hv-band__list {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px 28px;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.5rem, 3.4vw, 2.6rem);
+  line-height: 1.15;
+}
+
+.v2 .hv-band__list li + li::before {
+  content: '\2022';
+  font-style: normal;
+  margin-right: 28px;
+  opacity: 0.55;
+}
+
+/* --- Problems on navy --- */
+.v2 .hv-problem.hv-navy h3 {
+  color: var(--color-white);
+}
+
+.v2 .hv-problem.hv-navy .hv-col {
+  border-color: var(--color-rule-light);
+}
+
+.v2 .hv-problem.hv-navy .hv-cols {
+  border-color: var(--color-rule-light);
+}
+
+.v2 .hv-problem.hv-navy .hv-col p {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.v2 .hv-problem.hv-navy .hv-lede p {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.6rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.v2 .hv-col h3 {
+  font-size: 1.75rem;
+}
+
+/* --- Testimonials: one large quote over a dark texture --- */
+.v2 #testimonials {
+  position: relative;
+  background:
+    linear-gradient(rgba(12, 24, 40, 0.86), rgba(12, 24, 40, 0.93)),
+    url('/images/article-levers.webp') center / cover no-repeat,
+    var(--color-navy);
+}
+
+.v2 #testimonials .section__header {
+  margin-bottom: 24px;
+}
+
+.v2 #testimonials h2 {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.v2 #testimonials .carousel {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.v2 #testimonials .carousel__slide {
+  flex: 0 0 100%;
+}
+
+.v2 #testimonials .testimonial-card {
+  border-top: none;
+  padding: 16px 8px 0;
+  text-align: center;
+  align-items: center;
+}
+
+.v2 #testimonials .testimonial-card__stars {
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.v2 #testimonials .testimonial-card blockquote {
+  font-size: clamp(1.7rem, 3.6vw, 3rem);
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+  font-weight: 300;
+  flex: 0 1 auto;
+  margin-bottom: 28px;
+  text-wrap: balance;
+}
+
+.v2 #testimonials .testimonial-card__author {
+  font-size: 0.85rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.v2 #testimonials .carousel__dots {
+  display: none;
+}
+
+/* --- Services: oversized index rows that invert on hover --- */
+.v2 .hv-service h4 {
+  font-size: clamp(1.9rem, 4.2vw, 3.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  transition: color var(--transition);
+}
+
+.v2 .hv-service p {
+  font-size: 1.05rem;
+}
+
+/* --- Why: bigger numerals --- */
+.v2 .hv-reason h3 {
+  font-size: 1.8rem;
+}
+
+/* --- Process --- */
+.v2 .hv-step h3 {
+  font-size: 1.7rem;
+}
+
+/* --- Final CTA --- */
+.v2 .cta-section {
+  padding: 96px 20px;
+}
+
+.v2 .cta-section h2 {
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.96;
+  margin-bottom: 24px;
+}
+
+.v2 .cta-section p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@media (min-width: 768px) {
+  .v2 .hero--bg-photo .hero__bg::after {
+    background:
+      linear-gradient(to top, rgba(10, 22, 40, 0.94) 0%, rgba(10, 22, 40, 0.55) 38%, rgba(10, 22, 40, 0) 68%),
+      linear-gradient(to bottom, rgba(10, 22, 40, 0.55) 0%, rgba(10, 22, 40, 0) 22%);
+  }
+
+  .v2 #testimonials .carousel__dots {
+    display: none;
+  }
+
+  .v2 .cta-section {
+    padding: 160px 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .v2 .hero {
+    padding-bottom: 64px;
+  }
+
+  /* headline, then supporting copy and actions in a row beneath it */
+  .v2 .hv-hero__side {
+    display: grid;
+    grid-template-columns: minmax(0, 520px) auto;
+    align-items: end;
+    justify-content: space-between;
+    column-gap: 48px;
+    row-gap: 24px;
+  }
+
+  .v2 .hv-hero__side p {
+    margin-bottom: 0;
+    max-width: none;
+    font-size: 1.25rem;
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .v2 .hv-hero__side .btn-group {
+    grid-row: 1;
+    grid-column: 2;
+    margin-bottom: 0;
+  }
+
+  .v2 .hv-hero__side .social-proof {
+    grid-column: 1 / -1;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-rule-light);
+  }
+
+  .v2 .hv-service {
+    grid-template-columns: 200px 1fr auto;
+    padding: 56px 0;
+  }
+
+  .v2 .hv-service::before {
+    content: '';
+    position: absolute;
+    inset: 0 -20px; /* stays inside the container's side padding, so no horizontal scroll */
+    background: var(--color-navy);
+    opacity: 0;
+    transition: opacity var(--transition);
+    z-index: 0;
+  }
+
+  .v2 .hv-service > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .v2 .hv-service__link {
+    position: static;
+  }
+
+  .v2 .hv-service__link::after {
+    z-index: 2;
+  }
+
+  .v2 .hv-service:hover::before {
+    opacity: 1;
+  }
+
+  .v2 .hv-service:hover h4,
+  .v2 .hv-service:hover .hv-service__link {
+    color: var(--color-white);
+  }
+
+  .v2 .hv-service:hover h3 {
+    color: var(--color-gold);
+  }
+
+  .v2 .hv-service:hover p {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .v2 .hv-reason__number {
+    flex-basis: 88px;
+    font-size: 6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2 .hv-service::before,
+  .v2 .hv-service h4 {
+    transition: none;
+  }
+}
+
+/* --- Refinements after review --- */
+.v2 .hero h1 {
+  font-size: clamp(3.2rem, 8vw, 7.6rem);
+}
+
+.v2 .hv-band__list {
+  flex-direction: column;
+  align-items: center;
+}
+
+.v2 .hv-band__list li + li::before {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .v2 .hero--bg-photo .hero__bg::after {
+    background:
+      linear-gradient(to top, rgba(10, 22, 40, 0.97) 0%, rgba(10, 22, 40, 0.88) 30%, rgba(10, 22, 40, 0.45) 52%, rgba(10, 22, 40, 0) 74%),
+      linear-gradient(to bottom, rgba(10, 22, 40, 0.55) 0%, rgba(10, 22, 40, 0) 22%);
+  }
+
+  .v2 .hv-band__list {
+    flex-direction: row;
+    align-items: baseline;
+  }
+
+  .v2 .hv-band__list li + li::before {
+    display: inline;
+  }
+}
+
+/* --- First screen: hero + gold band together are exactly one viewport --- */
+.v2 .hv-fold {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh; /* visible height on phones, excluding the address bar */
+}
+
+.v2 .hv-fold .hero {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.v2 .hv-fold .hv-band {
+  flex: 0 0 auto;
+}
+
+/* --- Inner page hero: photo behind, shorter than the homepage --- */
+.v2 .hv-hero-sub {
+  min-height: 78vh;
+  min-height: 78svh;
+  padding-bottom: 48px;
+}
+
+.v2 .hv-hero-sub h1 {
+  font-size: clamp(2.8rem, 6.6vw, 6.2rem);
+  max-width: 980px;
+}
+
+.v2 .hv-hero-sub .btn-group {
+  margin-bottom: 0;
+}
+
+.v2 .service-hero-badge {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 20px;
+}
+
+/* the route motif belongs to the old flat heroes */
+.v2 .hv-hero-sub::after {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .v2 .hv-hero-sub {
+    padding-bottom: 72px;
+  }
+}
+
+/* Inner heroes use the photo as a navy-toned texture so the headline always reads */
+.v2 .hv-hero-sub .hero__bg img {
+  filter: grayscale(1) contrast(1.05);
+}
+
+.v2 .hv-hero-sub .hero__bg::after {
+  background:
+    linear-gradient(to top, rgba(12, 26, 44, 0.96) 0%, rgba(12, 26, 44, 0.55) 60%, rgba(12, 26, 44, 0.7) 100%),
+    linear-gradient(to right, rgba(21, 45, 71, 0.9) 0%, rgba(21, 45, 71, 0.72) 55%, rgba(21, 45, 71, 0.45) 100%);
+}
+
+/* --- Inner heroes without a photo: dark abstract texture --- */
+.v2 .hv-hero-plain {
+  position: relative;
+  overflow: hidden;
+  min-height: 70vh;
+  min-height: 70svh;
+  background:
+    linear-gradient(to top, rgba(12, 26, 44, 0.97) 0%, rgba(21, 45, 71, 0.82) 60%, rgba(21, 45, 71, 0.9) 100%),
+    var(--hv-texture) center / cover no-repeat,
+    var(--color-navy);
+}
+
+.v2 .hv-hero-plain--a { --hv-texture: url('/images/article-longevity.webp'); }
+.v2 .hv-hero-plain--b { --hv-texture: url('/images/article-game.webp'); }
+
+.v2 .hv-hero-plain .hero__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.v2 .hv-hero-plain .hv-hero__side p {
+  max-width: 640px;
+  margin-bottom: 0;
+}
+
+/* --- Founder quote --- */
+.v2 .hv-quote {
+  max-width: 1040px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.v2 .hv-quote blockquote {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.9rem, 4.4vw, 3.6rem);
+  line-height: 1.16;
+  letter-spacing: -0.015em;
+  color: var(--color-navy);
+  text-wrap: balance;
+  margin: 0 0 32px;
+  padding: 0;
+  border: none;
+}
+
+.v2 .hv-quote cite {
+  font-style: normal;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-gold-text);
+}
+
+/* --- Founder bio: large portrait beside the story --- */
+.v2 .hv-bio {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  align-items: start;
+  max-width: none;
+}
+
+.v2 .hv-bio .bio-section__photo {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 4px;
+  border: none;
+  overflow: hidden;
+  box-shadow: 24px 24px 0 var(--color-paper);
+}
+
+.v2 .hv-bio .bio-section__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.v2 .hv-bio h2 {
+  margin-bottom: 12px;
+}
+
+.v2 .hv-bio .bio-section__title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-gold-text);
+  margin-bottom: 28px;
+}
+
+.v2 .hv-bio .bio-section__content > p:not(.bio-section__title) {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  max-width: 640px;
+}
+
+.v2 .hv-bio .bio-section__credentials span {
+  background: none;
+  border: 1px solid var(--color-rule);
+  border-radius: 50px;
+  color: var(--color-navy);
+}
+
+.v2 .hv-bio .bio-section__linkedin {
+  color: var(--color-gold-text);
+}
+
+/* --- Our story: large serif paragraphs on navy --- */
+.v2 .hv-story .hv-split__body p {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  line-height: 1.32;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 28px;
+}
+
+.v2 .hv-story .hv-split__body p:last-child {
+  margin-bottom: 0;
+}
+
+.v2 .hv-story strong {
+  font-weight: 500;
+  font-style: italic;
+  color: var(--color-gold);
+}
+
+/* --- Ruled columns that carry a statement instead of a title + text --- */
+.v2 .hv-col h4 {
+  font-size: 1.6rem;
+  line-height: 1.2;
+  font-weight: 500;
+  text-wrap: balance;
+}
+
+.v2 .hv-navy .hv-col h4 {
+  color: var(--color-white);
+}
+
+.v2 .hv-paper .hv-cols,
+.v2 .hv-paper .hv-col {
+  border-color: var(--color-rule);
+}
+
+@media (min-width: 1024px) {
+  .v2 .hv-bio {
+    grid-template-columns: 400px 1fr;
+    gap: 96px;
+  }
+}
+
+.v2 .hv-bio .bio-section__photo {
+  margin: 0;
+  display: block;
+}
+
+.v2 .hv-hero-plain--c { --hv-texture: url('/images/article-temperament.webp'); }
+
+/* --- Beliefs: large numbered statements --- */
+.v2 .hv-beliefs {
+  max-width: 1040px;
+  gap: 0;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.v2 .hv-beliefs .belief {
+  position: relative;
+  padding: 40px 0 40px 72px;
+  border-top: 1px solid var(--color-rule);
+}
+
+.v2 .hv-beliefs .belief__header {
+  display: block;
+  margin-bottom: 14px;
+}
+
+.v2 .hv-beliefs .belief__number {
+  position: absolute;
+  left: 0;
+  top: 34px;
+  width: auto;
+  height: auto;
+  min-width: 0;
+  background: none;
+  border-radius: 0;
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 3.2rem;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--color-gold);
+}
+
+.v2 .hv-beliefs .belief h3 {
+  font-size: clamp(1.8rem, 3.6vw, 3rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  color: var(--color-navy);
+}
+
+.v2 .hv-beliefs .belief p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--color-text-light);
+  max-width: 680px;
+}
+
+/* --- Contact: paired fields, paper sidebar --- */
+.v2 .contact-info-card {
+  background: var(--color-paper);
+  border-radius: 4px;
+}
+
+.v2 .contact-form .btn {
+  align-self: flex-start;
+}
+
+/* Pair fields only where the form column is wide enough: large phones and small
+   tablets (single-column page), and desktop. Between 768px and 1023px the form
+   shares the row with the sidebar and stays one field per row. */
+@media (min-width: 600px) and (max-width: 767px), (min-width: 1024px) {
+  .v2 .contact-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 24px;
+  }
+
+  .v2 .contact-form > * {
+    grid-column: 1 / -1;
+  }
+
+  /* the first eight fields sit two to a row; the last select, the message and the checkbox stay full width */
+  .v2 .contact-form > .form-group:nth-of-type(-n + 8) {
+    grid-column: auto;
+  }
+
+  .v2 .contact-form .btn {
+    justify-self: start;
+  }
+}
+
+@media (min-width: 1024px) {
+  .v2 .hv-beliefs .belief {
+    padding: 56px 0 56px 160px;
+  }
+
+  .v2 .hv-beliefs .belief__number {
+    top: 46px;
+    font-size: 6rem;
+  }
+}
+
+/* Utility pages (contact) get a shorter hero so the form starts sooner */
+.v2 .hv-hero-plain--short {
+  min-height: 46vh;
+  min-height: 46svh;
+}
+
+@media (min-width: 600px) and (max-width: 767px), (min-width: 1024px) {
+  .v2 .contact-form {
+    align-items: end;
+  }
+}
+
+/* Final call to action: large, but sized so longer headings still fit on two lines */
+.v2 .cta-section h2 {
+  font-size: clamp(2.6rem, 6vw, 5.4rem);
+  line-height: 1;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  text-wrap: balance;
+}

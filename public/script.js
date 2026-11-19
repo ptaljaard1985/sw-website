@@ -173,7 +173,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentIndex = 0;
     let autoplayTimer;
 
+    const fixedPerView = parseInt(carousel.dataset.perView, 10);
+
     const getSlidesPerView = () => {
+      if (fixedPerView > 0) return fixedPerView;
       if (window.innerWidth >= 1024) return 3;
       if (window.innerWidth >= 768) return 2;
       return 1;

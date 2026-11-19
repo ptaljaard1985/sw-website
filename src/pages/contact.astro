@@ -19,10 +19,14 @@ const schema = {
   showSocialInFooter={true}
   schema={schema}
 >
-  <section class="hero hero--short">
+  <div class="v2">
+
+  <section class="hero hv-hero-sub hv-hero-plain hv-hero-plain--b hv-hero-plain--short">
     <div class="hero__inner">
       <h1 class="fade-up">Book a free call</h1>
-      <p class="fade-up">A short phone call will give us both a chance to see if our expertise matches your needs.</p>
+      <div class="hv-hero__side">
+        <p class="fade-up">A short phone call will give us both a chance to see if our expertise matches your needs.</p>
+      </div>
     </div>
   </section>
 
@@ -154,6 +158,8 @@ const schema = {
       </div>
     </div>
   </section>
+
+  </div>
   <script is:inline slot="scripts">
     const messages = {
       name: 'Please enter your full name.',
