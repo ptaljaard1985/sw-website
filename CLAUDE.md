@@ -77,7 +77,8 @@ src/
 │   ├── knowledge-and-insight.astro # Editorial hub / article listing
 │   ├── tools/
 │   │   ├── index.astro                    # Lists the public calculators
-│   │   └── retirement-savings-calculator.astro
+│   │   ├── retirement-savings-calculator.astro
+│   │   └── retirement-income-calculator.astro
 │   └── articles/
 │       └── [...id].astro          # Dynamic article route
 
@@ -380,7 +381,7 @@ All internal links use trailing-slash format:
 - `/about-us/`, `/about-you/`, `/what-we-believe/`
 - `/contact/`, `/contact-success/`
 - `/knowledge-and-insight/`
-- `/tools/`, `/tools/retirement-savings-calculator/`
+- `/tools/`, `/tools/retirement-savings-calculator/`, `/tools/retirement-income-calculator/`
 - `/articles/{slug}/` (dynamic from content collection)
 
 ---
@@ -409,10 +410,11 @@ Every page was rebuilt in an editorial style. The copy did not change.
 7. Why choose us: paper, split layout with large numerals
 8. How we work with you: four-step timeline with CTA
 9. What you get: three paper sheets on navy
-10. Lead magnet (paper)
-11. FAQ: split layout
-12. Final CTA (CtaSection component)
-13. Footer (Footer component)
+10. Tools: two index rows linking to the calculators
+11. Lead magnet (paper)
+12. FAQ: split layout
+13. Final CTA (CtaSection component)
+14. Footer (Footer component)
 
 ---
 
@@ -430,13 +432,20 @@ Rules:
 - All wording is for Pierre's sign-off before it merges.
 
 How it is built:
-- `public/calculators.js`: pure maths (`projectSavings`, `incomeByRetirementAge`, `savingsOverTime`, `closeGap`, `withdrawalRate`) exported as `window.SWCalc` in the browser and `module.exports` under Node, plus DOM helpers (`bindRandInput`, `bindReturnSlider`, `drawChart`, `fillTable`, `easeNumber`, `trackUse`).
+- `public/calculators.js`: pure maths (`projectSavings`, `incomeByRetirementAge`, `savingsOverTime`, `closeGap`, `projectDrawdown`, `incomeThatLasts`, `withdrawalRate`) exported as `window.SWCalc` in the browser and `module.exports` under Node, plus DOM helpers (`readWholeNumber`, `setFieldError`, `bindRandInput`, `bindReturnSlider`, `drawChart`, `fillTable`, `easeNumber`, `trackUse`).
 - `public/calculators.css`: loaded through the `head` slot on tools pages only, as `/calculators.css?v=N`. Bump `N` (and the `?v=` on `calculators.js`) when either file changes.
 - Each calculator page wires its own inputs in an inline script in the `scripts` slot.
 - Layout follows the meeting tool: white sheet on the paper background, "Your details", navy answer panel beside the chart, 6px gold rule, numbered sections (CSS counters, hidden sections are skipped), disclaimer.
 - `tests/calculators.test.mjs` checks the reference figures. Run `npm test` before every change to the maths.
 
-Pages: `/tools/` (list), `/tools/retirement-savings-calculator/`. A retirement income calculator is planned at `/tools/retirement-income-calculator/`.
+Pages:
+- `/tools/`: lists both calculators.
+- `/tools/retirement-savings-calculator/`: for someone still saving. What their savings could pay a month at retirement, in today's money.
+- `/tools/retirement-income-calculator/`: for someone at or near retirement. How long one pot lasts at a chosen income, to age 100. Deliberately plain: it does not reproduce the meeting tool's figures (that tool is after tax and applies the living annuity limits). This reader may be anxious about running out of money, so results are stated calmly and the page never says what they should do.
+
+"Tools" is picked out in the menu with a gold dot and gold text (`.nav__link--tools`), and the homepage has a Tools section linking to both. The calculator pages carry no testimonials.
+
+The two calculators cross-link to each other and must stay a matching pair: same sheet, same order, same controls and chart style.
 
 ---
 

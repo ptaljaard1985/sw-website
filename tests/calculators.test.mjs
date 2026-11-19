@@ -100,3 +100,53 @@ test('rand parsing and formatting', () => {
   assert.equal(calc.returnInWords(4), 'Inflation plus 4% a year');
   assert.equal(calc.returnInWords(0), 'Inflation only');
 });
+
+// age, savings, income, other, slider, runs out at (null = never), left at 100 in today's money,
+// first-year rate %, guide %, income that lasts (null = not shown)
+const drawdownCases = [
+  [65, 8000000, 40000, 0, 0.04, 90, 0, 6.0, 4.8, 33523],
+  [65, 8000000, 32000, 0, 0.04, null, 1345096, 4.8, 4.8, null],
+  [70, 5000000, 35000, 10000, 0.03, 92, 0, 6.0, 5.3, 30287],
+  [60, 10000000, 60000, 0, 0.04, 79, 0, 7.2, 4.5, 39415],
+];
+
+for (const [age, savings, monthlyIncome, otherIncome, extraReturn, runsOut, left, rate, guide, lasts] of drawdownCases) {
+  test(`income calculator: age ${age}, R${savings} saved, R${monthlyIncome} a month, R${otherIncome} other`, () => {
+    const input = { age, savings, monthlyIncome, otherIncome, extraReturn };
+    const r = calc.projectDrawdown(input);
+    assert.equal(r.runOutAge, runsOut);
+    near(r.leftAt100Today, left);
+    near(r.firstYearRate, rate, 1e-9);
+    assert.equal(r.guideRate, guide);
+    assert.equal(r.covered, false);
+    assert.equal(r.points[0].age, age);
+    assert.equal(r.points.at(-1).age, 100);
+    near(r.points[0].value, savings);
+    if (lasts !== null) {
+      const income = calc.incomeThatLasts(input);
+      near(income, lasts);
+      // just below it lasts, just above it runs out
+      assert.equal(calc.projectDrawdown({ ...input, monthlyIncome: income - 1 }).runOutAge, null);
+      assert.notEqual(calc.projectDrawdown({ ...input, monthlyIncome: income + 1 }).runOutAge, null);
+    }
+  });
+}
+
+test('income calculator: other income that covers the income wanted', () => {
+  const r = calc.projectDrawdown({ age: 65, savings: 3000000, monthlyIncome: 20000, otherIncome: 25000, extraReturn: 0.04 });
+  assert.equal(r.covered, true);
+  assert.equal(r.runOutAge, null);
+  assert.equal(r.firstYearRate, 0);
+  assert.ok(r.leftAt100Today > 3000000); // untouched savings grow ahead of inflation
+});
+
+test('income calculator: display rounding helpers', () => {
+  assert.equal(calc.floorTo(33523, 100), 33500);
+  assert.equal(calc.roundTo(1345096, 10000), 1350000);
+});
+
+test('the "how this is worked out" sentence follows the slider', () => {
+  assert.equal(calc.returnSentence(4), 'Inflation is assumed to be 5% a year, so inflation plus 4% means 9% a year.');
+  assert.equal(calc.returnSentence(2.5), 'Inflation is assumed to be 5% a year, so inflation plus 2.5% means 7.5% a year.');
+  assert.equal(calc.returnSentence(0), 'Inflation is assumed to be 5% a year, so inflation only means 5% a year.');
+});

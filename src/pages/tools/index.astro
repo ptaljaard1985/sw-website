@@ -14,18 +14,22 @@ const schema = [{
     "@type": "WebApplication",
     "name": "Retirement savings calculator",
     "url": "https://www.simplewealth.co.za/tools/retirement-savings-calculator/"
+  }, {
+    "@type": "WebApplication",
+    "name": "Retirement income calculator",
+    "url": "https://www.simplewealth.co.za/tools/retirement-income-calculator/"
   }]
 }];
 ---
 
 <BaseLayout
   title="Retirement Calculators | Simple Wealth"
-  description="Simple retirement calculators from Simple Wealth. See what your savings could pay you each month in retirement. Free to use, and nothing you type leaves your browser."
+  description="Simple retirement calculators from Simple Wealth. See what your savings could pay you each month in retirement, and how long they could last. Free to use, and nothing you type leaves your browser."
   activePage="tools"
   showSocialInFooter={true}
   schema={schema}
 >
-  <link rel="stylesheet" href="/calculators.css?v=1" slot="head">
+  <link rel="stylesheet" href="/calculators.css?v=2" slot="head">
 
   <div class="v2">
 
@@ -51,7 +55,7 @@ const schema = [{
           <div class="card__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/></svg></div>
           <h2>Retirement income calculator</h2>
           <p>See how long your savings could last at the income you want.</p>
-          <p class="tools-card__soon">Coming soon</p>
+          <a href="/tools/retirement-income-calculator/" class="card__link">Open the retirement income calculator <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
         </div>
       </div>
     </div>

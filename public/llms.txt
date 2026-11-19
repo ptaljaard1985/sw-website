@@ -84,6 +84,7 @@ Professionals and families — typically aged 45 to 65 — who want clear, indep
 - [Contact](https://www.simplewealth.co.za/contact/)
 - [Tools](https://www.simplewealth.co.za/tools/)
 - [Retirement savings calculator](https://www.simplewealth.co.za/tools/retirement-savings-calculator/): a free illustration of the monthly income your savings could pay in retirement, in today's money and before tax. Not financial advice.
+- [Retirement income calculator](https://www.simplewealth.co.za/tools/retirement-income-calculator/): a free illustration of how long your savings could last at the income you want, in today's money and before tax. Not financial advice.
 
 ## Articles
 
