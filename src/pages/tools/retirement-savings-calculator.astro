@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CtaSection from '../../components/CtaSection.astro';
-import TestimonialsCarousel from '../../components/TestimonialsCarousel.astro';
 
 const url = 'https://www.simplewealth.co.za/tools/retirement-savings-calculator/';
 const schema = [{
@@ -33,7 +32,7 @@ const schema = [{
   showSocialInFooter={true}
   schema={schema}
 >
-  <link rel="stylesheet" href="/calculators.css?v=1" slot="head">
+  <link rel="stylesheet" href="/calculators.css?v=2" slot="head">
 
   <div class="v2">
 
@@ -153,10 +152,12 @@ const schema = [{
           <section class="calc-part">
             <div class="calc-part__head"><h2>How this is worked out</h2></div>
             <div class="calc-part__body">
-              <p>Your savings grow each month at the expected return you chose. Inflation is assumed to be 5% a year, so inflation plus 4% means 9% a year. What you save each month is assumed to rise with inflation once a year.</p>
+              <p>Your savings grow each month at the expected return you chose. <span id="sc-return-sentence">Inflation is assumed to be 5% a year, so inflation plus 4% means 9% a year.</span> What you save each month is assumed to rise with inflation once a year.</p>
               <p>The total is then brought back to today's money using inflation. The monthly income applies a withdrawal rate that depends on the age you retire (4.8% a year at 65, lower if you retire earlier, higher if later), divided by twelve.</p>
             </div>
           </section>
+
+          <p class="calc__crosslink"><strong>Already retired or close to it.</strong> The <a href="/tools/retirement-income-calculator/">retirement income calculator</a> shows how long your savings could last at the income you want.</p>
 
           <p class="calc__disclaimer">This calculator gives a general illustration based on the figures and assumptions you enter. It is not financial advice and does not take your personal circumstances into account. Actual results will differ. Simple Wealth (Pty) Ltd is an authorised financial services provider, FSP no. 50637.</p>
         </div>
@@ -165,13 +166,11 @@ const schema = [{
     </div>
   </section>
 
-  <TestimonialsCarousel grey={false} perView={1} />
-
   <CtaSection heading="Want a plan built on your real numbers" text="A free 10-minute call is a simple way to see whether we can help you build one." />
 
   </div>
 
-  <script src="/calculators.js?v=1" is:inline slot="scripts"></script>
+  <script src="/calculators.js?v=2" is:inline slot="scripts"></script>
   <script is:inline slot="scripts">
     (function () {
       var C = window.SWCalc;
@@ -183,25 +182,14 @@ const schema = [{
 
       function rand(n, step) { return C.formatRand(C.roundTo(n, step)); }
 
-      function wholeNumber(input) {
-        var text = input.value.replace(/\D/g, '');
-        if (text !== input.value) input.value = text;
-        return text === '' ? null : parseInt(text, 10);
-      }
-
-      function setError(input, errorId, message) {
-        $(errorId).textContent = message;
-        if (message) input.setAttribute('aria-invalid', 'true'); else input.removeAttribute('aria-invalid');
-      }
-
       function read() {
-        var a = wholeNumber(age), r = wholeNumber(retire);
+        var a = C.readWholeNumber(age), r = C.readWholeNumber(retire);
         var ageError = '', retireError = '';
         if (a !== null && (a < 18 || a > 74)) ageError = 'Enter an age from 18 to 74.';
         if (r !== null && (r < 55 || r > 75)) retireError = 'Enter a retirement age from 55 to 75.';
         else if (r !== null && a !== null && !ageError && r <= a) retireError = 'Your retirement age needs to be higher than your age.';
-        setError(age, 'sc-age-error', ageError);
-        setError(retire, 'sc-retire-error', retireError);
+        C.setFieldError(age, $('sc-age-error'), ageError);
+        C.setFieldError(retire, $('sc-retire-error'), retireError);
 
         var s = C.parseRand(savings.value), m = C.parseRand(monthly.value), g = C.parseRand(goal.value);
         if (a === null || r === null || ageError || retireError) return null;
@@ -313,7 +301,7 @@ const schema = [{
 
       [age, retire].forEach(function (input) { input.addEventListener('input', update); });
       [savings, monthly, goal].forEach(function (input) { C.bindRandInput(input, update); });
-      C.bindReturnSlider(slider, $('sc-return-value'), update);
+      C.bindReturnSlider(slider, $('sc-return-value'), update, $('sc-return-sentence'));
 
       $('sc-view-income').addEventListener('click', function () { view = 'income'; drawChart(); });
       $('sc-view-savings').addEventListener('click', function () { view = 'savings'; drawChart(); });

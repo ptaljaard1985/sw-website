@@ -4127,3 +4127,36 @@ p:last-child {
     white-space: nowrap;
   }
 }
+
+/* "Tools" is picked out in the menu: a gold dot and bolder text.
+   Over the hero photo the text stays white (gold is too faint there). */
+.nav__link--tools,
+.nav__link--tools:hover,
+.nav__link--tools.active {
+  color: var(--color-white);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.nav__link--tools::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  vertical-align: 0.06em;
+}
+
+/* on the white (scrolled) menu, plain gold is too faint for text */
+.nav.scrolled .nav__link--tools,
+.nav.scrolled .nav__link--tools:hover,
+.nav.scrolled .nav__link--tools.active,
+.nav__mobile a.nav__mobile-tools {
+  color: var(--color-gold-text);
+}
+
+.nav__mobile a.nav__mobile-tools {
+  font-weight: 600;
+}

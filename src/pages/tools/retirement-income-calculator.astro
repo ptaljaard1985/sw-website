@@ -1,0 +1,286 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaSection from '../../components/CtaSection.astro';
+
+const url = 'https://www.simplewealth.co.za/tools/retirement-income-calculator/';
+const schema = [{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Retirement income calculator",
+  "description": "An illustration of how long your savings could last at the income you want, in today's money and before tax.",
+  "url": url,
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "ZAR" },
+  "provider": { "@id": "https://simplewealth.co.za/#organization" }
+}, {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.simplewealth.co.za/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://www.simplewealth.co.za/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "Retirement income calculator", "item": url }
+  ]
+}];
+---
+
+<BaseLayout
+  title="Retirement Income Calculator | Simple Wealth"
+  description="See how long your savings could last at the income you want, in today's money and before tax. A free illustration from Simple Wealth. Nothing you type leaves your browser."
+  activePage="tools"
+  showSocialInFooter={true}
+  schema={schema}
+>
+  <link rel="stylesheet" href="/calculators.css?v=2" slot="head">
+
+  <div class="v2">
+
+  <section class="hero hv-hero-sub hv-hero-plain hv-hero-plain--c hv-hero-plain--short">
+    <div class="hero__inner">
+      <h1 class="fade-up">Retirement income calculator</h1>
+      <div class="hv-hero__side">
+        <p class="fade-up">See how long your savings could last at the income you want.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--grey calc-section">
+    <div class="calc" id="income-calc">
+      <div class="calc__sheet">
+
+        <!-- Your details -->
+        <div class="calc__block">
+          <h2 class="calc__heading">Your details</h2>
+          <div class="calc__fields">
+            <div class="calc-field">
+              <label for="ic-age">Your age</label>
+              <div class="calc-field__control">
+                <input id="ic-age" type="text" inputmode="numeric" autocomplete="off" maxlength="2" value="65" aria-describedby="ic-age-error">
+              </div>
+              <p class="calc-field__error" id="ic-age-error" role="alert"></p>
+            </div>
+            <div class="calc-field calc-field--rand calc-field--four">
+              <label for="ic-savings">Your savings today <span class="calc-field__hint">All pots together</span></label>
+              <div class="calc-field__control">
+                <span class="calc-field__prefix" aria-hidden="true">R</span>
+                <input id="ic-savings" type="text" inputmode="numeric" autocomplete="off" maxlength="15">
+              </div>
+            </div>
+            <div class="calc-field calc-field--rand calc-field--wide">
+              <label for="ic-income">Monthly income you want <span class="calc-field__hint">In today's money, before tax</span></label>
+              <div class="calc-field__control">
+                <span class="calc-field__prefix" aria-hidden="true">R</span>
+                <input id="ic-income" type="text" inputmode="numeric" autocomplete="off" maxlength="12">
+              </div>
+            </div>
+            <div class="calc-field calc-field--rand calc-field--wide">
+              <label for="ic-other">Other monthly income <span class="calc-field__hint">Such as a pension or rent (optional)</span></label>
+              <div class="calc-field__control">
+                <span class="calc-field__prefix" aria-hidden="true">R</span>
+                <input id="ic-other" type="text" inputmode="numeric" autocomplete="off" maxlength="12">
+              </div>
+            </div>
+          </div>
+
+          <div class="calc-slider">
+            <div class="calc-slider__top">
+              <label class="calc-slider__name" for="ic-return">Expected return</label>
+              <span class="calc-slider__value" id="ic-return-value" aria-hidden="true">Inflation plus 4% a year</span>
+            </div>
+            <input id="ic-return" type="range" min="0" max="5" step="0.5" value="4" aria-valuetext="Inflation plus 4% a year">
+            <div class="calc-slider__ends" aria-hidden="true"><span>Inflation</span><span>Inflation plus 5%</span></div>
+          </div>
+        </div>
+
+        <!-- Cover row -->
+        <div class="calc__cover">
+          <div class="calc-answer" aria-live="polite">
+            <p class="calc-answer__label" id="ic-label">How long your savings could last</p>
+            <p class="calc-answer__figure" id="ic-figure">&ndash;</p>
+            <p class="calc-answer__note" id="ic-note">Enter your age, your savings and the monthly income you want.</p>
+            <p class="visually-hidden" id="ic-summary"></p>
+            <dl class="calc-answer__rows" id="ic-rows" hidden>
+              <div class="calc-answer__row"><dt>First-year draw rate</dt><dd id="ic-row-rate"></dd></div>
+              <div class="calc-answer__row"><dt>Guide rate at your age</dt><dd id="ic-row-guide"></dd></div>
+              <div class="calc-answer__row" id="ic-row-lasts-wrap" hidden><dt>Income that could last to 100</dt><dd id="ic-row-lasts"></dd></div>
+              <div class="calc-answer__row" id="ic-row-left-wrap" hidden><dt>Left at age 100 in today's money</dt><dd id="ic-row-left"></dd></div>
+            </dl>
+          </div>
+
+          <div class="calc-chart">
+            <h2 class="calc-chart__title">Your savings over time</h2>
+            <div class="calc-chart__canvas" id="ic-chart">
+              <div class="calc-chart__empty">Your chart appears here once you have filled in your details.</div>
+            </div>
+            <div class="visually-hidden"><table id="ic-table"></table></div>
+          </div>
+        </div>
+
+        <hr class="calc__rule">
+
+        <!-- Numbered sections -->
+        <div class="calc__sections">
+          <section class="calc-part" id="ic-compare" hidden>
+            <div class="calc-part__head"><h2>How your draw rate compares</h2></div>
+            <div class="calc-part__body" id="ic-compare-body"></div>
+          </section>
+
+          <section class="calc-part">
+            <div class="calc-part__head"><h2>What this leaves out</h2></div>
+            <div class="calc-part__body">
+              <ul>
+                <li><strong>Tax.</strong> The income shown is before tax.</li>
+                <li><strong>Fees.</strong> The expected return is before investment and advice fees, unless you lower it to allow for them.</li>
+                <li><strong>Ups and downs.</strong> Markets do not grow in a straight line, and poor returns early in retirement matter more than the average.</li>
+                <li><strong>Living annuity limits.</strong> Living annuities have legal limits on how much may be drawn each year (between 2.5% and 17.5%), which this ignores.</li>
+                <li><strong>One pot.</strong> It treats all your savings as a single pot.</li>
+                <li><strong>Other income.</strong> Any other income you enter is assumed to rise with inflation.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="calc-part">
+            <div class="calc-part__head"><h2>How this is worked out</h2></div>
+            <div class="calc-part__body">
+              <p>The income you want, less any other income, is taken from your savings at the start of each year and rises with inflation. What remains grows at the expected return you chose. <span id="ic-return-sentence">Inflation is assumed to be 5% a year, so inflation plus 4% means 9% a year.</span></p>
+              <p>The calculation runs to age 100, and the chart shows your savings in today's money.</p>
+            </div>
+          </section>
+
+          <p class="calc__crosslink"><strong>Still saving.</strong> The <a href="/tools/retirement-savings-calculator/">retirement savings calculator</a> shows what your savings could pay you each month when you retire.</p>
+
+          <p class="calc__disclaimer">This calculator gives a general illustration based on the figures and assumptions you enter. It is not financial advice and does not take your personal circumstances into account. Actual results will differ. Simple Wealth (Pty) Ltd is an authorised financial services provider, FSP no. 50637.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <CtaSection heading="Want this worked through with your real numbers" text="A free 10-minute call is a simple way to see whether we can help." />
+
+  </div>
+
+  <script src="/calculators.js?v=2" is:inline slot="scripts"></script>
+  <script is:inline slot="scripts">
+    (function () {
+      var C = window.SWCalc;
+      var $ = function (id) { return document.getElementById(id); };
+      var age = $('ic-age'), savings = $('ic-savings'), income = $('ic-income'), other = $('ic-other');
+      var slider = $('ic-return');
+      var last = null;
+
+      function rand(n, step) { return C.formatRand(C.roundTo(n, step)); }
+      function pct(n) { return n.toFixed(1) + '%'; }
+
+      function read() {
+        var a = C.readWholeNumber(age);
+        var ageError = a !== null && (a < 55 || a > 90) ? 'Enter an age from 55 to 90.' : '';
+        C.setFieldError(age, $('ic-age-error'), ageError);
+        var s = C.parseRand(savings.value), m = C.parseRand(income.value), o = C.parseRand(other.value);
+        if (a === null || ageError || !s || !m) return null;
+        return { age: a, savings: s, monthlyIncome: m, otherIncome: o || 0, extraReturn: parseFloat(slider.value) / 100 };
+      }
+
+      function showEmpty() {
+        last = null;
+        $('ic-label').textContent = 'How long your savings could last';
+        $('ic-figure').textContent = '–';
+        $('ic-note').textContent = 'Enter your age, your savings and the monthly income you want.';
+        $('ic-summary').textContent = '';
+        $('ic-rows').hidden = true;
+        $('ic-compare').hidden = true;
+        $('ic-chart').innerHTML = '<div class="calc-chart__empty">Your chart appears here once you have filled in your details.</div>';
+        $('ic-table').innerHTML = '';
+      }
+
+      function drawChart() {
+        if (!last) return;
+        var r = last.result;
+        var marker = r.runOutAge !== null
+          ? { age: r.runOutAge, label: 'Runs out at ' + r.runOutAge, side: 'right' }
+          : { age: 100, label: rand(r.leftAt100Today, 10000) + ' left at 100' };
+        C.drawChart($('ic-chart'), {
+          points: r.points,
+          title: 'Savings in today’s money at each age from ' + last.input.age + ' to 100',
+          valueLabel: function (v) { return rand(v, 10000); },
+          marker: marker
+        });
+        C.fillTable($('ic-table'), 'Savings in today’s money at each age', ['Age', 'Savings'],
+          r.points.map(function (p) { return [p.age, rand(p.value, 10000)]; }));
+      }
+
+      function update() {
+        var input = read();
+        if (!input) { showEmpty(); return; }
+        C.trackUse('Retirement income calculator');
+
+        var r = C.projectDrawdown(input);
+        last = { input: input, result: r };
+        var incomeText = rand(input.monthlyIncome, 100) + ' a month';
+        var above = r.firstYearRate > r.guideRate + 1e-9;
+        var lasts = r.runOutAge === null;
+
+        $('ic-rows').hidden = false;
+        $('ic-row-rate').textContent = pct(r.firstYearRate);
+        $('ic-row-rate').className = above ? 'is-gold' : '';
+        $('ic-row-guide').textContent = pct(r.guideRate);
+        $('ic-row-lasts-wrap').hidden = lasts;
+        $('ic-row-left-wrap').hidden = !lasts;
+
+        var summary;
+        if (lasts) {
+          $('ic-label').textContent = 'Your savings could last';
+          $('ic-figure').textContent = 'Beyond 100';
+          $('ic-row-left').textContent = rand(r.leftAt100Today, 10000);
+          if (r.covered) {
+            $('ic-note').textContent = 'Your other income already covers this, so your savings are left untouched.';
+            summary = 'Your other income already covers ' + incomeText + ', so your savings are left untouched.';
+          } else {
+            $('ic-note').textContent = 'Drawing ' + incomeText + ' in today’s money, before tax';
+            summary = 'At ' + incomeText + ', your savings could last beyond age 100, with about ' + rand(r.leftAt100Today, 10000) + ' left at 100 in today’s money.';
+          }
+        } else {
+          $('ic-label').textContent = 'Your savings could last until about age';
+          $('ic-figure').textContent = String(r.runOutAge);
+          $('ic-note').textContent = 'Drawing ' + incomeText + ' in today’s money, before tax';
+          $('ic-row-lasts').textContent = C.formatRand(C.floorTo(C.incomeThatLasts(input), 100)) + ' a month';
+          summary = 'At ' + incomeText + ', your savings could last until about age ' + r.runOutAge + '.';
+        }
+        $('ic-summary').textContent = summary;
+
+        var body;
+        if (r.covered) {
+          body = '<p>Your other income already covers the income you want, so nothing is drawn from your savings in this illustration.</p>';
+        } else {
+          body = '<p>You would be drawing <strong>' + pct(r.firstYearRate) + '</strong> of your savings in the first year. A commonly used guide at age ' + input.age + ' is about ' + pct(r.guideRate) + '.</p>';
+          body += above
+            ? '<p>A draw rate above the guide makes it more likely that savings run out during a long retirement.</p>'
+            : '<p>That is at or below the guide.</p>';
+          if (!lasts) {
+            body += '<p>An income of about <strong>' + C.formatRand(C.floorTo(C.incomeThatLasts(input), 100)) + ' a month</strong> could last to age 100' +
+              (input.otherIncome ? ' (this figure includes your other income)' : '') + '.</p>';
+          }
+        }
+        $('ic-compare-body').innerHTML = body;
+        $('ic-compare').hidden = false;
+
+        drawChart();
+      }
+
+      age.addEventListener('input', update);
+      [savings, income, other].forEach(function (input) { C.bindRandInput(input, update); });
+      C.bindReturnSlider(slider, $('ic-return-value'), update, $('ic-return-sentence'));
+
+      var resizeTimer = null, lastWidth = window.innerWidth;
+      window.addEventListener('resize', function () {
+        if (window.innerWidth === lastWidth) return;
+        lastWidth = window.innerWidth;
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(drawChart, 120);
+      });
+
+      update();
+    })();
+  </script>
+</BaseLayout>

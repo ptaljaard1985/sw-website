@@ -121,6 +121,53 @@
     };
   }
 
+  /* ---------- Retirement income (drawdown) ---------- */
+
+  // input: { age, savings, monthlyIncome, otherIncome, extraReturn }
+  // The income wanted, less other income, is taken at the start of each year and
+  // rises with inflation. What remains grows for the year. Runs to age 100.
+  function projectDrawdown(input) {
+    var growth = INFLATION + (input.extraReturn || 0);
+    var need0 = Math.max(0, (input.monthlyIncome || 0) - (input.otherIncome || 0)) * 12;
+    var balance = input.savings || 0;
+    var runOutAge = null;
+    var points = [];
+    for (var age = input.age; age <= 99; age++) {
+      var y = age - input.age;
+      var need = need0 * Math.pow(1 + INFLATION, y);
+      points.push({ age: age, value: balance / Math.pow(1 + INFLATION, y) });
+      if (balance < need && runOutAge === null) runOutAge = age;
+      var draw = Math.min(balance, need);
+      balance = (balance - draw) * (1 + growth);
+    }
+    var leftAt100Today = balance / Math.pow(1 + INFLATION, 100 - input.age);
+    points.push({ age: 100, value: leftAt100Today });
+    return {
+      points: points,
+      runOutAge: runOutAge,                       // first age the savings cannot pay the full year
+      leftAt100Today: leftAt100Today,
+      firstYearRate: input.savings > 0 ? need0 / input.savings * 100 : 0,   // percent
+      guideRate: withdrawalRate(input.age),       // percent
+      covered: need0 === 0                        // other income already pays the income wanted
+    };
+  }
+
+  // The highest monthly income (including other income) with no run-out age before 100.
+  function incomeThatLasts(input) {
+    var other = input.otherIncome || 0;
+    var lo = other;
+    var hi = other + (input.savings || 0) / 12;
+    for (var i = 0; i < 60; i++) {
+      var mid = (lo + hi) / 2;
+      var r = projectDrawdown({
+        age: input.age, savings: input.savings, monthlyIncome: mid,
+        otherIncome: other, extraReturn: input.extraReturn
+      });
+      if (r.runOutAge === null) lo = mid; else hi = mid;
+    }
+    return lo;
+  }
+
   /* ---------- Formatting and parsing (pure) ---------- */
 
   function roundTo(n, step) {
@@ -157,6 +204,14 @@
     return 'Inflation plus ' + percent + '% a year';
   }
 
+  // The sentence in "How this is worked out" that explains the slider setting.
+  function returnSentence(percent) {
+    var inflation = Math.round(INFLATION * 1000) / 10;
+    var total = Math.round((inflation + (percent || 0)) * 10) / 10;
+    if (!percent) return 'Inflation is assumed to be ' + inflation + '% a year, so inflation only means ' + total + '% a year.';
+    return 'Inflation is assumed to be ' + inflation + '% a year, so inflation plus ' + percent + '% means ' + total + '% a year.';
+  }
+
   // A tidy step for axis gridlines.
   function niceStep(max, targetLines) {
     if (max <= 0) return 1;
@@ -175,11 +230,15 @@
     incomeByRetirementAge: incomeByRetirementAge,
     savingsOverTime: savingsOverTime,
     closeGap: closeGap,
+    projectDrawdown: projectDrawdown,
+    incomeThatLasts: incomeThatLasts,
     roundTo: roundTo,
+    floorTo: function (n, step) { return Math.floor(n / step) * step; },
     formatRand: formatRand,
     formatRandShort: formatRandShort,
     parseRand: parseRand,
     returnInWords: returnInWords,
+    returnSentence: returnSentence,
     niceStep: niceStep
   };
 
@@ -194,6 +253,19 @@
       if (text !== undefined) node.textContent = text;
       return node;
     }
+
+    // Whole-number field (an age): strips anything that is not a digit. Empty -> null.
+    api.readWholeNumber = function (input) {
+      var text = input.value.replace(/\D/g, '');
+      if (text !== input.value) input.value = text;
+      return text === '' ? null : parseInt(text, 10);
+    };
+
+    // Shows or clears the error message tied to a field.
+    api.setFieldError = function (input, errorNode, message) {
+      errorNode.textContent = message;
+      if (message) input.setAttribute('aria-invalid', 'true'); else input.removeAttribute('aria-invalid');
+    };
 
     // Rand text input: formats with spaces while typing, keeps the caret in place.
     api.bindRandInput = function (input, onChange) {
@@ -218,11 +290,12 @@
     };
 
     // Expected return slider: keeps its label and aria-valuetext in step.
-    api.bindReturnSlider = function (slider, label, onChange) {
+    api.bindReturnSlider = function (slider, label, onChange, sentence) {
       function sync() {
         var words = returnInWords(parseFloat(slider.value));
         slider.setAttribute('aria-valuetext', words);
         if (label) label.textContent = words;
+        if (sentence) sentence.textContent = returnSentence(parseFloat(slider.value));
         if (onChange) onChange();
       }
       slider.addEventListener('input', sync);
@@ -252,7 +325,7 @@
        config: {
          points: [{ age, value }],
          valueLabel(value) -> text for the hover note,
-         marker: { age, label }            (optional, the highlighted point)
+         marker: { age, label, side }      (optional, the highlighted point; side 'right' for a falling line)
          goal:   { value, label }          (optional, dashed horizontal line)
          title:  text for the SVG's accessible name
        } */
@@ -338,7 +411,34 @@
           var anchor = nearLeft ? 'start' : 'end';
           var lx = nearLeft ? mx + 10 : mx - 8;
           var ly = nearLeft ? my + 28 : my - 14;
-          if (config.marker.below) { anchor = 'end'; lx = mx - 8; ly = my + 28; }
+          // On a falling line, above and to the right is the clear side.
+          if (config.marker.side === 'right') {
+            var roomRight = width - pad.right - mx > config.marker.label.length * 9.5;
+            anchor = roomRight ? 'start' : 'end';
+            lx = roomRight ? mx + 8 : mx - 8;
+            ly = my - 14;
+          }
+          // Lift the label clear of the line wherever the line passes under its text.
+          var labelW = config.marker.label.length * 9.5;
+          var fromX = anchor === 'end' ? lx - labelW : lx;
+          var toX = anchor === 'end' ? lx : lx + labelW;
+          if (ly < my) {
+            var highest = my;
+            pts.forEach(function (p, i) {
+              var px = x(p.age);
+              if (px >= fromX - 4 && px <= toX + 4) highest = Math.min(highest, y(p.value));
+              if (i > 0) {   // where the line crosses the label's left and right edges
+                var qx = x(pts[i - 1].age);
+                [fromX, toX].forEach(function (edge) {
+                  if (edge > qx && edge < px) {
+                    var t = (edge - qx) / (px - qx);
+                    highest = Math.min(highest, y(pts[i - 1].value) + t * (y(p.value) - y(pts[i - 1].value)));
+                  }
+                });
+              }
+            });
+            ly = Math.min(ly, highest - 12);
+          }
           if (ly < 16) ly = my + 28;
           if (ly > pad.top + h - 6) ly = my - 14;
           svg.appendChild(el('text', {
