@@ -232,44 +232,56 @@
 
   // "Your expected return": a plain comment on the slider setting, as paragraphs.
   // General description only. It names no product and makes no promise.
-  function returnComment(percent) {
+  // The first paragraph of each band is shared. The second differs by calculator:
+  // 'saving' for someone still building savings, 'income' for someone drawing from them.
+  var RETURN_BANDS = [
+    { upTo: 0,
+      mix: 'This assumes your savings keep up with rising prices and grow no faster. It is roughly what a portfolio held mostly in cash and other low-risk investments aims for.',
+      saving: 'At this setting almost all of the growth in your savings has to come from what you put in.',
+      income: 'At this setting your income comes almost entirely from drawing down the savings themselves, so they are used up sooner.' },
+    { upTo: 1,
+      mix: 'This is a cautious assumption. It suits a portfolio held mostly in cash and bonds, with only a small share in growth assets (shares and listed property).',
+      saving: 'The ups and downs should be small, but so is the growth above inflation, so most of the result depends on how much you save.',
+      income: 'The ups and downs should be small, but with little growth above inflation the savings have to carry most of the income on their own, and may not last as long.' },
+    { upTo: 2,
+      mix: 'This is a conservative assumption. It suits a portfolio with a meaningful share in growth assets (shares and listed property), balanced by a large share in cash and bonds.',
+      saving: 'You should expect modest (temporary) declines when markets fall.',
+      income: 'You should expect modest (temporary) declines when markets fall.' },
+    { upTo: 3,
+      mix: 'This is a moderate assumption. It needs a substantial share of your savings in growth assets (shares and listed property), with the rest in cash and bonds.',
+      saving: 'Your savings will fall in value from time to time, sometimes noticeably, and these (temporary) declines are part of earning this return.',
+      income: 'Your savings will fall in value from time to time, sometimes noticeably. While you are drawing an income, declines early in retirement matter more than later ones.' },
+    { upTo: 4,
+      mix: null,
+      saving: null,
+      income: null },
+    { upTo: 5,
+      mix: null,
+      saving: null,
+      income: null }
+  ];
+  RETURN_BANDS[4].mixSaving = 'This is achievable, but it needs most of your savings to be invested in growth assets (shares and listed property), across all your investment accounts.';
+  RETURN_BANDS[4].mixIncome = 'This is achievable, but it needs most of your savings to stay invested in growth assets (shares and listed property) throughout retirement.';
+  RETURN_BANDS[4].saving = 'The price of this return is larger (temporary) declines when markets fall, and the discipline to stay invested through them.';
+  RETURN_BANDS[4].income = 'The price of this return is larger (temporary) declines when markets fall, at a time when you are also drawing an income.';
+  RETURN_BANDS[5].mixSaving = 'This is possible, but it asks a lot. All your investment accounts would need to be invested in strategies that are likely to deliver this return over time, which means the great majority of your savings in growth assets (shares and listed property).';
+  RETURN_BANDS[5].mixIncome = 'This is possible, but it asks a lot, particularly in retirement. The great majority of your savings would need to stay in growth assets (shares and listed property) while you draw an income from them.';
+  RETURN_BANDS[5].saving = 'The unavoidable result is bigger (temporary) declines when markets are volatile.';
+  RETURN_BANDS[5].income = 'The unavoidable result is bigger (temporary) declines when markets are volatile, and drawing an income through those declines uses up savings faster.';
+
+  // context: 'saving' (default) or 'income'
+  function returnComment(percent, context) {
     var p = percent || 0;
+    var forIncome = context === 'income';
     var first = p === 0
       ? 'Your expected return is inflation only.'
       : 'Your expected return is inflation plus ' + p + '% a year.';
-    var rest;
-    if (p === 0) {
-      rest = [
-        'This assumes your savings keep up with rising prices and grow no faster. It is roughly what a portfolio held mostly in cash and other low-risk investments aims for.',
-        'At this setting almost all of the growth in your savings has to come from what you put in.'
-      ];
-    } else if (p <= 1) {
-      rest = [
-        'This is a cautious assumption. It suits a portfolio held mostly in cash and bonds, with only a small share in growth assets (shares and listed property).',
-        'The ups and downs should be small, but so is the growth above inflation, so most of the result depends on how much you save.'
-      ];
-    } else if (p <= 2) {
-      rest = [
-        'This is a conservative assumption. It suits a portfolio with a meaningful share in growth assets (shares and listed property), balanced by a large share in cash and bonds.',
-        'You should expect modest (temporary) declines when markets fall.'
-      ];
-    } else if (p <= 3) {
-      rest = [
-        'This is a moderate assumption. It needs a substantial share of your savings in growth assets (shares and listed property), with the rest in cash and bonds.',
-        'Your savings will fall in value from time to time, sometimes noticeably, and these (temporary) declines are part of earning this return.'
-      ];
-    } else if (p <= 4) {
-      rest = [
-        'This is achievable, but it needs most of your savings to be invested in growth assets (shares and listed property), across all your investment accounts.',
-        'The price of this return is larger (temporary) declines when markets fall, and the discipline to stay invested through them.'
-      ];
-    } else {
-      rest = [
-        'This is possible, but it asks a lot. All your investment accounts would need to be invested in strategies that are likely to deliver this return over time, which means the great majority of your savings in growth assets (shares and listed property).',
-        'The unavoidable result is bigger (temporary) declines when markets are volatile.'
-      ];
+    var band = RETURN_BANDS[RETURN_BANDS.length - 1];
+    for (var i = 0; i < RETURN_BANDS.length; i++) {
+      if (p <= RETURN_BANDS[i].upTo) { band = RETURN_BANDS[i]; break; }
     }
-    return [first].concat(rest);
+    var mix = band.mix || (forIncome ? band.mixIncome : band.mixSaving);
+    return [first, mix, forIncome ? band.income : band.saving];
   }
 
   // A tidy step for axis gridlines.

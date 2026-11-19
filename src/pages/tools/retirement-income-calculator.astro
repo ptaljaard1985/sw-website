@@ -136,6 +136,11 @@ const schema = [{
             <div class="calc-part__body" id="ic-compare-body"></div>
           </section>
 
+          <section class="calc-part" aria-live="polite">
+            <div class="calc-part__head"><h2>Your expected return</h2></div>
+            <div class="calc-part__body" id="ic-return-comment"></div>
+          </section>
+
           <section class="calc-part">
             <div class="calc-part__head"><h2>What this leaves out</h2></div>
             <div class="calc-part__body">
@@ -171,7 +176,7 @@ const schema = [{
 
   </div>
 
-  <script src="/calculators.js?v=6" is:inline slot="scripts"></script>
+  <script src="/calculators.js?v=7" is:inline slot="scripts"></script>
   <script is:inline slot="scripts">
     (function () {
       var C = window.SWCalc;
@@ -306,7 +311,12 @@ const schema = [{
       $('ic-view-savings').addEventListener('click', function () { view = 'savings'; drawChart(); });
       age.addEventListener('input', update);
       [savings, income, other].forEach(function (input) { C.bindRandInput(input, update); });
-      C.bindReturnSlider(slider, $('ic-return-value'), update, $('ic-return-sentence'));
+      C.bindReturnSlider(slider, $('ic-return-value'), function () {
+        $('ic-return-comment').innerHTML = C.returnComment(parseFloat(slider.value), 'income').map(function (line, i) {
+          return '<p>' + (i === 0 ? '<strong>' + line + '</strong>' : line) + '</p>';
+        }).join('');
+        update();
+      }, $('ic-return-sentence'));
 
       var resizeTimer = null, lastWidth = window.innerWidth;
       window.addEventListener('resize', function () {
