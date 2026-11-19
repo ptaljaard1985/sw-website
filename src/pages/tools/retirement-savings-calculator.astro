@@ -293,6 +293,15 @@ const schema = [{
           if (g.met) {
             $('sc-gap-heading').textContent = 'Your goal';
             body = '<p>On these figures, the income at ' + input.retirementAge + ' is at or above your goal of ' + goalText + '.</p>';
+            // and the first retirement age at which the goal is reached
+            var firstShown = Math.max(55, input.age + 1);
+            if (reached === firstShown && reached < input.retirementAge) {
+              body += '<p>On what you save now, the income could already reach your goal at <strong>' + reached + '</strong>, the earliest retirement age shown.</p>';
+            } else if (reached < input.retirementAge) {
+              body += '<p>On what you save now, the income could first reach your goal if you retire at <strong>' + reached + '</strong>.</p>';
+            } else {
+              body += '<p><strong>' + reached + '</strong> is the first retirement age at which it could.</p>';
+            }
           } else {
             $('sc-gap-heading').textContent = 'Closing the gap';
             if (g.extraDisplay !== null) {
