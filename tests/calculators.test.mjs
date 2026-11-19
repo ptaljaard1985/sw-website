@@ -150,3 +150,15 @@ test('the "how this is worked out" sentence follows the slider', () => {
   assert.equal(calc.returnSentence(2.5), 'Inflation is assumed to be 5% a year, so inflation plus 2.5% means 7.5% a year.');
   assert.equal(calc.returnSentence(0), 'Inflation is assumed to be 5% a year, so inflation only means 5% a year.');
 });
+
+test('savings calculator: figures before inflation is taken off', () => {
+  // the case checked three ways on 19 November 2026
+  const r = calc.projectSavings({ age: 41, retirementAge: 65, savings: 2700000, monthlySaving: 38000, extraReturn: 0.04 });
+  near(r.capitalToday, 23859550);
+  near(r.monthlyIncome, 95438);
+  near(r.capitalFuture, 76949434);
+  near(r.monthlyIncomeFuture, 76949434 * 0.048 / 12);
+  // future rands are today's money grown by inflation for the years to retirement
+  near(r.capitalFuture, r.capitalToday * Math.pow(1.05, 24), 0.01);
+  near(r.monthlyIncomeFuture, r.monthlyIncome * Math.pow(1.05, 24), 0.01);
+});

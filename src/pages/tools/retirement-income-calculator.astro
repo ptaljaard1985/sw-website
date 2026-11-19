@@ -32,7 +32,7 @@ const schema = [{
   showSocialInFooter={true}
   schema={schema}
 >
-  <link rel="stylesheet" href="/calculators.css?v=2" slot="head">
+  <link rel="stylesheet" href="/calculators.css?v=3" slot="head">
 
   <div class="v2">
 
@@ -144,7 +144,7 @@ const schema = [{
             <div class="calc-part__head"><h2>How this is worked out</h2></div>
             <div class="calc-part__body">
               <p>The income you want, less any other income, is taken from your savings at the start of each year and rises with inflation. What remains grows at the expected return you chose. <span id="ic-return-sentence">Inflation is assumed to be 5% a year, so inflation plus 4% means 9% a year.</span></p>
-              <p>The calculation runs to age 100, and the chart shows your savings in today's money.</p>
+              <p>The calculation runs to age 100, and the chart shows your savings in today's money. Today's money means the amounts are shown at today's prices, so you can compare them with what you earn and spend now.</p>
             </div>
           </section>
 
@@ -161,7 +161,7 @@ const schema = [{
 
   </div>
 
-  <script src="/calculators.js?v=2" is:inline slot="scripts"></script>
+  <script src="/calculators.js?v=3" is:inline slot="scripts"></script>
   <script is:inline slot="scripts">
     (function () {
       var C = window.SWCalc;

@@ -62,7 +62,10 @@
       years: years,
       rate: rate,
       capitalToday: capitalToday,
-      monthlyIncome: capitalToday * rate / 100 / 12
+      monthlyIncome: capitalToday * rate / 100 / 12,
+      // the same two figures before inflation is taken off (rands of the retirement year)
+      capitalFuture: balances[years],
+      monthlyIncomeFuture: balances[years] * rate / 100 / 12
     };
   }
 

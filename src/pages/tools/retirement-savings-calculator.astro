@@ -32,7 +32,7 @@ const schema = [{
   showSocialInFooter={true}
   schema={schema}
 >
-  <link rel="stylesheet" href="/calculators.css?v=2" slot="head">
+  <link rel="stylesheet" href="/calculators.css?v=3" slot="head">
 
   <div class="v2">
 
@@ -110,9 +110,16 @@ const schema = [{
               <div class="calc-answer__row" data-goal-row hidden><dt>Your goal</dt><dd id="sc-row-goal"></dd></div>
               <div class="calc-answer__row" data-goal-row hidden><dt>Against the goal</dt><dd id="sc-row-against" class="is-gold"></dd></div>
               <div class="calc-answer__row" data-goal-row hidden><dt>Goal first reached</dt><dd id="sc-row-reached"></dd></div>
-              <div class="calc-answer__row"><dt>Savings at retirement</dt><dd id="sc-row-capital"></dd></div>
+              <div class="calc-answer__row"><dt>Savings at retirement, in today's money</dt><dd id="sc-row-capital"></dd></div>
               <div class="calc-answer__row"><dt>Years to retirement</dt><dd id="sc-row-years"></dd></div>
             </dl>
+            <div class="calc-answer__future" id="sc-future" hidden>
+              <p class="calc-answer__future-title" id="sc-future-title"></p>
+              <dl class="calc-answer__rows">
+                <div class="calc-answer__row"><dt>Monthly income</dt><dd id="sc-row-income-future"></dd></div>
+                <div class="calc-answer__row"><dt>Savings at retirement</dt><dd id="sc-row-capital-future"></dd></div>
+              </dl>
+            </div>
           </div>
 
           <div class="calc-chart">
@@ -153,7 +160,7 @@ const schema = [{
             <div class="calc-part__head"><h2>How this is worked out</h2></div>
             <div class="calc-part__body">
               <p>Your savings grow each month at the expected return you chose. <span id="sc-return-sentence">Inflation is assumed to be 5% a year, so inflation plus 4% means 9% a year.</span> What you save each month is assumed to rise with inflation once a year.</p>
-              <p>The total is then brought back to today's money using inflation. The monthly income applies a withdrawal rate that depends on the age you retire (4.8% a year at 65, lower if you retire earlier, higher if later), divided by twelve.</p>
+              <p>Today's money means the amounts are shown at today's prices, so you can compare them with what you earn and spend now. The total is brought back to today's money using inflation. The monthly income applies a withdrawal rate that depends on the age you retire (4.8% a year at 65, lower if you retire earlier, higher if later), divided by twelve.</p>
             </div>
           </section>
 
@@ -170,7 +177,7 @@ const schema = [{
 
   </div>
 
-  <script src="/calculators.js?v=2" is:inline slot="scripts"></script>
+  <script src="/calculators.js?v=3" is:inline slot="scripts"></script>
   <script is:inline slot="scripts">
     (function () {
       var C = window.SWCalc;
@@ -207,6 +214,7 @@ const schema = [{
         $('sc-figure')._swValue = undefined;
         $('sc-note').textContent = 'Enter your age, the age you plan to retire, and what you have saved or what you save each month.';
         $('sc-rows').hidden = true;
+        $('sc-future').hidden = true;
         $('sc-gap').hidden = true;
         $('sc-chart').innerHTML = '<div class="calc-chart__empty">Your chart appears here once you have filled in your details.</div>';
         $('sc-table').innerHTML = '';
@@ -261,6 +269,12 @@ const schema = [{
         $('sc-rows').hidden = false;
         $('sc-row-capital').textContent = rand(result.capitalToday, 10000);
         $('sc-row-years').textContent = String(result.years);
+
+        // The same figures in the rands of the retirement year, so today's money is not mistaken for them
+        $('sc-future').hidden = false;
+        $('sc-future-title').textContent = 'The same figures in ' + result.years + (result.years === 1 ? ' year\u2019s' : ' years\u2019') + ' time, after inflation of 5% a year';
+        $('sc-row-income-future').textContent = rand(result.monthlyIncomeFuture, 100);
+        $('sc-row-capital-future').textContent = rand(result.capitalFuture, 10000);
 
         var goalRows = document.querySelectorAll('#sc-rows [data-goal-row]');
         var gap = $('sc-gap');
