@@ -286,6 +286,7 @@ Each article has a unique abstract image sourced from **Pawel Czerwinski on Unsp
 1. Search Unsplash for a Pawel Czerwinski abstract image that loosely matches the article's theme/mood
 2. Download at L size (~2000px wide), resize to 800px wide, convert to WebP (quality 80)
 3. Save to `public/images/` with naming convention `article-{short-slug}.webp`
+   - Unsplash blocks scripted downloads from its site. Find the photo page by web search, read its `images.unsplash.com/photo-…` address with the web reader, and download that address directly.
 4. Set `image` and `imageAlt` in the article frontmatter
 
 **Current article image assignments:**
@@ -304,6 +305,10 @@ Each article has a unique abstract image sourced from **Pawel Czerwinski on Unsp
 | Building Wealth for Unknowns | article-unknowns.webp | Blue/white on dark |
 | What Game Are You Playing? | article-game.webp | Black/gold curves |
 | Understanding Your Financial Levers | article-levers.webp | Dark sepia curves |
+| How to Think About a Pay Increase | article-pay-increase.webp | Brown/black with gold veins |
+| Investing at All-Time Highs | article-all-time-highs.webp | Black with orange wave |
+| The Machine That Answers Everything | article-machine-that-answers-everything.webp | Deep blue on black |
+| Building One Plan With Two Money Stories | article-two-money-stories.webp | Blue and orange on black |
 
 **Photographer:** Pawel Czerwinski — https://unsplash.com/@pawel_czerwinski
 
